@@ -5,7 +5,7 @@ import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:gelir_gider/widgets/button_with_flag.dart';
 import 'package:provider/provider.dart';
 import 'package:theme_manager/theme_manager.dart';
-import 'package:theme_manager/change_theme_widget.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,9 +51,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(''),
-        ),
         body: Container(
           child: Center(
             child: Column(

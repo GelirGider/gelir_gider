@@ -13,18 +13,19 @@ class FlagButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        color: Colors.green,
-        height: 100,
+        height: 150,
         width: 250,
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(isEnglish ? 'English' : 'Türkçe'),
             isEnglish
                 ? Image.asset('icons/flags/png/gb.png',
                     package: 'country_icons')
                 : Image.asset('icons/flags/png/tr.png',
                     package: 'country_icons'),
+            isEnglish ? SizedBox(height: 10) : SizedBox(height: 30),
+            Text(isEnglish ? 'English' : 'Türkçe',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
           ],
         ),
       ),
