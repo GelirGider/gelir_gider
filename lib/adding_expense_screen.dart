@@ -40,7 +40,7 @@ class _AddingExpenseState extends State<AddingExpense> {
         isExpense: isExpense,
       ),
     );
-    Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => MainPage()));
+    Navigator.of(context).pop();
   }
 
   @override
