@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
+import 'package:gelir_gider/widgets/expense_item.dart';
 import 'package:provider/provider.dart';
 import 'package:theme_manager/theme_manager.dart';
 import 'package:theme_manager/change_theme_widget.dart';
+
+import 'adding_expense_screen.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -31,7 +35,9 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    final langState = Provider.of<LanguageHandler>(context);
+    final langState = Provider.of<LanguageHandler>(context, listen: false);
+    final expenseProvider = Provider.of<Expenses>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(langState.isEnglish ? "Add/Remove" : "Ekle/Çıkar"),
@@ -40,9 +46,37 @@ class _MainPageState extends State<MainPage> {
             onPressed: showThemePicker,
             child: Icon(Icons.color_lens),
           ),
+          FlatButton(
+            onPressed: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (ctx) => AddingExpense())),
+            child: Icon(Icons.add),
+          ),
         ],
       ),
-      body: Container(),
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return Column(
+            children: [
+              Container(
+                height: constraints.maxHeight,
+                child: ListView.builder(
+                  itemCount: expenseProvider.expense.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        ExpenseItem(
+                          expense: expenseProvider.expense[index],
+                        ),
+                        Divider(),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

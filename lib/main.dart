@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/main_page.dart';
+import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:gelir_gider/widgets/button_with_flag.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +29,10 @@ class MyApp extends StatelessWidget {
           providers: [
             ChangeNotifierProvider.value(
               value: LanguageHandler(),
-            )
+            ),
+            ChangeNotifierProvider.value(
+              value: Expenses(),
+            ),
           ],
           child: MaterialApp(
             title: 'Theme Manager Demo',
@@ -63,6 +67,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 FlagButton(
                   isEnglish: true,
                   onPressed: () {
+                    Provider.of<LanguageHandler>(context, listen: false)
+                        .setEnglish();
                     return Navigator.of(context)
                         .push(MaterialPageRoute(builder: (ctx) => MainPage()));
                   },
@@ -72,8 +78,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 FlagButton(
                   isEnglish: false,
                   onPressed: () {
-                    Provider.of<LanguageHandler>(context).toggleLanguage();
-
+                    Provider.of<LanguageHandler>(context, listen: false)
+                        .setTurkish();
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (ctx) => MainPage()));
                   },
