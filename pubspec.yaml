@@ -27,6 +27,8 @@ dependencies:
   http: ^0.12.2
   theme_manager: ^1.0.4
   country_icons: ^1.1.1
+  pedantic: ^1.9.2
+
 
 
   # The following adds the Cupertino Icons font to your application.

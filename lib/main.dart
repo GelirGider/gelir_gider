@@ -7,6 +7,7 @@ import 'package:gelir_gider/widgets/button_with_flag.dart';
 import 'package:provider/provider.dart';
 import 'package:theme_manager/theme_manager.dart';
 import 'package:flutter/services.dart';
+import 'package:pedantic/pedantic.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             title: 'Theme Manager Demo',
             theme: theme,
+            debugShowCheckedModeBanner: false,
             home: WelcomeScreen(),
           ),
         );
