@@ -40,7 +40,7 @@ class _AddingExpenseState extends State<AddingExpense> {
         description: description,
         price: price,
         time: time,
-        category : category,
+        category: category,
         isExpense: isExpense,
       ),
     );
@@ -166,24 +166,6 @@ class _AddingExpenseState extends State<AddingExpense> {
                               _saveForm();
                             },
                           ),
-<<<<<<< HEAD
-=======
-                          textInputAction: TextInputAction.done,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Please provide a price.';
-                            }
-                            return null;
-                          },
-                          onSaved: (newValue) {
-                            price = int.parse(newValue);
-                          },
-                          onFieldSubmitted: (_) {
-                            _saveForm();
-                          },
-                        ),
-                      ],
->>>>>>> parent of e787b9a (Repush)
                         ],
                       ),
                     ),
