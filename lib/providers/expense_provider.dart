@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class Expense {
   final String description;
   final int price;
-  final DateTime time;
-  final String isExpense;
+  final String time;
+  final bool isExpense;
 
   Expense({this.description, this.price, this.time, this.isExpense});
 }
@@ -16,6 +16,7 @@ class Expenses with ChangeNotifier {
   }
 
   void addExpense(Expense expense) {
+//    return Future.delayed(Duration(milliseconds: 50)).then((value) => null);
     _expense.add(expense);
     notifyListeners();
   }
