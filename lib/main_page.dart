@@ -46,11 +46,6 @@ class _MainPageState extends State<MainPage> {
             onPressed: showThemePicker,
             child: Icon(Icons.color_lens),
           ),
-          FlatButton(
-            onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (ctx) => AddingExpense())),
-            child: Icon(Icons.add),
-          ),
         ],
       ),
       body: LayoutBuilder(
@@ -77,6 +72,12 @@ class _MainPageState extends State<MainPage> {
           );
         },
       ),
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: Theme.of(context).primaryColor,
+            onPressed: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (ctx) => AddingExpense())),
+            child: Icon(Icons.post_add_rounded,color: Colors.white),
+    )
     );
   }
 }
