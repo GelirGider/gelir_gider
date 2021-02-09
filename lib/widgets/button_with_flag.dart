@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:country_icons/country_icons.dart';
 
 class FlagButton extends StatelessWidget {
   final bool isEnglish;

@@ -17,6 +17,7 @@ class Expenses with ChangeNotifier {
   }
 
   void addExpense(Expense expense) {
+//    return Future.delayed(Duration(milliseconds: 50)).then((value) => null);
     _expense.add(expense);
     notifyListeners();
   }
