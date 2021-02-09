@@ -49,7 +49,6 @@ class _AddingExpenseState extends State<AddingExpense> {
 
   @override
   Widget build(BuildContext context) {
-    final _size = MediaQuery.of(context).size;
     final _langState = Provider.of<LanguageHandler>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
