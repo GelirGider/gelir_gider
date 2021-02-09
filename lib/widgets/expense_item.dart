@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import '../providers/expense_provider.dart';
@@ -11,7 +10,6 @@ class ExpenseItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-//      contentPadding: EdgeInsets.symmetric(horizontal: 5),
       leading: CircleAvatar(
         child: Text(
           expense.price.toString(),

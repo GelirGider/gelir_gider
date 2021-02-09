@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'main_page.dart';
-
 class AddingExpense extends StatefulWidget {
   @override
   _AddingExpenseState createState() => _AddingExpenseState();
