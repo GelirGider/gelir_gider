@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'main_page.dart';
-
 class AddingExpense extends StatefulWidget {
   @override
   _AddingExpenseState createState() => _AddingExpenseState();
@@ -20,8 +18,9 @@ class _AddingExpenseState extends State<AddingExpense> {
 
   String description = 'asdas';
   int price = 0;
-  DateTime time = DateTime(1999, 7, 13);
-  String isExpense = 'Gelir';
+  String category = "Eğlence";
+  String time = "13/12/2011";
+  bool isExpense = false;
 
   Future<void> _saveForm() async {
     final isValid = _form.currentState.validate();
@@ -37,6 +36,7 @@ class _AddingExpenseState extends State<AddingExpense> {
         description: description,
         price: price,
         time: time,
+        category : category,
         isExpense: isExpense,
       ),
     );
@@ -137,7 +137,7 @@ class _AddingExpenseState extends State<AddingExpense> {
                             return null;
                           },
                           onSaved: (newValue) {
-                            description = newValue;
+                            price = int.parse(newValue);
                           },
                           onFieldSubmitted: (_) {
                             _saveForm();

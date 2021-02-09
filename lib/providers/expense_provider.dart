@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Expense {
+  final String category;
   final String description;
   final int price;
-  final DateTime time;
-  final String isExpense;
+  final String time;
+  final bool isExpense;
 
-  Expense({this.description, this.price, this.time, this.isExpense});
+  Expense({this.description, this.price, this.time,this.category, this.isExpense});
 }
 
 class Expenses with ChangeNotifier {

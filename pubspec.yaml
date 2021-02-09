@@ -27,6 +27,8 @@ dependencies:
   http: ^0.12.2
   theme_manager: ^1.0.4
   country_icons: ^1.1.1
+  intl: ^0.16.1
+  flutter_speed_dial: ^1.2.5
 
 
   # The following adds the Cupertino Icons font to your application.
