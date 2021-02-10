@@ -60,9 +60,7 @@ class Expenses with ChangeNotifier {
   }
 
   int calculateTotalMoney() {
-    var sum = 0;
-    _items.forEach((element) => sum += element.price);
-    return sum;
+    return calculateTotalIncome() - calculateTotalExpense();
   }
 
   int calculateTotalExpense() {
