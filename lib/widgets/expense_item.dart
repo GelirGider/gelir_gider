@@ -11,19 +11,18 @@ class ExpenseItem extends StatelessWidget {
       leading: Container(
         margin: const EdgeInsets.all(15.0),
         padding: const EdgeInsets.all(3.0),
-        decoration: BoxDecoration(border: Border.all(color: Theme.of(context).accentColor)),
+        decoration: BoxDecoration(
+            border: Border.all(color: Theme.of(context).accentColor)),
         child: Text(expense.time),
       ),
       title: Flexible(
-          child:Text(expense.description,
-          overflow:TextOverflow.ellipsis)
-      ),
+          child: Text(expense.description, overflow: TextOverflow.ellipsis)),
       subtitle: Text(expense.category),
-      trailing: expense.isExpense
+      trailing: expense.isExpense == 'expense'
           ? Text("+ ₺ " + expense.price.toString(),
-              style: TextStyle(color: Colors.green,fontSize: 15))
+              style: TextStyle(color: Colors.green, fontSize: 15))
           : Text("- ₺ " + expense.price.toString(),
-              style: TextStyle(color: Colors.red,fontSize: 15)),
+              style: TextStyle(color: Colors.red, fontSize: 15)),
     );
   }
 }

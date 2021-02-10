@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
@@ -35,13 +36,8 @@ class MyApp extends StatelessWidget {
             ),
           ],
           child: MaterialApp(
-            localizationsDelegates: [
-              GlobalMaterialLocalizations.delegate
-            ],
-            supportedLocales: [
-              const Locale('en'),
-              const Locale('tr')
-            ],
+            localizationsDelegates: [GlobalMaterialLocalizations.delegate],
+            supportedLocales: [const Locale('en'), const Locale('tr')],
             title: 'Gelir/Gider',
             theme: theme,
             debugShowCheckedModeBanner: false,
