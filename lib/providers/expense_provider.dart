@@ -1,24 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/helpers/db_helper.dart';
 
 class Expense {
+  final String id;
   final String category;
   final String description;
   final int price;
   final String time;
-  final bool isExpense;
+  final String isExpense;
 
-  Expense({this.description, this.price, this.time,this.category, this.isExpense});
+  Expense({
+    this.id,
+    this.description,
+    this.price,
+    this.time,
+    this.category,
+    this.isExpense,
+  });
 }
 
 class Expenses with ChangeNotifier {
-  List<Expense> _expense = [];
+  List<Expense> _items = [];
   List<Expense> get expense {
-    return [..._expense];
+    return [..._items];
   }
 
-  void addExpense(Expense expense) {
-//    return Future.delayed(Duration(milliseconds: 50)).then((value) => null);
-    _expense.add(expense);
+  void addExpense(Expense newExpense) async {
+    _items.add(newExpense);
+    notifyListeners();
+    await DBHelper.insert(
+      'user_expenses',
+      {
+        'id': newExpense.id,
+        'category': newExpense.category,
+        'isExpense': newExpense.isExpense,
+        'time': newExpense.time,
+        'price': newExpense.price,
+        'description': newExpense.description,
+      },
+    );
+  }
+
+  Future<void> fetchAndSetExpenses() async {
+    final dataList = await DBHelper.getData('user_expenses');
+    _items = dataList
+        .map(
+          (item) => Expense(
+            id: item['id'],
+            category: item['category'],
+            isExpense: item['isExpense'],
+            time: item['time'],
+            price: item['price'],
+            description: item['description'],
+          ),
+        )
+        .toList();
     notifyListeners();
   }
 }

@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gelir_gider/main_page.dart';
+import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:gelir_gider/widgets/button_with_flag.dart';
 import 'package:provider/provider.dart';
 import 'package:theme_manager/theme_manager.dart';
 import 'package:flutter/services.dart';
-import 'package:pedantic/pedantic.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -68,8 +67,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   onPressed: () {
                     Provider.of<LanguageHandler>(context, listen: false)
                         .setEnglish();
-                    return Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (ctx) => MainPage()));
+                    return Navigator.of(context).push(MaterialPageRoute(
+                        builder: (ctx) => ExpensesListScreen()));
                   },
                   key: ValueKey(1),
                 ),
@@ -79,8 +78,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   onPressed: () {
                     Provider.of<LanguageHandler>(context, listen: false)
                         .setTurkish();
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (ctx) => MainPage()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (ctx) => ExpensesListScreen()));
                   },
                   key: ValueKey(2),
                 ),

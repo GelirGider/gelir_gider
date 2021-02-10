@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/switch_button.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-import 'package:intl/intl.dart';
 
 class AddingExpense extends StatefulWidget {
   @override
@@ -22,7 +20,7 @@ class _AddingExpenseState extends State<AddingExpense> {
 
   String description = 'asdas';
   int price = 0;
-  String category = "Eğlence";
+  String category = 'Entertainment';
   String time = '';
   bool isExpense = true;
 
@@ -37,11 +35,12 @@ class _AddingExpenseState extends State<AddingExpense> {
     });
     await Provider.of<Expenses>(context, listen: false).addExpense(
       Expense(
-        description: description,
-        price: price,
-        time: time,
+        id: DateTime.now().toString(),
         category: category,
-        isExpense: isExpense,
+        isExpense: isExpense ? 'expense' : 'income',
+        time: time,
+        price: price,
+        description: description,
       ),
     );
     await Navigator.of(context).pop();
@@ -159,7 +158,7 @@ class _AddingExpenseState extends State<AddingExpense> {
                               return null;
                             },
                             onSaved: (newValue) {
-                              description = newValue;
+                              price = int.parse(newValue);
                             },
                             onFieldSubmitted: (_) {
                               _saveForm();
@@ -182,12 +181,7 @@ class _AddingExpenseState extends State<AddingExpense> {
                         firstDate: DateTime(2000),
                         lastDate: DateTime(2100),
                         dateLabelText: _langState.isEnglish ? 'Date' : 'Tarih',
-                        onChanged: (val) => time = val,
-                        validator: (val) {
-                          print(val);
-                          return null;
-                        },
-                        onSaved: (val) => print(val),
+                        onSaved: (val) => time = val,
                       ),
                     ),
                   ),
