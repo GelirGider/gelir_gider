@@ -43,6 +43,7 @@ class Expenses with ChangeNotifier {
 
   Future<void> fetchAndSetExpenses() async {
     final dataList = await DBHelper.getData('user_expenses');
+    print('fetchAndSetExpenses dataList: $dataList');
     _items = dataList
         .map(
           (item) => Expense(
@@ -56,5 +57,29 @@ class Expenses with ChangeNotifier {
         )
         .toList();
     notifyListeners();
+  }
+
+  int calculateTotalMoney() {
+    var sum = 0;
+    _items.forEach((element) => sum += element.price);
+    return sum;
+  }
+
+  int calculateTotalExpense() {
+    List<Expense> newlist = [];
+    newlist = _items.where((element) => element.isExpense == 'expense');
+
+    var sum = 0;
+    newlist.forEach((element) => sum += element.price);
+    return sum;
+  }
+
+  int calculateTotalIncome() {
+    List<Expense> newlist = [];
+    newlist = _items.where((element) => element.isExpense == 'income');
+
+    var sum = 0;
+    newlist.forEach((element) => sum += element.price);
+    return sum;
   }
 }
