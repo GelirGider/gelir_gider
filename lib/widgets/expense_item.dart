@@ -15,8 +15,7 @@ class ExpenseItem extends StatelessWidget {
             border: Border.all(color: Theme.of(context).accentColor)),
         child: Text(expense.time),
       ),
-      title: Flexible(
-          child: Text(expense.description, overflow: TextOverflow.ellipsis)),
+      title: Text(expense.description, overflow: TextOverflow.ellipsis),
       subtitle: Text(expense.category),
       trailing: expense.isExpense == 'expense'
           ? Text("+ ₺ " + expense.price.toString(),
