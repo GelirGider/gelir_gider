@@ -4,47 +4,27 @@ import '../providers/expense_provider.dart';
 
 class ExpenseItem extends StatelessWidget {
   final Expense expense;
-
   const ExpenseItem({Key key, this.expense}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-<<<<<<< HEAD
-      leading: CircleAvatar(
-        child: Text(
-          expense.price.toString(),
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Colors.teal,
-      ),
-      title: Text(
-        expense.description,
-        style: TextStyle(
-          fontWeight: FontWeight.w500,
-          color: Colors.black,
-        ),
-      ),
-      subtitle: Text(
-        expense.time.toString(),
-      ),
-=======
       leading: Container(
         margin: const EdgeInsets.all(15.0),
         padding: const EdgeInsets.all(3.0),
         decoration: BoxDecoration(border: Border.all(color: Theme.of(context).accentColor)),
-
-      title: Text(expense.description),
+        child: Text(expense.time),
+      ),
+      title: Flexible(
+          child:Text(expense.description,
+          overflow:TextOverflow.ellipsis)
+      ),
       subtitle: Text(expense.category),
       trailing: expense.isExpense
-          ? Text("- ₺ " + expense.price.toString(),
-              style: TextStyle(color: Colors.red,fontSize: 15))
-          : Text("+ ₺ " + expense.price.toString(),
-              style: TextStyle(color: Colors.green,fontSize: 15)),
->>>>>>> parent of e787b9a (Repush)
+          ? Text("+ ₺ " + expense.price.toString(),
+              style: TextStyle(color: Colors.green,fontSize: 15))
+          : Text("- ₺ " + expense.price.toString(),
+              style: TextStyle(color: Colors.red,fontSize: 15)),
     );
   }
 }

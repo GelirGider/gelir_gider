@@ -37,47 +37,44 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     final langState = Provider.of<LanguageHandler>(context, listen: false);
     final expenseProvider = Provider.of<Expenses>(context, listen: false);
-
     return Scaffold(
-      appBar: AppBar(
-        title: Text(langState.isEnglish ? "Add/Remove" : "Ekle/Çıkar"),
-        actions: [
-          FlatButton(
-            onPressed: showThemePicker,
-            child: Icon(Icons.color_lens),
-          ),
-        ],
-      ),
-      body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          return Column(
-            children: [
-              Container(
-                height: constraints.maxHeight,
-                child: ListView.builder(
-                  itemCount: expenseProvider.expense.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        ExpenseItem(
-                          expense: expenseProvider.expense[index],
-                        ),
-                        Divider(),
-                      ],
-                    );
-                  },
-                ),
+        appBar: AppBar(
+          title: Text(langState.isEnglish ? "Add/Remove" : "Ekle/Çıkar"),
+          actions: [
+            FlatButton(
+              onPressed: showThemePicker,
+              child: Icon(
+                Icons.color_lens,
+                color: Colors.white,
               ),
-            ],
-          );
-        },
-      ),
+            ),
+          ],
+        ),
+        body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            return Container(
+                  height: constraints.maxHeight,
+                  child: ListView.builder(
+                    itemCount: expenseProvider.expense.length,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          ExpenseItem(
+                            expense: expenseProvider.expense[index],
+                          ),
+                          Divider(),
+                        ],
+                      );
+                    },
+                  ),
+                );
+          },
+        ),
         floatingActionButton: FloatingActionButton(
-            backgroundColor: Theme.of(context).primaryColor,
-            onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (ctx) => AddingExpense())),
-            child: Icon(Icons.post_add_rounded,color: Colors.white),
-    )
-    );
+          backgroundColor: Theme.of(context).primaryColor,
+          onPressed: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (ctx) => AddingExpense())),
+          child: Icon(Icons.post_add_rounded, color: Colors.white),
+        ));
   }
 }

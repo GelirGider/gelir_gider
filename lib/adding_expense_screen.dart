@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
-import 'package:gelir_gider/widgets/switch_button.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-import 'package:intl/intl.dart';
+import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
 class AddingExpense extends StatefulWidget {
   @override
@@ -14,11 +14,7 @@ class AddingExpense extends StatefulWidget {
 
 class _AddingExpenseState extends State<AddingExpense> {
   final _form = GlobalKey<FormState>();
-
   var _isLoading = false;
-
-  List<String> gelirMiGiderMi = ['gelir', 'gider'];
-  List<String> expenseOrIncome = ['expense', 'income'];
 
   String description = 'asdas';
   int price = 0;
@@ -40,7 +36,7 @@ class _AddingExpenseState extends State<AddingExpense> {
         description: description,
         price: price,
         time: time,
-        category : category,
+        category: category,
         isExpense: isExpense,
       ),
     );
@@ -54,7 +50,7 @@ class _AddingExpenseState extends State<AddingExpense> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            _langState.isEnglish ? 'Add Income/Expense' : 'Gelir/Gider ekle'),
+            _langState.isEnglish ? 'Add Income/Expense' : 'Gelir/Gider Ekle'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.save),
@@ -67,151 +63,120 @@ class _AddingExpenseState extends State<AddingExpense> {
               child: CircularProgressIndicator(),
             )
           : SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-                    child: Form(
-                      key: _form,
-                      child: Column(
-                        children: [
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: _langState.isEnglish
-                                  ? 'description'
-                                  : 'açıklama',
-                              fillColor: Colors.orangeAccent,
-                              focusColor: Colors.orangeAccent,
-                              hoverColor: Colors.orangeAccent,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.orangeAccent,
-                                  width: 2,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.green,
-                                  width: 2,
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.pinkAccent,
-                                  width: 2,
-                                ),
-                              ),
-                            ),
-                            textInputAction: TextInputAction.done,
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return _langState.isEnglish
-                                    ? 'Please provide a name.'
-                                    : 'Bir açıklama ekleyin';
-                              }
-                              return null;
-                            },
-                            onSaved: (newValue) {
-                              description = newValue;
-                            },
-                          ),
-                          Divider(
-                            height: 50,
-                          ),
-                          TextFormField(
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              labelText:
-                                  _langState.isEnglish ? 'price' : 'fiyatı',
-                              fillColor: Colors.orangeAccent,
-                              focusColor: Colors.orangeAccent,
-                              hoverColor: Colors.orangeAccent,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.orangeAccent,
-                                  width: 2,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.green,
-                                  width: 2,
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.pinkAccent,
-                                  width: 2,
-                                ),
-                              ),
-                            ),
-                            textInputAction: TextInputAction.done,
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return _langState.isEnglish
-                                    ? 'Please provide a price.'
-                                    : 'Bir fiyat ekleyin';
-                              }
-                              if (double.tryParse(value) == null) {
-                                return _langState.isEnglish
-                                    ? 'Please enter a number'
-                                    : 'Bir sayı yazın';
-                              }
-                              return null;
-                            },
-                            onSaved: (newValue) {
-                              description = newValue;
-                            },
-                            onFieldSubmitted: (_) {
-                              _saveForm();
-                            },
-                          ),
-<<<<<<< HEAD
-=======
-                          textInputAction: TextInputAction.done,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Please provide a price.';
-                            }
-                            return null;
-                          },
-                          onSaved: (newValue) {
-                            price = int.parse(newValue);
-                          },
-                          onFieldSubmitted: (_) {
-                            _saveForm();
+              child: Column(children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+                  child: Form(
+                    key: _form,
+                    child: Column(children: [
+                      Center(
+                        child: LiteRollingSwitch(
+                          value: isExpense,
+                          textOn: _langState.isEnglish ? 'Income' : 'Gelir',
+                          textOff: _langState.isEnglish ? 'Expense' : 'Gider',
+                          colorOn: Colors.green,
+                          colorOff: Colors.red,
+                          iconOn: Icons.add,
+                          iconOff: Icons.remove,
+                          textSize: 15,
+                          onChanged: (bool value) {
+                            isExpense = value;
                           },
                         ),
-                      ],
->>>>>>> parent of e787b9a (Repush)
-                        ],
                       ),
-                    ),
-                  ),
-                  Center(
-                    child: SwitchButton(
-                      isSwitched: isExpense,
-                    ),
-                  ),
-                  Center(
-                    child: Container(
-                      padding: EdgeInsets.all(30),
-                      child: DateTimePicker(
-                        initialValue: DateTime.now().toString(),
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime(2100),
-                        dateLabelText: _langState.isEnglish ? 'Date' : 'Tarih',
-                        onChanged: (val) => time = val,
-                        validator: (val) {
-                          print(val);
+                      Divider(
+                        height: 30,
+                      ),
+                      TextFormField(
+                        textInputAction: TextInputAction.done,
+                        decoration: InputDecoration(
+                          labelText:
+                              _langState.isEnglish ? 'Description' : 'Açıklama',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Theme.of(context).primaryColor,
+                              width: 2,
+                            ),
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Theme.of(context).primaryColor,
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        onSaved: (newValue) {
+                          description = newValue;
+                        },
+                      ),
+                      Divider(
+                        height: 30,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          labelText: _langState.isEnglish ? 'Price' : 'Fiyatı',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Theme.of(context).primaryColor,
+                              width: 2,
+                            ),
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Theme.of(context).primaryColor,
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        textInputAction: TextInputAction.done,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return _langState.isEnglish
+                                ? 'Please provide a price.'
+                                : 'Bir fiyat ekleyin';
+                          }
+                          if (double.tryParse(value) == null) {
+                            return _langState.isEnglish
+                                ? 'Please enter a number'
+                                : 'Bir sayı yazın';
+                          }
                           return null;
                         },
-                        onSaved: (val) => print(val),
+                        onSaved: (newValue) {
+                          price = int.parse(newValue);
+                        },
+                        onFieldSubmitted: (_) {
+                          _saveForm();
+                        },
                       ),
-                    ),
+                      Divider(
+                        height: 30,
+                      ),
+                      Center(
+                          child: DateTimePicker(
+                              locale: _langState.isEnglish
+                                  ? const Locale("en", "EN")
+                                  : const Locale("tr", "TR"),
+                              textAlign: TextAlign.center,
+                              initialValue: DateTime.now().toString(),
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2100),
+                              dateLabelText:
+                                  _langState.isEnglish ? 'Date' : 'Tarih',
+                              onChanged: (val) => time = val,
+                              validator: (val) {
+                                print(val);
+                                return null;
+                              },
+                              onSaved: (val) {
+                                val = Jiffy(val).format("dd/MM/yyyy");
+                                time = val;
+                              })),
+                    ]),
                   ),
-                ],
-              ),
+                ),
+              ]),
             ),
     );
   }
