@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
+import 'package:gelir_gider/screens/language_selection_screen.dart';
 import 'package:gelir_gider/widgets/button_with_flag.dart';
 import 'package:provider/provider.dart';
 import 'package:theme_manager/theme_manager.dart';
@@ -41,56 +42,10 @@ class MyApp extends StatelessWidget {
             title: 'Gelir/Gider',
             theme: theme,
             debugShowCheckedModeBanner: false,
-            home: WelcomeScreen(),
+            home: LanguageSelectionScreen(),
           ),
         );
       },
-    );
-  }
-}
-
-class WelcomeScreen extends StatefulWidget {
-  @override
-  _WelcomeScreenState createState() => _WelcomeScreenState();
-}
-
-class _WelcomeScreenState extends State<WelcomeScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                FlagButton(
-                  isEnglish: true,
-                  onPressed: () {
-                    Provider.of<LanguageHandler>(context, listen: false)
-                        .setEnglish();
-                    return Navigator.of(context).push(MaterialPageRoute(
-                        builder: (ctx) => ExpensesListScreen()));
-                  },
-                  key: ValueKey(1),
-                ),
-                SizedBox(height: 100),
-                FlagButton(
-                  isEnglish: false,
-                  onPressed: () {
-                    Provider.of<LanguageHandler>(context, listen: false)
-                        .setTurkish();
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (ctx) => ExpensesListScreen()));
-                  },
-                  key: ValueKey(2),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
