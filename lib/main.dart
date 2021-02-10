@@ -35,7 +35,14 @@ class MyApp extends StatelessWidget {
             ),
           ],
           child: MaterialApp(
-            title: 'Theme Manager Demo',
+            localizationsDelegates: [
+              GlobalMaterialLocalizations.delegate
+            ],
+            supportedLocales: [
+              const Locale('en'),
+              const Locale('tr')
+            ],
+            title: 'Gelir/Gider',
             theme: theme,
             debugShowCheckedModeBanner: false,
             home: WelcomeScreen(),
