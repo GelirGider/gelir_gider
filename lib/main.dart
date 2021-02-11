@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:gelir_gider/screens/language_selection_screen.dart';
-import 'package:gelir_gider/widgets/button_with_flag.dart';
 import 'package:provider/provider.dart';
 import 'package:theme_manager/theme_manager.dart';
 import 'package:flutter/services.dart';

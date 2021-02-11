@@ -15,35 +15,37 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: Container(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                FlagButton(
-                  isEnglish: true,
-                  onPressed: () {
-                    Provider.of<LanguageHandler>(context, listen: false)
-                        .setEnglish();
-                    return Navigator.of(context).push(MaterialPageRoute(
-                        builder: (ctx) => ExpensesListScreen()));
-                  },
-                  key: ValueKey(1),
-                ),
-                SizedBox(height: 100),
-                FlagButton(
-                  isEnglish: false,
-                  onPressed: () {
-                    Provider.of<LanguageHandler>(context, listen: false)
-                        .setTurkish();
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (ctx) => ExpensesListScreen()));
-                  },
-                  key: ValueKey(2),
-                ),
-              ],
+      child: SafeArea(
+        child: Scaffold(
+          body: Container(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  FlagButton(
+                    isEnglish: true,
+                    onPressed: () {
+                      Provider.of<LanguageHandler>(context, listen: false)
+                          .setEnglish();
+                      return Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => ExpensesListScreen()));
+                    },
+                    key: ValueKey(1),
+                  ),
+                  SizedBox(height: 100),
+                  FlagButton(
+                    isEnglish: false,
+                    onPressed: () {
+                      Provider.of<LanguageHandler>(context, listen: false)
+                          .setTurkish();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => ExpensesListScreen()));
+                    },
+                    key: ValueKey(2),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
