@@ -65,7 +65,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               : Consumer<Expenses>(
                   child: Center(
                     child: langState.isEnglish
-                        ? const Text('Got no places yet \n Start adding some !')
+                        ? const Text(
+                            'Got no Expenses  yet \n Start adding some !')
                         : const Text(
                             'Henüz ekleme yapılmadı \n Eklemeye başlayın !'),
                   ),
@@ -80,61 +81,79 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                 Divider(
                                   height: 25,
                                 ),
-                                Row(children: [
-                                  Expanded(
-                                      child: Column(children: [
-                                    Text(
-                                      'Toplam Gelir',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,),
-                                      textAlign: TextAlign.center,
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'Toplam Gelir',
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          Text(
+                                            expenseProvider
+                                                .calculateTotalIncome()
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.green,
+                                                fontWeight: FontWeight.bold),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    Text(
-                                      '+ ₺ 3000',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.green,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center,
+                                    Expanded(
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'Ana Para',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          Text(
+                                            expenseProvider
+                                                .calculateTotalMoney()
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ])),
-                                  Expanded(
-                                      child: Column(children: [
-                                    Text(
-                                      'Ana Para',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center,
+                                    Expanded(
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'Toplam Gider',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          Text(
+                                            expenseProvider
+                                                .calculateTotalExpense()
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.red,
+                                                fontWeight: FontWeight.bold),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    Text(
-                                      '₺ 2000',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ])),
-                                  Expanded(
-                                      child: Column(children: [
-                                    Text(
-                                      'Toplam Gider',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    Text(
-                                      '- ₺ 1000',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.red,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ])),
-                                ]),
+                                  ],
+                                ),
                                 Divider(
                                   height: 25,
                                 ),
@@ -168,18 +187,19 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                         background: Container(
                                           color: Colors.red,
                                           child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                Container(
-                                                  child: Icon(
-                                                    Icons.delete,
-                                                  ),
-                                                  padding: EdgeInsets.symmetric(
-                                                    horizontal: 30,
-                                                  ),
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Container(
+                                                child: Icon(
+                                                  Icons.delete,
                                                 ),
-                                              ]),
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: 30,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       );
                                     },
