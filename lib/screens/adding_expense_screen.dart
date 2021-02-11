@@ -5,6 +5,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+import 'package:smart_select/smart_select.dart';
 
 enum category {
   payment,
@@ -26,20 +27,33 @@ class _AddingExpenseState extends State<AddingExpense> {
   final _form = GlobalKey<FormState>();
   var _isLoading = false;
 
+  final snackBar = SnackBar(content: Text('Ekleme başarıyla gerçekleşti'));
+
   String description = '';
   int price = 0;
-  String category = 'payment';
+  String category = 'Payment';
   String time = '';
   bool isExpense = true;
-  List<String> categoryList = [
-    'payment',
-    'food',
-    'clothes',
-    'shop',
-    'travel',
-    'education',
-    'entertainment',
-    'others'
+
+  List<S2Choice<String>> options = [
+    S2Choice<String>(value: 'Payment', title: 'Payment'),
+    S2Choice<String>(value: 'Food', title: 'Food'),
+    S2Choice<String>(value: 'Clothes', title: 'Clothes'),
+    S2Choice<String>(value: 'Shop', title: 'Shop'),
+    S2Choice<String>(value: 'Travel', title: 'Travel'),
+    S2Choice<String>(value: 'Education', title: 'Education'),
+    S2Choice<String>(value: 'Entertainment', title: 'Entertainment'),
+    S2Choice<String>(value: 'Others', title: 'Others'),
+  ];
+  List<S2Choice<String>> options2 = [
+    S2Choice<String>(value: 'Ödeme', title: 'Ödeme'),
+    S2Choice<String>(value: 'Gıda', title: 'Gıda'),
+    S2Choice<String>(value: 'Giyim', title: 'Giyim'),
+    S2Choice<String>(value: 'Alışveriş', title: 'Alışveriş'),
+    S2Choice<String>(value: 'Seyahat', title: 'Seyahat'),
+    S2Choice<String>(value: 'Eğitim', title: 'Eğitim'),
+    S2Choice<String>(value: 'Eğlence', title: 'Eğlence'),
+    S2Choice<String>(value: 'Diğer', title: 'Diğer'),
   ];
 
   Future<void> _saveForm() async {
@@ -51,6 +65,7 @@ class _AddingExpenseState extends State<AddingExpense> {
     setState(() {
       _isLoading = true;
     });
+
     await Provider.of<Expenses>(context, listen: false).addExpense(
       Expense(
         id: DateTime.now().toString(),
@@ -67,6 +82,7 @@ class _AddingExpenseState extends State<AddingExpense> {
   @override
   Widget build(BuildContext context) {
     final _langState = Provider.of<LanguageHandler>(context, listen: false);
+    category = _langState.isEnglish ? 'Payment' : 'Ödeme';
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -75,7 +91,9 @@ class _AddingExpenseState extends State<AddingExpense> {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.save),
-              onPressed: _saveForm,
+              onPressed: () {
+                _saveForm();
+              },
             ),
           ],
         ),
@@ -110,6 +128,32 @@ class _AddingExpenseState extends State<AddingExpense> {
                                 },
                               ),
                             ),
+                            Divider(
+                              height: 30,
+                            ),
+                            SmartSelect<String>.single(
+                                title: _langState.isEnglish
+                                    ? 'Categories'
+                                    : 'Kategoriler',
+                                placeholder: _langState.isEnglish
+                                    ? 'Select One'
+                                    : 'Seçiniz',
+                                value: category,
+                                modalHeaderStyle: S2ModalHeaderStyle(
+                                    iconTheme:
+                                        IconThemeData(color: Colors.white),
+                                    backgroundColor:
+                                        Theme.of(context).primaryColor,
+                                    textStyle: TextStyle(color: Colors.white)),
+                                choiceStyle: S2ChoiceStyle(
+                                    titleStyle: TextStyle(
+                                        color:
+                                            Theme.of(context).disabledColor)),
+                                choiceItems:
+                                    _langState.isEnglish ? options : options2,
+                                onChange: (state) => setState(() {
+                                      category = state.value;
+                                    })),
                             Divider(
                               height: 30,
                             ),
@@ -204,29 +248,6 @@ class _AddingExpenseState extends State<AddingExpense> {
                               ),
                             ),
                             Divider(),
-                            DropdownButton<String>(
-                              value: category,
-                              icon: Icon(Icons.arrow_downward),
-                              iconSize: 24,
-                              elevation: 16,
-                              style: TextStyle(color: Colors.deepPurple),
-                              underline: Container(
-                                height: 2,
-                                color: Colors.deepPurpleAccent,
-                              ),
-                              onChanged: (String newValue) {
-                                setState(() {
-                                  category = newValue;
-                                });
-                              },
-                              items: categoryList.map<DropdownMenuItem<String>>(
-                                  (String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
-                            ),
                           ],
                         ),
                       ),
