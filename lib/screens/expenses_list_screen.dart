@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:gelir_gider/widgets/expense_item.dart';
+import 'package:gelir_gider/widgets/money_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:theme_manager/theme_manager.dart';
 import 'package:theme_manager/change_theme_widget.dart';
@@ -81,78 +82,16 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                 Divider(
                                   height: 25,
                                 ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            'Toplam Gelir',
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          Text(
-                                            expenseProvider
-                                                .calculateTotalIncome()
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.green,
-                                                fontWeight: FontWeight.bold),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            'Ana Para',
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          Text(
-                                            expenseProvider
-                                                .calculateTotalMoney()
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            'Toplam Gider',
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          Text(
-                                            expenseProvider
-                                                .calculateTotalExpense()
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.red,
-                                                fontWeight: FontWeight.bold),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+                                MoneyWidget(
+                                  expense: expenseProvider
+                                      .calculateTotalExpense()
+                                      .toString(),
+                                  income: expenseProvider
+                                      .calculateTotalIncome()
+                                      .toString(),
+                                  money: expenseProvider
+                                      .calculateTotalMoney()
+                                      .toString(),
                                 ),
                                 Divider(
                                   height: 25,
