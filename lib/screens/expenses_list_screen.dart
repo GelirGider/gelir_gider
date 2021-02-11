@@ -47,7 +47,10 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           actions: [
             FlatButton(
               onPressed: showThemePicker,
-              child: Icon(Icons.color_lens),
+              child: Icon(
+                Icons.color_lens,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
@@ -61,7 +64,10 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                 )
               : Consumer<Expenses>(
                   child: Center(
-                    child: const Text('Got no places yet, start adding some!'),
+                    child: langState.isEnglish
+                        ? const Text('Got no places yet \n Start adding some !')
+                        : const Text(
+                            'Henüz ekleme yapılmadı \n Eklemeye başlayın !'),
                   ),
                   builder: (ctx, expenseProvider, ch) => expenseProvider
                           .expense.isEmpty
@@ -71,8 +77,68 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                               BoxConstraints constraints) {
                             return Column(
                               children: [
-                                Container(
-                                  height: constraints.maxHeight,
+                                Divider(
+                                  height: 25,
+                                ),
+                                Row(children: [
+                                  Expanded(
+                                      child: Column(children: [
+                                    Text(
+                                      'Toplam Gelir',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Text(
+                                      '+ ₺ 3000',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.green,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ])),
+                                  Expanded(
+                                      child: Column(children: [
+                                    Text(
+                                      'Ana Para',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Text(
+                                      '₺ 2000',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ])),
+                                  Expanded(
+                                      child: Column(children: [
+                                    Text(
+                                      'Toplam Gider',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Text(
+                                      '- ₺ 1000',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ])),
+                                ]),
+                                Divider(
+                                  height: 25,
+                                ),
+                                Flexible(
                                   child: ListView.builder(
                                     itemCount: expenseProvider.expense.length,
                                     itemBuilder: (context, index) {
