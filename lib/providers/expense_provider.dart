@@ -41,6 +41,14 @@ class Expenses with ChangeNotifier {
     );
   }
 
+  Future<int> delete(String paramId) async {
+    var element = _items.firstWhere((element) => element.id == paramId);
+    print('element:::::::::::::::::::::::::${element.price}');
+    var id = _items.indexOf(element);
+    print('id::::::::::::::::::::::::::::::$id');
+    await DBHelper.delete(id);
+  }
+
   Future<void> fetchAndSetExpenses() async {
     final dataList = await DBHelper.getData('user_expenses');
     print('fetchAndSetExpenses dataList: $dataList');

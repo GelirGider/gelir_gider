@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
@@ -73,14 +76,45 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                   child: ListView.builder(
                                     itemCount: expenseProvider.expense.length,
                                     itemBuilder: (context, index) {
-                                      return Column(
-                                        children: [
-                                          ExpenseItem(
-                                            expense:
-                                                expenseProvider.expense[index],
-                                          ),
-                                          Divider(),
-                                        ],
+                                      var thisExpense =
+                                          expenseProvider.expense[index];
+                                      return Dismissible(
+                                        key: UniqueKey(),
+                                        child: Column(
+                                          children: [
+                                            ExpenseItem(
+                                              expense: thisExpense,
+                                            ),
+                                            Divider(),
+                                          ],
+                                        ),
+                                        direction: DismissDirection.endToStart,
+                                        onDismissed: (direction) {
+                                          expenseProvider
+                                              .delete(thisExpense.id);
+                                          setState(() {
+                                            expenseProvider.expense.removeWhere(
+                                                (element) =>
+                                                    element.id ==
+                                                    thisExpense.id);
+                                          });
+                                        },
+                                        background: Container(
+                                          color: Colors.red,
+                                          child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                Container(
+                                                  child: Icon(
+                                                    Icons.delete,
+                                                  ),
+                                                  padding: EdgeInsets.symmetric(
+                                                    horizontal: 30,
+                                                  ),
+                                                ),
+                                              ]),
+                                        ),
                                       );
                                     },
                                   ),
