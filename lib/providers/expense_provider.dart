@@ -41,12 +41,9 @@ class Expenses with ChangeNotifier {
     );
   }
 
-  Future<int> delete(String paramId) async {
-    var element = _items.firstWhere((element) => element.id == paramId);
-    print('element:::::::::::::::::::::::::${element.price}');
-    var id = _items.indexOf(element);
-    print('id::::::::::::::::::::::::::::::$id');
-    await DBHelper.delete(id);
+  Future<int> delete(String id) async {
+    _items.removeWhere((element) => element.id == id);
+    return await DBHelper.delete(id);
   }
 
   Future<void> fetchAndSetExpenses() async {
@@ -72,7 +69,7 @@ class Expenses with ChangeNotifier {
   }
 
   int calculateTotalExpense() {
-    List<Expense> newlist = [];
+    Iterable<Expense> newlist = <Expense>[];
     newlist = _items.where((element) => element.isExpense == 'expense');
 
     var sum = 0;
@@ -81,7 +78,7 @@ class Expenses with ChangeNotifier {
   }
 
   int calculateTotalIncome() {
-    List<Expense> newlist = [];
+    Iterable<Expense> newlist = <Expense>[];
     newlist = _items.where((element) => element.isExpense == 'income');
 
     var sum = 0;

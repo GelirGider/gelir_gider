@@ -175,14 +175,9 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                         ),
                                         direction: DismissDirection.endToStart,
                                         onDismissed: (direction) {
-                                          expenseProvider
+                                          setState(() {});
+                                          return expenseProvider
                                               .delete(thisExpense.id);
-                                          setState(() {
-                                            expenseProvider.expense.removeWhere(
-                                                (element) =>
-                                                    element.id ==
-                                                    thisExpense.id);
-                                          });
                                         },
                                         background: Container(
                                           color: Colors.red,

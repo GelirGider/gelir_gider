@@ -68,7 +68,7 @@ class _AddingExpenseState extends State<AddingExpense> {
 
     await Provider.of<Expenses>(context, listen: false).addExpense(
       Expense(
-        id: DateTime.now().toString(),
+        id: UniqueKey().toString(),
         category: category,
         isExpense: isExpense ? 'expense' : 'income',
         time: time,

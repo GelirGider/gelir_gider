@@ -21,10 +21,9 @@ class DBHelper {
     );
   }
 
-  static Future<int> delete(int id) async {
+  static Future<int> delete(String id) async {
     final db = await DBHelper.database();
-    var result = await db.rawDelete('DELETE FROM user_expenses WHERE id = $id');
-    return result;
+    return await db.delete('user_expenses', where: 'id = ?', whereArgs: [id]);
   }
 
   static Future<List<Map<String, dynamic>>> getData(String table) async {
