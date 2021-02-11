@@ -68,8 +68,75 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                               BoxConstraints constraints) {
                             return Column(
                               children: [
+<<<<<<< Updated upstream
                                 Container(
                                   height: constraints.maxHeight,
+=======
+                            Container(
+                            padding: EdgeInsets.fromLTRB(0,10,0,10),
+                            margin : EdgeInsets.fromLTRB(4, 8, 4, 2),
+                            decoration: BoxDecoration(
+                            border: Border.all(color: Theme.of(context).accentColor,width: 2)
+                            ),
+                            child:Row(
+                                  children: [
+                                  Expanded(
+                                      child: Column(children: [
+                                    Text(
+                                      'Toplam Gelir',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Text(
+                                      '+ ₺ 3000',
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.green,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ])),
+                                  Expanded(child: Column(children: [
+                                    Text(
+                                      'Ana Para',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Text(
+                                      '₺ 2000',
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ])),
+                                  Expanded(
+                                      child:Column(children: [
+                                    Text(
+                                      'Toplam Gider',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Text(
+                                      '- ₺ 1000',
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ])),
+                                ]),),
+                                Divider(),
+                                Flexible(
+>>>>>>> Stashed changes
                                   child: ListView.builder(
                                     itemCount: expenseProvider.expense.length,
                                     itemBuilder: (context, index) {
