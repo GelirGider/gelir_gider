@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
@@ -14,7 +13,6 @@ class ExpensesListScreen extends StatefulWidget {
 }
 
 class _ExpensesListScreenState extends State<ExpensesListScreen> {
-
   Future<void> navigationFunction(context, scaffoldKey) {
     return Navigator.of(context).push(
       MaterialPageRoute(
@@ -25,7 +23,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
     );
   }
 
-  void showThemePicker() {
+  void showThemePicker(isEnglish) {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -61,29 +59,17 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           title: Text(langState.isEnglish ? 'Add/Remove' : 'Ekle/Çıkar'),
           actions: [
             FlatButton(
-              onPressed: (){
+              onPressed: () {
                 showThemePicker(langState.isEnglish);
               },
-          child: Icon(
-        Icons.color_lens,
-        color: Theme.of(context).buttonColor,
-        ),
-        ),
-        ],
+              child: Icon(
+                Icons.color_lens,
+                color: Theme.of(context).buttonColor,
+              ),
+            ),
+          ],
         ),
         body: FutureBuilder(
-        future: Provider.of<Expenses>(context, listen: false)
-            .fetchAndSetExpenses(),
-        builder: (ctx, snapshot) => snapshot.connectionState ==
-        ConnectionState.waiting
-        ? Center(
-        child: CircularProgressIndicator(),
-        )
-            : Consumer<Expenses>(
-        child: Center(
-        child: langState.isEnglish
-        ? const Text(
-                            'Got no Expenses  yet \nStart adding some !')
           future: Provider.of<Expenses>(context, listen: false)
               .fetchAndSetExpenses(),
           builder: (ctx, snapshot) => snapshot.connectionState ==
@@ -109,7 +95,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                               children: [
                                 Divider(
                                   height: 25,
-                                  color:Theme.of(context).accentColor,
+                                  color: Theme.of(context).accentColor,
                                 ),
                                 MoneyWidget(
                                   expense: expenseProvider
@@ -124,7 +110,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                 ),
                                 Divider(
                                   height: 25,
-                                  color:Theme.of(context).accentColor,
+                                  color: Theme.of(context).accentColor,
                                 ),
                                 Flexible(
                                   child: ListView.builder(
