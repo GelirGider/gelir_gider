@@ -4,7 +4,9 @@ import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:gelir_gider/widgets/expense_item.dart';
 import 'package:gelir_gider/widgets/money_widget.dart';
 import 'package:provider/provider.dart';
-import 'package:gelir_gider/widgets/theme_dialog_widget.dart';
+import 'package:theme_manager/theme_manager.dart';
+import 'package:theme_manager/change_theme_widget.dart';
+
 import 'adding_expense_screen.dart';
 
 class ExpensesListScreen extends StatefulWidget {
@@ -27,7 +29,11 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return ThemeDialogWidget(isEnglish);
+        return ThemePickerDialog(
+          onSelectedTheme: (BrightnessPreference preference) {
+            ThemeManager.of(context).setBrightnessPreference(preference);
+          },
+        );
       },
     );
   }
@@ -36,7 +42,6 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     final langState = Provider.of<LanguageHandler>(context, listen: false);
-
     final snackBarr = SnackBar(
       content: Container(
         child: Text(
@@ -83,7 +88,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                         ? const Text(
                             'You have no Transactions  \n         Start Adding')
                         : const Text(
-                            'Henüz ekleme yapılmadı \nEklemeye başlayın !'),
+                            'Henüz ekleme yapılmadı \n Eklemeye başlayın !'),
                   ),
                   builder: (ctx, expenseProvider, ch) => expenseProvider
                           .expense.isEmpty
