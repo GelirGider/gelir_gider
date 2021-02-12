@@ -264,6 +264,9 @@ class _AddingExpenseState extends State<AddingExpense> {
                                   val = Jiffy(val).format('dd/MM/yyyy');
                                   time = val;
                                 },
+                                style: TextStyle(
+                                    //TODO : burayla oyna
+                                    ),
                               ),
                             ),
                             Divider(),
