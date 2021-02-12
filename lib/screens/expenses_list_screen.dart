@@ -134,8 +134,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                           ],
                                         ),
                                         direction: DismissDirection.endToStart,
-                                        onDismissed: (direction) {
-                                          Scaffold.of(context)
+                                        onDismissed: (_) {
+                                          scaffoldKey.currentState
                                               .showSnackBar(snackBarr);
                                           expenseProvider
                                               .delete(thisExpense.id);
