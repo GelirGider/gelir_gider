@@ -25,7 +25,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
     );
   }
 
-  void showThemePicker() {
+  void showThemePicker(isEnglish) {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -64,10 +64,12 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           title: Text(langState.isEnglish ? 'Add/Remove' : 'Ekle/Çıkar'),
           actions: [
             FlatButton(
-              onPressed: showThemePicker,
+              onPressed: () {
+                showThemePicker(langState.isEnglish);
+              },
               child: Icon(
                 Icons.color_lens,
-                color: Colors.white,
+                color: Theme.of(context).buttonColor,
               ),
             ),
           ],
@@ -98,6 +100,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                               children: [
                                 Divider(
                                   height: 25,
+                                  color: Theme.of(context).accentColor,
                                 ),
                                 MoneyWidget(
                                   expense: expenseProvider
@@ -112,6 +115,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                 ),
                                 Divider(
                                   height: 25,
+                                  color: Theme.of(context).accentColor,
                                 ),
                                 Flexible(
                                   child: ListView.builder(
