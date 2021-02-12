@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
@@ -84,10 +81,10 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                 ),
                                 MoneyWidget(
                                   expense: expenseProvider
-                                      .calculateTotalExpense()
+                                      .calculateTotalIncome()
                                       .toString(),
                                   income: expenseProvider
-                                      .calculateTotalIncome()
+                                      .calculateTotalExpense()
                                       .toString(),
                                   money: expenseProvider
                                       .calculateTotalMoney()
