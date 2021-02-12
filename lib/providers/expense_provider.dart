@@ -65,7 +65,7 @@ class Expenses with ChangeNotifier {
   }
 
   int calculateTotalMoney() {
-    return calculateTotalIncome() - calculateTotalExpense();
+    return calculateTotalExpense() - calculateTotalIncome();
   }
 
   int calculateTotalExpense() {

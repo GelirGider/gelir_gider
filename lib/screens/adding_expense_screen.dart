@@ -19,6 +19,9 @@ enum category {
 }
 
 class AddingExpense extends StatefulWidget {
+  final scaffoldKey;
+
+  const AddingExpense({Key key, this.scaffoldKey}) : super(key: key);
   @override
   _AddingExpenseState createState() => _AddingExpenseState();
 }
@@ -26,8 +29,6 @@ class AddingExpense extends StatefulWidget {
 class _AddingExpenseState extends State<AddingExpense> {
   final _form = GlobalKey<FormState>();
   var _isLoading = false;
-
-  final snackBar = SnackBar(content: Text('Ekleme başarıyla gerçekleşti'));
 
   String description = '';
   int price = 0;
@@ -56,7 +57,7 @@ class _AddingExpenseState extends State<AddingExpense> {
     S2Choice<String>(value: 'Diğer', title: 'Diğer'),
   ];
 
-  Future<void> _saveForm() async {
+  Future<void> _saveForm(ctx, snackBar) async {
     final isValid = _form.currentState.validate();
     if (!isValid) {
       return;
@@ -76,12 +77,27 @@ class _AddingExpenseState extends State<AddingExpense> {
         description: description,
       ),
     );
+    widget.scaffoldKey.currentState.showSnackBar(snackBar);
     await Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
     final _langState = Provider.of<LanguageHandler>(context, listen: false);
+    final snackBar = SnackBar(
+      content: Container(
+        child: Text(
+          _langState.isEnglish ? 'Transaction added' : 'İşlem eklendi',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.purple,
+    );
     category = _langState.isEnglish ? 'Payment' : 'Ödeme';
     return SafeArea(
       child: Scaffold(
@@ -92,7 +108,7 @@ class _AddingExpenseState extends State<AddingExpense> {
             IconButton(
               icon: Icon(Icons.save),
               onPressed: () {
-                _saveForm();
+                _saveForm(widget.scaffoldKey, snackBar);
               },
             ),
           ],
@@ -193,9 +209,6 @@ class _AddingExpenseState extends State<AddingExpense> {
                               },
                               onSaved: (newValue) {
                                 price = int.parse(newValue);
-                              },
-                              onFieldSubmitted: (_) {
-                                _saveForm();
                               },
                             ),
                             Divider(
