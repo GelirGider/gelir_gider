@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
+import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:gelir_gider/screens/language_selection_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/modals/custom_theme_modal.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       title: 'Gelir/Gider',
       theme: Provider.of<CustomThemeModal>(context).getThemeData,
       debugShowCheckedModeBanner: false,
-      home: LanguageSelectionScreen(),
+      home: ExpensesListScreen(),
     );
   }
 }

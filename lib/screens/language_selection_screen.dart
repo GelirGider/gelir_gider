@@ -28,8 +28,11 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                     onPressed: () {
                       Provider.of<LanguageHandler>(context, listen: false)
                           .setEnglish();
-                      return Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => ExpensesListScreen()));
+                      return Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (ctx) => ExpensesListScreen(),
+                        ),
+                      );
                     },
                     key: ValueKey(1),
                   ),
@@ -39,8 +42,11 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                     onPressed: () {
                       Provider.of<LanguageHandler>(context, listen: false)
                           .setTurkish();
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => ExpensesListScreen()));
+                      return Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (ctx) => ExpensesListScreen(),
+                        ),
+                      );
                     },
                     key: ValueKey(2),
                   ),

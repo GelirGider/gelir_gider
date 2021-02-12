@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
+import 'package:gelir_gider/screens/language_selection_screen.dart';
 import 'package:gelir_gider/widgets/expense_item.dart';
 import 'package:gelir_gider/widgets/money_widget.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
       builder: (BuildContext context) {
         return ThemeDialogWidget(isEnglish);
       },
-        );
+    );
   }
 
   @override
@@ -63,6 +64,19 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               },
               child: Icon(
                 Icons.color_lens,
+                color: Theme.of(context).buttonColor,
+              ),
+            ),
+            FlatButton(
+              onPressed: () {
+                return Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (ctx) => LanguageSelectionScreen(),
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.settings,
                 color: Theme.of(context).buttonColor,
               ),
             ),
