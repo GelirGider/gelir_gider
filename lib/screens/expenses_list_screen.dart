@@ -4,9 +4,7 @@ import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:gelir_gider/widgets/expense_item.dart';
 import 'package:gelir_gider/widgets/money_widget.dart';
 import 'package:provider/provider.dart';
-import 'package:theme_manager/theme_manager.dart';
-import 'package:theme_manager/change_theme_widget.dart';
-
+import 'package:gelir_gider/widgets/theme_dialog_widget.dart';
 import 'adding_expense_screen.dart';
 
 class ExpensesListScreen extends StatefulWidget {
@@ -29,13 +27,9 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return ThemePickerDialog(
-          onSelectedTheme: (BrightnessPreference preference) {
-            ThemeManager.of(context).setBrightnessPreference(preference);
-          },
-        );
+        return ThemeDialogWidget(isEnglish);
       },
-    );
+        );
   }
 
   @override
