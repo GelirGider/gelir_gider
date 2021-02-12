@@ -15,12 +15,16 @@ class ExpensesListScreen extends StatefulWidget {
 }
 
 class _ExpensesListScreenState extends State<ExpensesListScreen> {
-  void setAsSystemDefault() => ThemeManager.of(context)
-      .setBrightnessPreference(BrightnessPreference.system);
-  void setAsLight() => ThemeManager.of(context)
-      .setBrightnessPreference(BrightnessPreference.light);
-  void setAsDark() => ThemeManager.of(context)
-      .setBrightnessPreference(BrightnessPreference.dark);
+  Future<void> navigationFunction(context, scaffoldKey) {
+    return Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (ctx) => AddingExpense(
+          scaffoldKey: scaffoldKey,
+        ),
+      ),
+    );
+  }
+
   void showThemePicker() {
     showDialog<void>(
       context: context,
@@ -36,10 +40,26 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     final langState = Provider.of<LanguageHandler>(context, listen: false);
+    final snackBarr = SnackBar(
+      content: Container(
+        child: Text(
+          langState.isEnglish ? 'Transaction deleted' : 'İşlem silindi',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      duration: Duration(seconds: 1),
+      backgroundColor: Colors.purple,
+    );
 
     return SafeArea(
       child: Scaffold(
+        key: scaffoldKey,
         appBar: AppBar(
           title: Text(langState.isEnglish ? 'Add/Remove' : 'Ekle/Çıkar'),
           actions: [
@@ -64,7 +84,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                   child: Center(
                     child: langState.isEnglish
                         ? const Text(
-                            'Got no Expenses  yet \n Start adding some !')
+                            'You have no Transactions  \n         Start Adding')
                         : const Text(
                             'Henüz ekleme yapılmadı \n Eklemeye başlayın !'),
                   ),
@@ -111,9 +131,11 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                         ),
                                         direction: DismissDirection.endToStart,
                                         onDismissed: (direction) {
-                                          setState(() {});
-                                          return expenseProvider
+                                          Scaffold.of(context)
+                                              .showSnackBar(snackBarr);
+                                          expenseProvider
                                               .delete(thisExpense.id);
+                                          setState(() {});
                                         },
                                         background: Container(
                                           color: Colors.red,
@@ -144,8 +166,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Theme.of(context).primaryColor,
-          onPressed: () => Navigator.of(context)
-              .push(MaterialPageRoute(builder: (ctx) => AddingExpense())),
+          onPressed: () => navigationFunction(context, scaffoldKey),
           child: Icon(Icons.post_add_rounded, color: Colors.white),
         ),
       ),
