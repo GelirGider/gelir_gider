@@ -157,14 +157,14 @@ class _AddingExpenseState extends State<AddingExpense> {
                                 value: category,
                                 modalHeaderStyle: S2ModalHeaderStyle(
                                     iconTheme:
-                                        IconThemeData(color: Theme.of(context).buttonColor),
+                                        IconThemeData(color: Colors.white),
                                     backgroundColor:
                                         Theme.of(context).primaryColor,
-                                    textStyle: TextStyle(color: Theme.of(context).primaryTextTheme.headline6.color)),
+                                    textStyle: TextStyle(color: Colors.white)),
                                 choiceStyle: S2ChoiceStyle(
                                     titleStyle: TextStyle(
                                         color:
-                                            Theme.of(context).textTheme.caption.color)),
+                                            Theme.of(context).disabledColor)),
                                 choiceItems:
                                     _langState.isEnglish ? options : options2,
                                 onChange: (state) => setState(() {
@@ -179,6 +179,18 @@ class _AddingExpenseState extends State<AddingExpense> {
                                 labelText: _langState.isEnglish
                                     ? 'Description'
                                     : 'Açıklama',
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor,
+                                    width: 2,
+                                  ),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor,
+                                    width: 2,
+                                  ),
+                                ),
                               ),
                               onSaved: (newValue) {
                                 description = newValue;
@@ -191,7 +203,19 @@ class _AddingExpenseState extends State<AddingExpense> {
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 labelText:
-                                    _langState.isEnglish ? 'Price' : 'Fiyatı'
+                                    _langState.isEnglish ? 'Price' : 'Fiyatı',
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor,
+                                    width: 2,
+                                  ),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor,
+                                    width: 2,
+                                  ),
+                                ),
                               ),
                               textInputAction: TextInputAction.done,
                               validator: (value) {
