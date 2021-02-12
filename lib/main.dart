@@ -5,45 +5,35 @@ import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:gelir_gider/screens/language_selection_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:theme_manager/theme_manager.dart';
-import 'package:flutter/services.dart';
+import 'package:gelir_gider/modals/custom_theme_modal.dart';
+import 'package:gelir_gider/themes/lightTheme.dart';
+import 'package:gelir_gider/themes/darkTheme.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
-}
+void main() => runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: LanguageHandler(),
+        ),
+        ChangeNotifierProvider.value(
+          value: Expenses(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CustomThemeModal(darkTheme),
+        ),
+      ],
+      child: MyApp(),
+    ));
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ThemeManager(
-      defaultBrightnessPreference: BrightnessPreference.system,
-      data: (Brightness brightness) => ThemeData(
-        primarySwatch: Colors.blue,
-        accentColor: Colors.lightBlue,
-        brightness: brightness,
-      ),
-      loadBrightnessOnStart: true,
-      themedWidgetBuilder: (BuildContext context, ThemeData theme) {
-        return MultiProvider(
-          providers: [
-            ChangeNotifierProvider.value(
-              value: LanguageHandler(),
-            ),
-            ChangeNotifierProvider.value(
-              value: Expenses(),
-            ),
-          ],
-          child: MaterialApp(
-            localizationsDelegates: [GlobalMaterialLocalizations.delegate],
-            supportedLocales: [const Locale('en'), const Locale('tr')],
-            title: 'Gelir/Gider',
-            theme: theme,
-            debugShowCheckedModeBanner: false,
-            home: LanguageSelectionScreen(),
-          ),
-        );
-      },
+    return MaterialApp(
+      localizationsDelegates: [GlobalMaterialLocalizations.delegate],
+      supportedLocales: [const Locale('en'), const Locale('tr')],
+      title: 'Gelir/Gider',
+      theme: Provider.of<CustomThemeModal>(context).getThemeData,
+      debugShowCheckedModeBanner: false,
+      home: LanguageSelectionScreen(),
     );
   }
 }

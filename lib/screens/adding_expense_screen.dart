@@ -57,7 +57,7 @@ class _AddingExpenseState extends State<AddingExpense> {
     S2Choice<String>(value: 'Diğer', title: 'Diğer'),
   ];
 
-  Future<void> _saveForm(ctx, snackBar) async {
+  Future<void> _saveForm(scaffoldKey, snackBar) async {
     final isValid = _form.currentState.validate();
     if (!isValid) {
       return;
@@ -156,15 +156,21 @@ class _AddingExpenseState extends State<AddingExpense> {
                                     : 'Seçiniz',
                                 value: category,
                                 modalHeaderStyle: S2ModalHeaderStyle(
-                                    iconTheme:
-                                        IconThemeData(color: Colors.white),
+                                    iconTheme: IconThemeData(
+                                        color: Theme.of(context).buttonColor),
                                     backgroundColor:
                                         Theme.of(context).primaryColor,
-                                    textStyle: TextStyle(color: Colors.white)),
+                                    textStyle: TextStyle(
+                                        color: Theme.of(context)
+                                            .primaryTextTheme
+                                            .headline6
+                                            .color)),
                                 choiceStyle: S2ChoiceStyle(
                                     titleStyle: TextStyle(
-                                        color:
-                                            Theme.of(context).disabledColor)),
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .caption
+                                            .color)),
                                 choiceItems:
                                     _langState.isEnglish ? options : options2,
                                 onChange: (state) => setState(() {
