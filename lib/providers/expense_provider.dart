@@ -5,7 +5,7 @@ class Expense {
   final String id;
   final String category;
   final String description;
-  final int price;
+  final double price;
   final String time;
   final String isExpense;
 
@@ -64,24 +64,24 @@ class Expenses with ChangeNotifier {
     notifyListeners();
   }
 
-  int calculateTotalMoney() {
+  double calculateTotalMoney() {
     return calculateTotalExpense() - calculateTotalIncome();
   }
 
-  int calculateTotalExpense() {
+  double calculateTotalExpense() {
     Iterable<Expense> newlist = <Expense>[];
     newlist = _items.where((element) => element.isExpense == 'expense');
 
-    var sum = 0;
+    var sum = 0.0;
     newlist.forEach((element) => sum += element.price);
     return sum;
   }
 
-  int calculateTotalIncome() {
+  double calculateTotalIncome() {
     Iterable<Expense> newlist = <Expense>[];
     newlist = _items.where((element) => element.isExpense == 'income');
 
-    var sum = 0;
+    var sum = 0.0;
     newlist.forEach((element) => sum += element.price);
     return sum;
   }

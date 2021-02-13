@@ -8,7 +8,7 @@ class DBHelper {
     return sql.openDatabase(path.join(dbPath, 'expenses.db'),
         onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE user_expenses(id TEXT PRIMARY KEY, description TEXT, price INTEGER,time TEXT,category TEXT,isExpense TEXT)');
+          'CREATE TABLE user_expenses(id TEXT PRIMARY KEY, description TEXT, price REAL,time TEXT,category TEXT,isExpense TEXT)');
     }, version: 1);
   }
 

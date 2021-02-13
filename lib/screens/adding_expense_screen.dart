@@ -31,7 +31,7 @@ class _AddingExpenseState extends State<AddingExpense> {
   var _isLoading = false;
 
   String description = '';
-  int price = 0;
+  double price = 0.0;
   String category = 'Payment';
   String time = '';
   bool isExpense = true;
@@ -238,7 +238,7 @@ class _AddingExpenseState extends State<AddingExpense> {
                                 return null;
                               },
                               onSaved: (newValue) {
-                                price = int.parse(newValue);
+                                price = double.parse(newValue);
                               },
                             ),
                             Divider(
@@ -264,9 +264,6 @@ class _AddingExpenseState extends State<AddingExpense> {
                                   val = Jiffy(val).format('dd/MM/yyyy');
                                   time = val;
                                 },
-                                style: TextStyle(
-                                    //TODO : burayla oyna
-                                    ),
                               ),
                             ),
                             Divider(),
