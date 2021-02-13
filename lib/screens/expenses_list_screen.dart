@@ -29,7 +29,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
       builder: (BuildContext context) {
         return ThemeDialogWidget(isEnglish);
       },
-        );
+    );
   }
 
   @override
@@ -68,6 +68,11 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
             ),
             FlatButton(
               onPressed: () {
+                return Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (ctx) => LanguageSelectionScreen(),
+                  ),
+                );
               },
               child: Icon(
                 Icons.settings,
@@ -136,8 +141,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                           ],
                                         ),
                                         direction: DismissDirection.endToStart,
-                                        onDismissed: (direction) {
-                                          Scaffold.of(context)
+                                        onDismissed: (_) {
+                                          scaffoldKey.currentState
                                               .showSnackBar(snackBarr);
                                           expenseProvider
                                               .delete(thisExpense.id);
