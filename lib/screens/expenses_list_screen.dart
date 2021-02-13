@@ -112,13 +112,13 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                 MoneyWidget(
                                   expense: expenseProvider
                                       .calculateTotalIncome()
-                                      .toString(),
+                                      .toStringAsFixed(2),
                                   income: expenseProvider
                                       .calculateTotalExpense()
-                                      .toString(),
+                                      .toStringAsFixed(2),
                                   money: expenseProvider
                                       .calculateTotalMoney()
-                                      .toString(),
+                                      .toStringAsFixed(2),
                                 ),
                                 Divider(
                                   height: 25,

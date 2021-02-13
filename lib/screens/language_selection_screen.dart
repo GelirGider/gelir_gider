@@ -15,9 +15,9 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SafeArea(
-        child: Scaffold(
-          body: Container(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
