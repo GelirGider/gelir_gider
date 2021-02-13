@@ -95,7 +95,7 @@ class _AddingExpenseState extends State<AddingExpense> {
           ),
         ),
       ),
-      duration: Duration(seconds: 2),
+      duration: Duration(seconds: 1),
       backgroundColor: Colors.purple,
     );
     category = _langState.isEnglish ? 'Payment' : 'Ödeme';
