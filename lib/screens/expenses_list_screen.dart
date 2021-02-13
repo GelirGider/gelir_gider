@@ -160,6 +160,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                         onDismissed: (_) {
                                           scaffoldKey.currentState
                                               .showSnackBar(snackBarr);
+                                          setState(() {});
                                           return expenseProvider
                                               .delete(thisExpense.id);
                                         },
