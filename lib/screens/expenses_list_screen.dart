@@ -41,14 +41,14 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
         child: Text(
           langState.isEnglish ? 'Transaction deleted' : 'İşlem silindi',
           style: TextStyle(
-            color: Colors.white,
+            color: Theme.of(context).textTheme.overline.color,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
       duration: Duration(seconds: 1),
-      backgroundColor: Colors.purple,
+      backgroundColor: Colors.red,
     );
 
     return SafeArea(
@@ -63,6 +63,14 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               },
               child: Icon(
                 Icons.color_lens,
+                color: Theme.of(context).buttonColor,
+              ),
+            ),
+            FlatButton(
+              onPressed: () {
+              },
+              child: Icon(
+                Icons.settings,
                 color: Theme.of(context).buttonColor,
               ),
             ),

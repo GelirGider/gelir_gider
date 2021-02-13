@@ -9,8 +9,8 @@ class ExpenseItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Container(
-        margin: const EdgeInsets.all(15.0),
-        padding: const EdgeInsets.all(3.0),
+        margin: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(4.0),
         decoration: BoxDecoration(
           border: Border.all(color: Theme.of(context).accentColor),
         ),

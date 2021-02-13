@@ -136,7 +136,7 @@ final ThemeData lightTheme = ThemeData(
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
     ),
-    focusColor: Colors.lightBlue,
+    focusColor: Colors.white,
     helperStyle: TextStyle(
       color: Colors.black,
       fontSize: null,
@@ -213,7 +213,7 @@ final ThemeData lightTheme = ThemeData(
     ),
     enabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.lightBlue,
+        color: Colors.white,
         width: 1,
         style: BorderStyle.solid,
       ),
@@ -221,7 +221,7 @@ final ThemeData lightTheme = ThemeData(
     ),
     border: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.lightBlue,
+        color: Colors.white,
         width: 1,
         style: BorderStyle.solid,
       ),

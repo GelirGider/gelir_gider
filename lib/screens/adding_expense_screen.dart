@@ -89,14 +89,14 @@ class _AddingExpenseState extends State<AddingExpense> {
         child: Text(
           _langState.isEnglish ? 'Transaction added' : 'İşlem eklendi',
           style: TextStyle(
-            color: Colors.white,
+            color: Theme.of(context).primaryTextTheme.overline.color,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
       duration: Duration(seconds: 2),
-      backgroundColor: Colors.purple,
+      backgroundColor: Theme.of(context).primaryColor,
     );
     category = _langState.isEnglish ? 'Payment' : 'Ödeme';
     return SafeArea(
@@ -184,19 +184,8 @@ class _AddingExpenseState extends State<AddingExpense> {
                               decoration: InputDecoration(
                                 labelText: _langState.isEnglish
                                     ? 'Description'
-                                    : 'Açıklama',
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Theme.of(context).primaryColor,
-                                    width: 2,
-                                  ),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Theme.of(context).primaryColor,
-                                    width: 2,
-                                  ),
-                                ),
+                                    : 'Açıklama'
+
                               ),
                               onSaved: (newValue) {
                                 description = newValue;
@@ -210,18 +199,6 @@ class _AddingExpenseState extends State<AddingExpense> {
                               decoration: InputDecoration(
                                 labelText:
                                     _langState.isEnglish ? 'Price' : 'Fiyatı',
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Theme.of(context).primaryColor,
-                                    width: 2,
-                                  ),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Theme.of(context).primaryColor,
-                                    width: 2,
-                                  ),
-                                ),
                               ),
                               textInputAction: TextInputAction.done,
                               validator: (value) {
