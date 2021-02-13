@@ -1,5 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/modals/custom_theme_modal.dart';
 import '../providers/expense_provider.dart';
+import 'package:provider/provider.dart';
 
 class ExpenseItem extends StatelessWidget {
   final Expense expense;
@@ -7,12 +11,18 @@ class ExpenseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _theme = Provider.of<CustomThemeModal>(context, listen: false);
+
     return ListTile(
       leading: Container(
-        margin: const EdgeInsets.all(15.0),
-        padding: const EdgeInsets.all(3.0),
+        margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
         decoration: BoxDecoration(
-          border: Border.all(color: Theme.of(context).accentColor),
+          border: Border.all(
+            color: _theme.getThemeData.brightness == Brightness.dark
+                ? Color.fromRGBO(1223, 81, 83, 1)
+                : Colors.black,
+          ),
         ),
         child: Text(expense.time),
       ),

@@ -7,6 +7,7 @@ import 'package:gelir_gider/widgets/money_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/widgets/theme_dialog_widget.dart';
 import 'adding_expense_screen.dart';
+import 'package:gelir_gider/modals/custom_theme_modal.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -37,6 +38,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     final langState = Provider.of<LanguageHandler>(context, listen: false);
+    final _theme = Provider.of<CustomThemeModal>(context, listen: false);
     final snackBarr = SnackBar(
       content: Container(
         child: Text(
@@ -108,7 +110,10 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                               children: [
                                 Divider(
                                   height: 25,
-                                  color: Theme.of(context).accentColor,
+                                  color: _theme.getThemeData.brightness ==
+                                          Brightness.dark
+                                      ? Color.fromRGBO(1223, 81, 83, 1)
+                                      : Colors.black,
                                 ),
                                 MoneyWidget(
                                   expense: expenseProvider
@@ -123,7 +128,10 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                 ),
                                 Divider(
                                   height: 25,
-                                  color: Theme.of(context).accentColor,
+                                  color: _theme.getThemeData.brightness ==
+                                          Brightness.dark
+                                      ? Color.fromRGBO(1223, 81, 83, 1)
+                                      : Colors.black,
                                 ),
                                 Flexible(
                                   child: ListView.builder(
@@ -138,16 +146,22 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                             ExpenseItem(
                                               expense: thisExpense,
                                             ),
-                                            Divider(),
+                                            Divider(
+                                              height: 25,
+                                              color: _theme.getThemeData
+                                                          .brightness ==
+                                                      Brightness.dark
+                                                  ? Colors.grey
+                                                  : Colors.black,
+                                            ),
                                           ],
                                         ),
                                         direction: DismissDirection.endToStart,
                                         onDismissed: (_) {
                                           scaffoldKey.currentState
                                               .showSnackBar(snackBarr);
-                                          expenseProvider
+                                          return expenseProvider
                                               .delete(thisExpense.id);
-                                          setState(() {});
                                         },
                                         background: Container(
                                           color: Colors.red,
