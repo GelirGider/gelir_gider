@@ -181,9 +181,15 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                         ),
                                         direction: DismissDirection.endToStart,
                                         onDismissed: (_) {
-                                          scaffoldKey.currentState
-                                              .showSnackBar(snackBarr);
-                                          setState(() {});
+                                          WidgetsBinding.instance
+                                              .addPostFrameCallback(
+                                            (_) => scaffoldKey.currentState
+                                                .showSnackBar(snackBarr),
+                                          );
+                                          Future.delayed(Duration(seconds: 1))
+                                              .then(
+                                            (value) => setState(() {}),
+                                          );
                                           return expenseProvider
                                               .delete(thisExpense.id);
                                         },

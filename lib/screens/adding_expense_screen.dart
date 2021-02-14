@@ -86,8 +86,8 @@ class _AddingExpenseState extends State<AddingExpense> {
           ),
         ),
       ),
-      duration: Duration(seconds: 2),
-      backgroundColor: Theme.of(context).primaryColor,
+      duration: Duration(seconds: 1),
+      backgroundColor: Colors.purple,
     );
     return SafeArea(
       child: Scaffold(
