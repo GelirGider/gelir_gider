@@ -58,7 +58,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
       child: Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
-          title: Text(langState.isEnglish ? 'Add/Remove' : 'Ekle/Çıkar'),
+          title: Text(langState.isEnglish ? 'Transactions' : 'İşlemleriniz'),
           actions: [
             FlatButton(
               onPressed: () {
