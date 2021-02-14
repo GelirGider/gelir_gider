@@ -25,6 +25,46 @@ class Expenses with ChangeNotifier {
     return [..._items];
   }
 
+  List<Expense> _day = [];
+  List<Expense> get day {
+    return [..._day];
+  }
+
+  List<Expense> _week = [];
+  List<Expense> get week {
+    return [..._week];
+  }
+
+  List<Expense> _month = [];
+  List<Expense> get month {
+    return [..._month];
+  }
+
+  List<Expense> _year = [];
+  List<Expense> get year {
+    return [..._year];
+  }
+
+  void setDates() {
+    _day = _items.where((element) {
+      var date = DateTime.parse(element.time);
+      return DateTime.now().difference(date).inDays <= 0;
+    });
+    _week = _items.where((element) {
+      var date = DateTime.parse(element.time);
+      return DateTime.now().difference(date).inDays < 7;
+    });
+    _month = _items.where((element) {
+      var date = DateTime.parse(element.time);
+      return DateTime.now().difference(date).inDays < 30;
+    });
+    _year = _items.where((element) {
+      var date = DateTime.parse(element.time);
+      return DateTime.now().difference(date).inDays < 30;
+    });
+    notifyListeners();
+  }
+
   void addExpense(Expense newExpense) async {
     _items.add(newExpense);
     notifyListeners();
