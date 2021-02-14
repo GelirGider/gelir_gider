@@ -82,7 +82,7 @@ final ThemeData lightTheme = ThemeData(
       fontStyle: FontStyle.normal,
     ),
     overline: TextStyle(
-      color: Color(0xff000000),
+      color: Colors.white,
       fontSize: null,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,

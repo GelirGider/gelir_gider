@@ -3,10 +3,12 @@ import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:gelir_gider/widgets/expense_item.dart';
 import 'package:gelir_gider/widgets/money_widget.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/widgets/theme_dialog_widget.dart';
 import 'adding_expense_screen.dart';
 import 'package:gelir_gider/modals/custom_theme_modal.dart';
+import 'package:gelir_gider/screens/language_selection_screen.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -54,10 +56,11 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
     );
 
     return SafeArea(
-      child: Scaffold(
+       child: DefaultTabController(
+        length: 4,
+        child: Scaffold(
         key: scaffoldKey,
-        appBar: AppBar(
-          title: Text(langState.isEnglish ? 'Add/Remove' : 'Ekle/Çıkar'),
+        appBar: GradientAppBar(
           actions: [
             FlatButton(
               onPressed: () {
@@ -77,12 +80,33 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                 );
               },
               child: Icon(
-                Icons.settings,
+                Icons.language,
                 color: Theme.of(context).buttonColor,
               ),
             ),
           ],
-        ),
+          title: Icon(Icons.attach_money),
+          gradient: LinearGradient(colors: [Colors.red, Colors.purple]),
+            bottom: TabBar(
+                labelStyle: TextStyle(fontSize: 10),
+                tabs: <Widget>[
+
+            Tab(
+            text: 'GÜN',
+
+            ),
+            Tab(
+            text: 'HAFTA',
+            ),
+              Tab(
+                text: 'AY',
+              ),
+              Tab(
+                text: 'YIL',
+              ),
+            ]),
+
+    ),
         body: FutureBuilder(
           future: Provider.of<Expenses>(context, listen: false)
               .fetchAndSetExpenses(),
@@ -191,9 +215,20 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                 ),
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).primaryColor,
           onPressed: () => navigationFunction(context, scaffoldKey),
-          child: Icon(Icons.post_add_rounded, color: Colors.white),
+          child:
+            Container(
+              width: 60,
+              height: 60,
+              child: Icon(
+                Icons.add,
+                size: 40,
+              ),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(colors: [Colors.red, Colors.purple])),
+            ),
+            )
         ),
       ),
     );

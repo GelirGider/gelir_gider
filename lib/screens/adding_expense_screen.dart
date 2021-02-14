@@ -6,17 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:smart_select/smart_select.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
-enum category {
-  payment,
-  food,
-  clothes,
-  shop,
-  travel,
-  education,
-  entertainment,
-  others,
-}
 
 class AddingExpense extends StatefulWidget {
   final scaffoldKey;
@@ -98,12 +89,12 @@ class _AddingExpenseState extends State<AddingExpense> {
       duration: Duration(seconds: 2),
       backgroundColor: Theme.of(context).primaryColor,
     );
-    category = _langState.isEnglish ? 'Payment' : 'Ödeme';
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-              _langState.isEnglish ? 'Add Income/Expense' : 'Gelir/Gider Ekle'),
+        appBar: GradientAppBar(
+          gradient: LinearGradient(colors: [Colors.red, Colors.purple]),
+          centerTitle: true,
+          title: Icon(Icons.attach_money),
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.save),
