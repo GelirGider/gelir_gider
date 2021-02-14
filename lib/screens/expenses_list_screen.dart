@@ -4,6 +4,7 @@ import 'package:gelir_gider/widgets/add_button.dart';
 import 'package:gelir_gider/widgets/dissmissible_background.dart';
 import 'package:gelir_gider/widgets/expense_item.dart';
 import 'package:gelir_gider/widgets/money_widget.dart';
+import 'package:gelir_gider/widgets/snackbar.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/widgets/theme_dialog_widget.dart';
@@ -40,20 +41,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
   Widget build(BuildContext context) {
     final scaffoldKey = GlobalKey<ScaffoldState>();
     final _theme = Provider.of<CustomThemeModal>(context, listen: false);
-    final snackBarr = SnackBar(
-      content: Container(
-        child: Text(
-          'İşlem silindi',
-          style: TextStyle(
-            color: Theme.of(context).textTheme.overline.color,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      duration: Duration(seconds: 1),
-      backgroundColor: Colors.red,
-    );
+    final snackBarr = Snackbar();
 
     return SafeArea(
       child: DefaultTabController(
