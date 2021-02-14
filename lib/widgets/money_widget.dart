@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gelir_gider/providers/language_provider.dart';
-import 'package:provider/provider.dart';
 
 class MoneyWidget extends StatelessWidget {
   final String income;
@@ -12,14 +10,13 @@ class MoneyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final langState = Provider.of<LanguageHandler>(context, listen: false);
     return Row(
       children: [
         Expanded(
           child: Column(
             children: [
               Text(
-                langState.isEnglish ? 'Total Income' : 'Toplam Gelir',
+                'Toplam Gelir',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -41,7 +38,7 @@ class MoneyWidget extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                langState.isEnglish ? 'Total Money' : 'Ana Para',
+                'Ana Para',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
@@ -57,7 +54,7 @@ class MoneyWidget extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                langState.isEnglish ? 'Total Expense' : 'Toplam Gider',
+                'Toplam Gider',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),

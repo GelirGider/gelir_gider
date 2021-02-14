@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
-import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/modals/custom_theme_modal.dart';
@@ -10,9 +9,6 @@ import 'package:gelir_gider/themes/darkTheme.dart';
 
 void main() => runApp(MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(
-          value: LanguageHandler(),
-        ),
         ChangeNotifierProvider.value(
           value: Expenses(),
         ),
