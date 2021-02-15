@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/helpers/db_helper.dart';
 import 'package:gelir_gider/utils/time_diff.dart';
-import 'package:intl/intl.dart';
 
 class Expense {
   final String id;
@@ -22,8 +21,12 @@ class Expense {
 }
 
 class Expenses with ChangeNotifier {
+  bool init = false;
+  bool init2 = false;
+
   int tabBarIndex = 0;
   void setTabBarIndex(int index) {
+    setDates();
     tabBarIndex = index;
     if (tabBarIndex == 0) {
       _currentItems = _day;
@@ -37,7 +40,6 @@ class Expenses with ChangeNotifier {
     if (tabBarIndex == 3) {
       _currentItems = _year;
     }
-    setDates();
     notifyListeners();
   }
 
@@ -73,41 +75,8 @@ class Expenses with ChangeNotifier {
     return [..._year];
   }
 
-  void Print() {
-    print("items");
-    _items.forEach((element) {
-      print(element.id);
-    });
-    print('\n');
-
-    print("days");
-    _day.forEach((element) {
-      print(element.id);
-    });
-    print('\n');
-
-    print("week");
-    _week.forEach((element) {
-      print(element.id);
-    });
-    print('\n');
-
-    print("month");
-    _month.forEach((element) {
-      print(element.id);
-    });
-    print('\n');
-
-    print("year");
-    _year.forEach((element) {
-      print(element.id);
-    });
-    print('\n');
-  }
-
-//  print(element.time);
-//  print('DİFF::::${TimeDiff(element.time).diff()}');
   void setDates() {
+    print(init);
     List<Expense> temp = [];
     List<Expense> temp1 = [];
     List<Expense> temp2 = [];
@@ -129,6 +98,10 @@ class Expenses with ChangeNotifier {
     _week = temp1;
     _month = temp2;
     _year = temp3;
+    if (!init) {
+      _currentItems = _day;
+      init = true;
+    }
     notifyListeners();
   }
 
@@ -167,7 +140,10 @@ class Expenses with ChangeNotifier {
           ),
         )
         .toList();
-    setDates();
+    if (!init2) {
+      setTabBarIndex(0);
+      init2 = true;
+    }
     notifyListeners();
   }
 

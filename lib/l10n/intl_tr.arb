@@ -1,0 +1,19 @@
+{
+  "@@locale": "tr",
+  "TabBarDay": "Gün",
+  "TabBarWeek": "Hafta",
+  "TabBarMonth": "Ay",
+  "TabBarYear": "Yıl",
+  "MoneyWidgetIncome" : "Toplam Gelir",
+  "MoneyWidgetMoney" : "Ana Para",
+  "MoneyWidgetExpense" : "Toplam Gider",
+  "ThemeSelectionQuestion" : "Tema Seçiniz",
+  "ThemeSelectionOption1" : "Aydınlık Tema",
+  "ThemeSelectionOption2" : "Karanlık Tema",
+  "AddingScreenCategories": "Kategoriler",
+  "AddingScreenDescription": "Açıklama",
+  "AddingScreenPrice": "Fiyatı",
+  "AddingScreenDate": "Tarih",
+  "AddingScreenIncome": "Gelir",
+  "AddingScreenExpense": "Gider"
+}

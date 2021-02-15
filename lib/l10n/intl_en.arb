@@ -1,0 +1,19 @@
+{
+  "@@locale": "en",
+  "TabBarDay": "Day",
+  "TabBarMonth": "Month",
+  "TabBarWeek": "Week",
+  "TabBarYear": "Year",
+  "MoneyWidgetIncome" : "Total Income",
+  "MoneyWidgetMoney" : "Total Money",
+  "MoneyWidgetExpense" : "Total Expense",
+  "ThemeSelectionQuestion" : "Select Theme",
+  "ThemeSelectionOption1" : "Light Theme",
+  "ThemeSelectionOption2" : "Dark Theme",
+  "AddingScreenCategories": "Categories",
+  "AddingScreenDescription": "Description",
+  "AddingScreenPrice": "Price",
+  "AddingScreenDate": "Date",
+  "AddingScreenIncome": "Income",
+  "AddingScreenExpense": "Expense"
+}

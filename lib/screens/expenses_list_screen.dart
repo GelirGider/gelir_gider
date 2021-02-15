@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/add_button.dart';
 import 'package:gelir_gider/widgets/dissmissible_background.dart';
@@ -17,6 +19,25 @@ class ExpensesListScreen extends StatefulWidget {
 }
 
 class _ExpensesListScreenState extends State<ExpensesListScreen> {
+  @override
+  void initState() {
+    Future.delayed(Duration.zero).then((_) {
+      print("girdi");
+      return Provider.of<Expenses>(context, listen: false).setTabBarIndex(0);
+    });
+    super.initState();
+  }
+
+  bool init = true;
+
+  @override
+  void didChangeDependencies() {
+    if (init) {
+      init = false;
+    }
+    super.didChangeDependencies();
+  }
+
   Future<void> navigationFunction(context, scaffoldKey) {
     return Navigator.of(context).push(
       MaterialPageRoute(
@@ -73,7 +94,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               ),
               FlatButton(
                 onPressed: () {
-                  return Navigator.of(context).push(
+                  return Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (ctx) => LanguageSelectionScreen(),
                     ),
@@ -92,21 +113,21 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                 Provider.of<Expenses>(context, listen: false)
                     .setTabBarIndex(index);
                 print(index);
-                Provider.of<Expenses>(context, listen: false).Print();
+                setState(() {});
               },
               labelStyle: TextStyle(fontSize: 10),
               tabs: <Widget>[
                 Tab(
-                  text: 'GÜN',
+                  text: S.of(context).TabBarDay,
                 ),
                 Tab(
-                  text: 'HAFTA',
+                  text: S.of(context).TabBarWeek,
                 ),
                 Tab(
-                  text: 'AY',
+                  text: S.of(context).TabBarMonth,
                 ),
                 Tab(
-                  text: 'YIL',
+                  text: S.of(context).TabBarYear,
                 ),
               ],
             ),

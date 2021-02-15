@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/generated/l10n.dart';
 
 import 'expenses_list_screen.dart';
 
@@ -9,7 +10,7 @@ class LanguageSelectionScreen extends StatefulWidget {
 }
 
 List icons = [
-  Image.asset('assets/flags/turkiye.png'),
+  Image.asset('assets/flags/turkey.png'),
   Image.asset('assets/flags/usa.png'),
   Image.asset('assets/flags/germany.png'),
   Image.asset('assets/flags/arabia.png'),
@@ -44,16 +45,22 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                       icons.length,
                       (index) {
                         return FittedBox(
-                          child: IconButton(
-                              iconSize: 150,
-                              onPressed: () {
-                                return Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (ctx) => ExpensesListScreen(),
-                                  ),
-                                );
-                              },
-                              icon: icons[index]),
+                          child: FlatButton(
+                            onPressed: () {
+                              if (index == 0) {
+                                S.load(Locale('tr'));
+                              }
+                              if (index == 1) {
+                                S.load(Locale('en'));
+                              }
+                              return Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (ctx) => ExpensesListScreen(),
+                                ),
+                              );
+                            },
+                            child: icons[index],
+                          ),
                         );
                       },
                     ),

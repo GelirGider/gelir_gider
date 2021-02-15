@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/generated/l10n.dart';
 
 class MoneyWidget extends StatelessWidget {
   final String income;
@@ -16,7 +17,7 @@ class MoneyWidget extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Toplam Gelir',
+                S.of(context).MoneyWidgetIncome,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -38,7 +39,7 @@ class MoneyWidget extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Ana Para',
+                S.of(context).MoneyWidgetMoney,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
@@ -54,7 +55,7 @@ class MoneyWidget extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Toplam Gider',
+                S.of(context).MoneyWidgetExpense,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
