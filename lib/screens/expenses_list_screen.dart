@@ -4,7 +4,6 @@ import 'package:gelir_gider/widgets/add_button.dart';
 import 'package:gelir_gider/widgets/dissmissible_background.dart';
 import 'package:gelir_gider/widgets/expense_item.dart';
 import 'package:gelir_gider/widgets/money_widget.dart';
-import 'package:gelir_gider/widgets/snackbar.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/widgets/theme_dialog_widget.dart';
@@ -41,7 +40,20 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
   Widget build(BuildContext context) {
     final scaffoldKey = GlobalKey<ScaffoldState>();
     final _theme = Provider.of<CustomThemeModal>(context, listen: false);
-    final snackBarr = Snackbar();
+    final snackBarr = SnackBar(
+      content: Container(
+        child: Text(
+          'İşlem silindi',
+          style: TextStyle(
+            color: Theme.of(context).textTheme.overline.color,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      duration: Duration(seconds: 1),
+      backgroundColor: Colors.red,
+    );
 
     return SafeArea(
       child: DefaultTabController(
@@ -76,6 +88,12 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
             title: Icon(Icons.attach_money),
             gradient: LinearGradient(colors: [Colors.red, Colors.purple]),
             bottom: TabBar(
+              onTap: (index) {
+                Provider.of<Expenses>(context, listen: false)
+                    .setTabBarIndex(index);
+                print(index);
+                Provider.of<Expenses>(context, listen: false).Print();
+              },
               labelStyle: TextStyle(fontSize: 10),
               tabs: <Widget>[
                 Tab(
@@ -141,10 +159,11 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                   ),
                                   Flexible(
                                     child: ListView.builder(
-                                      itemCount: expenseProvider.expense.length,
+                                      itemCount:
+                                          expenseProvider.currentItems.length,
                                       itemBuilder: (context, index) {
                                         var thisExpense =
-                                            expenseProvider.expense[index];
+                                            expenseProvider.currentItems[index];
                                         return Dismissible(
                                           key: UniqueKey(),
                                           child: Column(

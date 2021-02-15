@@ -197,7 +197,7 @@ class _AddingExpenseState extends State<AddingExpense> {
                                   return null;
                                 },
                                 onSaved: (val) {
-                                  val = Jiffy(val).format('dd/MM/yyyy');
+                                  val = Jiffy(val).format('yyyy-MM-dd');
                                   time = val;
                                 },
                               ),

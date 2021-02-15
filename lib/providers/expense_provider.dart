@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/helpers/db_helper.dart';
+import 'package:gelir_gider/utils/time_diff.dart';
+import 'package:intl/intl.dart';
 
 class Expense {
   final String id;
@@ -20,6 +22,32 @@ class Expense {
 }
 
 class Expenses with ChangeNotifier {
+  int tabBarIndex = 0;
+  void setTabBarIndex(int index) {
+    tabBarIndex = index;
+    if (tabBarIndex == 0) {
+      _currentItems = _day;
+    }
+    if (tabBarIndex == 1) {
+      _currentItems = _week;
+    }
+    if (tabBarIndex == 2) {
+      _currentItems = _month;
+    }
+    if (tabBarIndex == 3) {
+      _currentItems = _year;
+    }
+    setDates();
+    notifyListeners();
+  }
+
+  int get TabBarIndex => tabBarIndex;
+
+  List<Expense> _currentItems = [];
+  List<Expense> get currentItems {
+    return [..._currentItems];
+  }
+
   List<Expense> _items = [];
   List<Expense> get expense {
     return [..._items];
@@ -45,23 +73,62 @@ class Expenses with ChangeNotifier {
     return [..._year];
   }
 
+  void Print() {
+    print("items");
+    _items.forEach((element) {
+      print(element.id);
+    });
+    print('\n');
+
+    print("days");
+    _day.forEach((element) {
+      print(element.id);
+    });
+    print('\n');
+
+    print("week");
+    _week.forEach((element) {
+      print(element.id);
+    });
+    print('\n');
+
+    print("month");
+    _month.forEach((element) {
+      print(element.id);
+    });
+    print('\n');
+
+    print("year");
+    _year.forEach((element) {
+      print(element.id);
+    });
+    print('\n');
+  }
+
+//  print(element.time);
+//  print('DİFF::::${TimeDiff(element.time).diff()}');
   void setDates() {
-    _day = _items.where((element) {
-      var date = DateTime.parse(element.time);
-      return DateTime.now().difference(date).inDays <= 0;
+    List<Expense> temp = [];
+    List<Expense> temp1 = [];
+    List<Expense> temp2 = [];
+    List<Expense> temp3 = [];
+
+    _items.forEach((element) {
+      var dif = TimeDiff(element.time).diff();
+      if (dif == 0) {
+        temp.add(element);
+      } else if (dif < 7) {
+        temp1.add(element);
+      } else if (dif < 30) {
+        temp2.add(element);
+      } else if (TimeDiff(element.time).diff() < 365) {
+        temp3.add(element);
+      }
     });
-    _week = _items.where((element) {
-      var date = DateTime.parse(element.time);
-      return DateTime.now().difference(date).inDays < 7;
-    });
-    _month = _items.where((element) {
-      var date = DateTime.parse(element.time);
-      return DateTime.now().difference(date).inDays < 30;
-    });
-    _year = _items.where((element) {
-      var date = DateTime.parse(element.time);
-      return DateTime.now().difference(date).inDays < 30;
-    });
+    _day = temp;
+    _week = temp1;
+    _month = temp2;
+    _year = temp3;
     notifyListeners();
   }
 
@@ -88,7 +155,6 @@ class Expenses with ChangeNotifier {
 
   Future<void> fetchAndSetExpenses() async {
     final dataList = await DBHelper.getData('user_expenses');
-    print('fetchAndSetExpenses dataList: $dataList');
     _items = dataList
         .map(
           (item) => Expense(
@@ -101,6 +167,7 @@ class Expenses with ChangeNotifier {
           ),
         )
         .toList();
+    setDates();
     notifyListeners();
   }
 
