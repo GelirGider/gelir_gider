@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/add_button.dart';
 import 'package:gelir_gider/widgets/dissmissible_background.dart';
 import 'package:gelir_gider/widgets/expense_item.dart';
+import 'package:gelir_gider/widgets/main_drawer.dart';
 import 'package:gelir_gider/widgets/money_widget.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
@@ -22,20 +22,9 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
   @override
   void initState() {
     Future.delayed(Duration.zero).then((_) {
-      print("girdi");
       return Provider.of<Expenses>(context, listen: false).setTabBarIndex(0);
     });
     super.initState();
-  }
-
-  bool init = true;
-
-  @override
-  void didChangeDependencies() {
-    if (init) {
-      init = false;
-    }
-    super.didChangeDependencies();
   }
 
   Future<void> navigationFunction(context, scaffoldKey) {
@@ -45,15 +34,6 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           scaffoldKey: scaffoldKey,
         ),
       ),
-    );
-  }
-
-  void showThemePicker() {
-    showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return ThemeDialogWidget();
-      },
     );
   }
 
@@ -80,32 +60,10 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
       child: DefaultTabController(
         length: 4,
         child: Scaffold(
+          drawer: MainDrawer(),
           key: scaffoldKey,
           appBar: GradientAppBar(
-            actions: [
-              FlatButton(
-                onPressed: () {
-                  showThemePicker();
-                },
-                child: Icon(
-                  Icons.color_lens,
-                  color: Theme.of(context).buttonColor,
-                ),
-              ),
-              FlatButton(
-                onPressed: () {
-                  return Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (ctx) => LanguageSelectionScreen(),
-                    ),
-                  );
-                },
-                child: Icon(
-                  Icons.language,
-                  color: Theme.of(context).buttonColor,
-                ),
-              ),
-            ],
+            actions: [],
             title: Icon(Icons.attach_money),
             gradient: LinearGradient(colors: [Colors.red, Colors.purple]),
             bottom: TabBar(

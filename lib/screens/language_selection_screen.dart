@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
+import 'package:gelir_gider/widgets/main_drawer.dart';
 
 import 'expenses_list_screen.dart';
 
@@ -22,6 +23,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MainDrawer(),
       body: Center(
         child: Card(
           color: Colors.white60,
