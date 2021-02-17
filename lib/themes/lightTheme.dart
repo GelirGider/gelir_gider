@@ -25,7 +25,7 @@ final ThemeData lightTheme = ThemeData(
   toggleableActiveColor: Color(0xff1e88e5),
   secondaryHeaderColor: Color(0xffe3f2fd),
   textSelectionColor: Color(0xff90caf9),
-  cursorColor: Color(0xff4285f4),
+  cursorColor: Colors.black,
   textSelectionHandleColor: Color(0xff64b5f6),
   backgroundColor: Color(0xff90caf9),
   dialogBackgroundColor: Color(0xffffffff),
@@ -189,7 +189,7 @@ final ThemeData lightTheme = ThemeData(
     ),
     focusedBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.lightBlue,
+        color: Colors.purple,
         width: 1,
         style: BorderStyle.solid,
       ),
@@ -205,7 +205,7 @@ final ThemeData lightTheme = ThemeData(
     ),
     disabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Color(0xff000000),
+        color: Colors.purpleAccent,
         width: 1,
         style: BorderStyle.solid,
       ),
@@ -213,7 +213,7 @@ final ThemeData lightTheme = ThemeData(
     ),
     enabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.white,
+        color: Colors.black12,
         width: 1,
         style: BorderStyle.solid,
       ),
@@ -229,7 +229,7 @@ final ThemeData lightTheme = ThemeData(
     ),
   ),
   iconTheme: IconThemeData(
-    color: Color(0xdd000000),
+    color: Colors.white,
     opacity: 1,
     size: 24,
   ),

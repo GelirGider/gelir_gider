@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/helpers/db_helper.dart';
 import 'package:gelir_gider/utils/time_diff.dart';
+import 'package:gelir_gider/widgets/category_item.dart';
+import 'package:gelir_gider/screens/category_screen.dart';
 
 class Expense {
   final String id;
-  final String category;
+  final CategoryItem category;
   final String description;
   final double price;
   final String time;
@@ -112,7 +114,7 @@ class Expenses with ChangeNotifier {
       'user_expenses',
       {
         'id': newExpense.id,
-        'category': newExpense.category,
+        'category': newExpense.category.index,
         'isExpense': newExpense.isExpense,
         'time': newExpense.time,
         'price': newExpense.price,
@@ -132,7 +134,7 @@ class Expenses with ChangeNotifier {
         .map(
           (item) => Expense(
             id: item['id'],
-            category: item['category'],
+            category: CategoryScreen.getCategory(item['category']),
             isExpense: item['isExpense'],
             time: item['time'],
             price: item['price'],

@@ -4,8 +4,11 @@ import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
-import 'package:smart_select/smart_select.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:gelir_gider/screens/category_screen.dart';
+import 'package:gelir_gider/widgets/category_item.dart';
+import 'package:gelir_gider/modals/custom_theme_modal.dart';
+
 
 class AddingExpense extends StatefulWidget {
   final scaffoldKey;
@@ -21,20 +24,22 @@ class _AddingExpenseState extends State<AddingExpense> {
 
   String description = '';
   double price = 0.0;
-  String category = 'Payment';
+  CategoryItem category =CategoryItem(Image.asset('assets/categories/bill.png'),'Ödeme',0);
   String time = '';
   bool isExpense = true;
 
-  List<S2Choice<String>> options = [
-    S2Choice<String>(value: 'Ödeme', title: 'Ödeme'),
-    S2Choice<String>(value: 'Gıda', title: 'Gıda'),
-    S2Choice<String>(value: 'Giyim', title: 'Giyim'),
-    S2Choice<String>(value: 'Alışveriş', title: 'Alışveriş'),
-    S2Choice<String>(value: 'Seyahat', title: 'Seyahat'),
-    S2Choice<String>(value: 'Eğitim', title: 'Eğitim'),
-    S2Choice<String>(value: 'Eğlence', title: 'Eğlence'),
-    S2Choice<String>(value: 'Diğer', title: 'Diğer'),
-  ];
+  void moveToSecondPage() async {
+    category = await Navigator.push(
+      context,
+      MaterialPageRoute(
+          fullscreenDialog: true, builder: (context) => CategoryScreen())
+    )??category;
+    updateInformation(category);
+  }
+
+  void updateInformation(CategoryItem category) {
+    setState(() => category = category);
+  }
 
   Future<void> _saveForm(scaffoldKey, snackBar) async {
     final isValid = _form.currentState.validate();
@@ -62,6 +67,7 @@ class _AddingExpenseState extends State<AddingExpense> {
 
   @override
   Widget build(BuildContext context) {
+    final _theme = Provider.of<CustomThemeModal>(context, listen: false);
     final snackBar = SnackBar(
       content: Container(
         child: Text(
@@ -79,7 +85,9 @@ class _AddingExpenseState extends State<AddingExpense> {
     return SafeArea(
       child: Scaffold(
         appBar: GradientAppBar(
-          gradient: LinearGradient(colors: [Colors.red, Colors.purple]),
+          gradient: LinearGradient(colors: _theme.getThemeData.brightness == Brightness.dark
+              ? [Color(0xff212121), Color(0xff212121)]
+              : [Colors.purple, Colors.pink]),
           centerTitle: true,
           title: Icon(Icons.attach_money),
           actions: <Widget>[
@@ -120,35 +128,28 @@ class _AddingExpenseState extends State<AddingExpense> {
                                 },
                               ),
                             ),
-                            Divider(
-                              height: 30,
-                            ),
-                            SmartSelect<String>.single(
-                                title: 'Kategoriler',
-                                placeholder: 'Seçiniz',
-                                value: category,
-                                modalHeaderStyle: S2ModalHeaderStyle(
-                                    iconTheme: IconThemeData(
-                                        color: Theme.of(context).buttonColor),
-                                    backgroundColor:
-                                        Theme.of(context).primaryColor,
-                                    textStyle: TextStyle(
-                                        color: Theme.of(context)
-                                            .primaryTextTheme
-                                            .headline6
-                                            .color)),
-                                choiceStyle: S2ChoiceStyle(
-                                    titleStyle: TextStyle(
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .caption
-                                            .color)),
-                                choiceItems: options,
-                                onChange: (state) => setState(() {
-                                      category = state.value;
-                                    })),
-                            Divider(
-                              height: 30,
+                        GestureDetector(
+                            onTap: (){
+                              moveToSecondPage();
+                            },
+                            child:  Container(
+                              margin: EdgeInsets.fromLTRB(0,20,0,20),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 1,
+                                  color: _theme.getThemeData.brightness == Brightness.dark
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
+                              ),
+                              width: 500.0,
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
+                              child:  ListTile(
+                                leading: category.categoryImg,
+                                title: Text(category.categoryName,textAlign: TextAlign.center,style: TextStyle(),),
+                              ),
+                            )
                             ),
                             TextFormField(
                               textInputAction: TextInputAction.done,

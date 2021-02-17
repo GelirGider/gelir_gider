@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/add_button.dart';
@@ -11,7 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:gelir_gider/widgets/theme_dialog_widget.dart';
 import 'adding_expense_screen.dart';
 import 'package:gelir_gider/modals/custom_theme_modal.dart';
-import 'package:gelir_gider/screens/language_selection_screen.dart';
+import 'file:///C:/Users/Omer/Desktop/gelir_gider/lib/l10n/language_selection_screen.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -22,7 +21,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
   @override
   void initState() {
     Future.delayed(Duration.zero).then((_) {
-      print("girdi");
+      print('girdi');
       return Provider.of<Expenses>(context, listen: false).setTabBarIndex(0);
     });
     super.initState();
@@ -107,7 +106,9 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               ),
             ],
             title: Icon(Icons.attach_money),
-            gradient: LinearGradient(colors: [Colors.red, Colors.purple]),
+            gradient: LinearGradient(colors: _theme.getThemeData.brightness == Brightness.dark
+                ? [Color(0xff212121), Color(0xff212121)]
+                : [Colors.purple, Colors.pink]),
             bottom: TabBar(
               onTap: (index) {
                 Provider.of<Expenses>(context, listen: false)

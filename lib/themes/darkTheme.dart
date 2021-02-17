@@ -36,7 +36,7 @@ final ThemeData darkTheme = ThemeData(
   toggleableActiveColor: Colors.lightBlue,
   secondaryHeaderColor: Color(0xff616161),
   textSelectionColor: Colors.lightBlue,
-  cursorColor: Color(0xff4285f4),
+  cursorColor: Colors.white,
   textSelectionHandleColor: Colors.lightBlue,
   backgroundColor: Color(0xff616161),
   dialogBackgroundColor: Color(0xff424242),
@@ -198,7 +198,7 @@ final ThemeData darkTheme = ThemeData(
     ),
     focusedBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.white,
+        color: Colors.purple,
         width: 1,
         style: BorderStyle.solid,
       ),
@@ -214,7 +214,7 @@ final ThemeData darkTheme = ThemeData(
     ),
     disabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Color(0xff000000),
+        color: Colors.black,
         width: 1,
         style: BorderStyle.solid,
       ),
@@ -222,7 +222,7 @@ final ThemeData darkTheme = ThemeData(
     ),
     enabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Color(0xff000000),
+        color: Colors.white,
         width: 1,
         style: BorderStyle.solid,
       ),
