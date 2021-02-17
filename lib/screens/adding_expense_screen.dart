@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
+import 'package:gelir_gider/widgets/main_drawer.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
@@ -84,6 +85,7 @@ class _AddingExpenseState extends State<AddingExpense> {
     );
     return SafeArea(
       child: Scaffold(
+        drawer: MainDrawer(),
         appBar: GradientAppBar(
           gradient: LinearGradient(colors: _theme.getThemeData.brightness == Brightness.dark
               ? [Color(0xff212121), Color(0xff212121)]

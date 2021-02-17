@@ -38,6 +38,7 @@ dependencies:
   percent_indicator: ^2.1.7+2
 
 
+  flutter_slider_drawer: ^1.2.1
   jiffy: ^3.0.1
   lite_rolling_switch: ^0.1.1
   smart_select: ^4.3.2
