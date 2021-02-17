@@ -2,13 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
-import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/modals/custom_theme_modal.dart';
-import 'package:gelir_gider/themes/darkTheme.dart';
 import 'package:gelir_gider/generated/l10n.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-
+import 'package:gelir_gider/screens/splash_screen.dart';
+import 'package:gelir_gider/themes/lightTheme.dart';
 void main() => runApp(
       MultiProvider(
         providers: [
@@ -16,7 +14,7 @@ void main() => runApp(
             value: Expenses(),
           ),
           ChangeNotifierProvider(
-            create: (context) => CustomThemeModal(darkTheme),
+            create: (context) => CustomThemeModal(lightTheme),
           ),
         ],
         child: MyApp(),
@@ -39,7 +37,7 @@ class MyApp extends StatelessWidget {
       title: 'Gelir/Gider',
       theme: Provider.of<CustomThemeModal>(context).getThemeData,
       debugShowCheckedModeBanner: false,
-      home: ExpensesListScreen(),
+      home: SplashScreen(),
     );
   }
 }
