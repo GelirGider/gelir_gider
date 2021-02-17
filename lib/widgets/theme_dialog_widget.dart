@@ -9,12 +9,13 @@ class ThemeDialogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _theme = Provider.of<CustomThemeModal>(context, listen: false);
     return SimpleDialog(
-      titlePadding: EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+      titlePadding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       title: Text(
         'Tema Seçiniz',
         textAlign: TextAlign.center,
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(fontWeight: FontWeight.bold, height: 2.5),
       ),
       children: <Widget>[
         Divider(
@@ -26,8 +27,19 @@ class ThemeDialogWidget extends StatelessWidget {
             Provider.of<CustomThemeModal>(context, listen: false)
                 .setThemeData(lightTheme);
           },
-          child: const Text('Aydınlık',
-              textAlign: TextAlign.center, style: TextStyle(fontSize: 15)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _theme.getThemeData.brightness == Brightness.dark
+                  ? Icon(Icons.wb_sunny, color: Colors.white)
+                  : Icon(Icons.wb_sunny_outlined, color: Colors.black),
+              SizedBox(
+                width: 25,
+              ),
+              const Text('Aydınlık',
+                  textAlign: TextAlign.center, style: TextStyle(fontSize: 15)),
+            ],
+          ),
         ),
         Divider(
           color: Theme.of(context).textTheme.caption.color,
@@ -38,10 +50,21 @@ class ThemeDialogWidget extends StatelessWidget {
             Provider.of<CustomThemeModal>(context, listen: false)
                 .setThemeData(darkTheme);
           },
-          child: const Text(
-            'Karanlık',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _theme.getThemeData.brightness == Brightness.dark
+                  ? Icon(Icons.wb_sunny_outlined, color: Colors.white)
+                  : Icon(Icons.wb_sunny, color: Colors.black),
+              SizedBox(
+                width: 25,
+              ),
+              const Text(
+                'Karanlık',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 15),
+              ),
+            ],
           ),
         ),
       ],
