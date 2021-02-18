@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/category_item.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gelir_gider/generated/l10n.dart';
@@ -8,21 +9,7 @@ import 'package:provider/provider.dart';
 class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var categories = <CategoryItem>[
-      CategoryItem(context, 0),
-      CategoryItem(context, 1),
-      CategoryItem(context, 2),
-      CategoryItem(context, 3),
-      CategoryItem(context, 4),
-      CategoryItem(context, 5),
-      CategoryItem(context, 6),
-      CategoryItem(context, 7),
-      CategoryItem(context, 8),
-      CategoryItem(context, 9),
-      CategoryItem(context, 10),
-      CategoryItem(context, 11),
-    ];
-
+    var categories = Provider.of<Expenses>(context).categories;
     final _theme = Provider.of<CustomThemeModal>(context, listen: false);
     return SafeArea(
       child: Scaffold(

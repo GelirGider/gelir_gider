@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/helpers/db_helper.dart';
+import 'package:gelir_gider/screens/adding_expense_screen.dart';
 import 'package:gelir_gider/utils/time_diff.dart';
 import 'package:gelir_gider/widgets/category_item.dart';
+import 'package:gelir_gider/screens/category_screen.dart';
 
 class Expense {
   final String id;
-  final CategoryItem category;
+  final int category;
   final String description;
   final double price;
   final String time;
@@ -22,6 +25,70 @@ class Expense {
 }
 
 class Expenses with ChangeNotifier {
+  var imgList = [
+    Image.asset('assets/categories/dues.png'),
+    Image.asset('assets/categories/shopping.png'),
+    Image.asset('assets/categories/education.png'),
+    Image.asset('assets/categories/entertainment.png'),
+    Image.asset('assets/categories/hire.png'),
+    Image.asset('assets/categories/selfcare.png'),
+    Image.asset('assets/categories/bill.png'),
+    Image.asset('assets/categories/health.png'),
+    Image.asset('assets/categories/fix.png'),
+    Image.asset('assets/categories/holiday.png'),
+    Image.asset('assets/categories/food.png'),
+    Image.asset('assets/categories/other.png'),
+  ];
+  var categoryList = [];
+  var _categories = [];
+
+  void setCategories(context) {
+    categoryList = [
+      S.of(context).CategoryDues,
+      S.of(context).CategoryShopping,
+      S.of(context).CategoryEducation,
+      S.of(context).CategoryEntertainment,
+      S.of(context).CategoryRent,
+      S.of(context).CategorySelfcare,
+      S.of(context).CategoryPayment,
+      S.of(context).CategoryHealth,
+      S.of(context).CategoryRepair,
+      S.of(context).CategoryVacation,
+      S.of(context).CategoryEatDrink,
+      S.of(context).CategoryOthers,
+    ];
+    _categories = <CategoryItem>[
+      CategoryItem(
+          categoryImg: imgList[0], categoryName: categoryList[0], index: 0),
+      CategoryItem(
+          categoryImg: imgList[1], categoryName: categoryList[1], index: 1),
+      CategoryItem(
+          categoryImg: imgList[2], categoryName: categoryList[2], index: 2),
+      CategoryItem(
+          categoryImg: imgList[3], categoryName: categoryList[3], index: 3),
+      CategoryItem(
+          categoryImg: imgList[4], categoryName: categoryList[4], index: 4),
+      CategoryItem(
+          categoryImg: imgList[5], categoryName: categoryList[5], index: 5),
+      CategoryItem(
+          categoryImg: imgList[6], categoryName: categoryList[6], index: 6),
+      CategoryItem(
+          categoryImg: imgList[7], categoryName: categoryList[8], index: 9),
+      CategoryItem(
+          categoryImg: imgList[8], categoryName: categoryList[8], index: 8),
+      CategoryItem(
+          categoryImg: imgList[9], categoryName: categoryList[9], index: 9),
+      CategoryItem(
+          categoryImg: imgList[10], categoryName: categoryList[10], index: 10),
+      CategoryItem(
+          categoryImg: imgList[11], categoryName: categoryList[11], index: 11),
+    ];
+  }
+
+  List<CategoryItem> get categories {
+    return [..._categories];
+  }
+
   bool init = false;
   bool init2 = false;
 
@@ -78,10 +145,10 @@ class Expenses with ChangeNotifier {
 
   void setDates() {
     print(init);
-    var temp = <Expense>[];
-    var temp1 = <Expense>[];
-    var temp2 = <Expense>[];
-    var temp3 = <Expense>[];
+    List<Expense> temp = [];
+    List<Expense> temp1 = [];
+    List<Expense> temp2 = [];
+    List<Expense> temp3 = [];
 
     _items.forEach((element) {
       var dif = TimeDiff(element.time).diff();
@@ -113,7 +180,7 @@ class Expenses with ChangeNotifier {
       'user_expenses',
       {
         'id': newExpense.id,
-        'category': newExpense.category.index,
+        'category': newExpense.category,
         'isExpense': newExpense.isExpense,
         'time': newExpense.time,
         'price': newExpense.price,
@@ -127,13 +194,13 @@ class Expenses with ChangeNotifier {
     return await DBHelper.delete(id);
   }
 
-  Future<void> fetchAndSetExpenses(context) async {
+  Future<void> fetchAndSetExpenses() async {
     final dataList = await DBHelper.getData('user_expenses');
     _items = dataList
         .map(
           (item) => Expense(
             id: item['id'],
-            category: CategoryItem(context,(item['category'])),
+            category: item['category'],
             isExpense: item['isExpense'],
             time: item['time'],
             price: item['price'],
@@ -149,27 +216,21 @@ class Expenses with ChangeNotifier {
   }
 
   double calculateTotalMoney() {
-    return calculateTotalIncome() - calculateTotalExpense();
+    return calculateTotalExpense() - calculateTotalIncome();
   }
 
   double calculateTotalExpense() {
     Iterable<Expense> newlist = <Expense>[];
-    newlist = _currentItems.where((element) => element.isExpense == 'expense');
+    newlist = _items.where((element) => element.isExpense == 'expense');
 
     var sum = 0.0;
     newlist.forEach((element) => sum += element.price);
     return sum;
   }
 
-  double getPercantage() {
-    var totalexp = calculateTotalExpense();
-    var totalinc = calculateTotalIncome();
-    return (totalexp/(totalinc+totalexp));
-  }
-
   double calculateTotalIncome() {
     Iterable<Expense> newlist = <Expense>[];
-    newlist = _currentItems.where((element) => element.isExpense == 'income');
+    newlist = _items.where((element) => element.isExpense == 'income');
 
     var sum = 0.0;
     newlist.forEach((element) => sum += element.price);

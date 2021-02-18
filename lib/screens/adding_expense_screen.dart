@@ -11,7 +11,6 @@ import 'package:gelir_gider/screens/category_screen.dart';
 import 'package:gelir_gider/widgets/category_item.dart';
 import 'package:gelir_gider/modals/custom_theme_modal.dart';
 
-
 class AddingExpense extends StatefulWidget {
   final scaffoldKey;
   const AddingExpense({Key key, this.scaffoldKey}) : super(key: key);
@@ -25,16 +24,17 @@ class _AddingExpenseState extends State<AddingExpense> {
 
   String description = '';
   double price = 0.0;
-  CategoryItem category=CategoryItem(,0);
   String time = '';
   bool isExpense = true;
+  CategoryItem category = Provider.of<Expenses>(context).categories[0];
 
   void moveToSecondPage() async {
     category = await Navigator.push(
-      context,
-      MaterialPageRoute(
-          fullscreenDialog: true, builder: (context) => CategoryScreen())
-    )??category;
+            context,
+            MaterialPageRoute(
+                fullscreenDialog: true,
+                builder: (context) => CategoryScreen())) ??
+        category;
     updateInformation(category);
   }
 
@@ -87,9 +87,10 @@ class _AddingExpenseState extends State<AddingExpense> {
       child: Scaffold(
         drawer: MainDrawer(),
         appBar: GradientAppBar(
-          gradient: LinearGradient(colors: _theme.getThemeData.brightness == Brightness.dark
-              ? [Color(0xff212121), Color(0xff212121)]
-              : [Colors.purple, Colors.pink]),
+          gradient: LinearGradient(
+              colors: _theme.getThemeData.brightness == Brightness.dark
+                  ? [Color(0xff212121), Color(0xff212121)]
+                  : [Colors.purple, Colors.pink]),
           centerTitle: true,
           title: Icon(Icons.attach_money),
           actions: <Widget>[
@@ -130,33 +131,38 @@ class _AddingExpenseState extends State<AddingExpense> {
                                 },
                               ),
                             ),
-                        GestureDetector(
-                            onTap: (){
-                              moveToSecondPage();
-                            },
-                            child:  Container(
-                              margin: EdgeInsets.fromLTRB(0,20,0,20),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 1,
-                                  color: _theme.getThemeData.brightness == Brightness.dark
-                                      ? Colors.white
-                                      : Colors.black,
-                                ),
-                              ),
-                              width: 500.0,
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
-                              child:  ListTile(
-                                leading: category.categoryImg,
-                                title: Text(category.categoryName,textAlign: TextAlign.center,style: TextStyle(),),
-                              ),
-                            )
-                            ),
+                            GestureDetector(
+                                onTap: () {
+                                  moveToSecondPage();
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 1,
+                                      color: _theme.getThemeData.brightness ==
+                                              Brightness.dark
+                                          ? Colors.white
+                                          : Colors.black,
+                                    ),
+                                  ),
+                                  width: 500.0,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
+                                  child: ListTile(
+                                    leading: category.categoryImg,
+                                    title: Text(
+                                      category.categoryName,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(),
+                                    ),
+                                  ),
+                                )),
                             TextFormField(
                               textInputAction: TextInputAction.done,
-                              decoration:
-                                  InputDecoration(labelText: S.of(context).AddingScreenDescription),
+                              decoration: InputDecoration(
+                                  labelText:
+                                      S.of(context).AddingScreenDescription),
                               onSaved: (newValue) {
                                 description = newValue;
                               },

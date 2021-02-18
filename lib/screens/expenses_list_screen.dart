@@ -20,6 +20,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
   @override
   void initState() {
     Future.delayed(Duration.zero).then((_) {
+      Provider.of<Expenses>(context, listen: false).setCategories(context);
       return Provider.of<Expenses>(context, listen: false).setTabBarIndex(0);
     });
     super.initState();
@@ -94,7 +95,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           ),
           body: FutureBuilder(
             future: Provider.of<Expenses>(context, listen: false)
-                .fetchAndSetExpenses(context),
+                .fetchAndSetExpenses(),
             builder: (ctx, snapshot) => snapshot.connectionState ==
                     ConnectionState.waiting
                 ? Center(
@@ -130,7 +131,9 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                               textAlign: TextAlign.center,
                                             ),
                                             Text(
-                                              expenseProvider.calculateTotalIncome().toStringAsFixed(1),
+                                              expenseProvider
+                                                  .calculateTotalIncome()
+                                                  .toStringAsFixed(1),
                                               style: TextStyle(
                                                   fontSize: 16,
                                                   color: Colors.green,
@@ -148,7 +151,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                         animation: true,
                                         animationDuration: 750,
                                         lineWidth: 15.0,
-                                        percent: expenseProvider.getPercantage(),
+                                        //percent: expenseProvider.getPercantage(),
                                         center: Text(
                                           expenseProvider
                                               .calculateTotalMoney()
@@ -157,7 +160,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                               fontWeight: FontWeight.bold,
                                               fontSize: 20.0),
                                         ),
-                                        circularStrokeCap: CircularStrokeCap.butt,
+                                        circularStrokeCap:
+                                            CircularStrokeCap.butt,
                                         backgroundColor: Colors.green,
                                         progressColor: Colors.red,
                                       ),
@@ -176,7 +180,9 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                               textAlign: TextAlign.center,
                                             ),
                                             Text(
-                                              expenseProvider.calculateTotalExpense().toStringAsFixed(1),
+                                              expenseProvider
+                                                  .calculateTotalExpense()
+                                                  .toStringAsFixed(1),
                                               style: TextStyle(
                                                   fontSize: 16,
                                                   color: Colors.red,
@@ -214,7 +220,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                                 color: _theme.getThemeData
                                                             .brightness ==
                                                         Brightness.dark
-                                                    ? Color.fromRGBO(1223, 81, 83, 1)
+                                                    ? Color.fromRGBO(
+                                                        1223, 81, 83, 1)
                                                     : Colors.black,
                                               ),
                                             ],

@@ -5,44 +5,12 @@ import 'package:provider/provider.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 
 class CategoryItem extends StatelessWidget {
-  int index;
-  BuildContext context;
-  Image categoryImg;
-  String categoryName;
-  var categoryList;
-  var imgList;
-  CategoryItem(this.context,this.index) {
-    imgList = [
-      Image.asset('assets/categories/dues.png'),
-      Image.asset('assets/categories/shopping.png'),
-      Image.asset('assets/categories/education.png'),
-      Image.asset('assets/categories/entertainment.png'),
-      Image.asset('assets/categories/hire.png'),
-      Image.asset('assets/categories/selfcare.png'),
-      Image.asset('assets/categories/bill.png'),
-      Image.asset('assets/categories/health.png'),
-      Image.asset('assets/categories/fix.png'),
-      Image.asset('assets/categories/holiday.png'),
-      Image.asset('assets/categories/food.png'),
-      Image.asset('assets/categories/other.png'),
-    ];
-    categoryList = [
-      S.of(context).CategoryDues,
-      S.of(context).CategoryShopping,
-      S.of(context).CategoryEducation,
-      S.of(context).CategoryEntertainment,
-      S.of(context).CategoryRent,
-      S.of(context).CategorySelfcare,
-      S.of(context).CategoryPayment,
-      S.of(context).CategoryHealth,
-      S.of(context).CategoryRepair,
-      S.of(context).CategoryVacation,
-      S.of(context).CategoryEatDrink,
-      S.of(context).CategoryOthers,
-    ];
-    categoryName = categoryList[index];
-    categoryImg = imgList[index];
-  }
+  final int index;
+  final Image categoryImg;
+  final String categoryName;
+
+  const CategoryItem({Key key, this.index, this.categoryImg, this.categoryName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
