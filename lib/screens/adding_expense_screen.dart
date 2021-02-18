@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/main_drawer.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:gelir_gider/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
@@ -13,19 +14,18 @@ import 'package:gelir_gider/modals/custom_theme_modal.dart';
 
 class AddingExpense extends StatefulWidget {
   final scaffoldKey;
-
   const AddingExpense({Key key, this.scaffoldKey}) : super(key: key);
   @override
   _AddingExpenseState createState() => _AddingExpenseState();
 }
 
 class _AddingExpenseState extends State<AddingExpense> {
-  final _form = GlobalKey<FormState>();
+  static final _form = GlobalKey<FormState>();
   var _isLoading = false;
 
   String description = '';
   double price = 0.0;
-  CategoryItem category =CategoryItem(Image.asset('assets/categories/bill.png'),'Ödeme',0);
+  CategoryItem category=CategoryItem(,0);
   String time = '';
   bool isExpense = true;
 
@@ -56,7 +56,7 @@ class _AddingExpenseState extends State<AddingExpense> {
       Expense(
         id: UniqueKey().toString(),
         category: category,
-        isExpense: isExpense ? 'expense' : 'income',
+        isExpense: isExpense ? 'income' : 'expense',
         time: time,
         price: price,
         description: description,
@@ -118,8 +118,8 @@ class _AddingExpenseState extends State<AddingExpense> {
                             Center(
                               child: LiteRollingSwitch(
                                 value: isExpense,
-                                textOn: 'Gelir',
-                                textOff: 'Gider',
+                                textOn: S.of(context).AddingScreenIncome,
+                                textOff: S.of(context).AddingScreenExpense,
                                 colorOn: Colors.green,
                                 colorOff: Colors.red,
                                 iconOn: Icons.add,
@@ -156,7 +156,7 @@ class _AddingExpenseState extends State<AddingExpense> {
                             TextFormField(
                               textInputAction: TextInputAction.done,
                               decoration:
-                                  InputDecoration(labelText: 'Açıklama'),
+                                  InputDecoration(labelText: S.of(context).AddingScreenDescription),
                               onSaved: (newValue) {
                                 description = newValue;
                               },
@@ -167,7 +167,7 @@ class _AddingExpenseState extends State<AddingExpense> {
                             TextFormField(
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
-                                labelText: 'Fiyatı',
+                                labelText: S.of(context).AddingScreenPrice,
                               ),
                               textInputAction: TextInputAction.done,
                               validator: (value) {
@@ -188,12 +188,12 @@ class _AddingExpenseState extends State<AddingExpense> {
                             ),
                             Center(
                               child: DateTimePicker(
-                                locale: const Locale('tr', 'TR'),
+                                locale: const Locale('tr', ''),
                                 textAlign: TextAlign.center,
                                 initialValue: DateTime.now().toString(),
                                 firstDate: DateTime(2000),
                                 lastDate: DateTime(2100),
-                                dateLabelText: 'Tarih',
+                                dateLabelText: S.of(context).AddingScreenDate,
                                 onChanged: (val) => time = val,
                                 validator: (val) {
                                   print(val);

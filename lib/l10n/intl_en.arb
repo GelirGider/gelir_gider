@@ -15,5 +15,20 @@
   "AddingScreenPrice": "Price",
   "AddingScreenDate": "Date",
   "AddingScreenIncome": "Income",
-  "AddingScreenExpense": "Expense"
+  "AddingScreenExpense": "Expense",
+  "ExpenseListNoneExpense" : "You've not added expense yet \n Lets start !",
+  "DrawerThemeText": "Theme",
+  "DrawerLanguageText" : "Language",
+  "CategoryPayment" : "Payment",
+  "CategoryDues" : "Dues",
+  "CategoryShopping" : "Shopping",
+  "CategoryEducation" : "Education",
+  "CategoryEntertainment" : "Entertainment",
+  "CategoryRent" : "Rent",
+  "CategorySelfcare" : "Self-care",
+  "CategoryHealth" : "Health",
+  "CategoryRepair" : "Repair",
+  "CategoryVacation" : "Vacation",
+  "CategoryEatDrink" : "Eating and Drinking",
+  "CategoryOthers" : "Others"
 }

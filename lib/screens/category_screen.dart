@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/widgets/category_item.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/modals/custom_theme_modal.dart';
 import 'package:provider/provider.dart';
 
 class CategoryScreen extends StatelessWidget {
-  static var categories = <CategoryItem>[
-    CategoryItem(Image.asset('assets/categories/dues.png'), 'Aidat', 0),
-    CategoryItem(Image.asset('assets/categories/shopping.png'), 'Alışveriş', 1),
-    CategoryItem(Image.asset('assets/categories/education.png'), 'Eğitim', 2),
-    CategoryItem(
-        Image.asset('assets/categories/entertainment.png'), 'Eğlence', 3),
-    CategoryItem(Image.asset('assets/categories/hire.png'), 'Kira', 4),
-    CategoryItem(
-        Image.asset('assets/categories/selfcare.png'), 'Kişisel Bakım', 5),
-    CategoryItem(Image.asset('assets/categories/bill.png'), 'Ödeme', 6),
-    CategoryItem(Image.asset('assets/categories/health.png'), 'Sağlık', 7),
-    CategoryItem(Image.asset('assets/categories/fix.png'), 'Tamir', 8),
-    CategoryItem(Image.asset('assets/categories/holiday.png'), 'Tatil', 9),
-    CategoryItem(Image.asset('assets/categories/food.png'), 'Yeme İçme', 10),
-    CategoryItem(Image.asset('assets/categories/other.png'), 'Diğer', 11),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    var categories = <CategoryItem>[
+      CategoryItem(context, 0),
+      CategoryItem(context, 1),
+      CategoryItem(context, 2),
+      CategoryItem(context, 3),
+      CategoryItem(context, 4),
+      CategoryItem(context, 5),
+      CategoryItem(context, 6),
+      CategoryItem(context, 7),
+      CategoryItem(context, 8),
+      CategoryItem(context, 9),
+      CategoryItem(context, 10),
+      CategoryItem(context, 11),
+    ];
+
     final _theme = Provider.of<CustomThemeModal>(context, listen: false);
     return SafeArea(
       child: Scaffold(
@@ -34,7 +33,7 @@ class CategoryScreen extends StatelessWidget {
                   : [Colors.purple, Colors.pink]),
           centerTitle: true,
           title: Text(
-            'Kategoriler',
+            S.of(context).AddingScreenCategories,
             style: TextStyle(
                 color: Theme.of(context).primaryTextTheme.caption.color,
                 fontSize: 24),
@@ -66,9 +65,5 @@ class CategoryScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  static CategoryItem getCategory(index) {
-    return categories[index];
   }
 }

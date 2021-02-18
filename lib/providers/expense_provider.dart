@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/helpers/db_helper.dart';
 import 'package:gelir_gider/utils/time_diff.dart';
 import 'package:gelir_gider/widgets/category_item.dart';
-import 'package:gelir_gider/screens/category_screen.dart';
 
 class Expense {
   final String id;
@@ -79,10 +78,10 @@ class Expenses with ChangeNotifier {
 
   void setDates() {
     print(init);
-    List<Expense> temp = [];
-    List<Expense> temp1 = [];
-    List<Expense> temp2 = [];
-    List<Expense> temp3 = [];
+    var temp = <Expense>[];
+    var temp1 = <Expense>[];
+    var temp2 = <Expense>[];
+    var temp3 = <Expense>[];
 
     _items.forEach((element) {
       var dif = TimeDiff(element.time).diff();
@@ -128,13 +127,13 @@ class Expenses with ChangeNotifier {
     return await DBHelper.delete(id);
   }
 
-  Future<void> fetchAndSetExpenses() async {
+  Future<void> fetchAndSetExpenses(context) async {
     final dataList = await DBHelper.getData('user_expenses');
     _items = dataList
         .map(
           (item) => Expense(
             id: item['id'],
-            category: CategoryScreen.getCategory(item['category']),
+            category: CategoryItem(context,(item['category'])),
             isExpense: item['isExpense'],
             time: item['time'],
             price: item['price'],
@@ -150,21 +149,27 @@ class Expenses with ChangeNotifier {
   }
 
   double calculateTotalMoney() {
-    return calculateTotalExpense() - calculateTotalIncome();
+    return calculateTotalIncome() - calculateTotalExpense();
   }
 
   double calculateTotalExpense() {
     Iterable<Expense> newlist = <Expense>[];
-    newlist = _items.where((element) => element.isExpense == 'expense');
+    newlist = _currentItems.where((element) => element.isExpense == 'expense');
 
     var sum = 0.0;
     newlist.forEach((element) => sum += element.price);
     return sum;
   }
 
+  double getPercantage() {
+    var totalexp = calculateTotalExpense();
+    var totalinc = calculateTotalIncome();
+    return (totalexp/(totalinc+totalexp));
+  }
+
   double calculateTotalIncome() {
     Iterable<Expense> newlist = <Expense>[];
-    newlist = _items.where((element) => element.isExpense == 'income');
+    newlist = _currentItems.where((element) => element.isExpense == 'income');
 
     var sum = 0.0;
     newlist.forEach((element) => sum += element.price);

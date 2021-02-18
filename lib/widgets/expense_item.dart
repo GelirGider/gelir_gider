@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:jiffy/jiffy.dart';
 
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/modals/custom_theme_modal.dart';
@@ -24,18 +25,18 @@ class ExpenseItem extends StatelessWidget {
                 : Colors.black,
           ),
         ),
-        child: Text(expense.time),
+        child: Text(Jiffy(expense.time).format('dd-MM-yyyy')),
       ),
       title: Text(expense.description, overflow: TextOverflow.ellipsis),
       subtitle: Text(expense.category.categoryName),
       trailing: expense.isExpense == 'expense'
           ? Text(
-              '+ ₺ ' + expense.price.toString(),
-              style: TextStyle(color: Colors.green, fontSize: 15),
-            )
-          : Text(
               '- ₺ ' + expense.price.toString(),
               style: TextStyle(color: Colors.red, fontSize: 15),
+            )
+          : Text(
+              '+ ₺ ' + expense.price.toString(),
+              style: TextStyle(color: Colors.green, fontSize: 15),
             ),
     );
   }

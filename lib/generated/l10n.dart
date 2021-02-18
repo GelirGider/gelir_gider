@@ -194,6 +194,156 @@ class S {
       args: [],
     );
   }
+
+  /// `You've not added expense yet \n Lets start !`
+  String get ExpenseListNoneExpense {
+    return Intl.message(
+      'You\'ve not added expense yet \n Lets start !',
+      name: 'ExpenseListNoneExpense',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme`
+  String get DrawerThemeText {
+    return Intl.message(
+      'Theme',
+      name: 'DrawerThemeText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get DrawerLanguageText {
+    return Intl.message(
+      'Language',
+      name: 'DrawerLanguageText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment`
+  String get CategoryPayment {
+    return Intl.message(
+      'Payment',
+      name: 'CategoryPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dues`
+  String get CategoryDues {
+    return Intl.message(
+      'Dues',
+      name: 'CategoryDues',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shopping`
+  String get CategoryShopping {
+    return Intl.message(
+      'Shopping',
+      name: 'CategoryShopping',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Education`
+  String get CategoryEducation {
+    return Intl.message(
+      'Education',
+      name: 'CategoryEducation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Entertainment`
+  String get CategoryEntertainment {
+    return Intl.message(
+      'Entertainment',
+      name: 'CategoryEntertainment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rent`
+  String get CategoryRent {
+    return Intl.message(
+      'Rent',
+      name: 'CategoryRent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Self-care`
+  String get CategorySelfcare {
+    return Intl.message(
+      'Self-care',
+      name: 'CategorySelfcare',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Health`
+  String get CategoryHealth {
+    return Intl.message(
+      'Health',
+      name: 'CategoryHealth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Repair`
+  String get CategoryRepair {
+    return Intl.message(
+      'Repair',
+      name: 'CategoryRepair',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vacation`
+  String get CategoryVacation {
+    return Intl.message(
+      'Vacation',
+      name: 'CategoryVacation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Eating and Drinking`
+  String get CategoryEatDrink {
+    return Intl.message(
+      'Eating and Drinking',
+      name: 'CategoryEatDrink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Others`
+  String get CategoryOthers {
+    return Intl.message(
+      'Others',
+      name: 'CategoryOthers',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

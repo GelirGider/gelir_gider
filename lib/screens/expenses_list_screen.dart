@@ -5,11 +5,11 @@ import 'package:gelir_gider/widgets/add_button.dart';
 import 'package:gelir_gider/widgets/dissmissible_background.dart';
 import 'package:gelir_gider/widgets/expense_item.dart';
 import 'package:gelir_gider/widgets/main_drawer.dart';
-import 'package:gelir_gider/widgets/money_widget.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'adding_expense_screen.dart';
 import 'package:gelir_gider/modals/custom_theme_modal.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -62,10 +62,12 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           key: scaffoldKey,
           appBar: GradientAppBar(
             actions: [],
+            centerTitle: true,
             title: Icon(Icons.attach_money),
-            gradient: LinearGradient(colors: _theme.getThemeData.brightness == Brightness.dark
-                ? [Color(0xff212121), Color(0xff212121)]
-                : [Colors.purple, Colors.pink]),
+            gradient: LinearGradient(
+                colors: _theme.getThemeData.brightness == Brightness.dark
+                    ? [Color(0xff212121), Color(0xff212121)]
+                    : [Colors.purple, Colors.pink]),
             bottom: TabBar(
               onTap: (index) {
                 Provider.of<Expenses>(context, listen: false)
@@ -92,7 +94,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           ),
           body: FutureBuilder(
             future: Provider.of<Expenses>(context, listen: false)
-                .fetchAndSetExpenses(),
+                .fetchAndSetExpenses(context),
             builder: (ctx, snapshot) => snapshot.connectionState ==
                     ConnectionState.waiting
                 ? Center(
@@ -111,23 +113,80 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                 BoxConstraints constraints) {
                               return Column(
                                 children: [
-                                  Divider(
-                                    height: 25,
-                                    color: _theme.getThemeData.brightness ==
-                                            Brightness.dark
-                                        ? Color.fromRGBO(1223, 81, 83, 1)
-                                        : Colors.black,
+                                  SizedBox(
+                                    height: 15,
                                   ),
-                                  MoneyWidget(
-                                    expense: expenseProvider
-                                        .calculateTotalIncome()
-                                        .toStringAsFixed(2),
-                                    income: expenseProvider
-                                        .calculateTotalExpense()
-                                        .toStringAsFixed(2),
-                                    money: expenseProvider
-                                        .calculateTotalMoney()
-                                        .toStringAsFixed(2),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              S.of(context).MoneyWidgetIncome,
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            Text(
+                                              expenseProvider.calculateTotalIncome().toStringAsFixed(1),
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.green,
+                                                  fontWeight: FontWeight.bold),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      CircularPercentIndicator(
+                                        radius: 130.0,
+                                        animation: true,
+                                        animationDuration: 750,
+                                        lineWidth: 15.0,
+                                        percent: expenseProvider.getPercantage(),
+                                        center: Text(
+                                          expenseProvider
+                                              .calculateTotalMoney()
+                                              .toStringAsFixed(1),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20.0),
+                                        ),
+                                        circularStrokeCap: CircularStrokeCap.butt,
+                                        backgroundColor: Colors.green,
+                                        progressColor: Colors.red,
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              S.of(context).MoneyWidgetExpense,
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            Text(
+                                              expenseProvider.calculateTotalExpense().toStringAsFixed(1),
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.red,
+                                                  fontWeight: FontWeight.bold),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   Divider(
                                     height: 25,
@@ -155,7 +214,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                                 color: _theme.getThemeData
                                                             .brightness ==
                                                         Brightness.dark
-                                                    ? Colors.grey
+                                                    ? Color.fromRGBO(1223, 81, 83, 1)
                                                     : Colors.black,
                                               ),
                                             ],

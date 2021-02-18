@@ -15,5 +15,20 @@
   "AddingScreenPrice": "Fiyatı",
   "AddingScreenDate": "Tarih",
   "AddingScreenIncome": "Gelir",
-  "AddingScreenExpense": "Gider"
+  "AddingScreenExpense": "Gider",
+  "ExpenseListNoneExpense" : "Henüz ekleme yapılmadı \n Eklemeye başlayın !",
+  "DrawerThemeText": "Tema",
+  "DrawerLanguageText" : "Dil",
+  "CategoryPayment" : "Ödeme",
+  "CategoryDues" : "Aidat",
+  "CategoryShopping" : "Alışveriş",
+  "CategoryEducation" : "Eğitim",
+  "CategoryEntertainment" : "Eğlence",
+  "CategoryRent" : "Kira",
+  "CategorySelfcare" : "Kişisel Bakım",
+  "CategoryHealth" : "Sağlık",
+  "CategoryRepair" : "Tamir",
+  "CategoryVacation" : "Tatil",
+  "CategoryEatDrink" : "Yeme İçme",
+  "CategoryOthers" : "Diğer"
 }

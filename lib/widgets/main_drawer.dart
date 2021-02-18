@@ -3,6 +3,8 @@ import 'package:gelir_gider/modals/custom_theme_modal.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/widgets/theme_dialog_widget.dart';
 import 'package:gelir_gider/screens/language_selection_screen.dart';
+import 'package:gelir_gider/generated/l10n.dart';
+
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -32,21 +34,21 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+            contentPadding: EdgeInsets.fromLTRB(10, 18, 10, 18),
             onTap: () {
               Navigator.pop(context);
               showThemePicker();
             },
-            title: Text('Tema',style: TextStyle(fontSize: 20),),
+            title: Text(S.of(context).DrawerThemeText,style: TextStyle(fontSize: 18),),
             leading: Icon(
               Icons.color_lens,
-              size: 45,
+              size: 40,
               color: Theme.of(context).buttonColor,
             ),
             trailing: Icon(Icons.arrow_forward_ios),
           ),
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+            contentPadding: EdgeInsets.fromLTRB(10, 18, 10, 18),
             onTap: () {
               return Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
@@ -54,10 +56,10 @@ class MainDrawer extends StatelessWidget {
                 ),
               );
             },
-            title: Text('Dil',style: TextStyle(fontSize: 20),),
+            title: Text(S.of(context).DrawerLanguageText,style: TextStyle(fontSize: 18),),
             leading: Icon(
               Icons.language,
-              size: 45,
+              size: 40,
               color: Theme.of(context).buttonColor,
             ),
             trailing: Icon(Icons.arrow_forward_ios),

@@ -7,6 +7,7 @@ import 'package:gelir_gider/modals/custom_theme_modal.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/screens/splash_screen.dart';
 import 'package:gelir_gider/themes/lightTheme.dart';
+
 void main() => runApp(
       MultiProvider(
         providers: [
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: Locale('tr', ''),
       localizationsDelegates: [
         // 1
         S.delegate,
