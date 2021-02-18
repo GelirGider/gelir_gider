@@ -5,11 +5,11 @@ import 'package:gelir_gider/widgets/add_button.dart';
 import 'package:gelir_gider/widgets/dissmissible_background.dart';
 import 'package:gelir_gider/widgets/expense_item.dart';
 import 'package:gelir_gider/widgets/main_drawer.dart';
+import 'package:gelir_gider/widgets/money_widget.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'adding_expense_screen.dart';
 import 'package:gelir_gider/modals/custom_theme_modal.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -27,19 +27,22 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
   }
 
   Future<void> navigationFunction(context, scaffoldKey) {
-    return Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (ctx) => AddingExpense(
-          scaffoldKey: scaffoldKey,
-        ),
+    return Navigator.of(context)
+        .push(MaterialPageRoute(
+      builder: (ctx) => AddingExpense(
+        scaffoldKey: scaffoldKey,
       ),
-    );
+    ))
+        .then((value) {
+      setState(() {});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final scaffoldKey = GlobalKey<ScaffoldState>();
     final _theme = Provider.of<CustomThemeModal>(context, listen: false);
+    final expenseProvider = Provider.of<Expenses>(context, listen: false);
     final snackBarr = SnackBar(
       content: Container(
         child: Text(
@@ -54,7 +57,6 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
       duration: Duration(seconds: 1),
       backgroundColor: Colors.red,
     );
-
     return SafeArea(
       child: DefaultTabController(
         length: 4,
@@ -101,157 +103,77 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                 ? Center(
                     child: CircularProgressIndicator(),
                   )
-                : Consumer<Expenses>(
-                    child: Center(
-                      child:
-                          Text('Henüz ekleme yapılmadı \n Eklemeye başlayın !'),
-                    ),
-                    builder: (ctx, expenseProvider, ch) => expenseProvider
-                            .expense.isEmpty
-                        ? ch
-                        : LayoutBuilder(
-                            builder: (BuildContext context,
-                                BoxConstraints constraints) {
-                              return Column(
-                                children: [
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Row(
+                : expenseProvider.expense.isEmpty
+                    ? Center(
+                        child: Text(
+                            'Henüz ekleme yapılmadı \n Eklemeye başlayın !'),
+                      )
+                    : Column(
+                        children: [
+                          SizedBox(
+                            height: 15,
+                          ),
+                          MoneyWidget(
+                            income: expenseProvider
+                                .calculateTotalIncome()
+                                .toStringAsFixed(1),
+                            money: expenseProvider
+                                .calculateTotalMoney()
+                                .toStringAsFixed(1),
+                            expense: expenseProvider
+                                .calculateTotalExpense()
+                                .toStringAsFixed(1),
+                            percentage: expenseProvider.getPercentage,
+                          ),
+                          Divider(
+                            height: 25,
+                            color: _theme.getThemeData.brightness ==
+                                    Brightness.dark
+                                ? Color.fromRGBO(1223, 81, 83, 1)
+                                : Colors.black,
+                          ),
+                          Flexible(
+                            child: ListView.builder(
+                              itemCount: expenseProvider.currentItems.length,
+                              itemBuilder: (context, index) {
+                                var thisExpense =
+                                    expenseProvider.currentItems[index];
+                                return Dismissible(
+                                  key: UniqueKey(),
+                                  child: Column(
                                     children: [
-                                      Expanded(
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              S.of(context).MoneyWidgetIncome,
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                            Text(
-                                              expenseProvider
-                                                  .calculateTotalIncome()
-                                                  .toStringAsFixed(1),
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.green,
-                                                  fontWeight: FontWeight.bold),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ],
-                                        ),
+                                      ExpenseItem(
+                                        expense: thisExpense,
                                       ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      CircularPercentIndicator(
-                                        radius: 130.0,
-                                        animation: true,
-                                        animationDuration: 750,
-                                        lineWidth: 15.0,
-                                        //percent: expenseProvider.getPercantage(),
-                                        center: Text(
-                                          expenseProvider
-                                              .calculateTotalMoney()
-                                              .toStringAsFixed(1),
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20.0),
-                                        ),
-                                        circularStrokeCap:
-                                            CircularStrokeCap.butt,
-                                        backgroundColor: Colors.green,
-                                        progressColor: Colors.red,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              S.of(context).MoneyWidgetExpense,
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                            Text(
-                                              expenseProvider
-                                                  .calculateTotalExpense()
-                                                  .toStringAsFixed(1),
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.red,
-                                                  fontWeight: FontWeight.bold),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ],
-                                        ),
+                                      Divider(
+                                        height: 25,
+                                        color: _theme.getThemeData.brightness ==
+                                                Brightness.dark
+                                            ? Color.fromRGBO(1223, 81, 83, 1)
+                                            : Colors.black,
                                       ),
                                     ],
                                   ),
-                                  Divider(
-                                    height: 25,
-                                    color: _theme.getThemeData.brightness ==
-                                            Brightness.dark
-                                        ? Color.fromRGBO(1223, 81, 83, 1)
-                                        : Colors.black,
-                                  ),
-                                  Flexible(
-                                    child: ListView.builder(
-                                      itemCount:
-                                          expenseProvider.currentItems.length,
-                                      itemBuilder: (context, index) {
-                                        var thisExpense =
-                                            expenseProvider.currentItems[index];
-                                        return Dismissible(
-                                          key: UniqueKey(),
-                                          child: Column(
-                                            children: [
-                                              ExpenseItem(
-                                                expense: thisExpense,
-                                              ),
-                                              Divider(
-                                                height: 25,
-                                                color: _theme.getThemeData
-                                                            .brightness ==
-                                                        Brightness.dark
-                                                    ? Color.fromRGBO(
-                                                        1223, 81, 83, 1)
-                                                    : Colors.black,
-                                              ),
-                                            ],
-                                          ),
-                                          direction:
-                                              DismissDirection.endToStart,
-                                          onDismissed: (_) {
-                                            WidgetsBinding.instance
-                                                .addPostFrameCallback(
-                                              (_) => scaffoldKey.currentState
-                                                  .showSnackBar(snackBarr),
-                                            );
-                                            Future.delayed(Duration(seconds: 1))
-                                                .then(
-                                              (value) => setState(() {}),
-                                            );
-                                            return expenseProvider
-                                                .delete(thisExpense.id);
-                                          },
-                                          background: DismissibleBackground(),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
+                                  direction: DismissDirection.endToStart,
+                                  onDismissed: (_) {
+                                    WidgetsBinding.instance
+                                        .addPostFrameCallback((_) => scaffoldKey
+                                            .currentState
+                                            .showSnackBar(snackBarr)
+                                            .setState);
+                                    return expenseProvider
+                                        .delete(thisExpense.id);
+                                  },
+                                  background: DismissibleBackground(),
+                                );
+                              },
+                            ),
                           ),
-                  ),
+                        ],
+                      ),
           ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
           floatingActionButton: FloatingActionButton(
             onPressed: () => navigationFunction(context, scaffoldKey),
             child: AddButton(),

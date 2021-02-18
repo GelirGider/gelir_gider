@@ -14,7 +14,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final splashDelay = 3;
+  final splashDelay = 1;
 
   @override
   void initState() {
@@ -40,9 +40,10 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: _theme.getThemeData.brightness == Brightness.dark
-              ? [Color(0xff191919), Color(0xff191919)]
-              : [Colors.purple, Colors.pink]),
+          gradient: LinearGradient(
+              colors: _theme.getThemeData.brightness == Brightness.dark
+                  ? [Color(0xff191919), Color(0xff191919)]
+                  : [Colors.purple, Colors.pink]),
         ),
         child: InkWell(
           child: Stack(

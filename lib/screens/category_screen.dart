@@ -35,19 +35,25 @@ class CategoryScreen extends StatelessWidget {
             borderOnForeground: true,
             semanticContainer: true,
             child: GridView.count(
-              padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
-              crossAxisCount: 3,
-              children: List.generate(categories.length, (index) {
-                return FittedBox(
-                  child: FlatButton(
-                    onPressed: () {
-                      return Navigator.pop(context, categories[index]);
-                    },
-                    child: categories[index],
-                  ),
-                );
-              }),
-            ),
+                padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
+                crossAxisCount: 3,
+                children: categories.map(
+                  (element) {
+                    return FittedBox(
+                      child: FlatButton(
+                        onPressed: () {
+                          print('index::::::::${element.categoryName}');
+                          Provider.of<Expenses>(context, listen: false)
+                              .setCurrentCategory(element.index);
+                          print(
+                              'currentCategoryId::::::::${Provider.of<Expenses>(context, listen: false).currentCategoryId}');
+                          return Navigator.pop(context, element.index);
+                        },
+                        child: element,
+                      ),
+                    );
+                  },
+                ).toList()),
           ),
         ),
       ),

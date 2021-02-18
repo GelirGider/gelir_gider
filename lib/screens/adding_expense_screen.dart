@@ -21,25 +21,43 @@ class AddingExpense extends StatefulWidget {
 class _AddingExpenseState extends State<AddingExpense> {
   static final _form = GlobalKey<FormState>();
   var _isLoading = false;
-
   String description = '';
   double price = 0.0;
   String time = '';
-  bool isExpense = true;
-  CategoryItem category = Provider.of<Expenses>(context).categories[0];
+  bool isExpense = false;
+  var category;
+  var id;
 
+//  void moveToSecondPage() async {
+//    category = await Navigator.push(
+//          context,
+//          MaterialPageRoute(
+//            fullscreenDialog: true,
+//            builder: (context) => CategoryScreen(),
+//          ),
+//        ) ??
+//        Provider.of<Expenses>(context, listen: false).categories[0];
+//    updateInformation(category);
+//  }
+//
+//  void updateInformation(CategoryItem cat) {
+//    setState(
+//      () => category = cat,
+//    );
+//  }
   void moveToSecondPage() async {
-    category = await Navigator.push(
-            context,
-            MaterialPageRoute(
-                fullscreenDialog: true,
-                builder: (context) => CategoryScreen())) ??
-        category;
-    updateInformation(category);
-  }
-
-  void updateInformation(CategoryItem category) {
-    setState(() => category = category);
+    id = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (context) => CategoryScreen(),
+          ),
+        ) ??
+        0;
+    setState(() {
+      Provider.of<Expenses>(context, listen: false).setCurrentCategory(id);
+    });
+    print('id:::::::::::::::::::::$id');
   }
 
   Future<void> _saveForm(scaffoldKey, snackBar) async {
@@ -51,24 +69,37 @@ class _AddingExpenseState extends State<AddingExpense> {
     setState(() {
       _isLoading = true;
     });
+    print('isExpense :::::::::::::::::$isExpense');
 
     await Provider.of<Expenses>(context, listen: false).addExpense(
       Expense(
         id: UniqueKey().toString(),
-        category: category,
-        isExpense: isExpense ? 'income' : 'expense',
+        category: id,
+        isExpense: isExpense ? 'expense' : 'income',
         time: time,
         price: price,
         description: description,
       ),
     );
-    widget.scaffoldKey.currentState.showSnackBar(snackBar);
+//    WidgetsBinding.instance.addPostFrameCallback(
+//      (_) => scaffoldKey.currentState.showSnackBar(snackBar),
+//    );
     await Navigator.of(context).pop();
+  }
+
+  @override
+  void didChangeDependencies() {
+    setState(() {
+      category = Provider.of<Expenses>(context, listen: false).CurrentCategory;
+    });
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
     final _theme = Provider.of<CustomThemeModal>(context, listen: false);
+    category = Provider.of<Expenses>(context, listen: false).CurrentCategory;
+    print(category.categoryName);
     final snackBar = SnackBar(
       content: Container(
         child: Text(
@@ -119,12 +150,12 @@ class _AddingExpenseState extends State<AddingExpense> {
                             Center(
                               child: LiteRollingSwitch(
                                 value: isExpense,
-                                textOn: S.of(context).AddingScreenIncome,
-                                textOff: S.of(context).AddingScreenExpense,
-                                colorOn: Colors.green,
-                                colorOff: Colors.red,
-                                iconOn: Icons.add,
-                                iconOff: Icons.remove,
+                                textOff: S.of(context).AddingScreenIncome,
+                                textOn: S.of(context).AddingScreenExpense,
+                                colorOn: Colors.red,
+                                colorOff: Colors.green,
+                                iconOn: Icons.remove,
+                                iconOff: Icons.add,
                                 textSize: 15,
                                 onChanged: (bool value) {
                                   isExpense = value;
@@ -132,32 +163,33 @@ class _AddingExpenseState extends State<AddingExpense> {
                               ),
                             ),
                             GestureDetector(
-                                onTap: () {
-                                  moveToSecondPage();
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 1,
-                                      color: _theme.getThemeData.brightness ==
-                                              Brightness.dark
-                                          ? Colors.white
-                                          : Colors.black,
-                                    ),
+                              onTap: () {
+                                moveToSecondPage();
+                              },
+                              child: Container(
+                                margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 1,
+                                    color: _theme.getThemeData.brightness ==
+                                            Brightness.dark
+                                        ? Colors.white
+                                        : Colors.black,
                                   ),
-                                  width: 500.0,
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
-                                  child: ListTile(
-                                    leading: category.categoryImg,
-                                    title: Text(
-                                      category.categoryName,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(),
-                                    ),
+                                ),
+                                width: 500.0,
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
+                                child: ListTile(
+                                  leading: category.categoryImg,
+                                  title: Text(
+                                    category.categoryName,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(),
                                   ),
-                                )),
+                                ),
+                              ),
+                            ),
                             TextFormField(
                               textInputAction: TextInputAction.done,
                               decoration: InputDecoration(

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/helpers/db_helper.dart';
-import 'package:gelir_gider/screens/adding_expense_screen.dart';
 import 'package:gelir_gider/utils/time_diff.dart';
 import 'package:gelir_gider/widgets/category_item.dart';
-import 'package:gelir_gider/screens/category_screen.dart';
+import 'dart:math';
 
 class Expense {
   final String id;
@@ -25,6 +24,22 @@ class Expense {
 }
 
 class Expenses with ChangeNotifier {
+  int _currentCategoryId = 0;
+  int get currentCategoryId => _currentCategoryId;
+  void setCurrentCategory(int id) {
+    _currentCategoryId = id;
+    notifyListeners();
+  }
+
+  CategoryItem get CurrentCategory => categories[currentCategoryId];
+
+  List<CategoryItem> get categories {
+    return [..._categories];
+  }
+
+  var categoryList = [];
+  var _categories = [];
+
   var imgList = [
     Image.asset('assets/categories/dues.png'),
     Image.asset('assets/categories/shopping.png'),
@@ -39,8 +54,6 @@ class Expenses with ChangeNotifier {
     Image.asset('assets/categories/food.png'),
     Image.asset('assets/categories/other.png'),
   ];
-  var categoryList = [];
-  var _categories = [];
 
   void setCategories(context) {
     categoryList = [
@@ -73,7 +86,7 @@ class Expenses with ChangeNotifier {
       CategoryItem(
           categoryImg: imgList[6], categoryName: categoryList[6], index: 6),
       CategoryItem(
-          categoryImg: imgList[7], categoryName: categoryList[8], index: 9),
+          categoryImg: imgList[7], categoryName: categoryList[7], index: 7),
       CategoryItem(
           categoryImg: imgList[8], categoryName: categoryList[8], index: 8),
       CategoryItem(
@@ -83,10 +96,6 @@ class Expenses with ChangeNotifier {
       CategoryItem(
           categoryImg: imgList[11], categoryName: categoryList[11], index: 11),
     ];
-  }
-
-  List<CategoryItem> get categories {
-    return [..._categories];
   }
 
   bool init = false;
@@ -175,6 +184,7 @@ class Expenses with ChangeNotifier {
 
   void addExpense(Expense newExpense) async {
     _items.add(newExpense);
+    setTabBarIndex(tabBarIndex);
     notifyListeners();
     await DBHelper.insert(
       'user_expenses',
@@ -189,7 +199,7 @@ class Expenses with ChangeNotifier {
     );
   }
 
-  Future<int> delete(String id) async {
+  Future<void> delete(String id) async {
     _items.removeWhere((element) => element.id == id);
     return await DBHelper.delete(id);
   }
@@ -216,7 +226,7 @@ class Expenses with ChangeNotifier {
   }
 
   double calculateTotalMoney() {
-    return calculateTotalExpense() - calculateTotalIncome();
+    return calculateTotalIncome() - calculateTotalExpense();
   }
 
   double calculateTotalExpense() {
@@ -235,5 +245,11 @@ class Expenses with ChangeNotifier {
     var sum = 0.0;
     newlist.forEach((element) => sum += element.price);
     return sum;
+  }
+
+  double get getPercentage {
+    var income = calculateTotalIncome();
+    var expense = calculateTotalExpense();
+    return income / (expense + income);
   }
 }

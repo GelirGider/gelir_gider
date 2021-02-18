@@ -13,7 +13,7 @@ class ExpenseItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _theme = Provider.of<CustomThemeModal>(context, listen: false);
-    var categories = Provider.of<Expenses>(context).categories;
+    var provider = Provider.of<Expenses>(context);
 
     return ListTile(
       leading: Container(
@@ -29,7 +29,7 @@ class ExpenseItem extends StatelessWidget {
         child: Text(Jiffy(expense.time).format('dd-MM-yyyy')),
       ),
       title: Text(expense.description, overflow: TextOverflow.ellipsis),
-      subtitle: Text(categories[expense.category].categoryName),
+      subtitle: Text(provider.categories[expense.category].categoryName),
       trailing: expense.isExpense == 'expense'
           ? Text(
               '- ₺ ' + expense.price.toString(),
