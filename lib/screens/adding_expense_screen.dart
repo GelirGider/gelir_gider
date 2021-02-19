@@ -8,7 +8,6 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gelir_gider/screens/category_screen.dart';
-import 'package:gelir_gider/widgets/category_item.dart';
 import 'package:gelir_gider/providers/custom_theme_modal.dart';
 
 class AddingExpense extends StatefulWidget {
@@ -147,19 +146,21 @@ class _AddingExpenseState extends State<AddingExpense> {
                         key: _form,
                         child: Column(
                           children: [
-                            Center(
-                              child: LiteRollingSwitch(
-                                value: isExpense,
-                                textOff: S.of(context).AddingScreenIncome,
-                                textOn: S.of(context).AddingScreenExpense,
-                                colorOn: Colors.red,
-                                colorOff: Colors.green,
-                                iconOn: Icons.remove,
-                                iconOff: Icons.add,
-                                textSize: 15,
-                                onChanged: (bool value) {
-                                  isExpense = value;
-                                },
+                            FittedBox(
+                              child: Center(
+                                child: LiteRollingSwitch(
+                                  value: isExpense,
+                                  textOff: S.of(context).AddingScreenIncome,
+                                  textOn: S.of(context).AddingScreenExpense,
+                                  colorOn: Colors.red,
+                                  colorOff: Colors.green,
+                                  iconOn: Icons.remove,
+                                  iconOff: Icons.add,
+                                  textSize: 15,
+                                  onChanged: (bool value) {
+                                    isExpense = value;
+                                  },
+                                ),
                               ),
                             ),
                             GestureDetector(
@@ -226,7 +227,6 @@ class _AddingExpenseState extends State<AddingExpense> {
                             ),
                             Center(
                               child: DateTimePicker(
-                                locale: const Locale('tr', ''),
                                 textAlign: TextAlign.center,
                                 initialValue: DateTime.now().toString(),
                                 firstDate: DateTime(2000),

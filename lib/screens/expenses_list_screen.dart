@@ -106,7 +106,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                 : expenseProvider.expense.isEmpty
                     ? Center(
                         child: Text(
-                            'Henüz ekleme yapılmadı \n Eklemeye başlayın !'),
+                            S.of(context).ExpenseListNoneExpense),
                       )
                     : Column(
                         children: [

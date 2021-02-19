@@ -3,7 +3,6 @@ import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/helpers/db_helper.dart';
 import 'package:gelir_gider/utils/time_diff.dart';
 import 'package:gelir_gider/widgets/category_item.dart';
-import 'dart:math';
 
 class Expense {
   final String id;
@@ -231,7 +230,7 @@ class Expenses with ChangeNotifier {
 
   double calculateTotalExpense() {
     Iterable<Expense> newlist = <Expense>[];
-    newlist = _items.where((element) => element.isExpense == 'expense');
+    newlist = _currentItems.where((element) => element.isExpense == 'expense');
 
     var sum = 0.0;
     newlist.forEach((element) => sum += element.price);
@@ -240,7 +239,7 @@ class Expenses with ChangeNotifier {
 
   double calculateTotalIncome() {
     Iterable<Expense> newlist = <Expense>[];
-    newlist = _items.where((element) => element.isExpense == 'income');
+    newlist = _currentItems.where((element) => element.isExpense == 'income');
 
     var sum = 0.0;
     newlist.forEach((element) => sum += element.price);

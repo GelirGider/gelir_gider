@@ -75,10 +75,10 @@ class S {
     );
   }
 
-  /// `Total Income`
+  /// `Total\nIncome`
   String get MoneyWidgetIncome {
     return Intl.message(
-      'Total Income',
+      'Total\nIncome',
       name: 'MoneyWidgetIncome',
       desc: '',
       args: [],
@@ -95,10 +95,10 @@ class S {
     );
   }
 
-  /// `Total Expense`
+  /// `Total\nExpense`
   String get MoneyWidgetExpense {
     return Intl.message(
-      'Total Expense',
+      'Total\nExpense',
       name: 'MoneyWidgetExpense',
       desc: '',
       args: [],
@@ -352,8 +352,12 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en', countryCode: 'US'),
+      Locale.fromSubtags(languageCode: 'ar'),
+      Locale.fromSubtags(languageCode: 'de'),
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'es'),
       Locale.fromSubtags(languageCode: 'tr'),
+      Locale.fromSubtags(languageCode: 'zh'),
     ];
   }
 

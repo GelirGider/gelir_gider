@@ -4,7 +4,7 @@ import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/providers/custom_theme_modal.dart';
 import 'package:gelir_gider/generated/l10n.dart';
-import 'package:gelir_gider/screens/splash_screen.dart';
+import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:gelir_gider/themes/lightTheme.dart';
 
 void main() => runApp(
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      locale: Locale('tr', ''),
+      color: Colors.purple,
       localizationsDelegates: [
         // 1
         S.delegate,
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       title: 'Gelir/Gider',
       theme: Provider.of<CustomThemeModal>(context).getThemeData,
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: ExpensesListScreen(),
     );
   }
 }

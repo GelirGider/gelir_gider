@@ -36,7 +36,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                   height: 20,
                 ),
                 Text(
-                  'Dil/Language',
+                  S.of(context).DrawerLanguageText,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
@@ -54,6 +54,18 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                               }
                               if (index == 1) {
                                 S.load(Locale('en'));
+                              }
+                              if (index == 2) {
+                                S.load(Locale('de'));
+                              }
+                              if (index == 3) {
+                                S.load(Locale('ar'));
+                              }
+                              if (index == 4) {
+                                S.load(Locale('es'));
+                              }
+                              if (index == 5) {
+                                S.load(Locale('zh'));
                               }
                               return Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(

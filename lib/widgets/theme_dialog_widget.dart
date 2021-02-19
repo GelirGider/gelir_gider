@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/providers/custom_theme_modal.dart';
 import 'package:gelir_gider/themes/darkTheme.dart';
@@ -13,7 +14,7 @@ class ThemeDialogWidget extends StatelessWidget {
     return SimpleDialog(
       titlePadding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       title: Text(
-        'Tema Seçiniz',
+        S.of(context).ThemeSelectionQuestion,
         textAlign: TextAlign.center,
         style: TextStyle(fontWeight: FontWeight.bold, height: 2.5),
       ),
@@ -36,7 +37,7 @@ class ThemeDialogWidget extends StatelessWidget {
               SizedBox(
                 width: 25,
               ),
-              const Text('Aydınlık',
+              Text(S.of(context).ThemeSelectionOption2,
                   textAlign: TextAlign.center, style: TextStyle(fontSize: 15)),
             ],
           ),
@@ -59,8 +60,8 @@ class ThemeDialogWidget extends StatelessWidget {
               SizedBox(
                 width: 25,
               ),
-              const Text(
-                'Karanlık',
+              Text(
+                S.of(context).ThemeSelectionOption2,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 15),
               ),
