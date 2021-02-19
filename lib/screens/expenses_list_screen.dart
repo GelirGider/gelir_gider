@@ -9,7 +9,7 @@ import 'package:gelir_gider/widgets/money_widget.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'adding_expense_screen.dart';
-import 'package:gelir_gider/modals/custom_theme_modal.dart';
+import 'package:gelir_gider/providers/custom_theme_modal.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   @override

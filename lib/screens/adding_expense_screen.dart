@@ -9,7 +9,7 @@ import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gelir_gider/screens/category_screen.dart';
 import 'package:gelir_gider/widgets/category_item.dart';
-import 'package:gelir_gider/modals/custom_theme_modal.dart';
+import 'package:gelir_gider/providers/custom_theme_modal.dart';
 
 class AddingExpense extends StatefulWidget {
   final scaffoldKey;

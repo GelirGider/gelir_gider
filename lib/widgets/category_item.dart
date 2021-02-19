@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:gelir_gider/modals/custom_theme_modal.dart';
+import 'package:gelir_gider/providers/custom_theme_modal.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 

@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:jiffy/jiffy.dart';
 
 import 'package:flutter/material.dart';
-import 'package:gelir_gider/modals/custom_theme_modal.dart';
+import 'package:gelir_gider/providers/custom_theme_modal.dart';
 import '../providers/expense_provider.dart';
 import 'package:provider/provider.dart';
 

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:gelir_gider/modals/custom_theme_modal.dart';
+import 'package:gelir_gider/providers/custom_theme_modal.dart';
 
 class SplashScreen extends StatefulWidget {
   final Color backgroundColor = Colors.white;

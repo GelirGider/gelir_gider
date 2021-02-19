@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gelir_gider/modals/custom_theme_modal.dart';
+import 'package:gelir_gider/providers/custom_theme_modal.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/widgets/theme_dialog_widget.dart';
 import 'package:gelir_gider/screens/language_selection_screen.dart';
