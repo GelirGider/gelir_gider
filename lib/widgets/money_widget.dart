@@ -3,12 +3,12 @@ import 'package:gelir_gider/generated/l10n.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class MoneyWidget extends StatelessWidget {
-  final income;
-  final money;
-  final expense;
-  final percentage;
+  var income;
+  var money;
+  var expense;
+  var percentage;
 
-  const MoneyWidget(
+  MoneyWidget(
       {Key key, this.income, this.money, this.expense, this.percentage})
       : super(key: key);
   @override
