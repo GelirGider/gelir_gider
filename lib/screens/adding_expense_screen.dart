@@ -73,16 +73,16 @@ class _AddingExpenseState extends State<AddingExpense> {
     await Provider.of<Expenses>(context, listen: false).addExpense(
       Expense(
         id: UniqueKey().toString(),
-        category: id,
+        category: id ?? 0,
         isExpense: isExpense ? 'expense' : 'income',
         time: time,
         price: price,
         description: description,
       ),
     );
-//    WidgetsBinding.instance.addPostFrameCallback(
-//      (_) => scaffoldKey.currentState.showSnackBar(snackBar),
-//    );
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => scaffoldKey.currentState.showSnackBar(snackBar),
+    );
     await Navigator.of(context).pop();
   }
 

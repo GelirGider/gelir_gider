@@ -37,7 +37,7 @@ class ThemeDialogWidget extends StatelessWidget {
               SizedBox(
                 width: 25,
               ),
-              Text(S.of(context).ThemeSelectionOption2,
+              Text(S.of(context).ThemeSelectionOption1,
                   textAlign: TextAlign.center, style: TextStyle(fontSize: 15)),
             ],
           ),

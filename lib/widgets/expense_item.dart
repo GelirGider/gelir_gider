@@ -14,22 +14,29 @@ class ExpenseItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final _theme = Provider.of<CustomThemeModal>(context, listen: false);
     var provider = Provider.of<Expenses>(context);
+    print('expense.category::::::::::::::::${expense.category}');
+    print('expense.description::::::::::::::::${expense.description}');
+    print('expense.id::::::::::::::::${expense.id}');
 
     return ListTile(
-      leading: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: _theme.getThemeData.brightness == Brightness.dark
-                ? Color.fromRGBO(1223, 81, 83, 1)
-                : Colors.black,
-          ),
+      leading: FittedBox(
+        fit: BoxFit.cover,
+        child: CircleAvatar(
+          child: provider.imgList[expense.category],
+          backgroundColor: Colors.white,
+          radius: 25,
         ),
-        child: Text(Jiffy(expense.time).format('dd-MM-yyyy')),
       ),
-      title: Text(expense.description, overflow: TextOverflow.ellipsis),
-      subtitle: Text(provider.categories[expense.category].categoryName),
+      title: Text(
+        Jiffy(expense.time).format('dd-MM-yyyy') +
+            '        ' +
+            expense.description,
+        overflow: TextOverflow.ellipsis,
+      ),
+      subtitle: Text(
+        provider.categories[expense.category].categoryName,
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
       trailing: expense.isExpense == 'expense'
           ? Text(
               '- ₺ ' + expense.price.toString(),

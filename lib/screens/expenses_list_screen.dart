@@ -105,8 +105,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                   )
                 : expenseProvider.expense.isEmpty
                     ? Center(
-                        child: Text(
-                            S.of(context).ExpenseListNoneExpense),
+                        child: Text(S.of(context).ExpenseListNoneExpense),
                       )
                     : Column(
                         children: [
@@ -133,6 +132,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                 : Colors.black,
                           ),
                           Flexible(
+                            flex: 10,
                             child: ListView.builder(
                               itemCount: expenseProvider.currentItems.length,
                               itemBuilder: (context, index) {
@@ -169,11 +169,14 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                               },
                             ),
                           ),
+                          Flexible(
+                            flex: 1,
+                            child: Container(),
+                          )
                         ],
                       ),
           ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           floatingActionButton: FloatingActionButton(
             onPressed: () => navigationFunction(context, scaffoldKey),
             child: AddButton(),
