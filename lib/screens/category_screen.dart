@@ -31,11 +31,11 @@ class CategoryScreen extends StatelessWidget {
             color: _theme.getThemeData.brightness == Brightness.dark
                 ? Color(0xff333333)
                 : Color.fromRGBO(254, 254, 254, 100),
-            margin: const EdgeInsets.fromLTRB(20, 30, 20, 45),
+            margin: const EdgeInsets.fromLTRB(20, 30, 20, 40),
             borderOnForeground: true,
             semanticContainer: true,
             child: GridView.count(
-                padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                 crossAxisCount: 3,
                 children: categories.map(
                   (element) {

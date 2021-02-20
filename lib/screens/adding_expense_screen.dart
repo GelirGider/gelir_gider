@@ -244,6 +244,32 @@ class _AddingExpenseState extends State<AddingExpense> {
                               ),
                             ),
                             Divider(),
+                            SizedBox(height: 35.0,),
+
+                            Container(
+                              width: 270.0,
+                              child: FlatButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                padding: const EdgeInsets.symmetric(vertical: 16),
+                                color: Colors.pink,
+                                child:Text("KAYDET",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 0.6,
+                                    fontSize: 22.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  _saveForm(widget.scaffoldKey, snackBar);
+                                }, ///???
+                              ),
+                            ),
+
+
+
                           ],
                         ),
                       ),
