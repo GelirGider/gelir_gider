@@ -27,23 +27,6 @@ class _AddingExpenseState extends State<AddingExpense> {
   var category;
   var id;
 
-//  void moveToSecondPage() async {
-//    category = await Navigator.push(
-//          context,
-//          MaterialPageRoute(
-//            fullscreenDialog: true,
-//            builder: (context) => CategoryScreen(),
-//          ),
-//        ) ??
-//        Provider.of<Expenses>(context, listen: false).categories[0];
-//    updateInformation(category);
-//  }
-//
-//  void updateInformation(CategoryItem cat) {
-//    setState(
-//      () => category = cat,
-//    );
-//  }
   void moveToSecondPage() async {
     id = await Navigator.push(
           context,

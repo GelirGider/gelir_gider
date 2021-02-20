@@ -8,8 +8,10 @@ import 'package:gelir_gider/widgets/main_drawer.dart';
 import 'package:gelir_gider/widgets/money_widget.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'adding_expense_screen.dart';
 import 'package:gelir_gider/providers/custom_theme_modal.dart';
+import 'package:gelir_gider/providers/language_provider.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -17,8 +19,26 @@ class ExpensesListScreen extends StatefulWidget {
 }
 
 class _ExpensesListScreenState extends State<ExpensesListScreen> {
+
+  var languageIndex;
+
+  Future<String> _getPrefs() async{
+    var prefs = await SharedPreferences.getInstance();
+    languageIndex = prefs.getInt('language');
+    Provider.of<Languages>(context, listen: false)
+        .setLanguage(languageIndex);
+    return 'Başarılı';
+  }
+
   @override
   void initState() {
+    _getPrefs().then((value) => {
+      if(languageIndex == null){
+        print('null')
+        //Yeni language ekranı açılacak
+      }
+    });
+    
     Future.delayed(Duration.zero).then((_) {
       Provider.of<Expenses>(context, listen: false).setCategories(context);
       return Provider.of<Expenses>(context, listen: false).setTabBarIndex(0);

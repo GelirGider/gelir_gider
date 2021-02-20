@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/widgets/main_drawer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:gelir_gider/providers/language_provider.dart';
+import 'package:provider/provider.dart';
+
+
 
 import 'expenses_list_screen.dart';
 
@@ -20,6 +25,7 @@ List icons = [
 ];
 
 class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,29 +55,12 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                         return FittedBox(
                           child: FlatButton(
                             onPressed: () {
-                              if (index == 0) {
-                                S.load(Locale('tr'));
-                              }
-                              if (index == 1) {
-                                S.load(Locale('en'));
-                              }
-                              if (index == 2) {
-                                S.load(Locale('de'));
-                              }
-                              if (index == 3) {
-                                S.load(Locale('ar'));
-                              }
-                              if (index == 4) {
-                                S.load(Locale('es'));
-                              }
-                              if (index == 5) {
-                                S.load(Locale('zh'));
-                              }
-                              return Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (ctx) => ExpensesListScreen(),
-                                ),
-                              );
+                              Provider.of<Languages>(context, listen: false)
+                                  .setLanguage(index);
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (ctx) => ExpensesListScreen(),
+                                  ));
                             },
                             child: icons[index],
                           ),
