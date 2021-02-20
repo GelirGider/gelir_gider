@@ -6,6 +6,7 @@ import 'package:gelir_gider/providers/custom_theme_modal.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:gelir_gider/themes/lightTheme.dart';
+import 'package:gelir_gider/providers/language_provider.dart';
 
 void main() => runApp(
       MultiProvider(
@@ -16,6 +17,9 @@ void main() => runApp(
           ChangeNotifierProvider(
             create: (context) => CustomThemeModal(lightTheme),
           ),
+          ChangeNotifierProvider(
+            create: (context) => Languages(context),
+          )
         ],
         child: MyApp(),
       ),
