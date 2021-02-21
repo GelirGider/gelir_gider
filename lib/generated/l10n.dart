@@ -85,20 +85,20 @@ class S {
     );
   }
 
-  /// `Total Money`
+  /// `Total\nMoney`
   String get MoneyWidgetMoney {
     return Intl.message(
-      'Total Money',
+      'Total\nMoney',
       name: 'MoneyWidgetMoney',
       desc: '',
       args: [],
     );
   }
 
-  /// `Total\nExpense`
+  /// `Total Expense`
   String get MoneyWidgetExpense {
     return Intl.message(
-      'Total\nExpense',
+      'Total Expense',
       name: 'MoneyWidgetExpense',
       desc: '',
       args: [],
@@ -200,6 +200,16 @@ class S {
     return Intl.message(
       'You\'ve not added expense yet \n Lets start !',
       name: 'ExpenseListNoneExpense',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get AddingScreenSave {
+    return Intl.message(
+      'Save',
+      name: 'AddingScreenSave',
       desc: '',
       args: [],
     );
@@ -325,10 +335,10 @@ class S {
     );
   }
 
-  /// `Eating and Drinking`
+  /// `Food`
   String get CategoryEatDrink {
     return Intl.message(
-      'Eating and Drinking',
+      'Food',
       name: 'CategoryEatDrink',
       desc: '',
       args: [],

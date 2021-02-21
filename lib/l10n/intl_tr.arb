@@ -16,6 +16,7 @@
   "AddingScreenDate": "Tarih",
   "AddingScreenIncome": "Gelir",
   "AddingScreenExpense": "Gider",
+  "AddingScreenSave": "Kaydet",
   "ExpenseListNoneExpense" : "Henüz ekleme yapılmadı \n Eklemeye başlayın !",
   "DrawerThemeText": "Tema",
   "DrawerLanguageText" : "Dil",
@@ -29,6 +30,6 @@
   "CategoryHealth" : "Sağlık",
   "CategoryRepair" : "Tamir",
   "CategoryVacation" : "Tatil",
-  "CategoryEatDrink" : "Yeme İçme",
+  "CategoryEatDrink" : "Yemek",
   "CategoryOthers" : "Diğer"
 }

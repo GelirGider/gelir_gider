@@ -39,11 +39,11 @@ class ExpenseItem extends StatelessWidget {
       ),
       trailing: expense.isExpense == 'expense'
           ? Text(
-              '- ₺ ' + expense.price.toString(),
+              '-' + expense.price.toString() + '₺',
               style: TextStyle(color: Colors.red, fontSize: 15),
             )
           : Text(
-              '+ ₺ ' + expense.price.toString(),
+              '+ ' + expense.price.toString() + ' ₺',
               style: TextStyle(color: Colors.green, fontSize: 15),
             ),
     );

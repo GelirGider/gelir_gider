@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/main_drawer.dart';
+import 'package:gelir_gider/widgets/save_button.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:provider/provider.dart';
@@ -106,14 +107,6 @@ class _AddingExpenseState extends State<AddingExpense> {
                   : [Colors.purple, Colors.pink]),
           centerTitle: true,
           title: Icon(Icons.attach_money),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.save),
-              onPressed: () {
-                _saveForm(widget.scaffoldKey, snackBar);
-              },
-            ),
-          ],
         ),
         body: _isLoading
             ? Center(
@@ -227,32 +220,13 @@ class _AddingExpenseState extends State<AddingExpense> {
                               ),
                             ),
                             Divider(),
-                            SizedBox(height: 35.0,),
-
-                            Container(
-                              width: 270.0,
-                              child: FlatButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                padding: const EdgeInsets.symmetric(vertical: 16),
-                                color: Colors.pink,
-                                child:Text("KAYDET",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 0.6,
-                                    fontSize: 22.0,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                onPressed: () {
-                                  _saveForm(widget.scaffoldKey, snackBar);
-                                }, ///???
-                              ),
+                            SizedBox(
+                              height: 35.0,
                             ),
-
-
-
+                            SaveButton(
+                              onPressed: () =>
+                                  _saveForm(widget.scaffoldKey, snackBar),
+                            ),
                           ],
                         ),
                       ),

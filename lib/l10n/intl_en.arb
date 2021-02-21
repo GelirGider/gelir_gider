@@ -17,6 +17,7 @@
   "AddingScreenIncome": "Income",
   "AddingScreenExpense": "Expense",
   "ExpenseListNoneExpense" : "You've not added expense yet \n Lets start !",
+  "AddingScreenSave": "Save",
   "DrawerThemeText": "Theme",
   "DrawerLanguageText" : "Language",
   "CategoryPayment" : "Payment",
@@ -29,6 +30,6 @@
   "CategoryHealth" : "Health",
   "CategoryRepair" : "Repair",
   "CategoryVacation" : "Vacation",
-  "CategoryEatDrink" : "Eating and Drinking",
+  "CategoryEatDrink" : "Food",
   "CategoryOthers" : "Others"
 }
