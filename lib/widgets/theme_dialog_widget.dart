@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:provider/provider.dart';
-import 'package:gelir_gider/providers/custom_theme_modal.dart';
-import 'package:gelir_gider/themes/darkTheme.dart';
-import 'package:gelir_gider/themes/lightTheme.dart';
+import 'package:gelir_gider/providers/theme_provider.dart';
 
 class ThemeDialogWidget extends StatelessWidget {
-  ThemeDialogWidget();
-
   @override
   Widget build(BuildContext context) {
-    final _theme = Provider.of<CustomThemeModal>(context, listen: false);
+    final _theme = Provider.of<ThemeProvider>(context, listen: false);
     return SimpleDialog(
       titlePadding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       title: Text(
@@ -25,13 +21,14 @@ class ThemeDialogWidget extends StatelessWidget {
         SimpleDialogOption(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 30),
           onPressed: () {
-            Provider.of<CustomThemeModal>(context, listen: false)
-                .setThemeData(lightTheme);
+            _theme.setTheme(true);
+            //Provider.of<CustomThemeModal>(context, listen: false)
+            //    .setTheme('light');
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _theme.getThemeData.brightness == Brightness.dark
+              _theme.getTheme() == _theme.dark
                   ? Icon(Icons.wb_sunny, color: Colors.white)
                   : Icon(Icons.wb_sunny_outlined, color: Colors.black),
               SizedBox(
@@ -48,13 +45,15 @@ class ThemeDialogWidget extends StatelessWidget {
         SimpleDialogOption(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 30),
           onPressed: () {
-            Provider.of<CustomThemeModal>(context, listen: false)
-                .setThemeData(darkTheme);
+            _theme.setTheme(false);
+
+            //Provider.of<CustomThemeModal>(context, listen: false)
+            //    .setTheme('dark');
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _theme.getThemeData.brightness == Brightness.dark
+              _theme.getTheme() == _theme.dark
                   ? Icon(Icons.wb_sunny_outlined, color: Colors.white)
                   : Icon(Icons.wb_sunny, color: Colors.black),
               SizedBox(

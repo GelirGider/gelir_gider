@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gelir_gider/generated/l10n.dart';
-import 'package:gelir_gider/providers/custom_theme_modal.dart';
+import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var categories = Provider.of<Expenses>(context).categories;
-    final _theme = Provider.of<CustomThemeModal>(context, listen: false);
+    final _theme = Provider.of<ThemeProvider>(context, listen: false);
     return SafeArea(
       child: Scaffold(
         appBar: GradientAppBar(
           gradient: LinearGradient(
-              colors: _theme.getThemeData.brightness == Brightness.dark
+              colors: _theme.getTheme() == _theme.dark
                   ? [Color(0xff212121), Color(0xff212121)]
                   : [Colors.purple, Colors.pink]),
           centerTitle: true,
@@ -27,7 +27,7 @@ class CategoryScreen extends StatelessWidget {
         ),
         body: Container(
           child: Card(
-            color: _theme.getThemeData.brightness == Brightness.dark
+            color: _theme.getTheme() == _theme.dark
                 ? Color(0xff333333)
                 : Color.fromRGBO(254, 254, 254, 100),
             margin: const EdgeInsets.fromLTRB(20, 30, 20, 40),

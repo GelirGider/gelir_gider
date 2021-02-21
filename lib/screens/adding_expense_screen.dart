@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/main_drawer.dart';
+import 'package:gelir_gider/widgets/save_button.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,7 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gelir_gider/screens/category_screen.dart';
-import 'package:gelir_gider/providers/custom_theme_modal.dart';
+import 'package:gelir_gider/providers/theme_provider.dart';
 
 class AddingExpense extends StatefulWidget {
   final scaffoldKey;
@@ -79,7 +80,7 @@ class _AddingExpenseState extends State<AddingExpense> {
 
   @override
   Widget build(BuildContext context) {
-    final _theme = Provider.of<CustomThemeModal>(context, listen: false);
+    final _theme = Provider.of<ThemeProvider>(context, listen: false);
     category = Provider.of<Expenses>(context, listen: false).CurrentCategory;
     print(category.categoryName);
     final snackBar = SnackBar(
@@ -101,19 +102,11 @@ class _AddingExpenseState extends State<AddingExpense> {
         endDrawer : MainDrawer(),
         appBar: GradientAppBar(
           gradient: LinearGradient(
-              colors: _theme.getThemeData.brightness == Brightness.dark
+              colors: _theme.getTheme() == _theme.dark
                   ? [Color(0xff212121), Color(0xff212121)]
                   : [Colors.purple, Colors.pink]),
           centerTitle: true,
           title: Icon(Icons.attach_money),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.save),
-              onPressed: () {
-                _saveForm(widget.scaffoldKey, snackBar);
-              },
-            ),
-          ],
         ),
         body: _isLoading
             ? Center(
@@ -155,8 +148,7 @@ class _AddingExpenseState extends State<AddingExpense> {
                                 decoration: BoxDecoration(
                                   border: Border.all(
                                     width: 1,
-                                    color: _theme.getThemeData.brightness ==
-                                            Brightness.dark
+                                    color: _theme.getTheme() == _theme.dark
                                         ? Colors.white
                                         : Colors.black,
                                   ),
@@ -227,32 +219,13 @@ class _AddingExpenseState extends State<AddingExpense> {
                               ),
                             ),
                             Divider(),
-                            SizedBox(height: 35.0,),
-
-                            Container(
-                              width: 270.0,
-                              child: FlatButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                padding: const EdgeInsets.symmetric(vertical: 16),
-                                color: Colors.pink,
-                                child:Text("KAYDET",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 0.6,
-                                    fontSize: 22.0,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                onPressed: () {
-                                  _saveForm(widget.scaffoldKey, snackBar);
-                                }, ///???
-                              ),
+                            SizedBox(
+                              height: 35.0,
                             ),
-
-
-
+                            SaveButton(
+                              onPressed: () =>
+                                  _saveForm(widget.scaffoldKey, snackBar),
+                            ),
                           ],
                         ),
                       ),

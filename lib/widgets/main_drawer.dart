@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gelir_gider/providers/custom_theme_modal.dart';
+import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/widgets/theme_dialog_widget.dart';
 import 'package:gelir_gider/screens/language_selection_screen.dart';
@@ -9,7 +9,7 @@ import 'package:gelir_gider/generated/l10n.dart';
 class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _theme = Provider.of<CustomThemeModal>(context, listen: false);
+    final _theme = Provider.of<ThemeProvider>(context, listen: false);
     void showThemePicker() {
       showDialog<void>(
         context: context,
@@ -25,7 +25,7 @@ class MainDrawer extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                  colors: _theme.getThemeData.brightness == Brightness.dark
+                  colors: _theme.getTheme() == _theme.dark
                       ? [Color(0xff191919), Color(0xff191919)]
                       : [Colors.purple, Colors.pink]),
             ),
