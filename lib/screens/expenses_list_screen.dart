@@ -60,14 +60,13 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var tabIndex = 0;
+    var isPersonal = true;
+
     final scaffoldKey = GlobalKey<ScaffoldState>();
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     final expenseProvider = Provider.of<Expenses>(context, listen: false);
-    var tabIndex = 0;
-
-    ///final _mode = Provider.of<ModeProvider>(context, listen: false);
-    ///_mode.setMode(false);
-    ///_mode.getMode().then((value) => print(value));
+    expenseProvider.getMode().then((value) => isPersonal = value);
 
     final snackBarr = SnackBar(
       content: Container(
@@ -91,16 +90,23 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           key: scaffoldKey,
           appBar: GradientAppBar(
             leading: AccountChanger(
-              onPressed1: () {
-                expenseProvider.setPersonal();
+              onPressed1: () async {
+                await expenseProvider.setPersonal();
                 expenseProvider.setTabBarIndex(tabIndex);
-                setState(() {});
+                await Navigator.of(context).pop();
+                setState(() {
+                  isPersonal = true;
+                });
               },
-              onPressed2: () {
-                expenseProvider.setCorporate();
+              onPressed2: () async {
+                await expenseProvider.setCorporate();
                 expenseProvider.setTabBarIndex(tabIndex);
-                setState(() {});
+                await Navigator.of(context).pop();
+                setState(() {
+                  isPersonal = false;
+                });
               },
+              isPersonal: expenseProvider.isPersonal,
             ),
             centerTitle: true,
             title: Icon(Icons.attach_money),

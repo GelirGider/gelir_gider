@@ -3,6 +3,7 @@ import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/helpers/db_helper.dart';
 import 'package:gelir_gider/utils/time_diff.dart';
 import 'package:gelir_gider/widgets/category_item.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Expense {
   final String id;
@@ -181,28 +182,42 @@ class Expenses with ChangeNotifier {
   }
 
   //----------------------------------------------------------------------------
+  static const modePrefKey = 'isIndividual';
+
+  Future<bool> getMode() async {
+    var prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(modePrefKey) ?? true;
+  }
+
+  Future<void> setMode(isIndividual) async {
+    var prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(modePrefKey, isIndividual);
+  }
+
   var isPersonal = true;
 
-  void setPersonal() {
-    isPersonal = true;
+  Future<void> setPersonal() async {
+    await setMode(true);
+    await getMode().then((value) => isPersonal = value);
     _items.clear();
-    fetchAndSetExpenses();
+    await fetchAndSetExpenses();
     setDates();
     setTabBarIndex(tabBarIndex);
     notifyListeners();
   }
 
-  void setCorporate() {
-    isPersonal = false;
+  Future<void> setCorporate() async {
+    await setMode(false);
+    await getMode().then((value) => isPersonal = value);
     _items.clear();
-    fetchAndSetExpenses();
+    await fetchAndSetExpenses();
     setDates();
     setTabBarIndex(tabBarIndex);
     notifyListeners();
   }
   //----------------------------------------------------------------------------
 
-  void addExpense(Expense newExpense) async {
+  Future<void> addExpense(Expense newExpense) async {
     // var isPersonal = true;
     _items.add(newExpense);
     setTabBarIndex(tabBarIndex);

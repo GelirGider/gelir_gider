@@ -4,16 +4,21 @@ import 'package:flutter/material.dart';
 class AccountChanger extends StatelessWidget {
   final onPressed1;
   final onPressed2;
+  final isPersonal;
 
-  const AccountChanger({Key key, this.onPressed1, this.onPressed2})
+  const AccountChanger(
+      {Key key, this.onPressed1, this.onPressed2, this.isPersonal})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
         child: Image.asset(
-          'assets/account_selector/briefcase.png',
+          isPersonal
+              ? 'assets/account_selector/person.png'
+              : 'assets/account_selector/briefcase.png',
           height: 40,
           width: 40,
           colorBlendMode: BlendMode.darken,
