@@ -46,7 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "MoneyWidgetExpense" : MessageLookupByLibrary.simpleMessage("Expense"),
     "MoneyWidgetIncome" : MessageLookupByLibrary.simpleMessage("Income"),
     "MoneyWidgetMoney" : MessageLookupByLibrary.simpleMessage("Money"),
-    "TabBarDay" : MessageLookupByLibrary.simpleMessage("Day"),
+    "TabBarDay" : MessageLookupByLibrary.simpleMessage("Today"),
     "TabBarMonth" : MessageLookupByLibrary.simpleMessage("Month"),
     "TabBarWeek" : MessageLookupByLibrary.simpleMessage("Week"),
     "TabBarYear" : MessageLookupByLibrary.simpleMessage("Year"),
