@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
@@ -12,6 +13,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'adding_expense_screen.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
+import 'package:custom_switch/custom_switch.dart';
+
+
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -19,7 +23,7 @@ class ExpensesListScreen extends StatefulWidget {
 }
 
 class _ExpensesListScreenState extends State<ExpensesListScreen> {
-
+  bool changeAccount= true;
   var languageIndex;
 
   Future<String> _getPrefs() async{
@@ -83,8 +87,42 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
         child: Scaffold(
           endDrawer: MainDrawer(),
           key: scaffoldKey,
+
           appBar: GradientAppBar(
-            leading: IconButton(
+
+            leading: PopupMenuButton(
+              child: CircleAvatar(
+                radius:18.0 ,
+                backgroundImage: AssetImage('assets/categories/man.png'),
+              ),
+              itemBuilder: (BuildContext context) {
+                return[
+                  PopupMenuItem<String> (
+                    value: '1',
+                    child: Row(
+                      children: [
+                        Text('Bireysel'),
+                        SizedBox(width: 10.0,),
+                        Icon(Icons.person),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<String> (
+                    value: '2',
+                    child: Row(
+                      children: [
+                        Text('Kurumsal'),
+                        SizedBox(width: 10.0,),
+                        Icon(Icons.work),
+                      ],
+                    ),
+                  ),
+
+                ];
+              },
+            ),
+
+            /*leading: IconButton(
               icon: Icon(
                 Icons.switch_account,
                 color: Colors.white,
@@ -92,7 +130,9 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               onPressed: () {
                 ///???
               },
-            ) ,
+            ) ,*/
+
+
             actions: [],
             centerTitle: true,
             title: Icon(Icons.attach_money),
