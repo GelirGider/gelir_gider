@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:jiffy/jiffy.dart';
 
 import 'package:flutter/material.dart';
-import 'package:gelir_gider/providers/custom_theme_modal.dart';
 import '../providers/expense_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +11,6 @@ class ExpenseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _theme = Provider.of<CustomThemeModal>(context, listen: false);
     var provider = Provider.of<Expenses>(context);
     print('expense.category::::::::::::::::${expense.category}');
     print('expense.description::::::::::::::::${expense.description}');

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:gelir_gider/screens/expenses_list_screen.dart';
-
 
 class Languages extends ChangeNotifier{
   final BuildContext context;

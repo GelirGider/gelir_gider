@@ -10,7 +10,7 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'adding_expense_screen.dart';
-import 'package:gelir_gider/providers/custom_theme_modal.dart';
+import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 
 class ExpensesListScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
 
   Future<String> _getPrefs() async{
     var prefs = await SharedPreferences.getInstance();
-    languageIndex = prefs.getInt('language');
+    languageIndex = prefs.getInt('language')??0;
     Provider.of<Languages>(context, listen: false)
         .setLanguage(languageIndex);
     return 'Başarılı';
@@ -32,9 +32,9 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
 
   @override
   void initState() {
+
     _getPrefs().then((value) => {
       if(languageIndex == null){
-        print('null')
         //Yeni language ekranı açılacak
       }
     });
@@ -61,7 +61,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
   @override
   Widget build(BuildContext context) {
     final scaffoldKey = GlobalKey<ScaffoldState>();
-    final _theme = Provider.of<CustomThemeModal>(context, listen: false);
+    final _theme = Provider.of<ThemeProvider>(context, listen: false);
     final expenseProvider = Provider.of<Expenses>(context, listen: false);
     final snackBarr = SnackBar(
       content: Container(
@@ -88,7 +88,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
             centerTitle: true,
             title: Icon(Icons.attach_money),
             gradient: LinearGradient(
-                colors: _theme.getThemeData.brightness == Brightness.dark
+                colors: _theme.getTheme() == _theme.dark
                     ? [Color(0xff212121), Color(0xff212121)]
                     : [Colors.purple, Colors.pink]),
             bottom: TabBar(
@@ -146,8 +146,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                           ),
                           Divider(
                             height: 25,
-                            color: _theme.getThemeData.brightness ==
-                                    Brightness.dark
+                            color: _theme.getTheme() == _theme.dark
                                 ? Color.fromRGBO(1223, 81, 83, 1)
                                 : Colors.black,
                           ),
@@ -167,8 +166,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                       ),
                                       Divider(
                                         height: 25,
-                                        color: _theme.getThemeData.brightness ==
-                                                Brightness.dark
+                                        color: _theme.getTheme() == _theme.dark
                                             ? Color.fromRGBO(1223, 81, 83, 1)
                                             : Colors.black,
                                       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/widgets/main_drawer.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 
