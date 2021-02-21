@@ -183,8 +183,18 @@ class Expenses with ChangeNotifier {
 
   //----------------------------------------------------------------------------
   var isPersonal = true;
-  void togglePersonal() {
-    isPersonal = !isPersonal;
+
+  void setPersonal() {
+    isPersonal = true;
+    _items.clear();
+    fetchAndSetExpenses();
+    setDates();
+    setTabBarIndex(tabBarIndex);
+    notifyListeners();
+  }
+
+  void setCorporate() {
+    isPersonal = false;
     _items.clear();
     fetchAndSetExpenses();
     setDates();

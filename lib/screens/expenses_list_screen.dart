@@ -88,7 +88,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
             leading: PopupMenuButton(
               child: CircleAvatar(
                 radius: 18.0,
-                child: Image.asset('assets/categories/man.png'),
+                child: Image.asset('assets/categories/other.png'),
                 //backgroundImage: AssetImage('assets/categories/man.png'),
               ),
               itemBuilder: (BuildContext context) {
@@ -99,7 +99,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                       children: [
                         FlatButton(
                           onPressed: () {
-                            expenseProvider.togglePersonal();
+                            expenseProvider.setPersonal();
+                            expenseProvider.setTabBarIndex(tabIndex);
                             setState(() {});
                           },
                           child: Text('Bireysel'),
@@ -117,7 +118,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                       children: [
                         FlatButton(
                           onPressed: () {
-                            expenseProvider.togglePersonal();
+                            expenseProvider.setCorporate();
                             expenseProvider.setTabBarIndex(tabIndex);
                             setState(() {});
                           },
