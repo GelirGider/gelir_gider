@@ -87,9 +87,14 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           appBar: GradientAppBar(
             leading: PopupMenuButton(
               child: CircleAvatar(
-                radius: 18.0,
-                child: Image.asset('assets/categories/other.png'),
-                //backgroundImage: AssetImage('assets/categories/man.png'),
+                backgroundColor: Colors.transparent,
+                child: Image.asset(
+                  'assets/account_selector/briefcase.png',
+                  height: 40,
+                  width: 40,
+                  colorBlendMode: BlendMode.darken,
+                  fit: BoxFit.scaleDown,
+                ),
               ),
               itemBuilder: (BuildContext context) {
                 return [
@@ -105,10 +110,10 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                           },
                           child: Text('Bireysel'),
                         ),
-                        SizedBox(
-                          width: 10.0,
+                        Icon(
+                          Icons.person,
+                          color: Colors.black,
                         ),
-                        Icon(Icons.person),
                       ],
                     ),
                   ),
@@ -127,7 +132,10 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                         SizedBox(
                           width: 10.0,
                         ),
-                        Icon(Icons.work),
+                        Icon(
+                          Icons.work,
+                          color: Colors.black,
+                        ),
                       ],
                     ),
                   ),

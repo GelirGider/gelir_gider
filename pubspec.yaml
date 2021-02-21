@@ -66,26 +66,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/flags/turkey.png
-     - assets/flags/usa.png
-     - assets/flags/china.png
-     - assets/flags/germany.png
-     - assets/flags/spain.png
-     - assets/flags/arabia.png
-     - assets/categories/bill.png
-     - assets/categories/dues.png
-     - assets/categories/entertainment.png
-     - assets/categories/fix.png
-     - assets/categories/food.png
-     - assets/categories/health.png
-     - assets/categories/hire.png
-     - assets/categories/holiday.png
-     - assets/categories/other.png
-     - assets/categories/selfcare.png
-     - assets/categories/shopping.png
-     - assets/categories/education.png
      - assets/categories/
      - assets/flags/
+     - assets/account_selector/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
