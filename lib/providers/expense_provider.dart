@@ -200,6 +200,7 @@ class Expenses with ChangeNotifier {
 
   Future<void> delete(String id) async {
     _items.removeWhere((element) => element.id == id);
+    notifyListeners();
     return await DBHelper.delete(id);
   }
 
