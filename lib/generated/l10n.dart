@@ -75,30 +75,30 @@ class S {
     );
   }
 
-  /// `Total\nIncome`
+  /// `Income`
   String get MoneyWidgetIncome {
     return Intl.message(
-      'Total\nIncome',
+      'Income',
       name: 'MoneyWidgetIncome',
       desc: '',
       args: [],
     );
   }
 
-  /// `Total\nMoney`
+  /// `Money`
   String get MoneyWidgetMoney {
     return Intl.message(
-      'Total\nMoney',
+      'Money',
       name: 'MoneyWidgetMoney',
       desc: '',
       args: [],
     );
   }
 
-  /// `Total Expense`
+  /// `Expense`
   String get MoneyWidgetExpense {
     return Intl.message(
-      'Total Expense',
+      'Expense',
       name: 'MoneyWidgetExpense',
       desc: '',
       args: [],
