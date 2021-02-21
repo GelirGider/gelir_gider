@@ -31,5 +31,7 @@
   "CategoryRepair" : "Tamir",
   "CategoryVacation" : "Tatil",
   "CategoryEatDrink" : "Yemek",
-  "CategoryOthers" : "Diğer"
+  "CategoryOthers" : "Diğer",
+  "AppBarIndividual" : "Bireysel",
+  "AppBarCorporate" : "Kurumsal"
 }

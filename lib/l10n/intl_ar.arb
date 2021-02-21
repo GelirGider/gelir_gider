@@ -30,5 +30,7 @@
   "CategoryRepair" : "بصلح",
   "CategoryVacation" : "اجازة",
   "CategoryEatDrink" : "الاكل والشرب",
-  "CategoryOthers" : "آحرون"
+  "CategoryOthers" : "آحرون",
+  "AppBarIndividual" :"فرد",
+  "AppBarCorporate" : "شركة كبرى"
 }

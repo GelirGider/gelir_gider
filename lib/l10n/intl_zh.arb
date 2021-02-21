@@ -30,5 +30,7 @@
   "CategoryRepair" : "修理",
   "CategoryVacation" : "假期",
   "CategoryEatDrink" : "大吃大喝",
-  "CategoryOthers" : "其他"
+  "CategoryOthers" : "其他",
+  "AppBarIndividual" :"个人",
+  "AppBarCorporate" :"公司的"
 }

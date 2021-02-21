@@ -30,5 +30,7 @@
   "CategoryRepair" : "Reparar",
   "CategoryVacation" : "Vacaciones",
   "CategoryEatDrink" : "Comiendo y bebiendo",
-  "CategoryOthers" : "Otros"
+  "CategoryOthers" : "Otros",
+  "AppBarIndividual" :"Individual",
+  "AppBarCorporate" :"Corporativo"
 }
