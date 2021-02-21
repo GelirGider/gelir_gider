@@ -13,9 +13,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'adding_expense_screen.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
-import 'package:custom_switch/custom_switch.dart';
-
-
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -23,26 +20,25 @@ class ExpensesListScreen extends StatefulWidget {
 }
 
 class _ExpensesListScreenState extends State<ExpensesListScreen> {
-  bool changeAccount= true;
+  bool changeAccount = true;
   var languageIndex;
 
-  Future<String> _getPrefs() async{
+  Future<String> _getPrefs() async {
     var prefs = await SharedPreferences.getInstance();
-    languageIndex = prefs.getInt('language')??0;
-    Provider.of<Languages>(context, listen: false)
-        .setLanguage(languageIndex);
+    languageIndex = prefs.getInt('language') ?? 0;
+    Provider.of<Languages>(context, listen: false).setLanguage(languageIndex);
     return 'Başarılı';
   }
 
   @override
   void initState() {
-
     _getPrefs().then((value) => {
-      if(languageIndex == null){
-        //Yeni language ekranı açılacak
-      }
-    });
-    
+          if (languageIndex == null)
+            {
+              //Yeni language ekranı açılacak
+            }
+        });
+
     Future.delayed(Duration.zero).then((_) {
       Provider.of<Expenses>(context, listen: false).setCategories(context);
       return Provider.of<Expenses>(context, listen: false).setTabBarIndex(0);
@@ -67,6 +63,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
     final scaffoldKey = GlobalKey<ScaffoldState>();
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     final expenseProvider = Provider.of<Expenses>(context, listen: false);
+    var tabIndex = 0;
     final snackBarr = SnackBar(
       content: Container(
         child: Text(
@@ -87,37 +84,52 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
         child: Scaffold(
           endDrawer: MainDrawer(),
           key: scaffoldKey,
-
           appBar: GradientAppBar(
-
             leading: PopupMenuButton(
               child: CircleAvatar(
-                radius:18.0 ,
-                backgroundImage: AssetImage('assets/categories/man.png'),
+                radius: 18.0,
+                child: Image.asset('assets/categories/man.png'),
+                //backgroundImage: AssetImage('assets/categories/man.png'),
               ),
               itemBuilder: (BuildContext context) {
-                return[
-                  PopupMenuItem<String> (
+                return [
+                  PopupMenuItem<String>(
                     value: '1',
                     child: Row(
                       children: [
-                        Text('Bireysel'),
-                        SizedBox(width: 10.0,),
+                        FlatButton(
+                          onPressed: () {
+                            expenseProvider.togglePersonal();
+                            setState(() {});
+                          },
+                          child: Text('Bireysel'),
+                        ),
+                        SizedBox(
+                          width: 10.0,
+                        ),
                         Icon(Icons.person),
                       ],
                     ),
                   ),
-                  PopupMenuItem<String> (
+                  PopupMenuItem<String>(
                     value: '2',
                     child: Row(
                       children: [
-                        Text('Kurumsal'),
-                        SizedBox(width: 10.0,),
+                        FlatButton(
+                          onPressed: () {
+                            expenseProvider.togglePersonal();
+                            expenseProvider.setTabBarIndex(tabIndex);
+                            setState(() {});
+                          },
+                          child: Text('Kurumsal'),
+                        ),
+                        SizedBox(
+                          width: 10.0,
+                        ),
                         Icon(Icons.work),
                       ],
                     ),
                   ),
-
                 ];
               },
             ),
@@ -132,7 +144,6 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               },
             ) ,*/
 
-
             actions: [],
             centerTitle: true,
             title: Icon(Icons.attach_money),
@@ -144,6 +155,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               onTap: (index) {
                 Provider.of<Expenses>(context, listen: false)
                     .setTabBarIndex(index);
+                tabIndex = index;
                 print(index);
                 setState(() {});
               },

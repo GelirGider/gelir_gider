@@ -181,31 +181,61 @@ class Expenses with ChangeNotifier {
     notifyListeners();
   }
 
+  //----------------------------------------------------------------------------
+  var isPersonal = true;
+  void togglePersonal() {
+    isPersonal = !isPersonal;
+    _items.clear();
+    fetchAndSetExpenses();
+    setDates();
+    setTabBarIndex(tabBarIndex);
+    notifyListeners();
+  }
+  //----------------------------------------------------------------------------
+
   void addExpense(Expense newExpense) async {
+    // var isPersonal = true;
     _items.add(newExpense);
     setTabBarIndex(tabBarIndex);
     notifyListeners();
-    await DBHelper.insert(
-      'user_expenses',
-      {
-        'id': newExpense.id,
-        'category': newExpense.category,
-        'isExpense': newExpense.isExpense,
-        'time': newExpense.time,
-        'price': newExpense.price,
-        'description': newExpense.description,
-      },
-    );
+    isPersonal
+        ? await DBHelper.insert(
+            'user_expenses',
+            {
+              'id': newExpense.id,
+              'category': newExpense.category,
+              'isExpense': newExpense.isExpense,
+              'time': newExpense.time,
+              'price': newExpense.price,
+              'description': newExpense.description,
+            },
+          )
+        : await DBHelper.insert2(
+            'user_expenses',
+            {
+              'id': newExpense.id,
+              'category': newExpense.category,
+              'isExpense': newExpense.isExpense,
+              'time': newExpense.time,
+              'price': newExpense.price,
+              'description': newExpense.description,
+            },
+          );
   }
 
   Future<void> delete(String id) async {
+    //var isPersonal = true;
     _items.removeWhere((element) => element.id == id);
     notifyListeners();
-    return await DBHelper.delete(id);
+    return isPersonal ? await DBHelper.delete(id) : await DBHelper.delete2(id);
   }
 
   Future<void> fetchAndSetExpenses() async {
-    final dataList = await DBHelper.getData('user_expenses');
+    //var isPersonal = true;
+    final dataList = isPersonal
+        ? await DBHelper.getData('user_expenses')
+        : await DBHelper.getData2('user_expenses');
+
     _items = dataList
         .map(
           (item) => Expense(
@@ -224,6 +254,8 @@ class Expenses with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  //----------------------------------------------------------------------------
 
   double calculateTotalMoney() {
     return calculateTotalIncome() - calculateTotalExpense();
