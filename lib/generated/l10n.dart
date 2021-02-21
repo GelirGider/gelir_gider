@@ -354,6 +354,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Individual`
+  String get AppBarIndividual {
+    return Intl.message(
+      'Individual',
+      name: 'AppBarIndividual',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Corporate`
+  String get AppBarCorporate {
+    return Intl.message(
+      'Corporate',
+      name: 'AppBarCorporate',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -365,6 +385,10 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
       Locale.fromSubtags(languageCode: 'ar'),
       Locale.fromSubtags(languageCode: 'de'),
       Locale.fromSubtags(languageCode: 'es'),
+      Locale.fromSubtags(languageCode: 'hi'),
+      Locale.fromSubtags(languageCode: 'ja'),
+      Locale.fromSubtags(languageCode: 'pt'),
+      Locale.fromSubtags(languageCode: 'ru'),
       Locale.fromSubtags(languageCode: 'tr'),
       Locale.fromSubtags(languageCode: 'zh'),
     ];
