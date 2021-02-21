@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "AddingScreenExpense" : MessageLookupByLibrary.simpleMessage("Gastos"),
     "AddingScreenIncome" : MessageLookupByLibrary.simpleMessage("Ingreso"),
     "AddingScreenPrice" : MessageLookupByLibrary.simpleMessage("Precio"),
+    "AddingScreenSave" : MessageLookupByLibrary.simpleMessage("Ahorrar"),
     "AppBarCorporate" : MessageLookupByLibrary.simpleMessage("Corporativo"),
     "AppBarIndividual" : MessageLookupByLibrary.simpleMessage("Individual"),
     "CategoryDues" : MessageLookupByLibrary.simpleMessage("Deudas"),
