@@ -81,9 +81,18 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
       child: DefaultTabController(
         length: 4,
         child: Scaffold(
-          drawer: MainDrawer(),
+          endDrawer: MainDrawer(),
           key: scaffoldKey,
           appBar: GradientAppBar(
+            leading: IconButton(
+              icon: Icon(
+                Icons.switch_account,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                ///???
+              },
+            ) ,
             actions: [],
             centerTitle: true,
             title: Icon(Icons.attach_money),
