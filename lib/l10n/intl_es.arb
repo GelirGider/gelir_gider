@@ -16,6 +16,7 @@
   "AddingScreenDate": "Fecha",
   "AddingScreenIncome": "Ingreso",
   "AddingScreenExpense": "Gastos",
+  "AddingScreenSave": "Ahorrar",
   "ExpenseListNoneExpense" : "No ha agregado gastos todavía\n¡Empecemos!",
   "DrawerThemeText": "Tema",
   "DrawerLanguageText" : "Idiomas",

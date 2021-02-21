@@ -16,6 +16,7 @@
   "AddingScreenDate": "日期",
   "AddingScreenIncome": "收入",
   "AddingScreenExpense": "费用",
+  "AddingScreenSave": "救",
   "ExpenseListNoneExpense" : "您尚未添加费用\n开始吧！",
   "DrawerThemeText": "主题",
   "DrawerLanguageText" : "语言",

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/generated/l10n.dart';
 
 class AccountChanger extends StatelessWidget {
   final onPressed1;
@@ -37,7 +38,7 @@ class AccountChanger extends StatelessWidget {
                 ),
                 FlatButton(
                   onPressed: onPressed1,
-                  child: Text('Bireysel'),
+                  child: Text(S.of(context).AppBarIndividual),
                 ),
                 Icon(
                   Icons.person,
@@ -53,7 +54,7 @@ class AccountChanger extends StatelessWidget {
               children: [
                 FlatButton(
                   onPressed: onPressed2,
-                  child: Text('Kurumsal'),
+                  child: Text(S.of(context).AppBarCorporate),
                 ),
                 SizedBox(
                   width: 10.0,
