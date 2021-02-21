@@ -8,8 +8,7 @@ class MoneyWidget extends StatelessWidget {
   var expense;
   var percentage;
 
-  MoneyWidget(
-      {Key key, this.income, this.money, this.expense, this.percentage})
+  MoneyWidget({Key key, this.income, this.money, this.expense, this.percentage})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -41,11 +40,11 @@ class MoneyWidget extends StatelessWidget {
           width: 5,
         ),
         CircularPercentIndicator(
-          radius: 130.0,
+          radius: 150.0,
           animation: true,
           animationDuration: 750,
           reverse: true,
-          lineWidth: 15.0,
+          lineWidth: 20.0,
           percent: percentage,
           center: Text(
             money,
