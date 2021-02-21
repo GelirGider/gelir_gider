@@ -152,7 +152,6 @@ class Expenses with ChangeNotifier {
   }
 
   void setDates() {
-    print(init);
     List<Expense> temp = [];
     List<Expense> temp1 = [];
     List<Expense> temp2 = [];

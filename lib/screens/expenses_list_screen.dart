@@ -13,9 +13,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'adding_expense_screen.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
-import 'package:custom_switch/custom_switch.dart';
-
-
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -23,14 +20,12 @@ class ExpensesListScreen extends StatefulWidget {
 }
 
 class _ExpensesListScreenState extends State<ExpensesListScreen> {
-  bool changeAccount= true;
   var languageIndex;
 
   Future<String> _getPrefs() async{
     var prefs = await SharedPreferences.getInstance();
     languageIndex = prefs.getInt('language')??0;
-    Provider.of<Languages>(context, listen: false)
-        .setLanguage(languageIndex);
+    Provider.of<Languages>(context, listen: false).setLanguage(languageIndex);
     return 'Başarılı';
   }
 
@@ -67,6 +62,11 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
     final scaffoldKey = GlobalKey<ScaffoldState>();
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     final expenseProvider = Provider.of<Expenses>(context, listen: false);
+
+    ///final _mode = Provider.of<ModeProvider>(context, listen: false);
+    ///_mode.setMode(false);
+    ///_mode.getMode().then((value) => print(value));
+
     final snackBarr = SnackBar(
       content: Container(
         child: Text(
@@ -132,7 +132,6 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               },
             ) ,*/
 
-
             actions: [],
             centerTitle: true,
             title: Icon(Icons.attach_money),
@@ -144,7 +143,6 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               onTap: (index) {
                 Provider.of<Expenses>(context, listen: false)
                     .setTabBarIndex(index);
-                print(index);
                 setState(() {});
               },
               labelStyle: TextStyle(fontSize: 10),
@@ -245,7 +243,9 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           floatingActionButton: FloatingActionButton(
-            onPressed: () => navigationFunction(context, scaffoldKey),
+            onPressed: () {
+              navigationFunction(context, scaffoldKey);
+            },
             child: AddButton(),
           ),
         ),

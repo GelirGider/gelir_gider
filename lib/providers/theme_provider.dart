@@ -18,7 +18,6 @@ class ThemeProvider extends ChangeNotifier {
   ThemeData getTheme() => _selectedTheme;
 
   Future<void> setTheme(bool isLight) async {
-    print(isLight);
     prefs = await SharedPreferences.getInstance();
     if (isLight) {
       _selectedTheme = light;
