@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
+import 'package:gelir_gider/widgets/account_changer.dart';
 import 'package:gelir_gider/widgets/add_button.dart';
 import 'package:gelir_gider/widgets/dissmissible_background.dart';
 import 'package:gelir_gider/widgets/expense_item.dart';
@@ -89,75 +90,18 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           endDrawer: MainDrawer(),
           key: scaffoldKey,
           appBar: GradientAppBar(
-            leading: PopupMenuButton(
-              child: CircleAvatar(
-                backgroundColor: Colors.transparent,
-                child: Image.asset(
-                  'assets/account_selector/briefcase.png',
-                  height: 40,
-                  width: 40,
-                  colorBlendMode: BlendMode.darken,
-                  fit: BoxFit.scaleDown,
-                ),
-              ),
-              itemBuilder: (BuildContext context) {
-                return [
-                  PopupMenuItem<String>(
-                    value: '1',
-                    child: Row(
-                      children: [
-                        FlatButton(
-                          onPressed: () {
-                            expenseProvider.setPersonal();
-                            expenseProvider.setTabBarIndex(tabIndex);
-                            setState(() {});
-                          },
-                          child: Text('Bireysel'),
-                        ),
-                        Icon(
-                          Icons.person,
-                          color: Colors.black,
-                        ),
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem<String>(
-                    value: '2',
-                    child: Row(
-                      children: [
-                        FlatButton(
-                          onPressed: () {
-                            expenseProvider.setCorporate();
-                            expenseProvider.setTabBarIndex(tabIndex);
-                            setState(() {});
-                          },
-                          child: Text('Kurumsal'),
-                        ),
-                        SizedBox(
-                          width: 10.0,
-                        ),
-                        Icon(
-                          Icons.work,
-                          color: Colors.black,
-                        ),
-                      ],
-                    ),
-                  ),
-                ];
+            leading: AccountChanger(
+              onPressed1: () {
+                expenseProvider.setPersonal();
+                expenseProvider.setTabBarIndex(tabIndex);
+                setState(() {});
+              },
+              onPressed2: () {
+                expenseProvider.setCorporate();
+                expenseProvider.setTabBarIndex(tabIndex);
+                setState(() {});
               },
             ),
-
-            /*leading: IconButton(
-              icon: Icon(
-                Icons.switch_account,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                ///???
-              },
-            ) ,*/
-
-            actions: [],
             centerTitle: true,
             title: Icon(Icons.attach_money),
             gradient: LinearGradient(
@@ -174,18 +118,10 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               },
               labelStyle: TextStyle(fontSize: 10),
               tabs: <Widget>[
-                Tab(
-                  text: S.of(context).TabBarDay,
-                ),
-                Tab(
-                  text: S.of(context).TabBarWeek,
-                ),
-                Tab(
-                  text: S.of(context).TabBarMonth,
-                ),
-                Tab(
-                  text: S.of(context).TabBarYear,
-                ),
+                Tab(text: S.of(context).TabBarDay),
+                Tab(text: S.of(context).TabBarWeek),
+                Tab(text: S.of(context).TabBarMonth),
+                Tab(text: S.of(context).TabBarYear),
               ],
             ),
           ),

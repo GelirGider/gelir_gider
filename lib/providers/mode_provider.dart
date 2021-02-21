@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/cupertino.dart';
 
 class ModeProvider extends ChangeNotifier {
   static const modePrefKey = 'isIndividual';
@@ -12,12 +11,12 @@ class ModeProvider extends ChangeNotifier {
     return prefs.getBool(modePrefKey) ?? true;
   }
 
-  Future<String> setMode(isIndividual) async {
+  Future<void> setMode(isIndividual) async {
     var prefs = await SharedPreferences.getInstance();
     await prefs.setBool(modePrefKey, isIndividual);
-    return 'Başarılı';
   }
 }
+
 ///var isIndividual;
 ///final _mode = Provider.of<ModeProvider>(context, listen: false);
 ///_mode.getMode().then((value) => isIndividual =(value);
