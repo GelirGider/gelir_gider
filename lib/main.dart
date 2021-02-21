@@ -7,6 +7,7 @@ import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:gelir_gider/providers/mode_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +28,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => Languages(context),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ModeProvider(),
         )
       ],
       child: MyApp(),

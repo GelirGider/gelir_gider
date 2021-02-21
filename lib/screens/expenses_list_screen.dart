@@ -20,7 +20,6 @@ class ExpensesListScreen extends StatefulWidget {
 }
 
 class _ExpensesListScreenState extends State<ExpensesListScreen> {
-  bool changeAccount = true;
   var languageIndex;
 
   Future<String> _getPrefs() async {
@@ -64,6 +63,11 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     final expenseProvider = Provider.of<Expenses>(context, listen: false);
     var tabIndex = 0;
+
+    ///final _mode = Provider.of<ModeProvider>(context, listen: false);
+    ///_mode.setMode(false);
+    ///_mode.getMode().then((value) => print(value));
+
     final snackBarr = SnackBar(
       content: Container(
         child: Text(
