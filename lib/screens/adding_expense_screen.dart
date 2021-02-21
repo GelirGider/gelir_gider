@@ -99,7 +99,7 @@ class _AddingExpenseState extends State<AddingExpense> {
     );
     return SafeArea(
       child: Scaffold(
-        drawer: MainDrawer(),
+        endDrawer : MainDrawer(),
         appBar: GradientAppBar(
           gradient: LinearGradient(
               colors: _theme.getThemeData.brightness == Brightness.dark
