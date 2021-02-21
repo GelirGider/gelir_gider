@@ -109,6 +109,19 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               isPersonal: expenseProvider.isPersonal,
             ),
             centerTitle: true,
+
+            ///change drawer icon
+            actions: [
+              Builder(
+                builder: (context) => IconButton(
+                  icon: Icon(Icons.more_horiz,
+                  size: 30.0,),
+                  onPressed: () => Scaffold.of(context).openEndDrawer(),
+                  tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip, ///it opens a drawer
+                ),
+              ),
+
+            ],
             title: Icon(Icons.attach_money),
             gradient: LinearGradient(
                 colors: _theme.getTheme() == _theme.dark

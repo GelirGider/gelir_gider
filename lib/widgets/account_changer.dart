@@ -14,16 +14,27 @@ class AccountChanger extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
+      elevation: 0,
+      color: Colors.purple[100],
+      shape: RoundedRectangleBorder(
+        borderRadius:  BorderRadius.all( Radius.circular(20.0)),
+      ),
+
+
+
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
-        child: Image.asset(
-          isPersonal
-              ? 'assets/account_selector/person.png'
-              : 'assets/account_selector/briefcase.png',
-          height: 40,
-          width: 40,
-          colorBlendMode: BlendMode.darken,
-          fit: BoxFit.scaleDown,
+        child: Container(
+          padding: EdgeInsets.only(left: 8.0),
+          child: Image.asset(
+            isPersonal
+                ? 'assets/account_selector/man.png'
+                : 'assets/account_selector/suitcase (2).png',
+            height: 35,
+            width: 35,
+            colorBlendMode: BlendMode.darken,
+            fit: BoxFit.scaleDown,
+          ),
         ),
       ),
       itemBuilder: (BuildContext context) {
@@ -31,18 +42,25 @@ class AccountChanger extends StatelessWidget {
           PopupMenuItem<String>(
             value: '1',
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 70,
+                  height:60,
                 ),
                 FlatButton(
                   onPressed: onPressed1,
-                  child: Text(S.of(context).AppBarIndividual),
+                  child: Text(S.of(context).AppBarIndividual,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.7,
+                    color: Colors.pink[900]
+                  ),),
                 ),
+
+                Spacer(),
                 Icon(
                   Icons.person,
-                  color: Colors.black,
+                  color: Colors.pink[900],
                 ),
               ],
             ),
@@ -50,18 +68,21 @@ class AccountChanger extends StatelessWidget {
           PopupMenuItem<String>(
             value: '2',
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 FlatButton(
                   onPressed: onPressed2,
-                  child: Text(S.of(context).AppBarCorporate),
+                  child: Text(S.of(context).AppBarCorporate,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.7,
+                      color: Colors.pink[900],
+                    ),),
                 ),
-                SizedBox(
-                  width: 10.0,
-                ),
+                Spacer(),
                 Icon(
                   Icons.work,
-                  color: Colors.black,
+                  color: Colors.pink[900],
                 ),
               ],
             ),
