@@ -4,9 +4,9 @@
   "TabBarMonth": "Mes",
   "TabBarWeek": "Semana",
   "TabBarYear": "Año",
-  "MoneyWidgetIncome" : "Ingresos\nTotales",
+  "MoneyWidgetIncome" : "Ingresos",
   "MoneyWidgetMoney" : "Dinero Total",
-  "MoneyWidgetExpense" : "Gasto\nTotal",
+  "MoneyWidgetExpense" : "Gastos",
   "ThemeSelectionQuestion" : "Seleccione el tema",
   "ThemeSelectionOption1" : "Tema de Luz",
   "ThemeSelectionOption2" : "Tema Oscuro",
@@ -33,5 +33,6 @@
   "CategoryEatDrink" : "Comiendo y bebiendo",
   "CategoryOthers" : "Otros",
   "AppBarIndividual" :"Individual",
-  "AppBarCorporate" :"Corporativo"
+  "AppBarCorporate" :"Corporativo",
+  "LanguageScreenContinue" : "CONTINUAR"
 }

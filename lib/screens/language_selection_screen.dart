@@ -5,8 +5,6 @@ import 'expenses_list_screen.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'expenses_list_screen.dart';
-
 
 class LanguageSelectionScreen extends StatefulWidget {
   @override
@@ -17,46 +15,62 @@ class LanguageSelectionScreen extends StatefulWidget {
 List icons = [
 
   ClipRRect(
-    borderRadius: BorderRadius.circular(60),
     child: Image.asset(
       'assets/flags/turkey.png',
       fit: BoxFit.cover,
     ),
   ),
-
-
   ClipRRect(
-    borderRadius: BorderRadius.circular(60),
     child: Image.asset(
-      'assets/flags/usa.png',
+      'assets/flags/uk.png',
       fit: BoxFit.cover,
     ),
   ),
   ClipRRect(
-    borderRadius: BorderRadius.circular(60),
     child: Image.asset(
-      'assets/flags/germany.png',
+      'assets/flags/china.png',
       fit: BoxFit.cover,
     ),
   ),
   ClipRRect(
-    borderRadius: BorderRadius.circular(60),
-    child: Image.asset(
-      'assets/flags/arabia.png',
-      fit: BoxFit.cover,
-    ),
-  ),
-  ClipRRect(
-    borderRadius: BorderRadius.circular(60),
     child: Image.asset(
       'assets/flags/spain.png',
       fit: BoxFit.cover,
     ),
   ),
   ClipRRect(
-    borderRadius: BorderRadius.circular(60),
     child: Image.asset(
-      'assets/flags/china.png',
+      'assets/flags/india.png',
+      fit: BoxFit.cover,
+    ),
+  ),
+  ClipRRect(
+    child: Image.asset(
+      'assets/flags/arabia.png',
+      fit: BoxFit.cover,
+    ),
+  ),
+  ClipRRect(
+    child: Image.asset(
+      'assets/flags/portugal.png',
+      fit: BoxFit.cover,
+    ),
+  ),
+  ClipRRect(
+    child: Image.asset(
+      'assets/flags/russia.png',
+      fit: BoxFit.cover,
+    ),
+  ),
+  ClipRRect(
+    child: Image.asset(
+      'assets/flags/japan.png',
+      fit: BoxFit.cover,
+    ),
+  ),
+  ClipRRect(
+    child: Image.asset(
+      'assets/flags/germany.png',
       fit: BoxFit.cover,
     ),
   )
@@ -100,9 +114,6 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                       icons.length,
                       (index) {
                         return FlatButton(
-                            shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0),
-                            ),
                             onPressed: () {
                               Provider.of<Languages>(context, listen: false)
                                   .setLanguage(index);
@@ -125,7 +136,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     color:Colors.greenAccent[400],
-                    child:Text("DEVAM ET",
+                    child:Text(S.of(context).LanguageScreenContinue,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.6,

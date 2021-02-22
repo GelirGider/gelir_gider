@@ -374,6 +374,16 @@ class S {
       args: [],
     );
   }
+
+  /// `CONTINUE`
+  String get LanguageScreenContinue {
+    return Intl.message(
+      'CONTINUE',
+      name: 'LanguageScreenContinue',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

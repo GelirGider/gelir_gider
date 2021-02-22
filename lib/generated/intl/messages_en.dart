@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "DrawerLanguageText" : MessageLookupByLibrary.simpleMessage("Language"),
     "DrawerThemeText" : MessageLookupByLibrary.simpleMessage("Theme"),
     "ExpenseListNoneExpense" : MessageLookupByLibrary.simpleMessage("You\'ve not added expense yet \n Lets start !"),
+    "LanguageScreenContinue" : MessageLookupByLibrary.simpleMessage("CONTINUE"),
     "MoneyWidgetExpense" : MessageLookupByLibrary.simpleMessage("Expense"),
     "MoneyWidgetIncome" : MessageLookupByLibrary.simpleMessage("Income"),
     "MoneyWidgetMoney" : MessageLookupByLibrary.simpleMessage("Money"),

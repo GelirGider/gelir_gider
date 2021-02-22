@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "DrawerLanguageText" : MessageLookupByLibrary.simpleMessage("Dil"),
     "DrawerThemeText" : MessageLookupByLibrary.simpleMessage("Tema"),
     "ExpenseListNoneExpense" : MessageLookupByLibrary.simpleMessage("Henüz ekleme yapılmadı \n Eklemeye başlayın !"),
+    "LanguageScreenContinue" : MessageLookupByLibrary.simpleMessage("DEVAM ET"),
     "MoneyWidgetExpense" : MessageLookupByLibrary.simpleMessage("Gider"),
     "MoneyWidgetIncome" : MessageLookupByLibrary.simpleMessage("Gelir"),
     "MoneyWidgetMoney" : MessageLookupByLibrary.simpleMessage("Para"),

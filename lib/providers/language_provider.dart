@@ -9,10 +9,14 @@ class Languages extends ChangeNotifier{
   var languageList = [
     Locale('tr'),
     Locale('en'),
-    Locale('de'),
-    Locale('ar'),
-    Locale('es'),
     Locale('zh'),
+    Locale('es'),
+    Locale('hi'),
+    Locale('ar'),
+    Locale('pt'),
+    Locale('ru'),
+    Locale('ja'),
+    Locale('de'),
   ];
 
   void setLanguage(int index) {

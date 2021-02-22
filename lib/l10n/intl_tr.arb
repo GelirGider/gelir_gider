@@ -33,5 +33,6 @@
   "CategoryEatDrink" : "Yemek",
   "CategoryOthers" : "Diğer",
   "AppBarIndividual" : "Bireysel",
-  "AppBarCorporate" : "Kurumsal"
+  "AppBarCorporate" : "Kurumsal",
+  "LanguageScreenContinue" : "DEVAM ET"
 }

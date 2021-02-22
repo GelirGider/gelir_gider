@@ -33,5 +33,6 @@
   "CategoryEatDrink" : "大吃大喝",
   "CategoryOthers" : "其他",
   "AppBarIndividual" :"个人",
-  "AppBarCorporate" :"公司的"
+  "AppBarCorporate" :"公司的",
+  "LanguageScreenContinue" :"继续"
 }

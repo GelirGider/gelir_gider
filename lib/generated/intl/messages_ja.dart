@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "DrawerLanguageText" : MessageLookupByLibrary.simpleMessage("言語"),
     "DrawerThemeText" : MessageLookupByLibrary.simpleMessage("テーマ"),
     "ExpenseListNoneExpense" : MessageLookupByLibrary.simpleMessage("まだ費用を追加していません\n始めましょう！"),
+    "LanguageScreenContinue" : MessageLookupByLibrary.simpleMessage("継続する"),
     "MoneyWidgetExpense" : MessageLookupByLibrary.simpleMessage("費用"),
     "MoneyWidgetIncome" : MessageLookupByLibrary.simpleMessage("所得"),
     "MoneyWidgetMoney" : MessageLookupByLibrary.simpleMessage("お金"),
