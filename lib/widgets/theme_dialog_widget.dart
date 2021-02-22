@@ -8,11 +8,16 @@ class ThemeDialogWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     return SimpleDialog(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius:  BorderRadius.all( Radius.circular(20.0)),
+      ),
       titlePadding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       title: Text(
         S.of(context).ThemeSelectionQuestion,
         textAlign: TextAlign.center,
-        style: TextStyle(fontWeight: FontWeight.bold, height: 2.5),
+        style: TextStyle(fontWeight: FontWeight.bold, height: 2.5,
+        letterSpacing: 1.0),
       ),
       children: <Widget>[
         Divider(
