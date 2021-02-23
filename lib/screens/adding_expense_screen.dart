@@ -41,7 +41,7 @@ class _AddingExpenseState extends State<AddingExpense> with TickerProviderStateM
     super.dispose();
     _tabController.dispose();
   }
-  
+
   void moveToSecondPage() async {
     id = await Navigator.push(
           context,
@@ -140,7 +140,7 @@ class _AddingExpenseState extends State<AddingExpense> with TickerProviderStateM
                               child: Center(child: TabBar(
 
                                 controller: _tabController,
-                                // give the indicator a decoration (color and border radius)
+                                
                                 indicator: BoxDecoration(
                                   borderRadius: BorderRadius.circular(
                                     25.0,
@@ -154,7 +154,7 @@ class _AddingExpenseState extends State<AddingExpense> with TickerProviderStateM
                                     text: 'Expense',
                                   ),
 
-                                  // second tab [you can add an icon using the icon property]
+
                                   Tab(
                                     text: 'Income',
                                   ),
