@@ -4,8 +4,6 @@ import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/account_changer.dart';
 import 'package:gelir_gider/widgets/add_button.dart';
-import 'package:gelir_gider/widgets/dissmissible_background.dart';
-import 'package:gelir_gider/widgets/expense_item.dart';
 import 'package:gelir_gider/widgets/main_drawer.dart';
 import 'package:gelir_gider/widgets/money_widget.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
@@ -14,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'adding_expense_screen.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
+import 'package:gelir_gider/widgets/main_page_category_modal.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -184,14 +183,13 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                             child: ListView.builder(
                               itemCount: expenseProvider.currentItems.length,
                               itemBuilder: (context, index) {
-                                var thisExpense =
-                                    expenseProvider.currentItems[index];
-                                return Dismissible(
-                                  key: UniqueKey(),
-                                  child: Column(
+                                var category = expenseProvider.currentItems.keys.toList()[index];
+                                var list = expenseProvider.currentItems.values.toList()[index];
+                                return Column(
                                     children: [
-                                      ExpenseItem(
-                                        expense: thisExpense,
+                                      MainPageCategoryModal(
+                                        category: category,
+                                        list: list,
                                       ),
                                       Divider(
                                         height: 25,
@@ -200,19 +198,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                             : Colors.black,
                                       ),
                                     ],
-                                  ),
-                                  direction: DismissDirection.endToStart,
-                                  onDismissed: (_) {
-                                    WidgetsBinding.instance
-                                        .addPostFrameCallback((_) => scaffoldKey
-                                            .currentState
-                                            .showSnackBar(snackBarr)
-                                            .setState);
-                                    return expenseProvider
-                                        .delete(thisExpense.id);
-                                  },
-                                  background: DismissibleBackground(),
-                                );
+                                  );
                               },
                             ),
                           ),
@@ -225,6 +211,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           floatingActionButton: FloatingActionButton(
+            heroTag: "btn1",
             onPressed: () => navigationFunction(context, scaffoldKey),
             child: AddButton(),
           ),

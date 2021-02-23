@@ -4,6 +4,7 @@ import 'package:gelir_gider/helpers/db_helper.dart';
 import 'package:gelir_gider/utils/time_diff.dart';
 import 'package:gelir_gider/widgets/category_item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:collection/collection.dart';
 
 class Expense {
   final String id;
@@ -24,21 +25,14 @@ class Expense {
 }
 
 class Expenses with ChangeNotifier {
-  int _currentCategoryId = 0;
-  int get currentCategoryId => _currentCategoryId;
-  void setCurrentCategory(int id) {
-    _currentCategoryId = id;
-    notifyListeners();
-  }
-
-  CategoryItem get CurrentCategory => categories[currentCategoryId];
-
-  List<CategoryItem> get categories {
-    return [..._categories];
-  }
-
+  static const modePrefKey = 'isIndividual';
+  Map<int, List<Expense>> _categoryAndItems = {};
   var categoryList = [];
   var _categories = [];
+  int _currentCategoryId = 0;
+  int tabBarIndex = 0;
+  bool init = false;
+  bool init2 = false;
 
   var imgList = [
     Image.asset('assets/categories/dues.png'),
@@ -98,10 +92,62 @@ class Expenses with ChangeNotifier {
     ];
   }
 
-  bool init = false;
-  bool init2 = false;
+  int get currentCategoryId => _currentCategoryId;
 
-  int tabBarIndex = 0;
+  void setCurrentCategory(int id) {
+    _currentCategoryId = id;
+    notifyListeners();
+  }
+
+  CategoryItem get CurrentCategory => categories[currentCategoryId];
+
+  List<CategoryItem> get categories {
+    return [..._categories];
+  }
+
+  Map<int, List<Expense>> get categoryAndItems => _categoryAndItems;
+
+  set categoryAndItems(Map<int, List<Expense>> value) {
+    _categoryAndItems = value;
+  }
+
+  int get TabBarIndex => tabBarIndex;
+
+  Map<int, List<Expense>> _currentItems = {};
+  Map<int, List<Expense>> get currentItems {
+    return {..._currentItems};
+  }
+
+  List<Expense> _items = [];
+  List<Expense> get expense {
+    return [..._items];
+  }
+
+  Map<int, List<Expense>> _day = {};
+  Map<int, List<Expense>> get day {
+    return {..._day};
+  }
+
+  Map<int, List<Expense>> _week = {};
+  Map<int, List<Expense>> get week {
+    return {..._week};
+  }
+
+  Map<int, List<Expense>> _month = {};
+  Map<int, List<Expense>> get month {
+    return {..._month};
+  }
+
+  Map<int, List<Expense>> _year = {};
+  Map<int, List<Expense>> get year {
+    return {..._year};
+  }
+
+  Map<int, List<Expense>> groupExpensesByCategories(List<Expense> expenses) {
+    final groups = groupBy(expenses, (Expense e) => e.category);
+    return groups;
+  }
+
   void setTabBarIndex(int index) {
     setDates();
     tabBarIndex = index;
@@ -118,38 +164,6 @@ class Expenses with ChangeNotifier {
       _currentItems = _year;
     }
     notifyListeners();
-  }
-
-  int get TabBarIndex => tabBarIndex;
-
-  List<Expense> _currentItems = [];
-  List<Expense> get currentItems {
-    return [..._currentItems];
-  }
-
-  List<Expense> _items = [];
-  List<Expense> get expense {
-    return [..._items];
-  }
-
-  List<Expense> _day = [];
-  List<Expense> get day {
-    return [..._day];
-  }
-
-  List<Expense> _week = [];
-  List<Expense> get week {
-    return [..._week];
-  }
-
-  List<Expense> _month = [];
-  List<Expense> get month {
-    return [..._month];
-  }
-
-  List<Expense> _year = [];
-  List<Expense> get year {
-    return [..._year];
   }
 
   void setDates() {
@@ -170,10 +184,10 @@ class Expenses with ChangeNotifier {
         temp3.add(element);
       }
     });
-    _day = temp;
-    _week = temp1;
-    _month = temp2;
-    _year = temp3;
+    _day = groupExpensesByCategories(temp);
+    _week = groupExpensesByCategories(temp);
+    _month = groupExpensesByCategories(temp);
+    _year = groupExpensesByCategories(temp);
     if (!init) {
       _currentItems = _day;
       init = true;
@@ -182,7 +196,6 @@ class Expenses with ChangeNotifier {
   }
 
   //----------------------------------------------------------------------------
-  static const modePrefKey = 'isIndividual';
 
   Future<bool> getMode() async {
     var prefs = await SharedPreferences.getInstance();
@@ -282,30 +295,36 @@ class Expenses with ChangeNotifier {
   //----------------------------------------------------------------------------
 
   double calculateTotalMoney() {
-    return calculateTotalIncome() - calculateTotalExpense();
+    return calculateTotalIncome() + calculateTotalExpense();
   }
 
   double calculateTotalExpense() {
-    Iterable<Expense> newlist = <Expense>[];
-    newlist = _currentItems.where((element) => element.isExpense == 'expense');
-
     var sum = 0.0;
-    newlist.forEach((element) => sum += element.price);
+    _currentItems.values.forEach((element) {
+      element
+          .where((expense) => expense.isExpense == 'expense')
+          .forEach((element) {
+        sum += element.price;
+      });
+    });
     return sum;
   }
 
   double calculateTotalIncome() {
-    Iterable<Expense> newlist = <Expense>[];
-    newlist = _currentItems.where((element) => element.isExpense == 'income');
-
     var sum = 0.0;
-    newlist.forEach((element) => sum += element.price);
+    _currentItems.values.forEach((element) {
+      element
+          .where((expense) => expense.isExpense == 'income')
+          .forEach((element) {
+        sum += element.price;
+      });
+    });
     return sum;
   }
 
   double get getPercentage {
     var income = calculateTotalIncome();
-    var expense = calculateTotalExpense();
+    var expense = calculateTotalExpense().abs();
     return income / (expense + income);
   }
 }

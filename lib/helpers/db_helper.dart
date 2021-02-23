@@ -62,4 +62,11 @@ class DBHelper {
     final db = await DBHelper.database2();
     return db.query(table);
   }
+  static Future<List> getCategoriesPrices() async {
+    final db = await DBHelper.database();
+    final uniqueCategories = await db.rawQuery(
+      'SELECT category,SUM(price) FROM user_expenses GROUP BY category',
+    );
+    return uniqueCategories.toList();
+  }
 }

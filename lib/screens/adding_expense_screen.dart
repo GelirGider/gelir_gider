@@ -60,7 +60,7 @@ class _AddingExpenseState extends State<AddingExpense> {
         category: id ?? 0,
         isExpense: isExpense ? 'expense' : 'income',
         time: time,
-        price: price,
+        price: isExpense ? (price*(-1)) : price,
         description: description,
       ),
     );
