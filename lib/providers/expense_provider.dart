@@ -185,9 +185,9 @@ class Expenses with ChangeNotifier {
       }
     });
     _day = groupExpensesByCategories(temp);
-    _week = groupExpensesByCategories(temp);
-    _month = groupExpensesByCategories(temp);
-    _year = groupExpensesByCategories(temp);
+    _week = groupExpensesByCategories(temp1);
+    _month = groupExpensesByCategories(temp2);
+    _year = groupExpensesByCategories(temp3);
     if (!init) {
       _currentItems = _day;
       init = true;

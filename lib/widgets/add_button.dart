@@ -18,7 +18,7 @@ class AddButton extends StatelessWidget {
         shape: BoxShape.circle,
         gradient: LinearGradient(colors: _theme.getTheme() == _theme.dark
             ? [Color(0xff212121), Color(0xff212121)]
-            : [Colors.purple, Colors.pink]),
+            : [Color.fromRGBO(227, 9, 23, 1), Color.fromRGBO(94, 23, 235, 1)]),
       ),
     );
   }

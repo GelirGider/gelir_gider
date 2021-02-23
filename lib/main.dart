@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
+          color: Color.fromRGBO(227, 9, 23, 1),
           supportedLocales: S.delegate.supportedLocales,
           title: 'Gelir/Gider',
           theme: value.getTheme(),

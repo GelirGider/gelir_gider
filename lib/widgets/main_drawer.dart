@@ -27,7 +27,7 @@ class MainDrawer extends StatelessWidget {
               gradient: LinearGradient(
                   colors: _theme.getTheme() == _theme.dark
                       ? [Color(0xff191919), Color(0xff191919)]
-                      : [Colors.purple, Colors.pink]),
+                      : [Color.fromRGBO(227, 9, 23, 1), Color.fromRGBO(94, 23, 235, 1)]),
             ),
             child: DrawerHeader(
               child: Icon(Icons.attach_money,size: 50,),
