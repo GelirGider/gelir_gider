@@ -18,7 +18,7 @@ class AddingExpense extends StatefulWidget {
   _AddingExpenseState createState() => _AddingExpenseState();
 }
 
-class _AddingExpenseState extends State<AddingExpense> {
+class _AddingExpenseState extends State<AddingExpense> with TickerProviderStateMixin {
   static final _form = GlobalKey<FormState>();
   var _isLoading = false;
   String description = '';
@@ -27,7 +27,21 @@ class _AddingExpenseState extends State<AddingExpense> {
   bool isExpense = false;
   var category;
   var id;
+  TabController _tabController;
 
+
+  @override
+  void initState() {
+    _tabController=TabController(length:2,vsync :this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
+  }
+  
   void moveToSecondPage() async {
     id = await Navigator.push(
           context,
@@ -123,8 +137,31 @@ class _AddingExpenseState extends State<AddingExpense> {
                         child: Column(
                           children: [
                             FittedBox(
-                              child: Center(
-                                child: LiteRollingSwitch(
+                              child: Center(child: TabBar(
+
+                                controller: _tabController,
+                                // give the indicator a decoration (color and border radius)
+                                indicator: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                    25.0,
+                                  ),
+                                  color: Colors.green,
+                                ),
+                                labelColor: Colors.white,
+                                unselectedLabelColor: Colors.black,
+                                tabs: [
+                                  Tab(
+                                    text: 'Expense',
+                                  ),
+
+                                  // second tab [you can add an icon using the icon property]
+                                  Tab(
+                                    text: 'Income',
+                                  ),
+
+                                ],),
+
+                               /* child: LiteRollingSwitch(
                                   value: isExpense,
                                   textOff: S.of(context).AddingScreenIncome,
                                   textOn: S.of(context).AddingScreenExpense,
@@ -136,9 +173,11 @@ class _AddingExpenseState extends State<AddingExpense> {
                                   onChanged: (bool value) {
                                     isExpense = value;
                                   },
-                                ),
+                                ),*/
+
                               ),
                             ),
+
                             GestureDetector(
                               onTap: () {
                                 moveToSecondPage();
