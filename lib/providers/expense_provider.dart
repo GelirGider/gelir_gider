@@ -25,7 +25,9 @@ class Expense {
 }
 
 class Expenses with ChangeNotifier {
-  static const modePrefKey = 'isIndividual';
+  static const modePrefKeyIsIndividual = 'isIndividual';
+  static const modePrefKeyCurrency = 'currency';
+
   Map<int, List<Expense>> _categoryAndItems = {};
   var categoryList = [];
   var _categories = [];
@@ -196,15 +198,15 @@ class Expenses with ChangeNotifier {
   }
 
   //----------------------------------------------------------------------------
-
+  // TO CHECK IS PERSONAL
   Future<bool> getMode() async {
     var prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(modePrefKey) ?? true;
+    return prefs.getBool(modePrefKeyIsIndividual) ?? true;
   }
 
   Future<void> setMode(isIndividual) async {
     var prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(modePrefKey, isIndividual);
+    await prefs.setBool(modePrefKeyIsIndividual, isIndividual);
   }
 
   var isPersonal = true;
@@ -226,6 +228,30 @@ class Expenses with ChangeNotifier {
     await fetchAndSetExpenses();
     setDates();
     setTabBarIndex(tabBarIndex);
+    notifyListeners();
+  }
+
+  //----------------------------------------------------------------------------
+  String symbol = 'q';
+  // TO CHECK CURRENCY
+  Future<void> setCurrency(String currencySymbol) async {
+    var prefs = await SharedPreferences.getInstance();
+    await prefs.setString(modePrefKeyCurrency, currencySymbol);
+    notifyListeners();
+    await getSymbol();
+    notifyListeners();
+    print('symbol::::::::::::$currencySymbol');
+  }
+
+  Future<String> getCurrency() async {
+    var prefs = await SharedPreferences.getInstance();
+    return await prefs.getString(modePrefKeyCurrency) ?? 'yusuf';
+  }
+
+  Future<void> getSymbol() async {
+    var prefs = await SharedPreferences.getInstance();
+    symbol = await prefs.getString(modePrefKeyCurrency) ?? 'yusuf';
+    print('  Future<void> getSymbol() async {$symbol');
     notifyListeners();
   }
   //----------------------------------------------------------------------------
