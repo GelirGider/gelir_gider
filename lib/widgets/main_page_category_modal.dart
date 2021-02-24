@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:gelir_gider/widgets/expenses_dialog.dart';
 
 class MainPageCategoryModal extends StatelessWidget{
   final int category;
@@ -11,8 +12,18 @@ class MainPageCategoryModal extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<Expenses>(context);
-
+    void showExpensesDialog() {
+      showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return ExpensesDialogWidget(category,list);
+        },
+      );
+    }
     return ListTile(
+      onTap: (){
+        return showExpensesDialog();
+      },
       leading: FittedBox(
         fit: BoxFit.cover,
         child: CircleAvatar(

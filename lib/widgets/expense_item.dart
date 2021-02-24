@@ -1,9 +1,10 @@
 import 'dart:ui';
 import 'package:jiffy/jiffy.dart';
-
 import 'package:flutter/material.dart';
 import '../providers/expense_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:gelir_gider/providers/language_provider.dart';
 
 class ExpenseItem extends StatelessWidget {
   final Expense expense;
@@ -11,11 +12,11 @@ class ExpenseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    checkLanguage(context);
     var provider = Provider.of<Expenses>(context);
     print('expense.category::::::::::::::::${expense.category}');
     print('expense.description::::::::::::::::${expense.description}');
     print('expense.id::::::::::::::::${expense.id}');
-
     return ListTile(
       leading: FittedBox(
         fit: BoxFit.cover,
@@ -26,18 +27,16 @@ class ExpenseItem extends StatelessWidget {
         ),
       ),
       title: Text(
-        Jiffy(expense.time).format('dd-MM-yyyy') +
-            '        ' +
-            expense.description,
-        overflow: TextOverflow.ellipsis,
+        Jiffy(expense.time).yMMMd,
+        style: TextStyle(fontSize: 12),
       ),
       subtitle: Text(
-        provider.categories[expense.category].categoryName,
+        expense.description,
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       trailing: expense.isExpense == 'expense'
           ? Text(
-              '- ' + expense.price.toString() + ' ₺',
+              expense.price.toString() + ' ₺',
               style: TextStyle(color: Colors.red, fontSize: 15),
             )
           : Text(
@@ -46,4 +45,11 @@ class ExpenseItem extends StatelessWidget {
             ),
     );
   }
-}
+  void checkLanguage(context) async{
+    var prefs = await SharedPreferences.getInstance();
+    var index = await prefs.getInt('language');
+    var currentLanguage = Provider.of<Languages>(context,listen: false).languageList[index];
+    print(currentLanguage.languageCode);
+    await Jiffy.locale(currentLanguage.languageCode);
+    }
+  }

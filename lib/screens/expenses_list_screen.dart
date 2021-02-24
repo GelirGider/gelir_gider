@@ -31,12 +31,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
 
   @override
   void initState() {
-    _getPrefs().then((value) => {
-          if (languageIndex == null)
-            {
-              //Yeni language ekranı açılacak
-            }
-        });
+    _getPrefs().then((value) => {});
 
     Future.delayed(Duration.zero).then((_) {
       Provider.of<Expenses>(context, listen: false).setCategories(context);
@@ -211,7 +206,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           floatingActionButton: FloatingActionButton(
-            heroTag: "btn1",
+            heroTag: 'btn1',
             onPressed: () => navigationFunction(context, scaffoldKey),
             child: AddButton(),
           ),
