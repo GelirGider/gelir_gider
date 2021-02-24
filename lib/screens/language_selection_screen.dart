@@ -77,7 +77,7 @@ List icons = [
 class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   @override
   Widget build(BuildContext context) {
-    final padding = const EdgeInsets.all(30.0);
+
     return Scaffold(
       backgroundColor: Colors.red,
       drawer: MainDrawer(),
@@ -101,11 +101,14 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 Text(
                   S.of(context).DrawerLanguageText,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,letterSpacing: 0.8),
                 ),
                 Expanded(
                   child: GridView.count(
-                    padding: padding,
+                    mainAxisSpacing: 0.0,
+                    crossAxisSpacing: 0.0,
+                    childAspectRatio: 16/9,
+                    padding: EdgeInsets.all(10.0),
                     crossAxisCount: 2,
                     children: List.generate(
                       icons.length,
@@ -125,7 +128,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                     ),
                   ),
                 ),
-                Container(
+                /*Container(
                   width: 270.0,
                   child: FlatButton(
                     shape: RoundedRectangleBorder(
@@ -146,9 +149,9 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
 
                     ///???
                   ),
-                ),
+                ),*/
                 SizedBox(
-                  height: 30.0,
+                  height: 25.0,
                 ),
               ],
             ),
