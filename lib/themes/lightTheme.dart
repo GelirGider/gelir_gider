@@ -21,7 +21,7 @@ final ThemeData lightTheme = ThemeData(
   selectedRowColor: Color(0xfff5f5f5),
   unselectedWidgetColor: Color(0x8a000000),
   disabledColor: Color(0x61000000),
-  buttonColor: Color(0xffe0e0e0),
+  buttonColor: Colors.black,
   toggleableActiveColor: Color(0xff1e88e5),
   secondaryHeaderColor: Color(0xffe3f2fd),
   textSelectionColor: Color(0xff90caf9),
