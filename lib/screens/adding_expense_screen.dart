@@ -29,7 +29,6 @@ class _AddingExpenseState extends State<AddingExpense>
   var category;
   var id;
 
-  
   void moveToSecondPage() async {
     id = await Navigator.push(
           context,
@@ -62,7 +61,7 @@ class _AddingExpenseState extends State<AddingExpense>
         category: id ?? 0,
         isExpense: isExpense ? 'expense' : 'income',
         time: time,
-        price: isExpense ? (price*(-1)) : price,
+        price: isExpense ? (price * (-1)) : price,
         description: description,
       ),
     );
@@ -154,30 +153,6 @@ class _AddingExpenseState extends State<AddingExpense>
                         key: _form,
                         child: Column(
                           children: [
-                            FittedBox(
-                              child: Center(child: TabBar(
-                                indicator: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                    25.0,
-                                  ),
-                                  color: Colors.green,
-                                ),
-                                labelColor: Colors.white,
-                                unselectedLabelColor: Colors.black,
-                                tabs: [
-                                  Tab(
-                                    text: 'Expense',
-                                  ),
-
-                                  // second tab [you can add an icon using the icon property]
-                                  Tab(
-                                    text: 'Income',
-                                  ),
-
-                                ],),
-
-
-
                             GestureDetector(
                               onTap: () {
                                 moveToSecondPage();
