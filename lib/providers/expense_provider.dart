@@ -240,17 +240,17 @@ class Expenses with ChangeNotifier {
     notifyListeners();
     await getSymbol();
     notifyListeners();
-    print('symbol::::::::::::$currencySymbol');
+    print('setCurrency::::::::::::$currencySymbol');
   }
 
   Future<String> getCurrency() async {
     var prefs = await SharedPreferences.getInstance();
-    return await prefs.getString(modePrefKeyCurrency) ?? 'yusuf';
+    return await prefs.getString(modePrefKeyCurrency) ?? '₺';
   }
 
   Future<void> getSymbol() async {
     var prefs = await SharedPreferences.getInstance();
-    symbol = await prefs.getString(modePrefKeyCurrency) ?? 'yusuf';
+    symbol = await prefs.getString(modePrefKeyCurrency) ?? '₺';
     print('  Future<void> getSymbol() async {$symbol');
     notifyListeners();
   }

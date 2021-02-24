@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/widgets/theme_dialog_widget.dart';
 import 'package:gelir_gider/screens/language_selection_screen.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:currency_picker/currency_picker.dart';
+import '';
 
 class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
+    var provider = Provider.of<Expenses>(context, listen: false);
+
     void showThemePicker() {
       showDialog<void>(
         context: context,
@@ -78,14 +82,16 @@ class MainDrawer extends StatelessWidget {
           ),
           ListTile(
             contentPadding: EdgeInsets.fromLTRB(10, 18, 10, 18),
-            onTap: () {
-              return showCurrencyPicker(
+            onTap: () async {
+              return await showCurrencyPicker(
                 context: context,
                 showFlag: true,
                 showCurrencyName: true,
                 showCurrencyCode: true,
-                onSelect: (Currency currency) {
-                  print('Select currency: ${currency.name}');
+                onSelect: (Currency currency) async {
+                  print('Select currency symbol: ${currency.symbol}');
+                  await provider.setCurrency(currency.symbol);
+                  await Navigator.of(context).pop();
                 },
               );
             },
