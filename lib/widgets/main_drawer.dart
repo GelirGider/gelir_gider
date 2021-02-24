@@ -40,24 +40,27 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(10, 18, 10, 18),
+            contentPadding: EdgeInsets.fromLTRB(30, 18, 20, 18),
             onTap: () {
               Navigator.pop(context);
               showThemePicker();
             },
             title: Text(
               S.of(context).DrawerThemeText,
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18,
+              color:Colors.blueGrey[600],
+                  fontWeight:FontWeight.w700,letterSpacing: 0.8),
             ),
             leading: Icon(
               Icons.color_lens,
               size: 40,
-              color: Theme.of(context).buttonColor,
+              color: Colors.blueGrey,
             ),
-            trailing: Icon(Icons.arrow_forward_ios),
+            trailing: Icon(Icons.arrow_forward_ios,
+                color: Colors.blueGrey),
           ),
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(10, 18, 10, 18),
+            contentPadding: EdgeInsets.fromLTRB(30, 18, 20, 18),
             onTap: () {
               return Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
@@ -67,17 +70,21 @@ class MainDrawer extends StatelessWidget {
             },
             title: Text(
               S.of(context).DrawerLanguageText,
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18,
+              color:Colors.blueGrey[600],
+                  fontWeight:FontWeight.w700,
+                  letterSpacing: 0.8),
             ),
             leading: Icon(
               Icons.language,
               size: 40,
-              color: Theme.of(context).buttonColor,
+              color: Colors.blueGrey,
             ),
-            trailing: Icon(Icons.arrow_forward_ios),
+            trailing: Icon(Icons.arrow_forward_ios,
+                color: Colors.blueGrey),
           ),
           ListTile(
-            contentPadding: EdgeInsets.fromLTRB(10, 18, 10, 18),
+            contentPadding: EdgeInsets.fromLTRB(30, 18, 20, 18),
             onTap: () {
               return showCurrencyPicker(
                 context: context,
@@ -90,15 +97,19 @@ class MainDrawer extends StatelessWidget {
               );
             },
             title: Text(
-              'Select Currency',
-              style: TextStyle(fontSize: 18),
+              'Currency',
+              style: TextStyle(fontSize: 18,
+              color:Colors.blueGrey[600],
+              fontWeight:FontWeight.w700 ,
+                  letterSpacing: 0.8),
             ),
             leading: Icon(
-              Icons.money,
+              Icons.monetization_on_outlined,
               size: 40,
-              color: Theme.of(context).buttonColor,
+              color: Colors.blueGrey,
             ),
-            trailing: Icon(Icons.arrow_forward_ios),
+            trailing: Icon(Icons.arrow_forward_ios,
+                color: Colors.blueGrey),
           ),
         ],
       ),
