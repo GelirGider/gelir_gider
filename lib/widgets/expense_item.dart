@@ -5,43 +5,47 @@ import 'package:flutter/material.dart';
 import '../providers/expense_provider.dart';
 import 'package:provider/provider.dart';
 
-class ExpenseItem extends StatelessWidget {
+class ExpenseItem extends StatefulWidget {
   final Expense expense;
   const ExpenseItem({Key key, this.expense}) : super(key: key);
 
   @override
+  _ExpenseItemState createState() => _ExpenseItemState();
+}
+
+class _ExpenseItemState extends State<ExpenseItem> {
+  @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<Expenses>(context);
-    print('expense.category::::::::::::::::${expense.category}');
-    print('expense.description::::::::::::::::${expense.description}');
-    print('expense.id::::::::::::::::${expense.id}');
+    var provider = Provider.of<Expenses>(context, listen: false);
+    var currency;
+    provider.getCurrency().then((value) => currency = value);
 
     return ListTile(
       leading: FittedBox(
         fit: BoxFit.cover,
         child: CircleAvatar(
-          child: provider.imgList[expense.category],
+          child: provider.imgList[widget.expense.category],
           backgroundColor: Colors.white,
           radius: 25,
         ),
       ),
       title: Text(
-        Jiffy(expense.time).format('dd-MM-yyyy') +
+        Jiffy(widget.expense.time).format('dd-MM-yyyy') +
             '        ' +
-            expense.description,
+            widget.expense.description,
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text(
-        provider.categories[expense.category].categoryName,
+        provider.categories[widget.expense.category].categoryName,
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
-      trailing: expense.isExpense == 'expense'
+      trailing: widget.expense.isExpense == 'expense'
           ? Text(
-              '- ' + expense.price.toString() + ' ₺',
+              '- ' + widget.expense.price.toString() + ' ' + currency,
               style: TextStyle(color: Colors.red, fontSize: 15),
             )
           : Text(
-              '+ ' + expense.price.toString() + ' ₺',
+              '+ ' + widget.expense.price.toString() + ' ' + currency,
               style: TextStyle(color: Colors.green, fontSize: 15),
             ),
     );
