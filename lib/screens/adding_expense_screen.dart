@@ -6,10 +6,10 @@ import 'package:jiffy/jiffy.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gelir_gider/screens/category_screen.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class AddingExpense extends StatefulWidget {
   final scaffoldKey;
@@ -18,7 +18,8 @@ class AddingExpense extends StatefulWidget {
   _AddingExpenseState createState() => _AddingExpenseState();
 }
 
-class _AddingExpenseState extends State<AddingExpense> with TickerProviderStateMixin {
+class _AddingExpenseState extends State<AddingExpense>
+    with TickerProviderStateMixin {
   static final _form = GlobalKey<FormState>();
   var _isLoading = false;
   String description = '';
@@ -29,10 +30,9 @@ class _AddingExpenseState extends State<AddingExpense> with TickerProviderStateM
   var id;
   TabController _tabController;
 
-
   @override
   void initState() {
-    _tabController=TabController(length:2,vsync :this);
+    _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
@@ -41,7 +41,7 @@ class _AddingExpenseState extends State<AddingExpense> with TickerProviderStateM
     super.dispose();
     _tabController.dispose();
   }
-  
+
   void moveToSecondPage() async {
     id = await Navigator.push(
           context,
@@ -74,7 +74,7 @@ class _AddingExpenseState extends State<AddingExpense> with TickerProviderStateM
         category: id ?? 0,
         isExpense: isExpense ? 'expense' : 'income',
         time: time,
-        price: isExpense ? (price*(-1)) : price,
+        price: isExpense ? (price * (-1)) : price,
         description: description,
       ),
     );
@@ -113,12 +113,15 @@ class _AddingExpenseState extends State<AddingExpense> with TickerProviderStateM
     );
     return SafeArea(
       child: Scaffold(
-        endDrawer : MainDrawer(),
+        endDrawer: MainDrawer(),
         appBar: GradientAppBar(
           gradient: LinearGradient(
               colors: _theme.getTheme() == _theme.dark
                   ? [Color(0xff212121), Color(0xff212121)]
-                  : [Color.fromRGBO(227, 9, 23, 1), Color.fromRGBO(94, 23, 235, 1)]),
+                  : [
+                      Color.fromRGBO(227, 9, 23, 1),
+                      Color.fromRGBO(94, 23, 235, 1)
+                    ]),
           centerTitle: true,
           title: Icon(Icons.attach_money),
         ),
@@ -130,54 +133,39 @@ class _AddingExpenseState extends State<AddingExpense> with TickerProviderStateM
                 child: Column(
                   children: [
                     Padding(
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      child: ToggleSwitch(
+                        minWidth: 140.0,
+                        minHeight: 80.0,
+                        fontSize: 16.0,
+                        initialLabelIndex: 0,
+                        cornerRadius: 40.0,
+                        activeBgColor: Colors.purple,
+                        activeFgColor: Colors.white,
+                        inactiveBgColor: Colors.grey,
+                        inactiveFgColor: Colors.grey[900],
+                        labels: [
+                          S.of(context).AddingScreenIncome,
+                          S.of(context).AddingScreenExpense,
+                        ],
+                        onToggle: (index) {
+                          if (index == 0) {
+                            isExpense = false;
+                          }
+                          if (index == 1) {
+                            isExpense = true;
+                          }
+                          print('switched to: $index');
+                        },
+                      ),
+                    ),
+                    Padding(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                       child: Form(
                         key: _form,
                         child: Column(
                           children: [
-                            FittedBox(
-                              child: Center(child: TabBar(
-
-                                controller: _tabController,
-                                // give the indicator a decoration (color and border radius)
-                                indicator: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                    25.0,
-                                  ),
-                                  color: Colors.green,
-                                ),
-                                labelColor: Colors.white,
-                                unselectedLabelColor: Colors.black,
-                                tabs: [
-                                  Tab(
-                                    text: 'Expense',
-                                  ),
-
-                                  // second tab [you can add an icon using the icon property]
-                                  Tab(
-                                    text: 'Income',
-                                  ),
-
-                                ],),
-
-                               /* child: LiteRollingSwitch(
-                                  value: isExpense,
-                                  textOff: S.of(context).AddingScreenIncome,
-                                  textOn: S.of(context).AddingScreenExpense,
-                                  colorOn: Colors.red,
-                                  colorOff: Colors.green,
-                                  iconOn: Icons.remove,
-                                  iconOff: Icons.add,
-                                  textSize: 15,
-                                  onChanged: (bool value) {
-                                    isExpense = value;
-                                  },
-                                ),*/
-
-                              ),
-                            ),
-
                             GestureDetector(
                               onTap: () {
                                 moveToSecondPage();
