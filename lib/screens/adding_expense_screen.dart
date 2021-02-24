@@ -83,7 +83,6 @@ class _AddingExpenseState extends State<AddingExpense>
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     category = Provider.of<Expenses>(context, listen: false).CurrentCategory;
-    print(category.categoryName);
     final snackBar = SnackBar(
       content: Container(
         child: Text(
@@ -110,7 +109,32 @@ class _AddingExpenseState extends State<AddingExpense>
                       Color.fromRGBO(94, 23, 235, 1)
                     ]),
           centerTitle: true,
+          actions: [
+            Builder(
+              builder: (context) => IconButton(
+                icon: Icon(
+                  Icons.more_horiz,
+                  size: 30.0,
+                ),
+                onPressed: () => Scaffold.of(context).openEndDrawer(),
+                tooltip:
+                MaterialLocalizations.of(context).openAppDrawerTooltip,
+
+                ///it opens a drawer
+              ),
+            ),
+          ],
           title: Icon(Icons.attach_money),
+//            bottom: TabBar(
+//              onTap: (index) {},
+//              labelStyle: TextStyle(fontSize: 10),
+//              tabs: <Widget>[
+//                Tab(text: S.of(context).TabBarDay),
+//                Tab(text: S.of(context).TabBarWeek),
+//                Tab(text: S.of(context).TabBarMonth),
+//                Tab(text: S.of(context).TabBarYear),
+//              ],
+//            ),
         ),
         body: _isLoading
             ? Center(
@@ -120,17 +144,17 @@ class _AddingExpenseState extends State<AddingExpense>
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      padding: EdgeInsets.only(top: 20.0),
                       child: ToggleSwitch(
-                        minWidth: 140.0,
-                        minHeight: 80.0,
-                        fontSize: 16.0,
+                        minWidth: 120.0,
+                        minHeight: 60.0,
+                        fontSize: 17.0,
                         initialLabelIndex: 0,
-                        cornerRadius: 40.0,
-                        activeBgColor: Colors.purple,
+                        cornerRadius: 60.0,
+                        activeBgColor: Colors.pink,
                         activeFgColor: Colors.white,
-                        inactiveBgColor: Colors.grey,
-                        inactiveFgColor: Colors.grey[900],
+                        inactiveBgColor: Colors.blueGrey[200],
+                        inactiveFgColor: Colors.black,
                         labels: [
                           S.of(context).AddingScreenIncome,
                           S.of(context).AddingScreenExpense,
@@ -175,7 +199,9 @@ class _AddingExpenseState extends State<AddingExpense>
                                   title: Text(
                                     category.categoryName,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(),
+                                    style: TextStyle(fontSize: 19.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
                               ),

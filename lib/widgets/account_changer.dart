@@ -13,10 +13,8 @@ class AccountChanger extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return FloatingActionButton(
       backgroundColor: Colors.transparent,
-
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
         child: Container(
@@ -32,10 +30,6 @@ class AccountChanger extends StatelessWidget {
           ),
         ),
       ),
-
-
-
-
       onPressed: () {
         showGeneralDialog(
           barrierLabel: "Label",
@@ -47,10 +41,14 @@ class AccountChanger extends StatelessWidget {
             return Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                margin: EdgeInsets.only(bottom: 0,),
+                margin: EdgeInsets.only(
+                  bottom: 0,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.blueGrey[900],
-                  borderRadius: BorderRadius.only(topLeft:Radius.circular(20.0), topRight: Radius.circular(20.0)),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20.0),
+                      topRight: Radius.circular(20.0)),
                 ),
                 height: 300,
                 child: Column(
@@ -61,19 +59,23 @@ class AccountChanger extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height:60,
+                          height: 60,
                         ),
                         FlatButton(
                           onPressed: onPressed1,
-                          child: Text(S.of(context).AppBarIndividual,
+                          child: Text(
+                            S.of(context).AppBarIndividual,
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25.0 ,
-                                letterSpacing: 0.7,
-                                color: Colors.white,
-                            ),),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25.0,
+                              letterSpacing: 0.7,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
-                        SizedBox(width: 20.0,),
+                        SizedBox(
+                          width: 20.0,
+                        ),
                         Icon(
                           Icons.person,
                           color: Colors.white,
@@ -82,23 +84,25 @@ class AccountChanger extends StatelessWidget {
                       ],
                     ),
                     Divider(),
-
-
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FlatButton(
                           onPressed: onPressed2,
-                          child: Text(S.of(context).AppBarCorporate,
+                          child: Text(
+                            S.of(context).AppBarCorporate,
                             style: TextStyle(
                               fontSize: 25.0,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 0.7,
                               color: Colors.white,
-                            ),),
+                            ),
+                          ),
                         ),
-                        SizedBox(width: 20.0,),
+                        SizedBox(
+                          width: 20.0,
+                        ),
                         Icon(
                           Icons.work,
                           color: Colors.white,
@@ -108,22 +112,19 @@ class AccountChanger extends StatelessWidget {
                     ),
                   ],
                 ),
-
               ),
-
             );
           },
           transitionBuilder: (context, anim1, anim2, child) {
             return SlideTransition(
-              position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
+              position:
+                  Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
               child: child,
             );
           },
         );
       },
     );
-
-
 
     /*return PopupMenuButton(
       elevation: 0,

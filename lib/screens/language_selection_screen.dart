@@ -5,7 +5,6 @@ import 'expenses_list_screen.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 
-
 class LanguageSelectionScreen extends StatefulWidget {
   @override
   _LanguageSelectionScreenState createState() =>
@@ -13,7 +12,6 @@ class LanguageSelectionScreen extends StatefulWidget {
 }
 
 List icons = [
-
   ClipRRect(
     child: Image.asset(
       'assets/flags/turkey.png',
@@ -79,7 +77,7 @@ List icons = [
 class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   @override
   Widget build(BuildContext context) {
-    final padding = const EdgeInsets.all(30.0);
+
     return Scaffold(
       backgroundColor: Colors.red,
       drawer: MainDrawer(),
@@ -93,7 +91,6 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
           ),
           color: Colors.white60,
           margin: EdgeInsets.fromLTRB(30.0, 70.0, 30.0, 50.0),
-
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -104,39 +101,43 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 Text(
                   S.of(context).DrawerLanguageText,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,letterSpacing: 0.8),
                 ),
                 Expanded(
                   child: GridView.count(
-                    padding: padding,
+                    mainAxisSpacing: 0.0,
+                    crossAxisSpacing: 0.0,
+                    childAspectRatio: 16/9,
+                    padding: EdgeInsets.all(10.0),
                     crossAxisCount: 2,
                     children: List.generate(
                       icons.length,
                       (index) {
                         return FlatButton(
-                            onPressed: () {
-                              Provider.of<Languages>(context, listen: false)
-                                  .setLanguage(index);
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (ctx) => ExpensesListScreen(),
-                                  ));
-                            },
-                            child: icons[index],
-                          );
+                          onPressed: () {
+                            Provider.of<Languages>(context, listen: false)
+                                .setLanguage(index);
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                              builder: (ctx) => ExpensesListScreen(),
+                            ));
+                          },
+                          child: icons[index],
+                        );
                       },
                     ),
                   ),
                 ),
-                Container(
+                /*Container(
                   width: 270.0,
                   child: FlatButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    color:Colors.greenAccent[400],
-                    child:Text(S.of(context).LanguageScreenContinue,
+                    color: Colors.greenAccent[400],
+                    child: Text(
+                      S.of(context).LanguageScreenContinue,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.6,
@@ -144,10 +145,14 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                         color: Colors.white,
                       ),
                     ),
-                    onPressed: () {}, ///???
+                    onPressed: () {},
+
+                    ///???
                   ),
+                ),*/
+                SizedBox(
+                  height: 25.0,
                 ),
-                SizedBox(height: 30.0,),
               ],
             ),
           ),

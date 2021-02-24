@@ -6,41 +6,46 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 
-class ExpenseItem extends StatelessWidget {
+class ExpenseItem extends StatefulWidget {
   final Expense expense;
   const ExpenseItem({Key key, this.expense}) : super(key: key);
 
   @override
+  _ExpenseItemState createState() => _ExpenseItemState();
+}
+
+class _ExpenseItemState extends State<ExpenseItem> {
+  @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<Expenses>(context, listen: false);
+    var currency;
+    provider.getCurrency().then((value) => currency = value);
+
     checkLanguage(context);
-    var provider = Provider.of<Expenses>(context);
-    print('expense.category::::::::::::::::${expense.category}');
-    print('expense.description::::::::::::::::${expense.description}');
-    print('expense.id::::::::::::::::${expense.id}');
     return ListTile(
       leading: FittedBox(
         fit: BoxFit.cover,
         child: CircleAvatar(
-          child: provider.imgList[expense.category],
+          child: provider.imgList[widget.expense.category],
           backgroundColor: Colors.white,
           radius: 25,
         ),
       ),
       title: Text(
-        Jiffy(expense.time).yMMMd,
+        Jiffy(widget.expense.time).yMMMd,
         style: TextStyle(fontSize: 12),
       ),
       subtitle: Text(
-        expense.description,
+        provider.categories[widget.expense.category].categoryName,
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
-      trailing: expense.isExpense == 'expense'
+      trailing: widget.expense.isExpense == 'expense'
           ? Text(
-              expense.price.toString() + ' ₺',
+              widget.expense.price.toString() + ' ₺',
               style: TextStyle(color: Colors.red, fontSize: 15),
             )
           : Text(
-              '+ ' + expense.price.toString() + ' ₺',
+              '+ ' + widget.expense.price.toString() + ' ' + currency,
               style: TextStyle(color: Colors.green, fontSize: 15),
             ),
     );
