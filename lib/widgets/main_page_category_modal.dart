@@ -19,12 +19,14 @@ class MainPageCategoryModal extends StatelessWidget {
       showDialog<void>(
         context: context,
         builder: (BuildContext context) {
-          return ExpensesDialogWidget(category,list);
+          return ExpensesDialogWidget(
+              currency: currency, categoryIndex: category, expenseList: list);
         },
       );
     }
+
     return ListTile(
-      onTap: (){
+      onTap: () {
         return showExpensesDialog();
       },
       leading: FittedBox(

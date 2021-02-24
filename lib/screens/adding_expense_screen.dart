@@ -65,9 +65,9 @@ class _AddingExpenseState extends State<AddingExpense>
         description: description,
       ),
     );
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => scaffoldKey.currentState.showSnackBar(snackBar),
-    );
+//    WidgetsBinding.instance.addPostFrameCallback(
+//      (_) => scaffoldKey.currentState.showSnackBar(snackBar),
+//    );
     await Navigator.of(context).pop();
   }
 
@@ -117,8 +117,7 @@ class _AddingExpenseState extends State<AddingExpense>
                   size: 30.0,
                 ),
                 onPressed: () => Scaffold.of(context).openEndDrawer(),
-                tooltip:
-                MaterialLocalizations.of(context).openAppDrawerTooltip,
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
 
                 ///it opens a drawer
               ),
@@ -199,7 +198,8 @@ class _AddingExpenseState extends State<AddingExpense>
                                   title: Text(
                                     category.categoryName,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 19.0,
+                                    style: TextStyle(
+                                      fontSize: 19.0,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
