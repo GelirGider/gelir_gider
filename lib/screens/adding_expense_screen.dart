@@ -83,7 +83,6 @@ class _AddingExpenseState extends State<AddingExpense>
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     category = Provider.of<Expenses>(context, listen: false).CurrentCategory;
-    print(category.categoryName);
     final snackBar = SnackBar(
       content: Container(
         child: Text(
@@ -111,6 +110,16 @@ class _AddingExpenseState extends State<AddingExpense>
                     ]),
           centerTitle: true,
           title: Icon(Icons.attach_money),
+//            bottom: TabBar(
+//              onTap: (index) {},
+//              labelStyle: TextStyle(fontSize: 10),
+//              tabs: <Widget>[
+//                Tab(text: S.of(context).TabBarDay),
+//                Tab(text: S.of(context).TabBarWeek),
+//                Tab(text: S.of(context).TabBarMonth),
+//                Tab(text: S.of(context).TabBarYear),
+//              ],
+//            ),
         ),
         body: _isLoading
             ? Center(
@@ -122,11 +131,11 @@ class _AddingExpenseState extends State<AddingExpense>
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 15),
                       child: ToggleSwitch(
-                        minWidth: 140.0,
-                        minHeight: 80.0,
+                        minWidth: 120.0,
+                        minHeight: 60.0,
                         fontSize: 16.0,
                         initialLabelIndex: 0,
-                        cornerRadius: 40.0,
+                        cornerRadius: 60.0,
                         activeBgColor: Colors.purple,
                         activeFgColor: Colors.white,
                         inactiveBgColor: Colors.grey,

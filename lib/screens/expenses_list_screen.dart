@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
@@ -113,19 +115,26 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
             actions: [
               Builder(
                 builder: (context) => IconButton(
-                  icon: Icon(Icons.more_horiz,
-                  size: 30.0,),
+                  icon: Icon(
+                    Icons.more_horiz,
+                    size: 30.0,
+                  ),
                   onPressed: () => Scaffold.of(context).openEndDrawer(),
-                  tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip, ///it opens a drawer
+                  tooltip:
+                      MaterialLocalizations.of(context).openAppDrawerTooltip,
+
+                  ///it opens a drawer
                 ),
               ),
-
             ],
             title: Icon(Icons.attach_money),
             gradient: LinearGradient(
                 colors: _theme.getTheme() == _theme.dark
                     ? [Color(0xff212121), Color(0xff212121)]
-                    : [Color.fromRGBO(227, 9, 23, 1), Color.fromRGBO(94, 23, 235, 1)]),
+                    : [
+                        Color.fromRGBO(227, 9, 23, 1),
+                        Color.fromRGBO(94, 23, 235, 1)
+                      ]),
             bottom: TabBar(
               onTap: (index) {
                 Provider.of<Expenses>(context, listen: false)
@@ -151,9 +160,12 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                 ? Center(
                     child: CircularProgressIndicator(),
                   )
-                : expenseProvider.expense.isEmpty
+                : expenseProvider.currentItems.isEmpty
                     ? Center(
-                        child: Text(S.of(context).ExpenseListNoneExpense),
+                        child: Text(
+                          S.of(context).ExpenseListNoneExpense,
+                          textAlign: TextAlign.center,
+                        ),
                       )
                     : Column(
                         children: [
@@ -183,22 +195,24 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                             child: ListView.builder(
                               itemCount: expenseProvider.currentItems.length,
                               itemBuilder: (context, index) {
-                                var category = expenseProvider.currentItems.keys.toList()[index];
-                                var list = expenseProvider.currentItems.values.toList()[index];
+                                var category = expenseProvider.currentItems.keys
+                                    .toList()[index];
+                                var list = expenseProvider.currentItems.values
+                                    .toList()[index];
                                 return Column(
-                                    children: [
-                                      MainPageCategoryModal(
-                                        category: category,
-                                        list: list,
-                                      ),
-                                      Divider(
-                                        height: 25,
-                                        color: _theme.getTheme() == _theme.dark
-                                            ? Color.fromRGBO(1223, 81, 83, 1)
-                                            : Colors.black,
-                                      ),
-                                    ],
-                                  );
+                                  children: [
+                                    MainPageCategoryModal(
+                                      category: category,
+                                      list: list,
+                                    ),
+                                    Divider(
+                                      height: 25,
+                                      color: _theme.getTheme() == _theme.dark
+                                          ? Color.fromRGBO(1223, 81, 83, 1)
+                                          : Colors.black,
+                                    ),
+                                  ],
+                                );
                               },
                             ),
                           ),

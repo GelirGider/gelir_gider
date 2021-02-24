@@ -5,7 +5,6 @@ import 'expenses_list_screen.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 
-
 class LanguageSelectionScreen extends StatefulWidget {
   @override
   _LanguageSelectionScreenState createState() =>
@@ -13,7 +12,6 @@ class LanguageSelectionScreen extends StatefulWidget {
 }
 
 List icons = [
-
   ClipRRect(
     child: Image.asset(
       'assets/flags/turkey.png',
@@ -93,7 +91,6 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
           ),
           color: Colors.white60,
           margin: EdgeInsets.fromLTRB(30.0, 70.0, 30.0, 50.0),
-
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -114,16 +111,16 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                       icons.length,
                       (index) {
                         return FlatButton(
-                            onPressed: () {
-                              Provider.of<Languages>(context, listen: false)
-                                  .setLanguage(index);
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (ctx) => ExpensesListScreen(),
-                                  ));
-                            },
-                            child: icons[index],
-                          );
+                          onPressed: () {
+                            Provider.of<Languages>(context, listen: false)
+                                .setLanguage(index);
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                              builder: (ctx) => ExpensesListScreen(),
+                            ));
+                          },
+                          child: icons[index],
+                        );
                       },
                     ),
                   ),
@@ -135,8 +132,9 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    color:Colors.greenAccent[400],
-                    child:Text(S.of(context).LanguageScreenContinue,
+                    color: Colors.greenAccent[400],
+                    child: Text(
+                      S.of(context).LanguageScreenContinue,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.6,
@@ -144,10 +142,14 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                         color: Colors.white,
                       ),
                     ),
-                    onPressed: () {}, ///???
+                    onPressed: () {},
+
+                    ///???
                   ),
                 ),
-                SizedBox(height: 30.0,),
+                SizedBox(
+                  height: 30.0,
+                ),
               ],
             ),
           ),
