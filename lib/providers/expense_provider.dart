@@ -261,20 +261,8 @@ class Expenses with ChangeNotifier {
     _items.add(newExpense);
     setTabBarIndex(tabBarIndex);
     notifyListeners();
-    isPersonal
-        ? await DBHelper.insert(
-            'user_expenses',
-            {
-              'id': newExpense.id,
-              'category': newExpense.category,
-              'isExpense': newExpense.isExpense,
-              'time': newExpense.time,
-              'price': newExpense.price,
-              'description': newExpense.description,
-            },
-          )
-        : await DBHelper.insert2(
-            'user_expenses',
+    await DBHelper.insert(
+          isPersonal ? 'user_expenses':'corporation_expenses',
             {
               'id': newExpense.id,
               'category': newExpense.category,
@@ -290,14 +278,12 @@ class Expenses with ChangeNotifier {
     //var isPersonal = true;
     _items.removeWhere((element) => element.id == id);
     notifyListeners();
-    return isPersonal ? await DBHelper.delete(id) : await DBHelper.delete2(id);
+    return await DBHelper.delete(isPersonal ? 'user_expenses':'corporation_expenses',id);
   }
 
   Future<void> fetchAndSetExpenses() async {
     //var isPersonal = true;
-    final dataList = isPersonal
-        ? await DBHelper.getData('user_expenses')
-        : await DBHelper.getData2('user_expenses');
+    final dataList = await DBHelper.getData(isPersonal ? 'user_expenses':'corporation_expenses');
 
     _items = dataList
         .map(
