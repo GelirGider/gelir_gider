@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'month_list_item.dart';
-import 'package:provider/provider.dart';
-import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:gelir_gider/widgets/week_list_item.dart';
-import 'month_list.dart';
 
 class WeekList extends StatefulWidget {
   @override

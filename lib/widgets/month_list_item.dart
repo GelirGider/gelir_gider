@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'week_list_item.dart';
 import 'week_list.dart';
-import 'month_list.dart';
-import 'package:gelir_gider/widgets/month_list.dart';
 
 class MonthListItem extends StatelessWidget {
   final String title ;

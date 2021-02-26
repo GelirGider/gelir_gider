@@ -38,6 +38,17 @@
   "DialogExpenseIncome": "आय और व्यय ",
   "DrawerSelectCurrency": "मुद्रा",
   "AddingScreenWarning1" : "एक मूल्य जोड़ने",
-  "AddingScreenWarning2" : "एक संख्या लिखें "
+  "AddingScreenWarning2" : "एक संख्या लिखें ",
+  "January" : "जनवरी",
+  "February" : "फरवरी",
+  "March" : "मार्च",
+  "April" :  "अप्रैल",
+  "May" : "मई",
+  "June" :  "जून",
+  "July" : "जुलाई",
+  "August" :  "अगस्त",
+  "September" : "सितंबर",
+  "October" :  "अक्टूबर",
+  "November" : "नवंबर",
+  "December" :  "दिसंबर"
 }
-

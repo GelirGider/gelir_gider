@@ -38,5 +38,17 @@
   "DialogExpenseIncome": "Gelir ve Giderler",
   "DrawerSelectCurrency": "Para Birimi",
   "AddingScreenWarning1" : "Bir fiyat ekleyiniz",
-  "AddingScreenWarning2" : "Bir sayı yazınız"
+  "AddingScreenWarning2" : "Bir sayı yazınız",
+  "January" : "Ocak",
+  "February" : "Şubat",
+  "March" : "Mart",
+  "April" :  "Nisan",
+  "May" : "Mayıs",
+  "June" :  "Haziran",
+  "July" : "Temmuz",
+  "August" :  "Ağustos",
+  "September" : "Eylül",
+  "October" :  "Ekim",
+  "November" : "Kasım",
+  "December" :  "Aralık"
 }

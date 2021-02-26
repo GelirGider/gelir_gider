@@ -38,5 +38,17 @@
   "DialogExpenseIncome": "الإيرادات والمصروفات",
   "DrawerSelectCurrency": "عملة",
   "AddingScreenWarning1" : "أضف سعرًا",
-  "AddingScreenWarning2" : "اكتب رقمًا"
+  "AddingScreenWarning2" : "اكتب رقمًا",
+  "January" : "يناير",
+  "February" : "شهر فبراير",
+  "March" : "مارس",
+  "April" :  "أبريل",
+  "May" : "يمكن",
+  "June" :  "يونيو",
+  "July" : "تموز",
+  "August" :  "أغسطس",
+  "September" : "سبتمبر",
+  "October" :  "اكتوبر",
+  "November" : "شهر نوفمبر",
+  "December" :  "ديسمبر"
 }

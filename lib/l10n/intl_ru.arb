@@ -38,6 +38,19 @@
   "DialogExpenseIncome": "Доходы и расходы ",
   "DrawerSelectCurrency": "Валюта",
   "AddingScreenWarning1" : "Добавить цену",
-  "AddingScreenWarning2" : "Напишите число"
+  "AddingScreenWarning2" : "Напишите число",
+  "January" : "Январь",
+  "February" : "Февраль",
+  "March" :  "Марш",
+  "April" :  "Апреля",
+  "May" : "Май",
+  "June" :  "Июнь",
+  "July" :  "Июль",
+  "August" :  "Август",
+  "September" : "Сентябрь",
+  "October" :  "Октябрь",
+  "November" : "Ноябрь",
+  "December" :  "Декабрь"
+
 }
 

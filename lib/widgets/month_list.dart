@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'month_list_item.dart';
-import 'package:provider/provider.dart';
-import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:gelir_gider/widgets/month_list_item.dart';
 import 'week_list.dart';
-import 'week_list_item.dart';
+import 'package:gelir_gider/generated/l10n.dart';
 
 
 class MonthList extends StatefulWidget {
@@ -17,18 +15,18 @@ class _MonthListState extends State<MonthList> {
   @override
   Widget build(BuildContext context) {
     final monthList = <String>[
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
+      S.of(context).January,
+      S.of(context).February,
+      S.of(context).March,
+      S.of(context).April,
+      S.of(context).May,
+      S.of(context).June,
+      S.of(context).July,
+      S.of(context).August,
+      S.of(context).September,
+      S.of(context).October,
+      S.of(context).November,
+      S.of(context).December,
     ];
 
     var monthButtons = [
@@ -62,8 +60,6 @@ class _MonthListState extends State<MonthList> {
                   builder: (ctx) => WeekList(),
                 ),
               );
-
-
               },
               child: Text(monthList[index]),
             );

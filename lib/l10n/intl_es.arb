@@ -38,5 +38,17 @@
   "DialogExpenseIncome": "Ingresos y Gastos",
   "DrawerSelectCurrency": "Divisa",
   "AddingScreenWarning1" : "Escribe un precio",
-  "AddingScreenWarning2" : "Escribe un numero"
+  "AddingScreenWarning2" : "Escribe un numero",
+  "January" : "Enero",
+  "February" : "Febrero",
+  "March" : "Marzo",
+  "April" :  "Abril",
+  "May" : "Mayo",
+  "June" :  "Junio",
+  "July" : "Julio",
+  "August" :  "Agosto",
+  "September" : "Septiembre",
+  "October" :  "Octubre",
+  "November" : "Noviembre",
+  "December" :  "Diciembre"
 }
