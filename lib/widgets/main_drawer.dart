@@ -6,11 +6,13 @@ import 'package:gelir_gider/widgets/theme_dialog_widget.dart';
 import 'package:gelir_gider/screens/language_selection_screen.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:currency_picker/currency_picker.dart';
+import 'package:gelir_gider/themes/colours.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
+    var isDark = _theme.getTheme() == _theme.dark;
     var provider = Provider.of<Expenses>(context, listen: false);
 
     void showThemePicker() {
@@ -28,12 +30,7 @@ class MainDrawer extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                  colors: _theme.getTheme() == _theme.dark
-                      ? [Color(0xff191919), Color(0xff191919)]
-                      : [
-                          Color.fromRGBO(227, 9, 23, 1),
-                          Color.fromRGBO(94, 23, 235, 1)
-                        ]),
+                  colors: Colours.getGradientColors(isDark)),
             ),
             child: DrawerHeader(
               child: Icon(

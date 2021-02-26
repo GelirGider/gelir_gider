@@ -4,19 +4,19 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:gelir_gider/themes/colours.dart';
 
 class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var categories = Provider.of<Expenses>(context).categories;
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
+    var isDark = _theme.getTheme() == _theme.dark;
     return SafeArea(
       child: Scaffold(
         appBar: GradientAppBar(
           gradient: LinearGradient(
-              colors: _theme.getTheme() == _theme.dark
-                  ? [Color(0xff212121), Color(0xff212121)]
-                  : [Color.fromRGBO(227, 9, 23, 1), Color.fromRGBO(94, 23, 235, 1)]),
+              colors: Colours.getGradientColors(isDark)),
           centerTitle: true,
           title: Text(
             S.of(context).AddingScreenCategories,

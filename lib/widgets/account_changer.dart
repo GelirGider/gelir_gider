@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
+import 'package:gelir_gider/themes/colours.dart';
 
 class AccountChanger extends StatelessWidget {
   final onPressed1;
@@ -34,7 +35,7 @@ class AccountChanger extends StatelessWidget {
         showGeneralDialog(
           barrierLabel: "Label",
           barrierDismissible: true,
-          barrierColor: Colors.black.withOpacity(0.5),
+          barrierColor: Colours.accChangerDialogBarrier,
           transitionDuration: Duration(milliseconds: 700),
           context: context,
           pageBuilder: (context, anim1, anim2) {
@@ -69,7 +70,7 @@ class AccountChanger extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 25.0,
                               letterSpacing: 0.7,
-                              color: Colors.white,
+                              color: Colours.white,
                             ),
                           ),
                         ),
@@ -125,83 +126,5 @@ class AccountChanger extends StatelessWidget {
         );
       },
     );
-
-    /*return PopupMenuButton(
-      elevation: 0,
-      color: Colors.purple[100],
-      shape: RoundedRectangleBorder(
-        borderRadius:  BorderRadius.all( Radius.circular(20.0)),
-      ),
-
-
-
-      child: CircleAvatar(
-        backgroundColor: Colors.transparent,
-        child: Container(
-          padding: EdgeInsets.only(left: 8.0),
-          child: Image.asset(
-            isPersonal
-                ? 'assets/account_selector/man.png'
-                : 'assets/account_selector/suitcase (2).png',
-            height: 35,
-            width: 35,
-            colorBlendMode: BlendMode.darken,
-            fit: BoxFit.scaleDown,
-          ),
-        ),
-      ),
-      itemBuilder: (BuildContext context) {
-        return [
-          PopupMenuItem<String>(
-            value: '1',
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height:60,
-                ),
-                FlatButton(
-                  onPressed: onPressed1,
-                  child: Text(S.of(context).AppBarIndividual,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.7,
-                    color: Colors.pink[900]
-                  ),),
-                ),
-
-                Spacer(),
-                Icon(
-                  Icons.person,
-                  color: Colors.pink[900],
-                ),
-              ],
-            ),
-          ),
-          PopupMenuItem<String>(
-            value: '2',
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                FlatButton(
-                  onPressed: onPressed2,
-                  child: Text(S.of(context).AppBarCorporate,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 0.7,
-                      color: Colors.pink[900],
-                    ),),
-                ),
-                Spacer(),
-                Icon(
-                  Icons.work,
-                  color: Colors.pink[900],
-                ),
-              ],
-            ),
-          ),
-        ];
-      },
-    );*/
   }
 }

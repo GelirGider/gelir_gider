@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/expense_item.dart';
+import 'package:gelir_gider/themes/colours.dart';
 
 class ExpensesDialogWidget extends StatelessWidget {
   final int categoryIndex;
@@ -17,6 +18,7 @@ class ExpensesDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
+    var isDark = _theme.getTheme() == _theme.dark;
 
     return Container(
       height: 400,
@@ -44,9 +46,7 @@ class ExpensesDialogWidget extends StatelessWidget {
                     ),
                     Divider(
                       height: 25,
-                      color: _theme.getTheme() == _theme.dark
-                          ? Color.fromRGBO(223, 81, 83, 1)
-                          : Colors.black,
+                      color: Colours.getBlackOrWhite(isDark),
                     ),
                   ],
                 ),

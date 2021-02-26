@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
+import 'package:gelir_gider/themes/colours.dart';
 
 class ThemeDialogWidget extends StatelessWidget {
   @override
@@ -34,8 +35,8 @@ class ThemeDialogWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _theme.getTheme() == _theme.dark
-                  ? Icon(Icons.wb_sunny, color: Colors.white)
-                  : Icon(Icons.wb_sunny_outlined, color: Colors.black),
+                  ? Icon(Icons.wb_sunny, color: Colours.white)
+                  : Icon(Icons.wb_sunny_outlined, color: Colours.black),
               SizedBox(
                 width: 25,
               ),
@@ -59,8 +60,8 @@ class ThemeDialogWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _theme.getTheme() == _theme.dark
-                  ? Icon(Icons.wb_sunny_outlined, color: Colors.white)
-                  : Icon(Icons.wb_sunny, color: Colors.black),
+                  ? Icon(Icons.wb_sunny_outlined, color: Colours.white)
+                  : Icon(Icons.wb_sunny, color: Colours.black),
               SizedBox(
                 width: 25,
               ),

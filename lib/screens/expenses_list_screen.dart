@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
+import 'package:gelir_gider/themes/colours.dart';
 import 'package:gelir_gider/widgets/account_changer.dart';
 import 'package:gelir_gider/widgets/add_button.dart';
 import 'package:gelir_gider/widgets/main_drawer.dart';
@@ -28,11 +29,11 @@ List iconsYear = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       '2019',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -42,11 +43,11 @@ List iconsYear = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       '2020',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -56,11 +57,11 @@ List iconsYear = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       '2021',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -73,11 +74,11 @@ List iconsMonth = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       'January',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -87,11 +88,11 @@ List iconsMonth = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       'February',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -101,11 +102,11 @@ List iconsMonth = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       'March',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -115,11 +116,11 @@ List iconsMonth = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       'April',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -129,11 +130,11 @@ List iconsMonth = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       'May',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -143,11 +144,11 @@ List iconsMonth = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       'June',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -157,11 +158,11 @@ List iconsMonth = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       'July',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -171,11 +172,11 @@ List iconsMonth = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       'August',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -185,11 +186,11 @@ List iconsMonth = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       'September',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -199,11 +200,11 @@ List iconsMonth = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       'October',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -213,11 +214,11 @@ List iconsMonth = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       'November',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -227,11 +228,11 @@ List iconsMonth = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       'December',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -244,11 +245,11 @@ List iconsWeek = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       '1',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -258,11 +259,11 @@ List iconsWeek = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       '2',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -272,11 +273,11 @@ List iconsWeek = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       '3',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -286,11 +287,11 @@ List iconsWeek = [
       borderRadius: BorderRadius.circular(10),
     ),
     padding: const EdgeInsets.symmetric(vertical: 30),
-    color: Colors.pink,
+    color: Colours.pink,
     child: Text(
       '4',
       style: TextStyle(
-        color: Colors.white,
+        color: Colours.white,
       ),
     ),
   ),
@@ -336,6 +337,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
     final scaffoldKey = GlobalKey<ScaffoldState>();
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     final expenseProvider = Provider.of<Expenses>(context, listen: false);
+    var isDark = _theme.getTheme() == _theme.dark;
     expenseProvider.getSymbol();
 
     final snackBarr = SnackBar(
@@ -350,7 +352,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
         ),
       ),
       duration: Duration(seconds: 1),
-      backgroundColor: Colors.red,
+      backgroundColor: Colours.red,
     );
 
     return SafeArea(
@@ -395,12 +397,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
             ],
             title: Icon(Icons.attach_money),
             gradient: LinearGradient(
-                colors: _theme.getTheme() == _theme.dark
-                    ? [Color(0xff212121), Color(0xff212121)]
-                    : [
-                        Color.fromRGBO(227, 9, 23, 1),
-                        Color.fromRGBO(94, 23, 235, 1)
-                      ]),
+                colors: Colours.getGradientColors(isDark),),
             bottom: TabBar(
               onTap: (index) {
                 Provider.of<Expenses>(context, listen: false)
@@ -455,9 +452,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                 ),
                                 Divider(
                                   height: 25,
-                                  color: _theme.getTheme() == _theme.dark
-                                      ? Color.fromRGBO(1223, 81, 83, 1)
-                                      : Colors.black,
+                                  color: Colours.getBlackOrWhite(isDark),
                                 ),
                                 Flexible(
                                   flex: 10,
@@ -483,11 +478,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                               ),
                                               Divider(
                                                 height: 25,
-                                                color: _theme.getTheme() ==
-                                                        _theme.dark
-                                                    ? Color.fromRGBO(
-                                                        1223, 81, 83, 1)
-                                                    : Colors.black,
+                                                color: Colours.getBlackOrWhite(isDark),
                                               ),
                                             ],
                                           );

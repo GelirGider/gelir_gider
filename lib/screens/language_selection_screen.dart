@@ -4,6 +4,7 @@ import 'package:gelir_gider/widgets/main_drawer.dart';
 import 'expenses_list_screen.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:gelir_gider/themes/colours.dart';
 
 class LanguageSelectionScreen extends StatefulWidget {
   @override
@@ -79,17 +80,16 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Colors.red,
       drawer: MainDrawer(),
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.blueGrey,
+          color: Colours.languageContainerBg,
         ),
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
-          color: Colors.white60,
+          color: Colours.languageCardBg,
           margin: EdgeInsets.fromLTRB(30.0, 70.0, 30.0, 50.0),
           child: Center(
             child: Column(
@@ -101,7 +101,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 Text(
                   S.of(context).DrawerLanguageText,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,letterSpacing: 0.8),
+                  style: TextStyle(fontSize: 20,color: Colours.white, fontWeight: FontWeight.bold,letterSpacing: 0.8),
                 ),
                 Expanded(
                   child: GridView.count(
@@ -128,28 +128,6 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                     ),
                   ),
                 ),
-                /*Container(
-                  width: 270.0,
-                  child: FlatButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    color: Colors.greenAccent[400],
-                    child: Text(
-                      S.of(context).LanguageScreenContinue,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 0.6,
-                        fontSize: 22.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                    onPressed: () {},
-
-                    ///???
-                  ),
-                ),*/
                 SizedBox(
                   height: 25.0,
                 ),

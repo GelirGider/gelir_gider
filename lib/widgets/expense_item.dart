@@ -5,6 +5,7 @@ import '../providers/expense_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
+import 'package:gelir_gider/themes/colours.dart';
 
 class ExpenseItem extends StatefulWidget {
   final Expense expense;
@@ -27,7 +28,7 @@ class _ExpenseItemState extends State<ExpenseItem> {
         fit: BoxFit.cover,
         child: CircleAvatar(
           child: provider.imgList[widget.expense.category],
-          backgroundColor: Colors.white,
+          backgroundColor: Colours.white,
           radius: 25,
         ),
       ),
@@ -42,11 +43,11 @@ class _ExpenseItemState extends State<ExpenseItem> {
       trailing: widget.expense.isExpense == 'expense'
           ? Text(
               widget.expense.price.toString() + ' ' + widget.currency,
-              style: TextStyle(color: Colors.red, fontSize: 15),
+              style: TextStyle(color: Colours.red, fontSize: 15),
             )
           : Text(
               '+ ' + widget.expense.price.toString() + ' ' + widget.currency,
-              style: TextStyle(color: Colors.green, fontSize: 15),
+              style: TextStyle(color: Colours.green, fontSize: 15),
             ),
     );
   }

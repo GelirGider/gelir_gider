@@ -7,6 +7,7 @@ import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:gelir_gider/themes/colours.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          color: Color.fromRGBO(227, 9, 23, 1),
+          color: Colours.colorGradient1,
           supportedLocales: S.delegate.supportedLocales,
           title: 'Gelir/Gider',
           theme: value.getTheme(),
