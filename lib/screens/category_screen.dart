@@ -26,15 +26,19 @@ class CategoryScreen extends StatelessWidget {
           ),
         ),
         body: Container(
+          color: Colors.blueGrey,
           child: Card(
             color: _theme.getTheme() == _theme.dark
                 ? Color(0xff333333)
                 : Color.fromRGBO(254, 254, 254, 100),
-            margin: const EdgeInsets.fromLTRB(20, 30, 20, 40),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            margin: const EdgeInsets.fromLTRB(40, 70, 40, 95),
             borderOnForeground: true,
             semanticContainer: true,
             child: GridView.count(
-                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                padding: const EdgeInsets.all(15),
                 crossAxisCount: 3,
                 children: categories.map(
                   (element) {
