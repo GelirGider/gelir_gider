@@ -11,11 +11,11 @@ class AddButton extends StatelessWidget {
     var isDark = _theme.getTheme() == _theme.dark;
 
     return Container(
-      width: 60,
-      height: 60,
+      width: MediaQuery.of(context).size.height * 0.1,
+      height: MediaQuery.of(context).size.height * 0.1,
       child: Icon(
         Icons.add,
-        size: 40,
+        size: MediaQuery.of(context).size.height * 0.06,
       ),
       decoration: BoxDecoration(
         shape: BoxShape.circle,

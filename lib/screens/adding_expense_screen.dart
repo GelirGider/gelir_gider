@@ -255,12 +255,15 @@ class _AddingExpenseState extends State<AddingExpense>
                             ),
                             Divider(),
                             SizedBox(
-                              height: 35.0,
+                              height: 30.0,
                             ),
                             SaveButton(
                               onPressed: () =>
                                   _saveForm(widget.scaffoldKey, snackBar),
                             ),
+                            SizedBox(
+                              height: 15.0,
+                            )
                           ],
                         ),
                       ),

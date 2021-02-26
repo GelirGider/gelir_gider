@@ -437,7 +437,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                           : Column(
                               children: [
                                 SizedBox(
-                                  height: 15,
+                                  height: MediaQuery.of(context).size.height * 0.02,
                                 ),
                                 MoneyWidget(
                                   income: expenseProvider

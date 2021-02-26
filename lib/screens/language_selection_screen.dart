@@ -96,7 +96,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 20,
+                  height: MediaQuery.of(context).size.height * 0.04,
                 ),
                 Text(
                   S.of(context).DrawerLanguageText,

@@ -24,8 +24,6 @@ class AccountChanger extends StatelessWidget {
             isPersonal
                 ? 'assets/account_selector/man.png'
                 : 'assets/account_selector/suitcase (2).png',
-            height: 35,
-            width: 35,
             colorBlendMode: BlendMode.darken,
             fit: BoxFit.scaleDown,
           ),
@@ -51,7 +49,7 @@ class AccountChanger extends StatelessWidget {
                       topLeft: Radius.circular(20.0),
                       topRight: Radius.circular(20.0)),
                 ),
-                height: 300,
+                height: MediaQuery.of(context).size.height * 0.4,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -60,7 +58,7 @@ class AccountChanger extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 60,
+                          height: MediaQuery.of(context).size.height * 0.1,
                         ),
                         FlatButton(
                           onPressed: onPressed1,
@@ -75,7 +73,7 @@ class AccountChanger extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          width: 20.0,
+                          width: MediaQuery.of(context).size.width * 0.12,
                         ),
                         Icon(
                           Icons.person,
@@ -102,7 +100,7 @@ class AccountChanger extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          width: 20.0,
+                          width: MediaQuery.of(context).size.width * 0.12,
                         ),
                         Icon(
                           Icons.work,

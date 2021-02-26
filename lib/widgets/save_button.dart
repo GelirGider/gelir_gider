@@ -9,7 +9,7 @@ class SaveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 270.0,
+      width: MediaQuery.of(context).size.width * 0.7,
       child: FlatButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),

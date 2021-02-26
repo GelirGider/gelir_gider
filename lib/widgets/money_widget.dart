@@ -38,10 +38,10 @@ class MoneyWidget extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 5,
+          width: MediaQuery.of(context).size.width * 0.01,
         ),
         CircularPercentIndicator(
-          radius: 150.0,
+          radius: MediaQuery.of(context).size.height * 0.25,
           animation: true,
           animationDuration: 750,
           reverse: true,
@@ -56,7 +56,7 @@ class MoneyWidget extends StatelessWidget {
           progressColor: Colours.green,
         ),
         SizedBox(
-          width: 5,
+          width: MediaQuery.of(context).size.width * 0.01,
         ),
         Expanded(
           child: Column(

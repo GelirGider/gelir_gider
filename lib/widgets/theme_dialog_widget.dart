@@ -38,7 +38,7 @@ class ThemeDialogWidget extends StatelessWidget {
                   ? Icon(Icons.wb_sunny, color: Colours.white)
                   : Icon(Icons.wb_sunny_outlined, color: Colours.black),
               SizedBox(
-                width: 25,
+                width: MediaQuery.of(context).size.width * 0.1,
               ),
               Text(S.of(context).ThemeSelectionOption1,
                   textAlign: TextAlign.center, style: TextStyle(fontSize: 15)),
@@ -63,7 +63,7 @@ class ThemeDialogWidget extends StatelessWidget {
                   ? Icon(Icons.wb_sunny_outlined, color: Colours.white)
                   : Icon(Icons.wb_sunny, color: Colours.black),
               SizedBox(
-                width: 25,
+                width: MediaQuery.of(context).size.width * 0.1,
               ),
               Text(
                 S.of(context).ThemeSelectionOption2,

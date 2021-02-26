@@ -21,32 +21,32 @@ class ExpensesDialogWidget extends StatelessWidget {
     var isDark = _theme.getTheme() == _theme.dark;
 
     return Container(
-      height: 400,
-      width: 400,
+      height: MediaQuery.of(context).size.height * 0.4,
+      width: MediaQuery.of(context).size.width * 0.8,
       child: SimpleDialog(
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
         ),
-        titlePadding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        titlePadding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
         title: Text(
           S.of(context).DialogExpenseIncome,
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontWeight: FontWeight.bold, height: 2.5, letterSpacing: 1.0),
+              fontWeight: FontWeight.bold, height: 3, letterSpacing: 1.0),
         ),
         children: expenseList
             .map(
               (e) => Container(
                 child: Column(
                   children: [
-                    ExpenseItem(
-                      expense: e,
-                      currency: currency,
-                    ),
                     Divider(
                       height: 25,
                       color: Colours.getBlackOrWhite(isDark),
+                    ),
+                    ExpenseItem(
+                      expense: e,
+                      currency: currency,
                     ),
                   ],
                 ),
