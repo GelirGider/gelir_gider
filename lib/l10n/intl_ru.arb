@@ -34,6 +34,10 @@
   "CategoryOthers" :"Другие",
   "AppBarIndividual" :"Индивидуальный",
   "AppBarCorporate" :"Корпоративный»",
-  "LanguageScreenContinue" :"ПРОДОЛЖИТЬ"
+  "LanguageScreenContinue" :"ПРОДОЛЖИТЬ",
+  "DialogExpenseIncome": "Доходы и расходы ",
+  "DrawerSelectCurrency": "Валюта",
+  "AddingScreenWarning1" : "Добавить цену",
+  "AddingScreenWarning2" : "Напишите число"
 }
 

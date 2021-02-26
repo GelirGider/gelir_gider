@@ -34,5 +34,9 @@
   "CategoryOthers" : "آحرون",
   "AppBarIndividual" :"فرد",
   "AppBarCorporate" : "شركة كبرى",
-  "LanguageScreenContinue" :"يكمل"
+  "LanguageScreenContinue" :"يكمل",
+  "DialogExpenseIncome": "الإيرادات والمصروفات",
+  "DrawerSelectCurrency": "عملة",
+  "AddingScreenWarning1" : "أضف سعرًا",
+  "AddingScreenWarning2" : "اكتب رقمًا"
 }

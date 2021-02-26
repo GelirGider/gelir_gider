@@ -34,6 +34,10 @@
   "CategoryOthers" :"Outros",
   "AppBarIndividual" :"Individual",
   "AppBarCorporate" :"Corporativo",
-  "LanguageScreenContinue" :"CONTINUAR"
+  "LanguageScreenContinue" :"CONTINUAR",
+  "DialogExpenseIncome": "Receitas e despesas",
+  "DrawerSelectCurrency": "Moeda",
+  "AddingScreenWarning1" : "Adicione um preço",
+  "AddingScreenWarning2" : "Escreva um número"
 }
 

@@ -34,5 +34,9 @@
   "CategoryOthers" : "Otros",
   "AppBarIndividual" :"Individual",
   "AppBarCorporate" :"Corporativo",
-  "LanguageScreenContinue" : "CONTINUAR"
+  "LanguageScreenContinue" : "CONTINUAR",
+  "DialogExpenseIncome": "Ingresos y Gastos",
+  "DrawerSelectCurrency": "Divisa",
+  "AddingScreenWarning1" : "Escribe un precio",
+  "AddingScreenWarning2" : "Escribe un numero"
 }

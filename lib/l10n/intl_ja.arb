@@ -34,6 +34,10 @@
   "CategoryOthers" :"その他",
   "AppBarIndividual" :"個人",
   "AppBarCorporate" : "企業",
-  "LanguageScreenContinue" :"継続する"
+  "LanguageScreenContinue" :"継続する",
+  "DialogExpenseIncome": "収入と費用",
+  "DrawerSelectCurrency": "通貨",
+  "AddingScreenWarning1" : "価格を追加",
+  "AddingScreenWarning2" : "番号を書く"
 }
 

@@ -6,7 +6,6 @@ import 'package:gelir_gider/widgets/theme_dialog_widget.dart';
 import 'package:gelir_gider/screens/language_selection_screen.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:currency_picker/currency_picker.dart';
-import '';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -96,7 +95,7 @@ class MainDrawer extends StatelessWidget {
               );
             },
             title: Text(
-              'Select Currency',
+              S.of(context).DrawerSelectCurrency,
               style: TextStyle(fontSize: 18),
             ),
             leading: Icon(

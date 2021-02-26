@@ -36,7 +36,7 @@ class _ExpenseItemState extends State<ExpenseItem> {
         style: TextStyle(fontSize: 12),
       ),
       subtitle: Text(
-        provider.categories[widget.expense.category].categoryName,
+        widget.expense.description,
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       trailing: widget.expense.isExpense == 'expense'

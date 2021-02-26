@@ -34,6 +34,10 @@
   "CategoryOthers" :"अन्य",
   "AppBarIndividual" :"व्यक्ति",
   "AppBarCorporate" :"कॉर्पोरेट",
-  "LanguageScreenContinue" :"जारी रखें "
+  "LanguageScreenContinue" :"जारी रखें ",
+  "DialogExpenseIncome": "आय और व्यय ",
+  "DrawerSelectCurrency": "मुद्रा",
+  "AddingScreenWarning1" : "एक मूल्य जोड़ने",
+  "AddingScreenWarning2" : "एक संख्या लिखें "
 }
 

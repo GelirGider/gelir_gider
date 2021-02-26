@@ -34,5 +34,9 @@
   "CategoryOthers" : "Others",
   "AppBarIndividual" : "Individual",
   "AppBarCorporate" : "Corporate",
-  "LanguageScreenContinue" : "CONTINUE"
+  "LanguageScreenContinue" : "CONTINUE",
+  "DialogExpenseIncome": "Income and Expenses",
+  "DrawerSelectCurrency": "Currency",
+  "AddingScreenWarning1" : "Please add a price",
+  "AddingScreenWarning2" : "Please add a numerical value"
 }

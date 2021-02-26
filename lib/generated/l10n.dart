@@ -384,6 +384,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Income and Expenses`
+  String get DialogExpenseIncome {
+    return Intl.message(
+      'Income and Expenses',
+      name: 'DialogExpenseIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Currency`
+  String get DrawerSelectCurrency {
+    return Intl.message(
+      'Currency',
+      name: 'DrawerSelectCurrency',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please add a price`
+  String get AddingScreenWarning1 {
+    return Intl.message(
+      'Please add a price',
+      name: 'AddingScreenWarning1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please add a numerical value`
+  String get AddingScreenWarning2 {
+    return Intl.message(
+      'Please add a numerical value',
+      name: 'AddingScreenWarning2',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

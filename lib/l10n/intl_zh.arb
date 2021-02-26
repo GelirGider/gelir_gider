@@ -34,5 +34,9 @@
   "CategoryOthers" : "其他",
   "AppBarIndividual" :"个人",
   "AppBarCorporate" :"公司的",
-  "LanguageScreenContinue" :"继续"
+  "LanguageScreenContinue" :"继续",
+  "DialogExpenseIncome": "收入与支出",
+  "DrawerSelectCurrency": "货币",
+  "AddingScreenWarning1" : "添加价格",
+  "AddingScreenWarning2" : "写一个数字"
 }

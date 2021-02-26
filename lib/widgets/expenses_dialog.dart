@@ -28,7 +28,7 @@ class ExpensesDialogWidget extends StatelessWidget {
         ),
         titlePadding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         title: Text(
-          "Harcamalar",
+          S.of(context).DialogExpenseIncome,
           textAlign: TextAlign.center,
           style: TextStyle(
               fontWeight: FontWeight.bold, height: 2.5, letterSpacing: 1.0),
