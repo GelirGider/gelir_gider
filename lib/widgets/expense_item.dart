@@ -1,11 +1,9 @@
 import 'dart:ui';
-import 'package:jiffy/jiffy.dart';
 import 'package:flutter/material.dart';
 import '../providers/expense_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:gelir_gider/themes/colours.dart';
+import 'package:intl/intl.dart';
 
 class ExpenseItem extends StatefulWidget {
   final Expense expense;
@@ -21,8 +19,6 @@ class _ExpenseItemState extends State<ExpenseItem> {
   Widget build(BuildContext context) {
     var provider = Provider.of<Expenses>(context, listen: false);
     //provider.getCurrency().then((value) => currency = value);
-
-    checkLanguage(context);
     return ListTile(
       leading: FittedBox(
         fit: BoxFit.cover,
@@ -33,7 +29,7 @@ class _ExpenseItemState extends State<ExpenseItem> {
         ),
       ),
       title: Text(
-        Jiffy(widget.expense.time).yMMMd,
+          DateFormat.yMMMd().format(DateTime.parse(widget.expense.time)),
         style: TextStyle(fontSize: 12),
       ),
       subtitle: Text(
@@ -50,14 +46,5 @@ class _ExpenseItemState extends State<ExpenseItem> {
               style: TextStyle(color: Colours.green, fontSize: 15),
             ),
     );
-  }
-
-  void checkLanguage(context) async {
-    var prefs = await SharedPreferences.getInstance();
-    var index = await prefs.getInt('language');
-    var currentLanguage =
-        Provider.of<Languages>(context, listen: false).languageList[index];
-    print(currentLanguage.languageCode);
-    await Jiffy.locale(currentLanguage.languageCode);
   }
 }
