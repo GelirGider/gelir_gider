@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/widgets/expenses_dialog.dart';
+import 'package:gelir_gider/themes/colours.dart';
+
 
 class MainPageCategoryModal extends StatelessWidget {
   final int category;
@@ -33,7 +35,7 @@ class MainPageCategoryModal extends StatelessWidget {
         fit: BoxFit.cover,
         child: CircleAvatar(
           child: provider.imgList[category],
-          backgroundColor: Colors.white,
+          backgroundColor: Colours.white,
           radius: 25,
         ),
       ),
@@ -50,12 +52,12 @@ class MainPageCategoryModal extends StatelessWidget {
     if (price < 0) {
       return Text(
         price.toStringAsFixed(1) + ' ' + currency,
-        style: TextStyle(color: Colors.red, fontSize: 15),
+        style: TextStyle(color: Colours.red, fontSize: 15),
       );
     } else {
       return Text(
         '+ ' + price.toStringAsFixed(1) + ' ' + currency,
-        style: TextStyle(color: Colors.green, fontSize: 15),
+        style: TextStyle(color: Colours.green, fontSize: 15),
       );
     }
   }

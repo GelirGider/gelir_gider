@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:gelir_gider/themes/colours.dart';
 
 class MoneyWidget extends StatelessWidget {
   var income;
@@ -29,7 +30,7 @@ class MoneyWidget extends StatelessWidget {
                 income,
                 style: TextStyle(
                     fontSize: 16,
-                    color: Colors.green,
+                    color: Colours.green,
                     fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
@@ -51,8 +52,8 @@ class MoneyWidget extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
           ),
           circularStrokeCap: CircularStrokeCap.butt,
-          backgroundColor: Colors.red,
-          progressColor: Colors.green,
+          backgroundColor: Colours.red,
+          progressColor: Colours.green,
         ),
         SizedBox(
           width: 5,
@@ -72,7 +73,7 @@ class MoneyWidget extends StatelessWidget {
                 expense,
                 style: TextStyle(
                     fontSize: 16,
-                    color: Colors.red,
+                    color: Colours.red,
                     fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),

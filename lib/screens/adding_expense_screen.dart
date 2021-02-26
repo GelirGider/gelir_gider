@@ -10,6 +10,7 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gelir_gider/screens/category_screen.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'package:gelir_gider/themes/colours.dart';
 
 class AddingExpense extends StatefulWidget {
   final scaffoldKey;
@@ -82,6 +83,7 @@ class _AddingExpenseState extends State<AddingExpense>
   @override
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
+    var isDark = _theme.getTheme() == _theme.dark;
     category = Provider.of<Expenses>(context, listen: false).CurrentCategory;
     final snackBar = SnackBar(
       content: Container(
@@ -95,19 +97,14 @@ class _AddingExpenseState extends State<AddingExpense>
         ),
       ),
       duration: Duration(seconds: 1),
-      backgroundColor: Colors.purple,
+      backgroundColor: Colours.colorGradient2,
     );
     return SafeArea(
       child: Scaffold(
         endDrawer: MainDrawer(),
         appBar: GradientAppBar(
           gradient: LinearGradient(
-              colors: _theme.getTheme() == _theme.dark
-                  ? [Color(0xff212121), Color(0xff212121)]
-                  : [
-                      Color.fromRGBO(227, 9, 23, 1),
-                      Color.fromRGBO(94, 23, 235, 1)
-                    ]),
+              colors: Colours.getGradientColors(isDark)),
           centerTitle: true,
           actions: [
             Builder(
@@ -150,10 +147,10 @@ class _AddingExpenseState extends State<AddingExpense>
                         fontSize: 17.0,
                         initialLabelIndex: 0,
                         cornerRadius: 60.0,
-                        activeBgColor: Colors.pink,
-                        activeFgColor: Colors.white,
-                        inactiveBgColor: Colors.blueGrey[200],
-                        inactiveFgColor: Colors.black,
+                        activeBgColor: Colours.activeBgColor,
+                        activeFgColor: Colours.white,
+                        inactiveBgColor: Colours.inactiveBgColor,
+                        inactiveFgColor: Colours.black,
                         labels: [
                           S.of(context).AddingScreenIncome,
                           S.of(context).AddingScreenExpense,
@@ -185,9 +182,7 @@ class _AddingExpenseState extends State<AddingExpense>
                                 decoration: BoxDecoration(
                                   border: Border.all(
                                     width: 1,
-                                    color: _theme.getTheme() == _theme.dark
-                                        ? Colors.white
-                                        : Colors.black,
+                                    color: Colours.getBlackOrWhite(isDark)
                                   ),
                                 ),
                                 width: 500.0,
