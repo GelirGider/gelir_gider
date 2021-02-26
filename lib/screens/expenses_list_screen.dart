@@ -15,6 +15,7 @@ import 'adding_expense_screen.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:gelir_gider/widgets/main_page_category_modal.dart';
+import 'package:gelir_gider/widgets/month_list.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -544,6 +545,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                     ),
                   ),
                 ),
+
+                //For Year
                 Expanded(
                   child: GridView.count(
                     mainAxisSpacing: 0.0,
@@ -555,7 +558,10 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                       iconsYear.length,
                       (index) {
                         return FlatButton(
-                          onPressed: () {},
+                          onPressed: () {Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (ctx) => MonthList(),
+                          ));},
                           child: iconsYear[index],
                         );
                       },
