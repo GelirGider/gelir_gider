@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
-import 'package:gelir_gider/widgets/main_drawer.dart';
+import 'package:gelir_gider/widgets/components/main_drawer.dart';
 import 'expenses_list_screen.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:provider/provider.dart';

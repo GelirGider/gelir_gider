@@ -3,7 +3,7 @@ import 'package:gelir_gider/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
-import 'package:gelir_gider/widgets/expense_item.dart';
+import 'package:gelir_gider/widgets/components/expense_item.dart';
 import 'package:gelir_gider/themes/colours.dart';
 
 class ExpensesDialogWidget extends StatelessWidget {

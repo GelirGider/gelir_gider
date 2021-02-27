@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
-import 'package:gelir_gider/widgets/main_drawer.dart';
-import 'package:gelir_gider/widgets/save_button.dart';
+import 'package:gelir_gider/widgets/components/main_drawer.dart';
+import 'package:gelir_gider/widgets/buttons/save_button.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:provider/provider.dart';
@@ -104,8 +104,7 @@ class _AddingExpenseState extends State<AddingExpense>
       child: Scaffold(
         endDrawer: MainDrawer(),
         appBar: GradientAppBar(
-          gradient: LinearGradient(
-              colors: Colours.getGradientColors(isDark)),
+          gradient: LinearGradient(colors: Colours.getGradientColors(isDark)),
           centerTitle: true,
           actions: [
             Builder(
@@ -172,9 +171,8 @@ class _AddingExpenseState extends State<AddingExpense>
                                 margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                    width: 1,
-                                    color: Colours.getBlackOrWhite(isDark)
-                                  ),
+                                      width: 1,
+                                      color: Colours.getBlackOrWhite(isDark)),
                                 ),
                                 width: 500.0,
                                 alignment: Alignment.center,
