@@ -78,7 +78,7 @@ List icons = [
 class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   @override
   Widget build(BuildContext context) {
-
+    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
     return Scaffold(
       drawer: MainDrawer(),
       body: Container(
@@ -101,7 +101,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 Text(
                   S.of(context).DrawerLanguageText,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20,color: Colours.white, fontWeight: FontWeight.bold,letterSpacing: 0.8),
+                  style: TextStyle(fontSize: 20*textScaleFactor,color: Colours.white, fontWeight: FontWeight.bold,letterSpacing: 0.8),
                 ),
                 Expanded(
                   child: GridView.count(

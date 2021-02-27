@@ -50,5 +50,12 @@
   "September" : "सितंबर",
   "October" :  "अक्टूबर",
   "November" : "नवंबर",
-  "December" :  "दिसंबर"
+  "December" :  "दिसंबर",
+  "Monday" :"सोमवार",
+  "Tuesday" :"मंगलवार",
+  "Wednesday":"बुधवार",
+  "Thursday":"गुरूवार",
+  "Friday" :"शुक्रवार",
+  "Saturday":"शनिवार",
+  "Sunday" :"रविवार"
 }

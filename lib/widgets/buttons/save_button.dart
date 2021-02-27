@@ -8,6 +8,8 @@ class SaveButton extends StatelessWidget {
   const SaveButton({Key key, this.onPressed}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
+
     return Container(
       width: MediaQuery.of(context).size.width * 0.7,
       child: FlatButton(
@@ -21,7 +23,7 @@ class SaveButton extends StatelessWidget {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             letterSpacing: 0.6,
-            fontSize: 22.0,
+            fontSize: 22.0*textScaleFactor,
             color: Colours.white,
           ),
         ),

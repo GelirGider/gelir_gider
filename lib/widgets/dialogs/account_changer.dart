@@ -14,6 +14,7 @@ class AccountChanger extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
     return FloatingActionButton(
       backgroundColor: Colors.transparent,
       child: CircleAvatar(
@@ -66,7 +67,7 @@ class AccountChanger extends StatelessWidget {
                             S.of(context).AppBarIndividual,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 25.0,
+                              fontSize: 25.0*textScaleFactor,
                               letterSpacing: 0.7,
                               color: Colours.white,
                             ),
@@ -92,7 +93,7 @@ class AccountChanger extends StatelessWidget {
                           child: Text(
                             S.of(context).AppBarCorporate,
                             style: TextStyle(
-                              fontSize: 25.0,
+                              fontSize: 25.0*textScaleFactor,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 0.7,
                               color: Colors.white,

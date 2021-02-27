@@ -18,7 +18,8 @@ class _ExpenseItemState extends State<ExpenseItem> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<Expenses>(context, listen: false);
-    //provider.getCurrency().then((value) => currency = value);
+    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
+
     return ListTile(
       leading: FittedBox(
         fit: BoxFit.cover,
@@ -30,7 +31,7 @@ class _ExpenseItemState extends State<ExpenseItem> {
       ),
       title: Text(
           DateFormat.yMMMd().format(DateTime.parse(widget.expense.time)),
-        style: TextStyle(fontSize: 12),
+        style: TextStyle(fontSize: 12*textScaleFactor),
       ),
       subtitle: Text(
         widget.expense.description,
@@ -39,11 +40,11 @@ class _ExpenseItemState extends State<ExpenseItem> {
       trailing: widget.expense.isExpense == 'expense'
           ? Text(
               widget.expense.price.toString() + ' ' + widget.currency,
-              style: TextStyle(color: Colours.red, fontSize: 15),
+              style: TextStyle(color: Colours.red, fontSize: 15*textScaleFactor),
             )
           : Text(
               '+ ' + widget.expense.price.toString() + ' ' + widget.currency,
-              style: TextStyle(color: Colours.green, fontSize: 15),
+              style: TextStyle(color: Colours.green, fontSize: 15*textScaleFactor),
             ),
     );
   }

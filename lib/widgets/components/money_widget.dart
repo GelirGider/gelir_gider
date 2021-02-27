@@ -13,6 +13,7 @@ class MoneyWidget extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
     return Row(
       children: [
         Expanded(
@@ -21,7 +22,7 @@ class MoneyWidget extends StatelessWidget {
               Text(
                 S.of(context).MoneyWidgetIncome,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 18*textScaleFactor,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
@@ -29,7 +30,7 @@ class MoneyWidget extends StatelessWidget {
               Text(
                 income,
                 style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16*textScaleFactor,
                     color: Colours.green,
                     fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
@@ -49,7 +50,7 @@ class MoneyWidget extends StatelessWidget {
           percent: percentage,
           center: Text(
             money,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0*textScaleFactor),
           ),
           circularStrokeCap: CircularStrokeCap.butt,
           backgroundColor: Colours.red,
@@ -64,7 +65,7 @@ class MoneyWidget extends StatelessWidget {
               Text(
                 S.of(context).MoneyWidgetExpense,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 18*textScaleFactor,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
@@ -72,7 +73,7 @@ class MoneyWidget extends StatelessWidget {
               Text(
                 expense,
                 style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16*textScaleFactor,
                     color: Colours.red,
                     fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,

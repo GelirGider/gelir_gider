@@ -84,6 +84,7 @@ class _AddingExpenseState extends State<AddingExpense>
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
+    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
     category = Provider.of<Expenses>(context, listen: false).CurrentCategory;
     final snackBar = SnackBar(
       content: Container(
@@ -91,7 +92,7 @@ class _AddingExpenseState extends State<AddingExpense>
           'İşlem eklendi',
           style: TextStyle(
             color: Theme.of(context).primaryTextTheme.overline.color,
-            fontSize: 18,
+            fontSize: 18*textScaleFactor,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -120,16 +121,6 @@ class _AddingExpenseState extends State<AddingExpense>
             ),
           ],
           title: Icon(Icons.attach_money),
-//            bottom: TabBar(
-//              onTap: (index) {},
-//              labelStyle: TextStyle(fontSize: 10),
-//              tabs: <Widget>[
-//                Tab(text: S.of(context).TabBarDay),
-//                Tab(text: S.of(context).TabBarWeek),
-//                Tab(text: S.of(context).TabBarMonth),
-//                Tab(text: S.of(context).TabBarYear),
-//              ],
-//            ),
         ),
         body: _isLoading
             ? Center(
@@ -143,7 +134,7 @@ class _AddingExpenseState extends State<AddingExpense>
                       child: ToggleSwitch(
                         minWidth: 120.0,
                         minHeight: 60.0,
-                        fontSize: 17.0,
+                        fontSize: 17.0*textScaleFactor,
                         initialLabelIndex: 0,
                         cornerRadius: 60.0,
                         activeBgColor: Colours.activeBgColor,
@@ -192,7 +183,7 @@ class _AddingExpenseState extends State<AddingExpense>
                                     category.categoryName,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      fontSize: 19.0,
+                                      fontSize: 19.0*textScaleFactor,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),

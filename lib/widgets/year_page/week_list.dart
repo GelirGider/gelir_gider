@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/widgets/year_page/week_list_item.dart';
+import 'package:gelir_gider/generated/l10n.dart';
 
 class WeekList extends StatefulWidget {
   @override
@@ -10,13 +11,13 @@ class _WeekListState extends State<WeekList> {
   @override
   Widget build(BuildContext context) {
     final weekList = <String>[
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday',
+      S.of(context).Monday,
+      S.of(context).Tuesday,
+      S.of(context).Wednesday,
+      S.of(context).Thursday,
+      S.of(context).Friday,
+      S.of(context).Saturday,
+      S.of(context).Sunday
     ];
 
     var weekButtons = [
