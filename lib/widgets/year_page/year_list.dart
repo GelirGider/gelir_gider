@@ -32,29 +32,13 @@ class _YearListState extends State<YearList> {
         title: yearList[2],
       ),
     ];
-    return Scaffold(
-      body: GridView.count(
-        mainAxisSpacing: 0.0,
-        crossAxisSpacing: 0.0,
-        childAspectRatio: 1.0,
-        padding: EdgeInsets.all(10.0),
-        crossAxisCount: 3,
-        children: List.generate(
-          yearList.length,
-          (index) {
-            return FlatButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (ctx) => MonthList(),
-                  ),
-                );
-              },
-              child: Text(yearList[index]),
-            );
-          },
-        ),
-      ),
+    return GridView.count(
+      mainAxisSpacing: 20.0,
+      crossAxisSpacing: 20.0,
+      childAspectRatio: 1.0,
+      padding: EdgeInsets.all(30.0),
+      crossAxisCount: 3,
+      children: yearButtons,
     );
   }
 }

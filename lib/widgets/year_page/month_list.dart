@@ -28,58 +28,27 @@ class _MonthListState extends State<MonthList> {
     ];
 
     var monthButtons = [
-      MonthListItem(
-        title: monthList[0],
-      ),
+      MonthListItem(title: monthList[0]),
       MonthListItem(title: monthList[1]),
-      MonthListItem(
-        title: monthList[2],
-      ),
-      MonthListItem(
-        title: monthList[3],
-      ),
+      MonthListItem(title: monthList[2]),
+      MonthListItem(title: monthList[3]),
       MonthListItem(title: monthList[4]),
-      MonthListItem(
-        title: monthList[5],
-      ),
-      MonthListItem(
-        title: monthList[6],
-      ),
+      MonthListItem(title: monthList[5]),
+      MonthListItem(title: monthList[6]),
       MonthListItem(title: monthList[7]),
-      MonthListItem(
-        title: monthList[8],
-      ),
-      MonthListItem(
-        title: monthList[9],
-      ),
+      MonthListItem(title: monthList[8]),
+      MonthListItem(title: monthList[9]),
       MonthListItem(title: monthList[10]),
-      MonthListItem(
-        title: monthList[11],
-      ),
+      MonthListItem(title: monthList[11]),
     ];
-    return Scaffold(
-      body: GridView.count(
-        mainAxisSpacing: 0.0,
-        crossAxisSpacing: 0.0,
-        childAspectRatio: 1.0,
-        padding: EdgeInsets.all(10.0),
-        crossAxisCount: 3,
-        children: List.generate(
-          monthList.length,
-          (index) {
-            return FlatButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (ctx) => WeekList(),
-                  ),
-                );
-              },
-              child: Text(monthList[index]),
-            );
-          },
-        ),
-      ),
+
+    return GridView.count(
+      mainAxisSpacing: 10.0,
+      crossAxisSpacing: 10.0,
+      childAspectRatio: 1.0,
+      padding: EdgeInsets.all(30.0),
+      crossAxisCount: 3,
+      children: monthButtons,
     );
   }
 }

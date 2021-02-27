@@ -251,7 +251,6 @@ class Expenses with ChangeNotifier {
   Future<void> getSymbol() async {
     var prefs = await SharedPreferences.getInstance();
     symbol = await prefs.getString(modePrefKeyCurrency) ?? '₺';
-    print('  Future<void> getSymbol() async {$symbol');
     notifyListeners();
   }
   //----------------------------------------------------------------------------
@@ -283,7 +282,6 @@ class Expenses with ChangeNotifier {
   }
 
   Future<void> fetchAndSetExpenses() async {
-    //var isPersonal = true;
     final dataList = await DBHelper.getData(
         isPersonal ? 'user_expenses' : 'corporation_expenses');
 

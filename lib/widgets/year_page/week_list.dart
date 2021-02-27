@@ -43,23 +43,13 @@ class _WeekListState extends State<WeekList> {
       ),
     ];
 
-    return Scaffold(
-      body: GridView.count(
-        mainAxisSpacing: 0.0,
-        crossAxisSpacing: 0.0,
-        childAspectRatio: 1.0,
-        padding: EdgeInsets.all(10.0),
-        crossAxisCount: 3,
-        children: List.generate(
-          weekList.length,
-          (index) {
-            return FlatButton(
-              onPressed: () {},
-              child: Text(weekList[index]),
-            );
-          },
-        ),
-      ),
+    return GridView.count(
+      mainAxisSpacing: 20.0,
+      crossAxisSpacing: 20.0,
+      padding: EdgeInsets.all(30.0),
+      childAspectRatio: 7 / 5,
+      crossAxisCount: 2,
+      children: weekButtons,
     );
   }
 }
