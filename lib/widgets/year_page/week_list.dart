@@ -20,27 +20,13 @@ class _WeekListState extends State<WeekList> {
     ];
 
     var weekButtons = [
-      WeekListItem(
-        title: weekList[0],
-      ),
-      WeekListItem(
-        title: weekList[1],
-      ),
-      WeekListItem(
-        title: weekList[2],
-      ),
-      WeekListItem(
-        title: weekList[3],
-      ),
-      WeekListItem(
-        title: weekList[4],
-      ),
-      WeekListItem(
-        title: weekList[5],
-      ),
-      WeekListItem(
-        title: weekList[6],
-      ),
+      WeekListItem(title: weekList[0]),
+      WeekListItem(title: weekList[1]),
+      WeekListItem(title: weekList[2]),
+      WeekListItem(title: weekList[3]),
+      WeekListItem(title: weekList[4]),
+      WeekListItem(title: weekList[5]),
+      WeekListItem(title: weekList[6]),
     ];
 
     return GridView.count(

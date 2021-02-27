@@ -32,9 +32,9 @@ class Expenses with ChangeNotifier {
   var categoryList = [];
   var _categories = [];
   int _currentCategoryId = 0;
-  int tabBarIndex = 0;
-  bool init = false;
-  bool init2 = false;
+  int _tabBarIndex = 0;
+  bool _init = false;
+  bool _init2 = false;
 
   var imgList = [
     Image.asset('assets/categories/dues.png'),
@@ -113,7 +113,7 @@ class Expenses with ChangeNotifier {
     _categoryAndItems = value;
   }
 
-  int get TabBarIndex => tabBarIndex;
+  int get TabBarIndex => _tabBarIndex;
 
   Map<int, List<Expense>> _currentItems = {};
   Map<int, List<Expense>> get currentItems {
@@ -152,17 +152,17 @@ class Expenses with ChangeNotifier {
 
   void setTabBarIndex(int index) {
     setDates();
-    tabBarIndex = index;
-    if (tabBarIndex == 0) {
+    _tabBarIndex = index;
+    if (_tabBarIndex == 0) {
       _currentItems = _day;
     }
-    if (tabBarIndex == 1) {
+    if (_tabBarIndex == 1) {
       _currentItems = _week;
     }
-    if (tabBarIndex == 2) {
+    if (_tabBarIndex == 2) {
       _currentItems = _month;
     }
-    if (tabBarIndex == 3) {
+    if (_tabBarIndex == 3) {
       _currentItems = _year;
     }
     notifyListeners();
@@ -190,9 +190,9 @@ class Expenses with ChangeNotifier {
     _week = groupExpensesByCategories(temp1);
     _month = groupExpensesByCategories(temp2);
     _year = groupExpensesByCategories(temp3);
-    if (!init) {
+    if (!_init) {
       _currentItems = _day;
-      init = true;
+      _init = true;
     }
     notifyListeners();
   }
@@ -217,7 +217,7 @@ class Expenses with ChangeNotifier {
     _items.clear();
     await fetchAndSetExpenses();
     setDates();
-    setTabBarIndex(tabBarIndex);
+    setTabBarIndex(_tabBarIndex);
     notifyListeners();
   }
 
@@ -227,7 +227,7 @@ class Expenses with ChangeNotifier {
     _items.clear();
     await fetchAndSetExpenses();
     setDates();
-    setTabBarIndex(tabBarIndex);
+    setTabBarIndex(_tabBarIndex);
     notifyListeners();
   }
 
@@ -258,7 +258,7 @@ class Expenses with ChangeNotifier {
   Future<void> addExpense(Expense newExpense) async {
     // var isPersonal = true;
     _items.add(newExpense);
-    setTabBarIndex(tabBarIndex);
+    setTabBarIndex(_tabBarIndex);
     notifyListeners();
     await DBHelper.insert(
       isPersonal ? 'user_expenses' : 'corporation_expenses',
@@ -297,9 +297,9 @@ class Expenses with ChangeNotifier {
           ),
         )
         .toList();
-    if (!init2) {
+    if (!_init2) {
       setTabBarIndex(0);
-      init2 = true;
+      _init2 = true;
     }
     notifyListeners();
   }

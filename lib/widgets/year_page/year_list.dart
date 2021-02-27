@@ -22,15 +22,9 @@ class _YearListState extends State<YearList> {
     ];
 
     var yearButtons = [
-      YearListItem(
-        title: yearList[0],
-      ),
-      YearListItem(
-        title: yearList[1],
-      ),
-      YearListItem(
-        title: yearList[2],
-      ),
+      YearListItem(title: yearList[0]),
+      YearListItem(title: yearList[1]),
+      YearListItem(title: yearList[2]),
     ];
     return GridView.count(
       mainAxisSpacing: 20.0,
