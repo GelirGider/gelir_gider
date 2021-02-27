@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../providers/expense_provider.dart';
+import '../../providers/expense_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/themes/colours.dart';
 import 'package:intl/intl.dart';

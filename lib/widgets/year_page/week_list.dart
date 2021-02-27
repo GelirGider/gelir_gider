@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gelir_gider/widgets/week_list_item.dart';
+import 'package:gelir_gider/widgets/year_page/week_list_item.dart';
 
 class WeekList extends StatefulWidget {
   @override
@@ -9,8 +9,7 @@ class WeekList extends StatefulWidget {
 class _WeekListState extends State<WeekList> {
   @override
   Widget build(BuildContext context) {
-
-    final weekList = <String> [
+    final weekList = <String>[
       'Monday',
       'Tuesday',
       'Wednesday',
@@ -21,13 +20,27 @@ class _WeekListState extends State<WeekList> {
     ];
 
     var weekButtons = [
-      WeekListItem(title: weekList[0],),
-      WeekListItem(title: weekList[1],),
-      WeekListItem(title: weekList[2],),
-      WeekListItem(title: weekList[3],),
-      WeekListItem(title: weekList[4],),
-      WeekListItem(title: weekList[5],),
-      WeekListItem(title: weekList[6],),
+      WeekListItem(
+        title: weekList[0],
+      ),
+      WeekListItem(
+        title: weekList[1],
+      ),
+      WeekListItem(
+        title: weekList[2],
+      ),
+      WeekListItem(
+        title: weekList[3],
+      ),
+      WeekListItem(
+        title: weekList[4],
+      ),
+      WeekListItem(
+        title: weekList[5],
+      ),
+      WeekListItem(
+        title: weekList[6],
+      ),
     ];
 
     return Scaffold(
@@ -39,11 +52,9 @@ class _WeekListState extends State<WeekList> {
         crossAxisCount: 3,
         children: List.generate(
           weekList.length,
-              (index) {
+          (index) {
             return FlatButton(
-              onPressed: () {
-
-              },
+              onPressed: () {},
               child: Text(weekList[index]),
             );
           },

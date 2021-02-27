@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/themes/colours.dart';
-import 'package:gelir_gider/widgets/account_changer.dart';
-import 'package:gelir_gider/widgets/add_button.dart';
-import 'package:gelir_gider/widgets/main_drawer.dart';
-import 'package:gelir_gider/widgets/money_widget.dart';
+import 'package:gelir_gider/widgets/dialogs/account_changer.dart';
+import 'package:gelir_gider/widgets/buttons/add_button.dart';
+import 'package:gelir_gider/widgets/components/main_drawer.dart';
+import 'package:gelir_gider/widgets/components/money_widget.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'adding_expense_screen.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
-import 'package:gelir_gider/widgets/main_page_category_modal.dart';
-import 'package:gelir_gider/widgets/month_list.dart';
+import 'package:gelir_gider/widgets/dialogs/main_page_category_modal.dart';
+import 'package:gelir_gider/widgets/year_page/month_list.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -398,7 +398,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
             ],
             title: Icon(Icons.attach_money),
             gradient: LinearGradient(
-                colors: Colours.getGradientColors(isDark),),
+              colors: Colours.getGradientColors(isDark),
+            ),
             bottom: TabBar(
               onTap: (index) {
                 Provider.of<Expenses>(context, listen: false)
@@ -437,7 +438,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                           : Column(
                               children: [
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.height * 0.02,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.02,
                                 ),
                                 MoneyWidget(
                                   income: expenseProvider
@@ -479,7 +481,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                               ),
                                               Divider(
                                                 height: 25,
-                                                color: Colours.getBlackOrWhite(isDark),
+                                                color: Colours.getBlackOrWhite(
+                                                    isDark),
                                               ),
                                             ],
                                           );
@@ -549,10 +552,12 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                       iconsYear.length,
                       (index) {
                         return FlatButton(
-                          onPressed: () {Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
-                            builder: (ctx) => MonthList(),
-                          ));},
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                              builder: (ctx) => MonthList(),
+                            ));
+                          },
                           child: iconsYear[index],
                         );
                       },

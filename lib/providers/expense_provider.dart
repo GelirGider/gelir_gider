@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/helpers/db_helper.dart';
 import 'package:gelir_gider/utils/time_diff.dart';
-import 'package:gelir_gider/widgets/category_item.dart';
+import 'package:gelir_gider/widgets/components/category_item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:collection/collection.dart';
 
@@ -262,28 +262,30 @@ class Expenses with ChangeNotifier {
     setTabBarIndex(tabBarIndex);
     notifyListeners();
     await DBHelper.insert(
-          isPersonal ? 'user_expenses':'corporation_expenses',
-            {
-              'id': newExpense.id,
-              'category': newExpense.category,
-              'isExpense': newExpense.isExpense,
-              'time': newExpense.time,
-              'price': newExpense.price,
-              'description': newExpense.description,
-            },
-          );
+      isPersonal ? 'user_expenses' : 'corporation_expenses',
+      {
+        'id': newExpense.id,
+        'category': newExpense.category,
+        'isExpense': newExpense.isExpense,
+        'time': newExpense.time,
+        'price': newExpense.price,
+        'description': newExpense.description,
+      },
+    );
   }
 
   Future<void> delete(String id) async {
     //var isPersonal = true;
     _items.removeWhere((element) => element.id == id);
     notifyListeners();
-    return await DBHelper.delete(isPersonal ? 'user_expenses':'corporation_expenses',id);
+    return await DBHelper.delete(
+        isPersonal ? 'user_expenses' : 'corporation_expenses', id);
   }
 
   Future<void> fetchAndSetExpenses() async {
     //var isPersonal = true;
-    final dataList = await DBHelper.getData(isPersonal ? 'user_expenses':'corporation_expenses');
+    final dataList = await DBHelper.getData(
+        isPersonal ? 'user_expenses' : 'corporation_expenses');
 
     _items = dataList
         .map(

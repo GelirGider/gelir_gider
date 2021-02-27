@@ -71,6 +71,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  currency_picker:
+    dependency: "direct main"
+    description:
+      name: currency_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
   custom_switch:
     dependency: "direct main"
     description:
@@ -189,13 +196,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
-  lite_rolling_switch:
-    dependency: "direct main"
-    description:
-      name: lite_rolling_switch
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.1"
   matcher:
     dependency: transitive
     description:

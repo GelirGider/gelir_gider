@@ -2,9 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:gelir_gider/widgets/expenses_dialog.dart';
+import 'package:gelir_gider/widgets/dialogs/expenses_dialog.dart';
 import 'package:gelir_gider/themes/colours.dart';
-
 
 class MainPageCategoryModal extends StatelessWidget {
   final int category;
