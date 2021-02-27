@@ -50,5 +50,12 @@
   "September" : "سبتمبر",
   "October" :  "اكتوبر",
   "November" : "شهر نوفمبر",
-  "December" :  "ديسمبر"
+  "December" :  "ديسمبر",
+  "Monday" : "الاثنين",
+  "Tuesday" : "يوم الثلاثاء",
+  "Wednesday" : "الأربعاء",
+  "Thursday" : "يوم الخميس",
+  "Friday" : "جمعة",
+  "Saturday" : "السبت",
+  "Sunday" : "الأحد"
 }

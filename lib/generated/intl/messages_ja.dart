@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "DrawerThemeText" : MessageLookupByLibrary.simpleMessage("テーマ"),
     "ExpenseListNoneExpense" : MessageLookupByLibrary.simpleMessage("まだ費用を追加していません\n始めましょう！"),
     "February" : MessageLookupByLibrary.simpleMessage("二月 "),
+    "Friday" : MessageLookupByLibrary.simpleMessage("金曜日"),
     "January" : MessageLookupByLibrary.simpleMessage("一月 "),
     "July" : MessageLookupByLibrary.simpleMessage("七月"),
     "June" : MessageLookupByLibrary.simpleMessage("六月"),
@@ -64,13 +65,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "MoneyWidgetMoney" : MessageLookupByLibrary.simpleMessage("お金"),
     "November" : MessageLookupByLibrary.simpleMessage("十一月 "),
     "October" : MessageLookupByLibrary.simpleMessage("十月"),
+    "Saturday" : MessageLookupByLibrary.simpleMessage("土曜日"),
     "September" : MessageLookupByLibrary.simpleMessage("九月"),
+    "Sunday" : MessageLookupByLibrary.simpleMessage("日曜日"),
     "TabBarDay" : MessageLookupByLibrary.simpleMessage("日"),
     "TabBarMonth" : MessageLookupByLibrary.simpleMessage("月"),
     "TabBarWeek" : MessageLookupByLibrary.simpleMessage("週間"),
     "TabBarYear" : MessageLookupByLibrary.simpleMessage("年"),
     "ThemeSelectionOption1" : MessageLookupByLibrary.simpleMessage("光のテーマ"),
     "ThemeSelectionOption2" : MessageLookupByLibrary.simpleMessage("暗いテーマ"),
-    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("テーマを選択")
+    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("テーマを選択"),
+    "Thursday" : MessageLookupByLibrary.simpleMessage("木曜日"),
+    "Tuesday" : MessageLookupByLibrary.simpleMessage("火曜日"),
+    "Wednesday" : MessageLookupByLibrary.simpleMessage("水曜日")
   };
 }

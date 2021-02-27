@@ -50,5 +50,12 @@
   "September" : "九月",
   "October" :  "十月",
   "November" : "十一月",
-  "December" :  "十二月"
+  "December" :  "十二月",
+  "Monday" : "周一",
+  "Tuesday" : "周二",
+  "Wednesday" : "周三",
+  "Thursday" : "周四",
+  "Friday" : "星期五",
+  "Saturday" : "周六",
+  "Sunday" : "星期日"
 }
