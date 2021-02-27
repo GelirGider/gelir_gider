@@ -7,6 +7,8 @@ import 'package:gelir_gider/themes/colours.dart';
 class ThemeDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
+
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     return SimpleDialog(
       elevation: 0,
@@ -41,7 +43,7 @@ class ThemeDialogWidget extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.1,
               ),
               Text(S.of(context).ThemeSelectionOption1,
-                  textAlign: TextAlign.center, style: TextStyle(fontSize: 15)),
+                  textAlign: TextAlign.center, style: TextStyle(fontSize: 15*textScaleFactor)),
             ],
           ),
         ),
@@ -68,7 +70,7 @@ class ThemeDialogWidget extends StatelessWidget {
               Text(
                 S.of(context).ThemeSelectionOption2,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 15),
+                style: TextStyle(fontSize: 15*textScaleFactor),
               ),
             ],
           ),

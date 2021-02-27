@@ -16,6 +16,7 @@ class MainPageCategoryModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
     var provider = Provider.of<Expenses>(context, listen: false);
     void showExpensesDialog() {
       showDialog<void>(
@@ -43,16 +44,16 @@ class MainPageCategoryModal extends StatelessWidget {
         provider.categories[category].categoryName,
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
-      trailing: checkTotalPrice(calculatePrice(), currency),
+      trailing: checkTotalPrice(calculatePrice(), currency,textScaleFactor),
     );
   }
 
-  Widget checkTotalPrice(double price, String currency) {
+  Widget checkTotalPrice(double price, String currency,double scaleFactor) {
     print('  Widget checkTotalPrice(double price, String currency)$currency');
     if (price < 0) {
       return Text(
         price.toStringAsFixed(1) + ' ' + currency,
-        style: TextStyle(color: Colours.red, fontSize: 15),
+        style: TextStyle(color: Colours.red, fontSize: 15*scaleFactor),
       );
     } else {
       return Text(

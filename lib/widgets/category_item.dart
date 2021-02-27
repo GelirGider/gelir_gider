@@ -17,6 +17,8 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
+    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
       padding: const EdgeInsets.all(30),
@@ -34,7 +36,7 @@ class CategoryItem extends StatelessWidget {
           Text(categoryName,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 75,
+                fontSize: 75*textScaleFactor,
                 color: Colours.getBlackOrWhite(isDark),
               ))
         ],

@@ -339,6 +339,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     final expenseProvider = Provider.of<Expenses>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
+    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
     expenseProvider.getSymbol();
 
     final snackBarr = SnackBar(
@@ -347,7 +348,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           'İşlem silindi',
           style: TextStyle(
             color: Theme.of(context).textTheme.overline.color,
-            fontSize: 18,
+            fontSize: 18*textScaleFactor,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -407,7 +408,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                 print(index);
                 setState(() {});
               },
-              labelStyle: TextStyle(fontSize: 12),
+              labelStyle: TextStyle(fontSize: 12*textScaleFactor),
               tabs: <Widget>[
                 Tab(text: S.of(context).TabBarDay),
                 Tab(text: S.of(context).TabBarWeek),

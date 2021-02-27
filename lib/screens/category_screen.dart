@@ -12,6 +12,8 @@ class CategoryScreen extends StatelessWidget {
     var categories = Provider.of<Expenses>(context).categories;
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
+    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
+
     return SafeArea(
       child: Scaffold(
         appBar: GradientAppBar(
@@ -22,7 +24,7 @@ class CategoryScreen extends StatelessWidget {
             S.of(context).AddingScreenCategories,
             style: TextStyle(
                 color: Theme.of(context).primaryTextTheme.caption.color,
-                fontSize: 24),
+                fontSize: 24*textScaleFactor),
           ),
         ),
         body: Container(

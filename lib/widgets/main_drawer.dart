@@ -14,6 +14,7 @@ class MainDrawer extends StatelessWidget {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
     var provider = Provider.of<Expenses>(context, listen: false);
+    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
 
     void showThemePicker() {
       showDialog<void>(
@@ -47,7 +48,7 @@ class MainDrawer extends StatelessWidget {
             },
             title: Text(
               S.of(context).DrawerThemeText,
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18*textScaleFactor),
             ),
             leading: Icon(
               Icons.color_lens,
@@ -67,7 +68,7 @@ class MainDrawer extends StatelessWidget {
             },
             title: Text(
               S.of(context).DrawerLanguageText,
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18*textScaleFactor),
             ),
             leading: Icon(
               Icons.language,
@@ -93,7 +94,7 @@ class MainDrawer extends StatelessWidget {
             },
             title: Text(
               S.of(context).DrawerSelectCurrency,
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18*textScaleFactor),
             ),
             leading: Icon(
               Icons.money,
