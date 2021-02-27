@@ -50,5 +50,12 @@
   "September" : "September",
   "October" :  "Oktober",
   "November" : "November",
-  "December" :  "Dezember"
+  "December" :  "Dezember",
+  "Monday" :"Montag",
+  "Tuesday" :"Dienstag",
+  "Wednesday" :"Mittwoch",
+  "Thursday" :"Donnerstag",
+  "Friday" :"Freitag",
+  "Saturday" :"Samstag",
+  "Sunday" :"Sonntag"
 }
