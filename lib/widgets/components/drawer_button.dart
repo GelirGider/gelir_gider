@@ -10,6 +10,7 @@ class DrawerButton extends StatelessWidget {
       icon: Icon(
         Icons.more_horiz,
         size: 30.0,
+        color: Theme.of(context).buttonColor,
       ),
       onPressed: () => scaffoldKey.currentState.openEndDrawer(),
     );

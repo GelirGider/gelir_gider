@@ -66,16 +66,27 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
             ),
             centerTitle: true,
             actions: [DrawerButton(scaffoldKey: scaffoldKey)],
-            title: Icon(Icons.attach_money),
+            title: Icon(Icons.attach_money,
+            color: Theme.of(context).buttonColor,),
             gradient: LinearGradient(
-              colors: Colours.getGradientColors(isDark),
+              colors: Colours.getGradientNew2(isDark),
             ),
             bottom: TabBar(
               onTap: (index) {
                 Provider.of<Expenses>(context, listen: false)
                     .setTabBarIndex(index);
               },
-              labelStyle: TextStyle(fontSize: 12),
+              unselectedLabelColor: Colors.grey,
+              labelColor: Colours.getGradientNew(isDark),
+              labelPadding: EdgeInsets.fromLTRB(0, 10, 0, 8),
+              indicatorColor: Colours.getGradientNew(isDark),
+              indicator: UnderlineTabIndicator(
+                borderSide:
+                BorderSide(color: Colours.getGradientNew(isDark), width: 4.0),
+              ),
+              labelStyle: TextStyle(fontSize: 15,
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).buttonColor),
               tabs: <Widget>[
                 Tab(text: S.of(context).TabBarDay),
                 Tab(text: S.of(context).TabBarWeek),
