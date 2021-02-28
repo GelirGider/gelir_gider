@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/themes/colours.dart';
-import 'week_list.dart';
+import 'package:provider/provider.dart';
 
-class MonthListItem extends StatelessWidget {
+class DayListItem extends StatelessWidget {
   final String title;
+  const DayListItem({Key key, this.title}) : super(key: key);
 
-  const MonthListItem({Key key, this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final expenseProvider = Provider.of<Expenses>(context, listen: false);
     return FlatButton(
-      onPressed: () {},
+      onPressed: () {
+        //expenseProvider.setSelectedWeek(num)
+      },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),

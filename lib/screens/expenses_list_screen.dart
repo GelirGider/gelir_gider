@@ -1,24 +1,16 @@
 import 'dart:ui';
+import 'package:gelir_gider/screens/year_page.dart';
+import 'package:gelir_gider/widgets.dart';
+import 'package:gelir_gider/providers/providers.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
-import 'package:gelir_gider/providers/expense_provider.dart';
+
 import 'package:gelir_gider/themes/colours.dart';
-import 'package:gelir_gider/widgets/dialogs/account_changer.dart';
-import 'package:gelir_gider/widgets/buttons/add_button.dart';
-import 'package:gelir_gider/widgets/components/main_drawer.dart';
-import 'package:gelir_gider/widgets/components/money_widget.dart';
-import 'package:gelir_gider/widgets/year_page/week_list.dart';
-import 'package:gelir_gider/widgets/year_page/year_list.dart';
+import 'package:gelir_gider/widgets/year_page/year_list_page.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'adding_expense_screen.dart';
-import 'package:gelir_gider/providers/theme_provider.dart';
-import 'package:gelir_gider/providers/language_provider.dart';
-import 'package:gelir_gider/widgets/dialogs/main_page_category_modal.dart';
-import 'package:gelir_gider/widgets/year_page/month_list.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -38,7 +30,6 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
   @override
   void initState() {
     _getPrefs().then((value) => {});
-
     Future.delayed(Duration.zero).then((_) {
       Provider.of<Expenses>(context, listen: false).setCategories(context);
       return Provider.of<Expenses>(context, listen: false).setTabBarIndex(0);
@@ -46,43 +37,12 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
     super.initState();
   }
 
-  Future<void> navigationFunction(context, scaffoldKey) {
-    return Navigator.of(context)
-        .push(MaterialPageRoute(
-      builder: (ctx) => AddingExpense(
-        scaffoldKey: scaffoldKey,
-      ),
-    ))
-        .then((value) {
-      setState(() {});
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    var tabIndex = 0;
-
     final scaffoldKey = GlobalKey<ScaffoldState>();
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     final expenseProvider = Provider.of<Expenses>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
-    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
-    expenseProvider.getSymbol();
-
-    final snackBarr = SnackBar(
-      content: Container(
-        child: Text(
-          'İşlem silindi',
-          style: TextStyle(
-            color: Theme.of(context).textTheme.overline.color,
-            fontSize: 18*textScaleFactor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      duration: Duration(seconds: 1),
-      backgroundColor: Colours.red,
-    );
 
     return SafeArea(
       child: DefaultTabController(
@@ -94,36 +54,18 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
             leading: AccountChanger(
               onPressed1: () async {
                 await expenseProvider.setPersonal();
-                expenseProvider.setTabBarIndex(tabIndex);
+                expenseProvider.setTabBarIndex(expenseProvider.TabBarIndex);
                 await Navigator.of(context).pop();
-                setState(() {});
               },
               onPressed2: () async {
                 await expenseProvider.setCorporate();
-                expenseProvider.setTabBarIndex(tabIndex);
+                expenseProvider.setTabBarIndex(expenseProvider.TabBarIndex);
                 await Navigator.of(context).pop();
-                setState(() {});
               },
               isPersonal: expenseProvider.isPersonal,
             ),
             centerTitle: true,
-
-            ///change drawer icon
-            actions: [
-              Builder(
-                builder: (context) => IconButton(
-                  icon: Icon(
-                    Icons.more_horiz,
-                    size: 30.0,
-                  ),
-                  onPressed: () => Scaffold.of(context).openEndDrawer(),
-                  tooltip:
-                      MaterialLocalizations.of(context).openAppDrawerTooltip,
-
-                  ///it opens a drawer
-                ),
-              ),
-            ],
+            actions: [DrawerButton(scaffoldKey: scaffoldKey)],
             title: Icon(Icons.attach_money),
             gradient: LinearGradient(
               colors: Colours.getGradientColors(isDark),
@@ -132,11 +74,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               onTap: (index) {
                 Provider.of<Expenses>(context, listen: false)
                     .setTabBarIndex(index);
-                tabIndex = index;
-                print(index);
-                setState(() {});
               },
-              labelStyle: TextStyle(fontSize: 12*textScaleFactor),
+              labelStyle: TextStyle(fontSize: 12),
               tabs: <Widget>[
                 Tab(text: S.of(context).TabBarDay),
                 Tab(text: S.of(context).TabBarWeek),
@@ -145,61 +84,60 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               ],
             ),
           ),
-          body: Container(
-            child: TabBarView(
-              children: [
-                FutureBuilder(
-                  future: Provider.of<Expenses>(context, listen: false)
-                      .fetchAndSetExpenses(),
-                  builder: (ctx, snapshot) => snapshot.connectionState ==
-                          ConnectionState.waiting
-                      ? Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : expenseProvider.currentItems.isEmpty
-                          ? Center(
-                              child: Text(
-                                S.of(context).ExpenseListNoneExpense,
-                                textAlign: TextAlign.center,
-                              ),
+          body: FutureBuilder(
+            future: Provider.of<Expenses>(context, listen: false)
+                .fetchAndSetExpenses(),
+            builder: (ctx, snapshot) => snapshot.connectionState ==
+                    ConnectionState.waiting
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Consumer<Expenses>(
+                    child: Center(
+                      child: Text(
+                        S.of(context).ExpenseListNoneExpense,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    builder: (context, provider, child) {
+                      return provider.TabBarIndex == 3
+                          ? Container(
+                              child: YearPage(),
                             )
-                          : Column(
-                              children: [
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.02,
-                                ),
-                                MoneyWidget(
-                                  income: expenseProvider
-                                      .calculateTotalIncome()
-                                      .toStringAsFixed(1),
-                                  money: expenseProvider
-                                      .calculateTotalMoney()
-                                      .toStringAsFixed(1),
-                                  expense: expenseProvider
-                                      .calculateTotalExpense()
-                                      .toStringAsFixed(1),
-                                  percentage: expenseProvider.getPercentage,
-                                ),
-                                Divider(
-                                  height: 25,
-                                  color: Colours.getBlackOrWhite(isDark),
-                                ),
-                                Flexible(
-                                  flex: 10,
-                                  child: Consumer<Expenses>(
-                                    builder: (context, expenseProvider, child) {
-                                      return ListView.builder(
-                                        itemCount:
-                                            expenseProvider.currentItems.length,
+                          : provider.currentItems.isEmpty
+                              ? child
+                              : Column(
+                                  children: [
+                                    SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.02),
+                                    MoneyWidget(
+                                      income: provider
+                                          .calculateTotalIncome()
+                                          .toStringAsFixed(1),
+                                      money: provider
+                                          .calculateTotalMoney()
+                                          .toStringAsFixed(1),
+                                      expense: provider
+                                          .calculateTotalExpense()
+                                          .toStringAsFixed(1),
+                                      percentage: provider.getPercentage,
+                                    ),
+                                    OurDivider(),
+                                    Flexible(
+                                      flex: 10,
+                                      child: ListView.builder(
+                                        itemCount: provider.currentItems.length,
                                         itemBuilder: (context, index) {
-                                          var category = expenseProvider
+                                          provider.getSymbol();
+                                          var category = provider
                                               .currentItems.keys
                                               .toList()[index];
-                                          var list = expenseProvider
+                                          var list = provider
                                               .currentItems.values
                                               .toList()[index];
-                                          var currency = expenseProvider.symbol;
+                                          var currency = provider.symbol;
                                           return Column(
                                             children: [
                                               MainPageCategoryModal(
@@ -207,42 +145,22 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                                                 list: list,
                                                 currency: currency,
                                               ),
-                                              Divider(
-                                                height: 25,
-                                                color: Colours.getBlackOrWhite(
-                                                    isDark),
-                                              ),
+                                              OurDivider(),
                                             ],
                                           );
                                         },
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(),
-                                )
-                              ],
-                            ),
-                ),
-                Expanded(
-                  child: WeekList(),
-                ),
-                Expanded(
-                  child: MonthList('2021'),
-                ),
-                Expanded(
-                  child: YearList(),
-                ),
-              ],
-            ),
+                                      ),
+                                    ),
+                                    BottomSpace(),
+                                  ],
+                                );
+                    },
+                  ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: FloatingActionButton(
-            heroTag: 'btn1',
-            onPressed: () => navigationFunction(context, scaffoldKey),
-            child: AddButton(),
+          floatingActionButton: FloatingActionButtonAdd(
+            scaffoldKey: scaffoldKey,
+            context: context,
           ),
         ),
       ),

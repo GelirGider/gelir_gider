@@ -32,9 +32,9 @@ class Expenses with ChangeNotifier {
   var categoryList = [];
   var _categories = [];
   int _currentCategoryId = 0;
-  int tabBarIndex = 0;
-  bool init = false;
-  bool init2 = false;
+  int _tabBarIndex = 0;
+  bool _init = false;
+  bool _init2 = false;
   var currentMap = {};
 
   var imgList = [
@@ -114,7 +114,7 @@ class Expenses with ChangeNotifier {
     _categoryAndItems = value;
   }
 
-  int get TabBarIndex => tabBarIndex;
+  int get TabBarIndex => _tabBarIndex;
 
   Map<int, List<Expense>> _currentItems = {};
   Map<int, List<Expense>> get currentItems {
@@ -126,24 +126,24 @@ class Expenses with ChangeNotifier {
     return [..._items];
   }
 
-  Map<int, List<Expense>> _day = {};
+  Map<int, List<Expense>> _days = {};
   Map<int, List<Expense>> get day {
-    return {..._day};
+    return {..._days};
   }
 
-  Map<int, List<Expense>> _week = {};
+  Map<int, List<Expense>> _weeks = {};
   Map<int, List<Expense>> get week {
-    return {..._week};
+    return {..._weeks};
   }
 
-  Map<int, List<Expense>> _month = {};
+  Map<int, List<Expense>> _months = {};
   Map<int, List<Expense>> get month {
-    return {..._month};
+    return {..._months};
   }
 
-  Map<int, List<Expense>> _year = {};
+  Map<int, List<Expense>> _years = {};
   Map<int, List<Expense>> get year {
-    return {..._year};
+    return {..._years};
   }
 
   Map<int, List<Expense>> groupExpensesByCategories(List<Expense> expenses) {
@@ -151,20 +151,78 @@ class Expenses with ChangeNotifier {
     return groups;
   }
 
+  int selectedYear = 2021;
+  int selectedMonth = 0;
+  int selectedDay = 0;
+  int selectedWeek = 0;
+  int selectedPage = 0;
+
+  void setSelectedYear(int num) {
+    selectedYear = num;
+    notifyListeners();
+  }
+
+  void setSelectedMonth(int num) {
+    selectedMonth = num;
+    notifyListeners();
+  }
+
+  void setSelectedDay(int num) {
+    selectedDay = num;
+    notifyListeners();
+  }
+
+  void setSelectedWeek(int num) {
+    selectedWeek = num;
+    notifyListeners();
+  }
+
+  void setSelectedPage(int num) {
+    selectedPage = num;
+    notifyListeners();
+  }
+
+  List<Expense> getYearList(year) {
+    var sum = _items.where((element) {
+      var time = DateTime.parse(element.time);
+      return (time.year == year);
+    });
+    return sum;
+  }
+
+  List<Expense> getMonthList(year, month) {
+    var sum = _items.where((element) {
+      var time = DateTime.parse(element.time);
+      return (time.year == year) && (time.month == month);
+    });
+    return sum;
+  }
+
+  List<Expense> getWeekList(year, month, startDAte, endDate) {
+    var sum = _items.where((element) {
+      var time = DateTime.parse(element.time);
+      return (time.year == year) &&
+          (time.month == month) &&
+          (time.day >= 0) &&
+          (time.day < 7);
+    });
+    return sum;
+  }
+
   void setTabBarIndex(int index) {
     setDates();
-    tabBarIndex = index;
-    if (tabBarIndex == 0) {
-      _currentItems = _day;
+    _tabBarIndex = index;
+    if (_tabBarIndex == 0) {
+      _currentItems = _days;
     }
-    if (tabBarIndex == 1) {
-      _currentItems = _week;
+    if (_tabBarIndex == 1) {
+      _currentItems = _weeks;
     }
-    if (tabBarIndex == 2) {
-      _currentItems = _month;
+    if (_tabBarIndex == 2) {
+      _currentItems = _months;
     }
-    if (tabBarIndex == 3) {
-      _currentItems = _year;
+    if (_tabBarIndex == 3) {
+      _currentItems = _years;
     }
     notifyListeners();
   }
@@ -187,13 +245,13 @@ class Expenses with ChangeNotifier {
         temp3.add(element);
       }
     });
-    _day = groupExpensesByCategories(temp);
-    _week = groupExpensesByCategories(temp1);
-    _month = groupExpensesByCategories(temp2);
-    _year = groupExpensesByCategories(temp3);
-    if (!init) {
-      _currentItems = _day;
-      init = true;
+    _days = groupExpensesByCategories(temp);
+    _weeks = groupExpensesByCategories(temp1);
+    _months = groupExpensesByCategories(temp2);
+    _years = groupExpensesByCategories(temp3);
+    if (!_init) {
+      _currentItems = _days;
+      _init = true;
     }
     notifyListeners();
   }
@@ -218,7 +276,7 @@ class Expenses with ChangeNotifier {
     _items.clear();
     await fetchAndSetExpenses();
     setDates();
-    setTabBarIndex(tabBarIndex);
+    setTabBarIndex(_tabBarIndex);
     notifyListeners();
   }
 
@@ -228,7 +286,7 @@ class Expenses with ChangeNotifier {
     _items.clear();
     await fetchAndSetExpenses();
     setDates();
-    setTabBarIndex(tabBarIndex);
+    setTabBarIndex(_tabBarIndex);
     notifyListeners();
   }
 
@@ -280,9 +338,8 @@ class Expenses with ChangeNotifier {
   //----------------------------------------------------------------------------
 
   Future<void> addExpense(Expense newExpense) async {
-    // var isPersonal = true;
     _items.add(newExpense);
-    setTabBarIndex(tabBarIndex);
+    setTabBarIndex(_tabBarIndex);
     notifyListeners();
     await DBHelper.insert(
       isPersonal ? 'user_expenses' : 'corporation_expenses',
@@ -321,9 +378,9 @@ class Expenses with ChangeNotifier {
           ),
         )
         .toList();
-    if (!init2) {
+    if (!_init2) {
       setTabBarIndex(0);
-      init2 = true;
+      _init2 = true;
     }
     notifyListeners();
   }
