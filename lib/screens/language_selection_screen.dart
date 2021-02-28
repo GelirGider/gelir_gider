@@ -5,6 +5,7 @@ import 'expenses_list_screen.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/themes/colours.dart';
+import 'package:gelir_gider/providers/theme_provider.dart';
 
 class LanguageSelectionScreen extends StatefulWidget {
   @override
@@ -78,6 +79,7 @@ List icons = [
 class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   @override
   Widget build(BuildContext context) {
+    final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
     return Scaffold(
       drawer: MainDrawer(),
@@ -89,7 +91,9 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
-          color: Colours.languageCardBg,
+          color: _theme.getTheme() == _theme.dark
+              ? Color(0xff333333)
+              : Color.fromRGBO(254, 254, 254, 100),
           margin: EdgeInsets.fromLTRB(30.0, 70.0, 30.0, 50.0),
           child: Center(
             child: Column(

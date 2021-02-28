@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/themes/colours.dart';
-
+import 'package:gelir_gider/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 class AccountChanger extends StatelessWidget {
   final onPressed1;
   final onPressed2;
@@ -15,6 +16,7 @@ class AccountChanger extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
+    final _theme = Provider.of<ThemeProvider>(context, listen: false);
     return FloatingActionButton(
       backgroundColor: Colors.transparent,
       child: CircleAvatar(
@@ -45,7 +47,9 @@ class AccountChanger extends StatelessWidget {
                   bottom: 0,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.blueGrey[900],
+                  color: _theme.getTheme() == _theme.dark
+                    ? Colors.black
+                    : Colors.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20.0),
                       topRight: Radius.circular(20.0)),
@@ -69,7 +73,7 @@ class AccountChanger extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 25.0*textScaleFactor,
                               letterSpacing: 0.7,
-                              color: Colours.white,
+                                color: Theme.of(context).buttonColor,
                             ),
                           ),
                         ),
@@ -78,7 +82,7 @@ class AccountChanger extends StatelessWidget {
                         ),
                         Icon(
                           Icons.person,
-                          color: Colors.white,
+                          color: Theme.of(context).buttonColor,
                           size: 25.0,
                         ),
                       ],
@@ -96,7 +100,7 @@ class AccountChanger extends StatelessWidget {
                               fontSize: 25.0*textScaleFactor,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 0.7,
-                              color: Colors.white,
+                              color:Theme.of(context).buttonColor,
                             ),
                           ),
                         ),
@@ -105,7 +109,7 @@ class AccountChanger extends StatelessWidget {
                         ),
                         Icon(
                           Icons.work,
-                          color: Colors.white,
+                          color: Theme.of(context).buttonColor,
                           size: 25.0,
                         ),
                       ],
