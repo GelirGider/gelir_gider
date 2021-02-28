@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:gelir_gider/screens/year_page.dart';
 import 'package:gelir_gider/widgets.dart';
 import 'package:gelir_gider/providers/providers.dart';
 
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 
 import 'package:gelir_gider/themes/colours.dart';
-import 'package:gelir_gider/widgets/year_page/year_list.dart';
+import 'package:gelir_gider/widgets/year_page/year_list_page.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -101,7 +102,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                     builder: (context, provider, child) {
                       return provider.TabBarIndex == 3
                           ? Container(
-                              child: YearList(),
+                              child: YearPage(),
                             )
                           : provider.currentItems.isEmpty
                               ? child

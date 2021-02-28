@@ -125,24 +125,24 @@ class Expenses with ChangeNotifier {
     return [..._items];
   }
 
-  Map<int, List<Expense>> _day = {};
+  Map<int, List<Expense>> _days = {};
   Map<int, List<Expense>> get day {
-    return {..._day};
+    return {..._days};
   }
 
-  Map<int, List<Expense>> _week = {};
+  Map<int, List<Expense>> _weeks = {};
   Map<int, List<Expense>> get week {
-    return {..._week};
+    return {..._weeks};
   }
 
-  Map<int, List<Expense>> _month = {};
+  Map<int, List<Expense>> _months = {};
   Map<int, List<Expense>> get month {
-    return {..._month};
+    return {..._months};
   }
 
-  Map<int, List<Expense>> _year = {};
+  Map<int, List<Expense>> _years = {};
   Map<int, List<Expense>> get year {
-    return {..._year};
+    return {..._years};
   }
 
   Map<int, List<Expense>> groupExpensesByCategories(List<Expense> expenses) {
@@ -150,20 +150,78 @@ class Expenses with ChangeNotifier {
     return groups;
   }
 
+  int selectedYear = 2021;
+  int selectedMonth = 0;
+  int selectedDay = 0;
+  int selectedWeek = 0;
+  int selectedPage = 0;
+
+  void setSelectedYear(int num) {
+    selectedYear = num;
+    notifyListeners();
+  }
+
+  void setSelectedMonth(int num) {
+    selectedMonth = num;
+    notifyListeners();
+  }
+
+  void setSelectedDay(int num) {
+    selectedDay = num;
+    notifyListeners();
+  }
+
+  void setSelectedWeek(int num) {
+    selectedWeek = num;
+    notifyListeners();
+  }
+
+  void setSelectedPage(int num) {
+    selectedPage = num;
+    notifyListeners();
+  }
+
+  List<Expense> getYearList(year) {
+    var sum = _items.where((element) {
+      var time = DateTime.parse(element.time);
+      return (time.year == year);
+    });
+    return sum;
+  }
+
+  List<Expense> getMonthList(year, month) {
+    var sum = _items.where((element) {
+      var time = DateTime.parse(element.time);
+      return (time.year == year) && (time.month == month);
+    });
+    return sum;
+  }
+
+  List<Expense> getWeekList(year, month, startDAte, endDate) {
+    var sum = _items.where((element) {
+      var time = DateTime.parse(element.time);
+      return (time.year == year) &&
+          (time.month == month) &&
+          (time.day >= 0) &&
+          (time.day < 7);
+    });
+    return sum;
+  }
+
   void setTabBarIndex(int index) {
     setDates();
     _tabBarIndex = index;
     if (_tabBarIndex == 0) {
-      _currentItems = _day;
+      _currentItems = _days;
     }
     if (_tabBarIndex == 1) {
-      _currentItems = _week;
+      _currentItems = _weeks;
     }
     if (_tabBarIndex == 2) {
-      _currentItems = _month;
+      _currentItems = _months;
     }
     if (_tabBarIndex == 3) {
-      _currentItems = _year;
+      _currentItems = _years;
     }
     notifyListeners();
   }
@@ -186,12 +244,12 @@ class Expenses with ChangeNotifier {
         temp3.add(element);
       }
     });
-    _day = groupExpensesByCategories(temp);
-    _week = groupExpensesByCategories(temp1);
-    _month = groupExpensesByCategories(temp2);
-    _year = groupExpensesByCategories(temp3);
+    _days = groupExpensesByCategories(temp);
+    _weeks = groupExpensesByCategories(temp1);
+    _months = groupExpensesByCategories(temp2);
+    _years = groupExpensesByCategories(temp3);
     if (!_init) {
-      _currentItems = _day;
+      _currentItems = _days;
       _init = true;
     }
     notifyListeners();
@@ -256,7 +314,6 @@ class Expenses with ChangeNotifier {
   //----------------------------------------------------------------------------
 
   Future<void> addExpense(Expense newExpense) async {
-    // var isPersonal = true;
     _items.add(newExpense);
     setTabBarIndex(_tabBarIndex);
     notifyListeners();
