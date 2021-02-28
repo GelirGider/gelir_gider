@@ -5,7 +5,7 @@ import 'package:gelir_gider/generated/l10n.dart';
 class DayListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final weekList = <String>[
+    final dayList = <String>[
       S.of(context).Monday,
       S.of(context).Tuesday,
       S.of(context).Wednesday,
@@ -15,14 +15,14 @@ class DayListPage extends StatelessWidget {
       S.of(context).Sunday
     ];
 
-    var weekButtons = [
-      DayListItem(title: weekList[0]),
-      DayListItem(title: weekList[1]),
-      DayListItem(title: weekList[2]),
-      DayListItem(title: weekList[3]),
-      DayListItem(title: weekList[4]),
-      DayListItem(title: weekList[5]),
-      DayListItem(title: weekList[6]),
+    var dayButtons = [
+      DayListItem(title: dayList[0]),
+      DayListItem(title: dayList[1]),
+      DayListItem(title: dayList[2]),
+      DayListItem(title: dayList[3]),
+      DayListItem(title: dayList[4]),
+      DayListItem(title: dayList[5]),
+      DayListItem(title: dayList[6]),
     ];
 
     return GridView.count(
@@ -31,7 +31,7 @@ class DayListPage extends StatelessWidget {
       padding: EdgeInsets.all(30.0),
       childAspectRatio: 7 / 5,
       crossAxisCount: 2,
-      children: weekButtons,
+      children: dayButtons,
     );
   }
 }

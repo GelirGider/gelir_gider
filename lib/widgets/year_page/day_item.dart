@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 
 class DayListItem extends StatelessWidget {
   final String title;
-  const DayListItem({Key key, this.title}) : super(key: key);
+  final int index;
+  const DayListItem({Key key, this.title, this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,8 @@ class DayListItem extends StatelessWidget {
     return FlatButton(
       onPressed: () {
         //expenseProvider.setSelectedWeek(num)
+        expenseProvider.setSelectedDay(index);
+        expenseProvider.setSelectedPage(4);
       },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),

@@ -15,7 +15,7 @@ class WeekListItem extends StatelessWidget {
     return FlatButton(
       onPressed: () {
         expenseProvider.setSelectedWeek(index);
-        expenseProvider.setSelectedPage(1);
+        expenseProvider.setSelectedPage(3);
       },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
