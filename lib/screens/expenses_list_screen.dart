@@ -50,6 +50,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           endDrawer: MainDrawer(),
           key: scaffoldKey,
           appBar: GradientAppBar(
+            shape: Border(bottom: BorderSide(width:3.0,color:Colours.getGradientNew(isDark))),
             leading: AccountChanger(),
             centerTitle: true,
             actions: [DrawerButton(scaffoldKey: scaffoldKey)],
@@ -66,11 +67,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               unselectedLabelColor: Colors.grey,
               labelColor: Colours.getGradientNew(isDark),
               labelPadding: EdgeInsets.fromLTRB(0, 10, 0, 8),
-              indicatorColor: Colours.getGradientNew(isDark),
-              indicator: UnderlineTabIndicator(
-                borderSide:
-                BorderSide(color: Colours.getGradientNew(isDark), width: 4.0),
-              ),
+
               labelStyle: TextStyle(fontSize: 15,
               fontWeight: FontWeight.w500,
               color: Theme.of(context).buttonColor),
