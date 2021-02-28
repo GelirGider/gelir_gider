@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 
 import 'package:gelir_gider/themes/colours.dart';
-import 'package:gelir_gider/widgets/year_page/year_list_page.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -41,7 +40,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
   Widget build(BuildContext context) {
     final scaffoldKey = GlobalKey<ScaffoldState>();
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
-    final expenseProvider = Provider.of<Expenses>(context, listen: false);
+    final size = MediaQuery.of(context).size;
     var isDark = _theme.getTheme() == _theme.dark;
 
     return SafeArea(
@@ -51,19 +50,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           endDrawer: MainDrawer(),
           key: scaffoldKey,
           appBar: GradientAppBar(
-            leading: AccountChanger(
-              onPressed1: () async {
-                await expenseProvider.setPersonal();
-                expenseProvider.setTabBarIndex(expenseProvider.TabBarIndex);
-                await Navigator.of(context).pop();
-              },
-              onPressed2: () async {
-                await expenseProvider.setCorporate();
-                expenseProvider.setTabBarIndex(expenseProvider.TabBarIndex);
-                await Navigator.of(context).pop();
-              },
-              isPersonal: expenseProvider.isPersonal,
-            ),
+            leading: AccountChanger(),
             centerTitle: true,
             actions: [DrawerButton(scaffoldKey: scaffoldKey)],
             title: Icon(Icons.attach_money),
@@ -108,22 +95,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                               ? child
                               : Column(
                                   children: [
-                                    SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.02),
-                                    MoneyWidget(
-                                      income: provider
-                                          .calculateTotalIncome()
-                                          .toStringAsFixed(1),
-                                      money: provider
-                                          .calculateTotalMoney()
-                                          .toStringAsFixed(1),
-                                      expense: provider
-                                          .calculateTotalExpense()
-                                          .toStringAsFixed(1),
-                                      percentage: provider.getPercentage,
-                                    ),
+                                    SizedBox(height: size.height * 0.02),
+                                    MoneyWidget(),
                                     OurDivider(),
                                     Flexible(
                                       flex: 10,
