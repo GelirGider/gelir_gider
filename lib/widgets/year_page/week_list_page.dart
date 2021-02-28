@@ -7,13 +7,11 @@ class WeekListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final weekList = <String> [
-      S.of(context).Monday,
-      S.of(context).Tuesday,
-      S.of(context).Wednesday,
-      S.of(context).Thursday,
-      S.of(context).Friday,
-      S.of(context).Saturday,
-      S.of(context).Sunday,
+      'First Week',
+      'Second Week',
+      'Third Week',
+      'Fourth Week'
+
     ];
 
     var weekButtons = [
@@ -21,9 +19,7 @@ class WeekListPage extends StatelessWidget {
       WeekListItem(title: weekList[1],index:1),
       WeekListItem(title: weekList[2],index:2),
       WeekListItem(title: weekList[3],index:3),
-      WeekListItem(title: weekList[4],index:4),
-      WeekListItem(title: weekList[5],index:5),
-      WeekListItem(title: weekList[6],index:6),
+
     ];
     return GridView.count(
       mainAxisSpacing: 10.0,
