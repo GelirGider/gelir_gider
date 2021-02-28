@@ -43,8 +43,10 @@ dependencies:
   google_fonts: ^1.1.2
   collection: ^1.14.13
   flutter_dialogs: ^1.1.0
-  toggle_switch: "^0.1.8"
+  toggle_switch: ^0.1.8
   currency_picker: ^1.0.6
+  flutter_local_notifications: ^4.0.1+1
+  rxdart: ^0.25.0
 
 
   # The following adds the Cupertino Icons font to your application.

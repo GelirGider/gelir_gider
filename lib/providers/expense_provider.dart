@@ -35,6 +35,7 @@ class Expenses with ChangeNotifier {
   int tabBarIndex = 0;
   bool init = false;
   bool init2 = false;
+  var currentMap = {};
 
   var imgList = [
     Image.asset('assets/categories/dues.png'),
@@ -231,8 +232,31 @@ class Expenses with ChangeNotifier {
     notifyListeners();
   }
 
+  Iterable<String> getCurrentYears() {
+    var map = groupBy(_items, (Expense e) => e.time.split('-')[0]);
+    var years = map.keys;
+    currentMap = map;
+    return years;
+  }
+  Iterable<int> getCurrentMonths(String year) {
+    var yearOfExpenses = currentMap[year];
+    print(yearOfExpenses.toString());
+    var map = groupBy(yearOfExpenses, (Expense e) => e.time.split('-')[1]);
+    var curMonths = map.keys;
+    var months = curMonths.map(int.parse).toList();
+    currentMap = map;
+    return months;
+  }
+  Iterable<String> getCurrentDays(String month) {
+    var monthOfExpenses = currentMap[month];
+    var map = groupBy(monthOfExpenses, (Expense e) => e.time.split('-')[2])??{};
+    var days = map.keys;
+    currentMap = map;
+    return days;
+  }
+
   //----------------------------------------------------------------------------
-  String symbol = 'q';
+  var symbol = '€';
   // TO CHECK CURRENCY
   Future<void> setCurrency(String currencySymbol) async {
     var prefs = await SharedPreferences.getInstance();

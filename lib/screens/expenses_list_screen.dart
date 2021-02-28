@@ -230,7 +230,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                   child: WeekList(),
                 ),
                 Expanded(
-                  child: MonthList(),
+                  child: MonthList('2021'),
                 ),
                 Expanded(
                   child: YearList(),

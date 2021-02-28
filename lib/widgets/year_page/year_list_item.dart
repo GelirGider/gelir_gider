@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/themes/colours.dart';
 import 'month_list.dart';
-import 'month_list_item.dart';
-import 'year_list.dart';
 
 class YearListItem extends StatelessWidget {
   final String title;
@@ -11,7 +9,9 @@ class YearListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      onPressed: () {},
+      onPressed: () {
+        MonthList(title);
+      },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),

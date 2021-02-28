@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 import 'month_list_item.dart';
 import 'package:gelir_gider/widgets/year_page/month_list_item.dart';
-import 'week_list.dart';
 import 'package:gelir_gider/generated/l10n.dart';
+import 'package:gelir_gider/providers/expense_provider.dart';
+import 'package:provider/provider.dart';
 
 class MonthList extends StatefulWidget {
+  final year;
+  MonthList(this.year);
+
   @override
   _MonthListState createState() => _MonthListState();
+
+
 }
 
 class _MonthListState extends State<MonthList> {
   @override
   Widget build(BuildContext context) {
-    final monthList = <String>[
+    var expenseProvider = Provider.of<Expenses>(context);
+    final monthList = expenseProvider.getCurrentMonths(widget.year); // (7,8,9,12)
+
+    final monthNames = <String>[
       S.of(context).January,
       S.of(context).February,
       S.of(context).March,
@@ -27,20 +36,14 @@ class _MonthListState extends State<MonthList> {
       S.of(context).December,
     ];
 
-    var monthButtons = [
-      MonthListItem(title: monthList[0]),
-      MonthListItem(title: monthList[1]),
-      MonthListItem(title: monthList[2]),
-      MonthListItem(title: monthList[3]),
-      MonthListItem(title: monthList[4]),
-      MonthListItem(title: monthList[5]),
-      MonthListItem(title: monthList[6]),
-      MonthListItem(title: monthList[7]),
-      MonthListItem(title: monthList[8]),
-      MonthListItem(title: monthList[9]),
-      MonthListItem(title: monthList[10]),
-      MonthListItem(title: monthList[11]),
-    ];
+    var monthButtons = <MonthListItem>[];
+    monthList.forEach((index) {
+      monthButtons.add(
+          MonthListItem(
+            title: monthNames[index],
+          )
+      );
+    });
 
     return GridView.count(
       mainAxisSpacing: 10.0,

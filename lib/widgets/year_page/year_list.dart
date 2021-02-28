@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'month_list_item.dart';
 import 'package:provider/provider.dart';
-import 'package:gelir_gider/screens/expenses_list_screen.dart';
-import 'package:gelir_gider/widgets/year_page/month_list_item.dart';
-import 'package:gelir_gider/widgets/year_page/week_list_item.dart';
 import 'package:gelir_gider/widgets/year_page/year_list_item.dart';
-import 'month_list.dart';
+import 'package:gelir_gider/providers/expense_provider.dart';
 
 class YearList extends StatefulWidget {
   @override
@@ -15,23 +11,18 @@ class YearList extends StatefulWidget {
 class _YearListState extends State<YearList> {
   @override
   Widget build(BuildContext context) {
-    final yearList = <String>[
-      '2019',
-      '2020',
-      '2021',
-    ];
+    var expenseProvider = Provider.of<Expenses>(context);
+    var yearList = expenseProvider.getCurrentYears();
 
-    var yearButtons = [
-      YearListItem(
-        title: yearList[0],
-      ),
-      YearListItem(
-        title: yearList[1],
-      ),
-      YearListItem(
-        title: yearList[2],
-      ),
-    ];
+    var yearButtons = <YearListItem>[];
+    yearList.forEach((element) {
+      yearButtons.add(
+          YearListItem(
+            title: element,
+          )
+      );
+    });
+
     return GridView.count(
       mainAxisSpacing: 20.0,
       crossAxisSpacing: 20.0,
