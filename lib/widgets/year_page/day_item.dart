@@ -12,7 +12,8 @@ class DayListItem extends StatelessWidget {
     final expenseProvider = Provider.of<Expenses>(context, listen: false);
     return FlatButton(
       onPressed: () {
-        //expenseProvider.setSelectedWeek(num)
+        expenseProvider.setSelectedDay(int.parse(title.split(' ')[0]));
+
       },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),

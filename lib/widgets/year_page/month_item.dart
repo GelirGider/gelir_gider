@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/themes/colours.dart';
 import 'package:provider/provider.dart';
-import 'day_list_page.dart';
 
 class MonthListItem extends StatelessWidget {
   final String title;

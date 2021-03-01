@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/year_page/month_list_page.dart';
-import 'package:gelir_gider/widgets/year_page/month_item.dart';
 import 'package:gelir_gider/widgets/year_page/day_list_page.dart';
-import 'package:gelir_gider/widgets/year_page/day_item.dart';
+import 'package:gelir_gider/widgets/year_page/week_list_page.dart';
 import 'package:gelir_gider/widgets/year_page/year_list_page.dart';
-import 'package:gelir_gider/widgets/year_page/year_item.dart';
 import 'package:provider/provider.dart';
-import 'package:gelir_gider/generated/l10n.dart';
 
 class YearPage extends StatefulWidget {
   @override
@@ -27,8 +24,12 @@ class _YearPageState extends State<YearPage> {
           return MonthListPage();
         }
         if (provider.selectedPage == 2) {
+          return WeekListPage();
+        }
+        if (provider.selectedPage == 3) {
           return DayListPage();
-        } else {
+        }
+        else {
           return Container();
         }
       },

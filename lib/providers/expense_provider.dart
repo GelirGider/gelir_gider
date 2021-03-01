@@ -5,6 +5,7 @@ import 'package:gelir_gider/utils/time_diff.dart';
 import 'package:gelir_gider/widgets/components/category_item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:collection/collection.dart';
+import 'package:date_utils/date_utils.dart';
 
 class Expense {
   final String id;
@@ -22,6 +23,11 @@ class Expense {
     this.category,
     this.isExpense,
   });
+
+  @override
+  String toString() {
+    return 'Expense{id: $id, category: $category, description: $description, price: $price, time: $time, isExpense: $isExpense}';
+  }
 }
 
 class Expenses with ChangeNotifier {
@@ -151,64 +157,6 @@ class Expenses with ChangeNotifier {
     return groups;
   }
 
-  int selectedYear = 2021;
-  int selectedMonth = 0;
-  int selectedDay = 0;
-  int selectedWeek = 0;
-  int selectedPage = 0;
-
-  void setSelectedYear(int num) {
-    selectedYear = num;
-    notifyListeners();
-  }
-
-  void setSelectedMonth(int num) {
-    selectedMonth = num;
-    notifyListeners();
-  }
-
-  void setSelectedDay(int num) {
-    selectedDay = num;
-    notifyListeners();
-  }
-
-  void setSelectedWeek(int num) {
-    selectedWeek = num;
-    notifyListeners();
-  }
-
-  void setSelectedPage(int num) {
-    selectedPage = num;
-    notifyListeners();
-  }
-
-  List<Expense> getYearList(year) {
-    var sum = _items.where((element) {
-      var time = DateTime.parse(element.time);
-      return (time.year == year);
-    });
-    return sum;
-  }
-
-  List<Expense> getMonthList(year, month) {
-    var sum = _items.where((element) {
-      var time = DateTime.parse(element.time);
-      return (time.year == year) && (time.month == month);
-    });
-    return sum;
-  }
-
-  List<Expense> getWeekList(year, month, startDAte, endDate) {
-    var sum = _items.where((element) {
-      var time = DateTime.parse(element.time);
-      return (time.year == year) &&
-          (time.month == month) &&
-          (time.day >= 0) &&
-          (time.day < 7);
-    });
-    return sum;
-  }
-
   void setTabBarIndex(int index) {
     setDates();
     _tabBarIndex = index;
@@ -289,31 +237,95 @@ class Expenses with ChangeNotifier {
     setTabBarIndex(_tabBarIndex);
     notifyListeners();
   }
+//---------------------------------------------------------------------------
+  int selectedYear = 2021;
+  int selectedMonth = 0;
+  int selectedDay = 0;
+  String selectedWeek = ' ';
+  int selectedPage = 0;
 
-  Iterable<String> getCurrentYears() {
-    var map = groupBy(_items, (Expense e) => e.time.split('-')[0]);
+  void setSelectedYear(int num) {
+    selectedYear = num;
+    notifyListeners();
+  }
+
+  void setSelectedMonth(int num) {
+    selectedMonth = num;
+    notifyListeners();
+  }
+
+  void setSelectedDay(int num) {
+    selectedDay = num;
+    notifyListeners();
+  }
+
+  void setSelectedWeek(String num) {
+    selectedWeek = num;
+    notifyListeners();
+  }
+
+  void setSelectedPage(int num) {
+    selectedPage = num;
+    notifyListeners();
+  }
+
+  Iterable<int> getCurrentYears() {
+    var map = groupBy(_items, (Expense e) => int.parse(e.time.split('-')[0]));
     var years = map.keys;
     currentMap = map;
     return years;
   }
-  Iterable<int> getCurrentMonths(String year) {
-    var yearOfExpenses = currentMap[year];
+
+  Iterable<int> getCurrentMonths() {
+    var yearOfExpenses = currentMap[selectedYear];
     print(yearOfExpenses.toString());
-    var map = groupBy(yearOfExpenses, (Expense e) => e.time.split('-')[1]);
-    var curMonths = map.keys;
-    var months = curMonths.map(int.parse).toList();
+    var map =groupBy(yearOfExpenses, (Expense e) => int.parse(e.time.split('-')[1]));
+    var months = map.keys;
     currentMap = map;
     return months;
   }
-  Iterable<String> getCurrentDays(String month) {
-    var monthOfExpenses = currentMap[month];
-    var map = groupBy(monthOfExpenses, (Expense e) => e.time.split('-')[2])??{};
+
+  int getLastDayOfMonth() {
+    final date = DateTime(selectedYear, (selectedMonth+1));
+    final lastDay = Utils.lastDayOfMonth(date);
+    print('Last day in month : ${lastDay.day}');
+    return lastDay.day;
+  }
+
+  Iterable<int> getCurrentDays(int startDay,int endDay) {
+    var startDate = DateTime.parse(selectedYear.toString()+'-'+fixAsDate(selectedMonth+1)+'-'+fixAsDate(startDay));
+    var endDate = DateTime.parse(selectedYear.toString()+'-'+fixAsDate(selectedMonth+1)+'-'+fixAsDate(endDay));
+    var monthOfExpenses = currentMap[selectedMonth+1];
+
+    print(startDate.toString());
+    print(endDate.toString());
+
+    var map = groupBy(monthOfExpenses, (Expense e) {
+      var curDate = DateTime.parse(e.time);
+      print(curDate.toString());
+      if((curDate.isAfter(startDate) && curDate.isBefore(endDate)) || ((curDate == startDate) || (curDate == endDate))){
+        print("true");
+        print(int.parse(e.time.split('-')[2]).toString());
+        return int.parse(e.time.split('-')[2]);
+      }
+    }) ?? {};
+
     var days = map.keys;
+    print(days.toString());
     currentMap = map;
     return days;
   }
 
+  String fixAsDate(date){
+    if(date<10) {
+      return '0'+(date).toString();
+    } else {
+      return (date).toString();
+    }
+  }
+
   //----------------------------------------------------------------------------
+
   var symbol = '€';
   // TO CHECK CURRENCY
   Future<void> setCurrency(String currencySymbol) async {
