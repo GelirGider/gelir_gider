@@ -30,12 +30,15 @@ class Expense {
   }
 }
 
+
+
 class Expenses with ChangeNotifier {
   static const modePrefKeyIsIndividual = 'isIndividual';
   static const modePrefKeyCurrency = 'currency';
 
   Map<int, List<Expense>> _categoryAndItems = {};
   var categoryList = [];
+  var corporateCategoryList= [];
   var _categories = [];
   int _currentCategoryId = 0;
   int _tabBarIndex = 0;
@@ -58,7 +61,65 @@ class Expenses with ChangeNotifier {
     Image.asset('assets/categories/other.png'),
   ];
 
+  var imgListCorporate = [
+    Image.asset('assets/categories/rent.png'),
+    Image.asset('assets/categories/cash.png'),
+    Image.asset('assets/categories/tax (1).png'),
+    Image.asset('assets/categories/medical-insurance.png'),
+    Image.asset('assets/categories/bill.png'),
+    Image.asset('assets/categories/fix.png'),
+    Image.asset('assets/categories/food.png'),
+    Image.asset('assets/categories/luggage.png'),
+    Image.asset('assets/categories/dues.png'),
+    Image.asset('assets/categories/gasoline.png'),
+    Image.asset('assets/categories/agreement.png'),
+    Image.asset('assets/categories/other.png'),
+  ];
+
   void setCategories(context) {
+
+    corporateCategoryList = [
+      'Rent',
+      'Salary',
+      'Tax',
+      'Insurance',
+      'Bill',
+      'Equipment',
+      'Food',
+      'Travel',
+      'Dues',
+      'Gasoline',
+      'Corporate'
+      'Other'
+    ];
+    _categories = <CategoryItem>[
+      CategoryItem(
+          categoryImg: imgListCorporate[0], categoryName: corporateCategoryList[0], index: 0),
+      CategoryItem(
+          categoryImg: imgListCorporate[1], categoryName: corporateCategoryList[1], index: 0),
+      CategoryItem(
+          categoryImg: imgListCorporate[2], categoryName: corporateCategoryList[2], index: 0),
+      CategoryItem(
+          categoryImg: imgListCorporate[3], categoryName: corporateCategoryList[3], index: 0),
+      CategoryItem(
+          categoryImg: imgListCorporate[4], categoryName: corporateCategoryList[4], index: 0),
+      CategoryItem(
+          categoryImg: imgListCorporate[5], categoryName: corporateCategoryList[5], index: 0),
+      CategoryItem(
+          categoryImg: imgListCorporate[6], categoryName: corporateCategoryList[6], index: 0),
+      CategoryItem(
+          categoryImg: imgListCorporate[7], categoryName: corporateCategoryList[7], index: 0),
+      CategoryItem(
+          categoryImg: imgListCorporate[8], categoryName: corporateCategoryList[8], index: 0),
+      CategoryItem(
+          categoryImg: imgListCorporate[9], categoryName: corporateCategoryList[9], index: 0),
+      CategoryItem(
+          categoryImg: imgListCorporate[10], categoryName: corporateCategoryList[10], index: 0),
+      CategoryItem(
+          categoryImg: imgListCorporate[11], categoryName: corporateCategoryList[11], index: 0),
+    ];
+
+    
     categoryList = [
       S.of(context).CategoryDues,
       S.of(context).CategoryShopping,

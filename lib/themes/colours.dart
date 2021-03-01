@@ -29,6 +29,14 @@ class Colours{
       return [colorGradient1,colorGradient2];
     }
   }
+  static List<Color> getGradientNew2(bool isDark){
+    if(isDark){
+      return [colorGradientDark,colorGradientDark];
+    }
+    else{
+      return [white,white];
+    }
+  }
 
   static Color getBlackOrWhite(bool isDark){
     if(isDark){
@@ -54,6 +62,13 @@ class Colours{
     }
     else{
       return black;
+    }
+  }
+  static Color getGradientNew(bool isDark) {
+    if(isDark) {
+      return black;
+    }else {
+      return pink;
     }
   }
 
