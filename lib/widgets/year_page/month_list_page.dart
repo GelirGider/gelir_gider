@@ -33,15 +33,14 @@ class _MonthListPageState extends State<MonthListPage> {
 
     var monthButtons = <MonthListItem>[];
     monthList.forEach((index) {
-      monthButtons.add(
-          MonthListItem(
-            title: monthNames[index-1],
-            index: (index-1),
-          )
-      );
+      monthButtons.add(MonthListItem(
+        title: monthNames[index - 1],
+        index: (index - 1),
+      ));
     });
 
     return GridView.count(
+      shrinkWrap: true,
       mainAxisSpacing: 10.0,
       crossAxisSpacing: 10.0,
       childAspectRatio: 1.0,

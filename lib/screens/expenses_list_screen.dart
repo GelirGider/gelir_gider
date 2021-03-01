@@ -50,12 +50,16 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           endDrawer: MainDrawer(),
           key: scaffoldKey,
           appBar: GradientAppBar(
-            shape: Border(bottom: BorderSide(width:3.0,color:Colours.getGradientNew(isDark))),
+            shape: Border(
+                bottom: BorderSide(
+                    width: 3.0, color: Colours.getGradientNew(isDark))),
             leading: AccountChanger(),
             centerTitle: true,
             actions: [DrawerButton(scaffoldKey: scaffoldKey)],
-            title: Icon(Icons.attach_money,
-            color: Theme.of(context).buttonColor,),
+            title: Icon(
+              Icons.attach_money,
+              color: Theme.of(context).buttonColor,
+            ),
             gradient: LinearGradient(
               colors: Colours.getGradientNew2(isDark),
             ),
@@ -67,10 +71,10 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               unselectedLabelColor: Colors.grey,
               labelColor: Colours.getGradientNew(isDark),
               labelPadding: EdgeInsets.fromLTRB(0, 10, 0, 8),
-
-              labelStyle: TextStyle(fontSize: 15,
-              fontWeight: FontWeight.w500,
-              color: Theme.of(context).buttonColor),
+              labelStyle: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).buttonColor),
               tabs: <Widget>[
                 Tab(text: S.of(context).TabBarDay),
                 Tab(text: S.of(context).TabBarWeek),

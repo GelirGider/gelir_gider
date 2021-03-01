@@ -531,4 +531,42 @@ class Expenses with ChangeNotifier {
     var expense = calculateTotalExpense().abs();
     return income / (expense + income);
   }
+
+  List<Expense> getYearList(year) {
+    var sum = _items.where((element) {
+      var time = DateTime.parse(element.time);
+      return (time.year == year);
+    }).toList();
+    return sum;
+  }
+
+  List<Expense> getMonthList(year, month) {
+    var sum = _items.where((element) {
+      var time = DateTime.parse(element.time);
+      return (time.year == year) && (time.month == month);
+    }).toList();
+    return sum;
+  }
+
+  List<Expense> getWeekList(year, month, startDAte, endDate) {
+    var sum = _items.where((element) {
+      var time = DateTime.parse(element.time);
+      return (time.year == year) &&
+          (time.month == month) &&
+          (time.day >= 0) &&
+          (time.day < 7);
+    }).toList();
+    return sum;
+  }
+
+  List<Expense> getDayList() {
+    var year = selectedYear;
+    var month = selectedMonth;
+    var day = selectedDay;
+    var sum = _items.where((element) {
+      var time = DateTime.parse(element.time);
+      return (time.year == year) && (time.month == month) && (time.day == day);
+    }).toList();
+    return sum;
+  }
 }

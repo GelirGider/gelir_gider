@@ -28,22 +28,21 @@ class WeekListPage extends StatelessWidget {
       S.of(context).December,
     ];
     final weekNames = <String>[
-      '1-7 '+monthNames[curMonth],
-      '8-14 '+monthNames[curMonth],
-      '15-21 '+monthNames[curMonth],
-      '22-'+lastDay.toString()+' '+monthNames[curMonth]
+      '1-7 ' + monthNames[curMonth],
+      '8-14 ' + monthNames[curMonth],
+      '15-21 ' + monthNames[curMonth],
+      '22-' + lastDay.toString() + ' ' + monthNames[curMonth]
     ];
 
     var weekButtons = <WeekItem>[];
     weekNames.forEach((weekText) {
-      weekButtons.add(
-          WeekItem(
-            title: weekText,
-          )
-      );
+      weekButtons.add(WeekItem(
+        title: weekText,
+      ));
     });
 
     return GridView.count(
+      shrinkWrap: true,
       mainAxisSpacing: 10.0,
       crossAxisSpacing: 10.0,
       childAspectRatio: 1.0,

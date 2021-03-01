@@ -27,6 +27,7 @@ class DayListPage extends StatelessWidget {
     return dayButtons.isEmpty
         ? Container()
         : GridView.count(
+            shrinkWrap: true,
             mainAxisSpacing: 10.0,
             crossAxisSpacing: 10.0,
             padding: EdgeInsets.all(30.0),
