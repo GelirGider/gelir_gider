@@ -9,7 +9,6 @@ import 'package:gelir_gider/themes/colours.dart';
 class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var categories = Provider.of<Expenses>(context).categories;
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
@@ -17,14 +16,13 @@ class CategoryScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: GradientAppBar(
-          gradient: LinearGradient(
-              colors: Colours.getGradientColors(isDark)),
+          gradient: LinearGradient(colors: Colours.getGradientColors(isDark)),
           centerTitle: true,
           title: Text(
             S.of(context).AddingScreenCategories,
             style: TextStyle(
                 color: Theme.of(context).primaryTextTheme.caption.color,
-                fontSize: 24*textScaleFactor),
+                fontSize: 24 * textScaleFactor),
           ),
         ),
         body: Container(
@@ -39,26 +37,34 @@ class CategoryScreen extends StatelessWidget {
             margin: const EdgeInsets.fromLTRB(40, 70, 40, 95),
             borderOnForeground: true,
             semanticContainer: true,
-            child: GridView.count(
-                padding: const EdgeInsets.all(15),
-                crossAxisCount: 3,
-                children: categories.map(
-                  (element) {
-                    return FittedBox(
-                      child: FlatButton(
-                        onPressed: () {
-                          print('index::::::::${element.categoryName}');
-                          Provider.of<Expenses>(context, listen: false)
-                              .setCurrentCategory(element.index);
-                          print(
-                              'currentCategoryId::::::::${Provider.of<Expenses>(context, listen: false).currentCategoryId}');
-                          return Navigator.pop(context, element.index);
-                        },
-                        child: element,
-                      ),
-                    );
-                  },
-                ).toList()),
+            child: Consumer<Expenses>(
+              builder: (context, provider, child) {
+                final categories = provider.isPersonal
+                    ? provider.categories
+                    : provider.corporateCategories;
+                print('length::::::::::::${categories.length}');
+                return GridView.count(
+                  padding: const EdgeInsets.all(15),
+                  crossAxisCount: 3,
+                  children: categories.map(
+                    (element) {
+                      return FittedBox(
+                        child: FlatButton(
+                          onPressed: () {
+                            print('index::::::::${element.categoryName}');
+                            provider.setCurrentCategory(element.index);
+                            print(
+                                'currentCategoryId::::::::${provider.currentCategoryId}');
+                            return Navigator.pop(context, element.index);
+                          },
+                          child: element,
+                        ),
+                      );
+                    },
+                  ).toList(),
+                );
+              },
+            ),
           ),
         ),
       ),

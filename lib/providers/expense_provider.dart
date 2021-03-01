@@ -30,16 +30,15 @@ class Expense {
   }
 }
 
-
-
 class Expenses with ChangeNotifier {
   static const modePrefKeyIsIndividual = 'isIndividual';
   static const modePrefKeyCurrency = 'currency';
 
   Map<int, List<Expense>> _categoryAndItems = {};
   var categoryList = [];
-  var corporateCategoryList= [];
+  var corporateCategoryList = [];
   var _categories = [];
+  var _corporateCategories = [];
   int _currentCategoryId = 0;
   int _tabBarIndex = 0;
   bool _init = false;
@@ -77,7 +76,6 @@ class Expenses with ChangeNotifier {
   ];
 
   void setCategories(context) {
-
     corporateCategoryList = [
       'Rent',
       'Salary',
@@ -89,37 +87,60 @@ class Expenses with ChangeNotifier {
       'Travel',
       'Dues',
       'Gasoline',
-      'Corporate'
+      'Corporate',
       'Other'
     ];
-    _categories = <CategoryItem>[
+    _corporateCategories = <CategoryItem>[
       CategoryItem(
-          categoryImg: imgListCorporate[0], categoryName: corporateCategoryList[0], index: 0),
+          categoryImg: imgListCorporate[0],
+          categoryName: corporateCategoryList[0],
+          index: 0),
       CategoryItem(
-          categoryImg: imgListCorporate[1], categoryName: corporateCategoryList[1], index: 0),
+          categoryImg: imgListCorporate[1],
+          categoryName: corporateCategoryList[1],
+          index: 1),
       CategoryItem(
-          categoryImg: imgListCorporate[2], categoryName: corporateCategoryList[2], index: 0),
+          categoryImg: imgListCorporate[2],
+          categoryName: corporateCategoryList[2],
+          index: 2),
       CategoryItem(
-          categoryImg: imgListCorporate[3], categoryName: corporateCategoryList[3], index: 0),
+          categoryImg: imgListCorporate[3],
+          categoryName: corporateCategoryList[3],
+          index: 3),
       CategoryItem(
-          categoryImg: imgListCorporate[4], categoryName: corporateCategoryList[4], index: 0),
+          categoryImg: imgListCorporate[4],
+          categoryName: corporateCategoryList[4],
+          index: 4),
       CategoryItem(
-          categoryImg: imgListCorporate[5], categoryName: corporateCategoryList[5], index: 0),
+          categoryImg: imgListCorporate[5],
+          categoryName: corporateCategoryList[5],
+          index: 5),
       CategoryItem(
-          categoryImg: imgListCorporate[6], categoryName: corporateCategoryList[6], index: 0),
+          categoryImg: imgListCorporate[6],
+          categoryName: corporateCategoryList[6],
+          index: 6),
       CategoryItem(
-          categoryImg: imgListCorporate[7], categoryName: corporateCategoryList[7], index: 0),
+          categoryImg: imgListCorporate[7],
+          categoryName: corporateCategoryList[7],
+          index: 7),
       CategoryItem(
-          categoryImg: imgListCorporate[8], categoryName: corporateCategoryList[8], index: 0),
+          categoryImg: imgListCorporate[8],
+          categoryName: corporateCategoryList[8],
+          index: 8),
       CategoryItem(
-          categoryImg: imgListCorporate[9], categoryName: corporateCategoryList[9], index: 0),
+          categoryImg: imgListCorporate[9],
+          categoryName: corporateCategoryList[9],
+          index: 9),
       CategoryItem(
-          categoryImg: imgListCorporate[10], categoryName: corporateCategoryList[10], index: 0),
+          categoryImg: imgListCorporate[10],
+          categoryName: corporateCategoryList[10],
+          index: 10),
       CategoryItem(
-          categoryImg: imgListCorporate[11], categoryName: corporateCategoryList[11], index: 0),
+          categoryImg: imgListCorporate[11],
+          categoryName: corporateCategoryList[11],
+          index: 11),
     ];
 
-    
     categoryList = [
       S.of(context).CategoryDues,
       S.of(context).CategoryShopping,
@@ -134,6 +155,7 @@ class Expenses with ChangeNotifier {
       S.of(context).CategoryEatDrink,
       S.of(context).CategoryOthers,
     ];
+
     _categories = <CategoryItem>[
       CategoryItem(
           categoryImg: imgList[0], categoryName: categoryList[0], index: 0),
@@ -173,6 +195,10 @@ class Expenses with ChangeNotifier {
 
   List<CategoryItem> get categories {
     return [..._categories];
+  }
+
+  List<CategoryItem> get corporateCategories {
+    return [..._corporateCategories];
   }
 
   Map<int, List<Expense>> get categoryAndItems => _categoryAndItems;
@@ -298,6 +324,7 @@ class Expenses with ChangeNotifier {
     setTabBarIndex(_tabBarIndex);
     notifyListeners();
   }
+
 //---------------------------------------------------------------------------
   int selectedYear = 2021;
   int selectedMonth = 0;
@@ -340,36 +367,47 @@ class Expenses with ChangeNotifier {
   Iterable<int> getCurrentMonths() {
     var yearOfExpenses = currentMap[selectedYear];
     print(yearOfExpenses.toString());
-    var map =groupBy(yearOfExpenses, (Expense e) => int.parse(e.time.split('-')[1]));
+    var map =
+        groupBy(yearOfExpenses, (Expense e) => int.parse(e.time.split('-')[1]));
     var months = map.keys;
     currentMap = map;
     return months;
   }
 
   int getLastDayOfMonth() {
-    final date = DateTime(selectedYear, (selectedMonth+1));
+    final date = DateTime(selectedYear, (selectedMonth + 1));
     final lastDay = Utils.lastDayOfMonth(date);
     print('Last day in month : ${lastDay.day}');
     return lastDay.day;
   }
 
-  Iterable<int> getCurrentDays(int startDay,int endDay) {
-    var startDate = DateTime.parse(selectedYear.toString()+'-'+fixAsDate(selectedMonth+1)+'-'+fixAsDate(startDay));
-    var endDate = DateTime.parse(selectedYear.toString()+'-'+fixAsDate(selectedMonth+1)+'-'+fixAsDate(endDay));
-    var monthOfExpenses = currentMap[selectedMonth+1];
+  Iterable<int> getCurrentDays(int startDay, int endDay) {
+    var startDate = DateTime.parse(selectedYear.toString() +
+        '-' +
+        fixAsDate(selectedMonth + 1) +
+        '-' +
+        fixAsDate(startDay));
+    var endDate = DateTime.parse(selectedYear.toString() +
+        '-' +
+        fixAsDate(selectedMonth + 1) +
+        '-' +
+        fixAsDate(endDay));
+    var monthOfExpenses = currentMap[selectedMonth + 1];
 
     print(startDate.toString());
     print(endDate.toString());
 
     var map = groupBy(monthOfExpenses, (Expense e) {
-      var curDate = DateTime.parse(e.time);
-      print(curDate.toString());
-      if((curDate.isAfter(startDate) && curDate.isBefore(endDate)) || ((curDate == startDate) || (curDate == endDate))){
-        print("true");
-        print(int.parse(e.time.split('-')[2]).toString());
-        return int.parse(e.time.split('-')[2]);
-      }
-    }) ?? {};
+          var curDate = DateTime.parse(e.time);
+          print(curDate.toString());
+          if ((curDate.isAfter(startDate) && curDate.isBefore(endDate)) ||
+              ((curDate == startDate) || (curDate == endDate))) {
+            print("true");
+            print(int.parse(e.time.split('-')[2]).toString());
+            return int.parse(e.time.split('-')[2]);
+          }
+        }) ??
+        {};
 
     var days = map.keys;
     print(days.toString());
@@ -377,9 +415,9 @@ class Expenses with ChangeNotifier {
     return days;
   }
 
-  String fixAsDate(date){
-    if(date<10) {
-      return '0'+(date).toString();
+  String fixAsDate(date) {
+    if (date < 10) {
+      return '0' + (date).toString();
     } else {
       return (date).toString();
     }
