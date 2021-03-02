@@ -545,71 +545,81 @@ class S {
     );
   }
 
-  /// `Monday`
-  String get Monday {
+  /// `Salary`
+  String get CategorySalary {
     return Intl.message(
-      'Monday',
-      name: 'Monday',
+      'Salary',
+      name: 'CategorySalary',
       desc: '',
       args: [],
     );
   }
 
-  /// `Tuesday`
-  String get Tuesday {
+  /// `Tax`
+  String get CategoryTax {
     return Intl.message(
-      'Tuesday',
-      name: 'Tuesday',
+      'Tax',
+      name: 'CategoryTax',
       desc: '',
       args: [],
     );
   }
 
-  /// `Wednesday`
-  String get Wednesday {
+  /// `Insurance`
+  String get CategoryInsurance {
     return Intl.message(
-      'Wednesday',
-      name: 'Wednesday',
+      'Insurance',
+      name: 'CategoryInsurance',
       desc: '',
       args: [],
     );
   }
 
-  /// `Thursday`
-  String get Thursday {
+  /// `Bill`
+  String get CategoryBill {
     return Intl.message(
-      'Thursday',
-      name: 'Thursday',
+      'Bill',
+      name: 'CategoryBill',
       desc: '',
       args: [],
     );
   }
 
-  /// `Friday`
-  String get Friday {
+  /// `Equipment`
+  String get CategoryEquipment {
     return Intl.message(
-      'Friday',
-      name: 'Friday',
+      'Equipment',
+      name: 'CategoryEquipment',
       desc: '',
       args: [],
     );
   }
 
-  /// `Saturday`
-  String get Saturday {
+  /// `Travel`
+  String get CategoryTravel {
     return Intl.message(
-      'Saturday',
-      name: 'Saturday',
+      'Travel',
+      name: 'CategoryTravel',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sunday`
-  String get Sunday {
+  /// `Gasoline`
+  String get CategoryGasoline {
     return Intl.message(
-      'Sunday',
-      name: 'Sunday',
+      'Gasoline',
+      name: 'CategoryGasoline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Corporate`
+  String get CategoryCorporate {
+    return Intl.message(
+      'Corporate',
+      name: 'CategoryCorporate',
       desc: '',
       args: [],
     );

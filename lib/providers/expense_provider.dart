@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/helpers/db_helper.dart';
 import 'package:gelir_gider/utils/time_diff.dart';
 import 'package:gelir_gider/widgets/components/category_item.dart';
@@ -44,7 +43,7 @@ class Expenses with ChangeNotifier {
   int _tabBarIndex = 0;
   bool _init = false;
   bool _init2 = false;
-  Map<int, List<Expense>> currentMap = {};
+  Map<int, List<Expense>> _currentMap;
 
   var imgList = Categories.getPersonalImageList();
   var imgListCorporate = Categories.getCorporateImageList();
@@ -113,6 +112,12 @@ class Expenses with ChangeNotifier {
   Map<int, List<Expense>> get year {
     return {..._years};
   }
+
+  set currentMap(Map<int, List<Expense>> value) {
+    _currentMap = value;
+    notifyListeners();
+  }
+  Map<int, List<Expense>> get currentMap => _currentMap;
 
   Map<int, List<Expense>> groupExpensesByCategories(List<Expense> expenses) {
     final groups = groupBy(expenses, (Expense e) => e.category);

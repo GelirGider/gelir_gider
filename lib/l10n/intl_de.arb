@@ -51,11 +51,13 @@
   "October" :  "Oktober",
   "November" : "November",
   "December" :  "Dezember",
-  "Monday" :"Montag",
-  "Tuesday" :"Dienstag",
-  "Wednesday" :"Mittwoch",
-  "Thursday" :"Donnerstag",
-  "Friday" :"Freitag",
-  "Saturday" :"Samstag",
-  "Sunday" :"Sonntag"
+  "CategorySalary" :"Gehalt",
+  "CategoryTax" :"MwSt",
+  "CategoryInsurance" :"Versicherung",
+  "CategoryBill" :"Rechnung",
+  "CategoryEquipment" :"Ausrüstung",
+  "CategoryFood" : "Essen",
+  "CategoryTravel" :"Reise",
+  "CategoryGasoline" :"Benzin",
+  "CategoryCorporate" : "Corporate"
 }

@@ -51,12 +51,14 @@
   "October" :  "Outubro",
   "November" : "Novembro",
   "December" :  "Dezembro",
-  "Monday":"Segunda-feira",
-  "Tuesday":"Terça-feira",
-  "Wednesday":"Quarta-feira",
-  "Thursday":"Quinta-feira",
-  "Friday":"Sexta-feira",
-  "Saturday":"Sábado",
-  "Sunday":"Domingo"
+  "CategorySalary":"Salário",
+  "CategoryTax":"Imposto",
+  "CategoryInsurance":"Seguro",
+  "CategoryBill":"Cobrar",
+  "CategoryEquipment":"Equipamento",
+  "CategoryFood":"Comida",
+  "CategoryTravel":"Viagem",
+  "CategoryGasoline":"Gasolina",
+  "CategoryCorporate":"Corporativo"
 }
 

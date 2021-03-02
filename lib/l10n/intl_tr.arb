@@ -57,5 +57,13 @@
   "Thursday": "Perşembe",
   "Friday": "Cuma",
   "Saturday": "Cumartesi",
-  "Sunday": "Pazar"
+  "Sunday": "Pazar",
+  "CategorySalary" :"Maaş",
+  "CategoryTax" :"Vergi",
+  "CategoryInsurance" :"Sigorta",
+  "CategoryBill" :"Fatura",
+  "CategoryEquipment" :"Ekipman",
+  "CategoryTravel" :"Seyahat",
+  "CategoryGasoline" :"Yakıt",
+  "CategoryCorporate" :"Anlaşma"
 }

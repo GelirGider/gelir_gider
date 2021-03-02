@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/widgets/components/category_item.dart';
 
-import 'expense_provider.dart' show Expense;
-
 class Categories {
   static List<Widget> getPersonalImageList() {
     var imgList = [
@@ -93,18 +91,18 @@ class Categories {
 
   static List<String> getCorporateCategoryListTitles(context) {
     var corporateCategoryList = [
-      'Rent',
-      'Salary',
-      'Tax',
-      'Insurance',
-      'Bill',
-      'Equipment',
-      'Food',
-      'Travel',
-      'Dues',
-      'Gasoline',
-      'Corporate',
-      'Other'
+      S.of(context).CategoryRent,
+      S.of(context).CategorySalary,
+      S.of(context).CategoryTax,
+      S.of(context).CategoryInsurance,
+      S.of(context).CategoryBill,
+      S.of(context).CategoryEquipment,
+      S.of(context).CategoryEatDrink,
+      S.of(context).CategoryTravel,
+      S.of(context).CategoryDues,
+      S.of(context).CategoryGasoline,
+      S.of(context).CategoryCorporate,
+      S.of(context).CategoryOthers,
     ];
     return corporateCategoryList;
   }

@@ -49,64 +49,58 @@ class _YearPageState extends State<YearPage> {
     return Consumer<Expenses>(
       child: null,
       builder: (context, provider, child) {
-        if (provider.selectedPage == 0) {
-          var list = provider.groupExpensesByCategories(provider.expense);
-          return _buildBody('Back', list, null, YearListPage());
-        }
-        else if (provider.selectedPage == 1) {
-          var list = provider.currentMap;
-          return _buildBody(
-              'Back', list, () => provider.setSelectedPage(0), MonthListPage());
-        }
-        else if (provider.selectedPage == 2) {
-          var list = provider.currentMap;
-          return _buildBody(
-              'Back', list, () => provider.setSelectedPage(1), WeekListPage());
-        }
-        else if (provider.selectedPage == 3) {
-          var list = provider.currentMap;
-          print(list.isEmpty);
-          print(list.toString());
-          return _buildBody(
-              'Back', list, () => provider.setSelectedPage(2), DayListPage());
-        }
-        else if (provider.selectedPage == 4) {
+        switch (provider.selectedPage) {
+          case 0:
+            var list = provider.groupExpensesByCategories(provider.expense);
+            return _buildBody('Back', list, null, YearListPage());
+            break;
+          case 1:
+            return _buildBody('Back', provider.currentMap,
+                () => provider.setSelectedPage(0), MonthListPage());
+            break;
+          case 2:
+            return _buildBody('Back', provider.currentMap,
+                () => provider.setSelectedPage(1), WeekListPage());
+            break;
+          case 3:
+            return _buildBody('Back', provider.currentMap,
+                () => provider.setSelectedPage(2), DayListPage());
+            break;
+          case 4:
+            var res = provider.currentMap[provider.selectedDay];
+            var myList = provider.groupExpensesByCategories(res);
+            return Container(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  MoneyWidget(myList),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: myList.keys.length,
+                    itemBuilder: (context, index) {
+                      provider.getSymbol();
+                      var category = myList.keys.toList()[index];
+                      var list = myList.values.toList()[index];
+                      var currency = provider.symbol;
 
-          var res = provider.currentMap[provider.selectedDay];
-          var myList = provider.groupExpensesByCategories(res);
-          print(myList.isEmpty);
-          print(myList.toString());
-          return Container(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              children: [
-                MoneyWidget(myList),
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: myList.keys.length,
-                  itemBuilder: (context, index) {
-                    provider.getSymbol();
-                    var category = myList.keys.toList()[index];
-                    var list = myList.values.toList()[index];
-                    var currency = provider.symbol;
-
-                    return Column(
-                      children: [
-                        MainPageCategoryModal(
-                          category: category,
-                          list: list,
-                          currency: currency,
-                        ),
-                        OurDivider(),
-                      ],
-                    );
-                  },
-                ),
-              ],
-            ),
-          );
-        } else {
-          return Container();
+                      return Column(
+                        children: [
+                          MainPageCategoryModal(
+                            category: category,
+                            list: list,
+                            currency: currency,
+                          ),
+                          OurDivider(),
+                        ],
+                      );
+                    },
+                  ),
+                ],
+              ),
+            );
+            break;
+          default:
+            return Container();
         }
       },
     );

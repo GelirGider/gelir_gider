@@ -51,11 +51,12 @@
   "October" :  "October",
   "November" : "November",
   "December" :  "December",
-  "Monday": "Monday",
-  "Tuesday": "Tuesday",
-  "Wednesday": "Wednesday",
-  "Thursday": "Thursday",
-  "Friday": "Friday",
-  "Saturday": "Saturday",
-  "Sunday": "Sunday"
+  "CategorySalary" :"Salary",
+  "CategoryTax" :"Tax",
+  "CategoryInsurance" :"Insurance",
+  "CategoryBill" :"Bill",
+  "CategoryEquipment" :"Equipment",
+  "CategoryTravel" :"Travel",
+  "CategoryGasoline" :"Gasoline",
+  "CategoryCorporate" :"Corporate"
 }
