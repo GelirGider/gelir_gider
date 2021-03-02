@@ -65,7 +65,7 @@ class AccountChanger extends StatelessWidget {
                             FlatButton(
                               onPressed: () async {
                                 await provider.setPersonal();
-                                provider.setTabBarIndex(provider.TabBarIndex);
+                                provider.setTabBarIndex(0);
                                 await Navigator.of(context).pop();
                               },
                               child: Text(
@@ -96,7 +96,7 @@ class AccountChanger extends StatelessWidget {
                             FlatButton(
                               onPressed: () async {
                                 await provider.setCorporate();
-                                provider.setTabBarIndex(provider.TabBarIndex);
+                                provider.setTabBarIndex(0);
                                 await Navigator.of(context).pop();
                               },
                               child: Text(
