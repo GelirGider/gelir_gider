@@ -8,6 +8,7 @@ import 'package:gelir_gider/widgets/year_page/day_list_page.dart';
 import 'package:gelir_gider/widgets/year_page/week_list_page.dart';
 import 'package:gelir_gider/widgets/year_page/year_list_page.dart';
 import 'package:provider/provider.dart';
+import 'package:gelir_gider/widgets/components/money_widget.dart';
 
 class YearPage extends StatefulWidget {
   @override
@@ -26,15 +27,7 @@ class _YearPageState extends State<YearPage> {
     super.didChangeDependencies();
   }
 
-  double calculate(list) {
-    var sum = 0.0;
-    list.forEach((element) {
-      sum += element.price;
-    });
-    return sum;
-  }
-
-  Widget _buildBody(title, sum, onPressed, page) {
+  Widget _buildBody(title, Map<int, List<Expense>> list, onPressed, page) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -44,7 +37,7 @@ class _YearPageState extends State<YearPage> {
           label: Text(title),
         ),
         Container(
-          child: Text(sum.toStringAsFixed(1)),
+          child: MoneyWidget(list),
         ),
         page,
       ],
@@ -57,60 +50,63 @@ class _YearPageState extends State<YearPage> {
       child: null,
       builder: (context, provider, child) {
         if (provider.selectedPage == 0) {
-          var list = provider.expense;
-          var sum = calculate(list);
-          return _buildBody('title', sum, null, YearListPage());
+          var list = provider.groupExpensesByCategories(provider.expense);
+          return _buildBody('Back', list, null, YearListPage());
         }
-        if (provider.selectedPage == 1) {
-          var list = provider.getYearList(provider.selectedYear);
-          var sum = calculate(list);
+        else if (provider.selectedPage == 1) {
+          var list = provider.currentMap;
           return _buildBody(
-              'title', sum, () => provider.setSelectedPage(0), MonthListPage());
+              'Back', list, () => provider.setSelectedPage(0), MonthListPage());
         }
-        if (provider.selectedPage == 2) {
-          var list = provider.getYearList(provider.selectedYear);
-          var sum = calculate(list);
+        else if (provider.selectedPage == 2) {
+          var list = provider.currentMap;
           return _buildBody(
-              'title', sum, () => provider.setSelectedPage(1), WeekListPage());
+              'Back', list, () => provider.setSelectedPage(1), WeekListPage());
         }
-        if (provider.selectedPage == 3) {
-          var list = provider.getYearList(provider.selectedYear);
-          var sum = calculate(list);
+        else if (provider.selectedPage == 3) {
+          var list = provider.currentMap;
+          print(list.isEmpty);
+          print(list.toString());
           return _buildBody(
-              'title', sum, () => provider.setSelectedPage(2), DayListPage());
-        } else if (provider.selectedPage == 4) {
-          print(provider.selectedPage);
+              'Back', list, () => provider.setSelectedPage(2), DayListPage());
+        }
+        else if (provider.selectedPage == 4) {
+
           var res = provider.currentMap[provider.selectedDay];
           var myList = provider.groupExpensesByCategories(res);
-          print(myList.length);
+          print(myList.isEmpty);
+          print(myList.toString());
           return Container(
-            height: 400,
-            child: ListView.builder(
-              itemCount: myList.length,
-              itemBuilder: (context, index) {
-                provider.getSymbol();
-                var category = 0; //myList[index].category;
-                var list = myList;
-                var currency = provider.symbol;
-                print(
-                    'selectedDay:${provider.selectedDay}selectedMonth:${provider.selectedMonth}selectedYear:${provider.selectedYear}');
-                return Column(
-                  children: [
-                    MainPageCategoryModal(
-                      category: category,
-                      list: [],
-                      currency: currency,
-                    ),
-                    OurDivider(),
-                  ],
-                );
-              },
+            padding: EdgeInsets.all(20),
+            child: Column(
+              children: [
+                MoneyWidget(myList),
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: myList.keys.length,
+                  itemBuilder: (context, index) {
+                    provider.getSymbol();
+                    var category = myList.keys.toList()[index];
+                    var list = myList.values.toList()[index];
+                    var currency = provider.symbol;
+
+                    return Column(
+                      children: [
+                        MainPageCategoryModal(
+                          category: category,
+                          list: list,
+                          currency: currency,
+                        ),
+                        OurDivider(),
+                      ],
+                    );
+                  },
+                ),
+              ],
             ),
           );
         } else {
-          return Container(
-            child: Text('ASDASDASDASDASDASD'),
-          );
+          return Container();
         }
       },
     );

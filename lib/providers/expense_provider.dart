@@ -43,7 +43,7 @@ class Expenses with ChangeNotifier {
   int _tabBarIndex = 0;
   bool _init = false;
   bool _init2 = false;
-  var currentMap = {};
+  Map<int,List<Expense>> currentMap = {};
 
   var imgList = [
     Image.asset('assets/categories/dues.png'),
@@ -366,7 +366,6 @@ class Expenses with ChangeNotifier {
 
   Iterable<int> getCurrentMonths() {
     var yearOfExpenses = currentMap[selectedYear];
-    print(yearOfExpenses.toString());
     var map =
         groupBy(yearOfExpenses, (Expense e) => int.parse(e.time.split('-')[1]));
     var months = map.keys;
@@ -394,16 +393,11 @@ class Expenses with ChangeNotifier {
         fixAsDate(endDay));
     var monthOfExpenses = currentMap[selectedMonth + 1];
 
-    print(startDate.toString());
-    print(endDate.toString());
-
     var map = groupBy(monthOfExpenses, (Expense e) {
           var curDate = DateTime.parse(e.time);
           print(curDate.toString());
           if ((curDate.isAfter(startDate) && curDate.isBefore(endDate)) ||
               ((curDate == startDate) || (curDate == endDate))) {
-            print("true");
-            print(int.parse(e.time.split('-')[2]).toString());
             return int.parse(e.time.split('-')[2]);
           }
         }) ??
@@ -498,13 +492,13 @@ class Expenses with ChangeNotifier {
 
   //----------------------------------------------------------------------------
 
-  double calculateTotalMoney() {
-    return calculateTotalIncome() + calculateTotalExpense();
+  double calculateTotalMoney(list) {
+    return calculateTotalIncome(list) + calculateTotalExpense(list);
   }
 
-  double calculateTotalExpense() {
+  double calculateTotalExpense(list) {
     var sum = 0.0;
-    _currentItems.values.forEach((element) {
+    list.values.forEach((element) {
       element
           .where((expense) => expense.isExpense == 'expense')
           .forEach((element) {
@@ -514,9 +508,9 @@ class Expenses with ChangeNotifier {
     return sum;
   }
 
-  double calculateTotalIncome() {
+  double calculateTotalIncome(list) {
     var sum = 0.0;
-    _currentItems.values.forEach((element) {
+    list.values.forEach((element) {
       element
           .where((expense) => expense.isExpense == 'income')
           .forEach((element) {
@@ -526,9 +520,9 @@ class Expenses with ChangeNotifier {
     return sum;
   }
 
-  double get getPercentage {
-    var income = calculateTotalIncome();
-    var expense = calculateTotalExpense().abs();
+  double getPercentage(list) {
+    var income = calculateTotalIncome(list);
+    var expense = calculateTotalExpense(list).abs();
     return income / (expense + income);
   }
 
@@ -540,28 +534,31 @@ class Expenses with ChangeNotifier {
     return sum;
   }
 
-  List<Expense> getMonthList(year, month) {
+  List<Expense> getMonthList(month) {
     var sum = _items.where((element) {
       var time = DateTime.parse(element.time);
-      return (time.year == year) && (time.month == month);
+      return (time.year == selectedYear) && (time.month == month+1);
     }).toList();
     return sum;
   }
 
-  List<Expense> getWeekList(year, month, startDAte, endDate) {
+  List<Expense> getWeekList(String week) {
+    var weekStr = week.split(' ')[0];
+    var startDay  = int.parse(weekStr.split('-')[0]);
+    var endDay  = int.parse(weekStr.split('-')[1]);
     var sum = _items.where((element) {
       var time = DateTime.parse(element.time);
-      return (time.year == year) &&
-          (time.month == month) &&
-          (time.day >= 0) &&
-          (time.day < 7);
+      return (time.year == selectedYear) &&
+          (time.month == selectedMonth+1) &&
+          (time.day >= startDay) &&
+          (time.day <= endDay);
     }).toList();
     return sum;
   }
 
   List<Expense> getDayList() {
     var year = selectedYear;
-    var month = selectedMonth;
+    var month = selectedMonth+1;
     var day = selectedDay;
     var sum = _items.where((element) {
       var time = DateTime.parse(element.time);
