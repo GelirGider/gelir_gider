@@ -45,9 +45,9 @@ class WeekListPage extends StatelessWidget {
       shrinkWrap: true,
       mainAxisSpacing: 10.0,
       crossAxisSpacing: 10.0,
-      childAspectRatio: 1.0,
+      childAspectRatio: 1.5,
       padding: EdgeInsets.all(30.0),
-      crossAxisCount: 3,
+      crossAxisCount: 2,
       children: weekButtons,
     );
   }

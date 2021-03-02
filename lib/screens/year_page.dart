@@ -30,11 +30,22 @@ class _YearPageState extends State<YearPage> {
   Widget _buildBody(title, Map<int, List<Expense>> list, onPressed, page) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         FlatButton.icon(
           onPressed: onPressed,
-          icon: Icon(Icons.arrow_back),
-          label: Text(title),
+          icon: SizedBox(
+            width: 18.0,
+            child: Icon(Icons.arrow_left_outlined,
+            size: 35.0,
+            color: Colors.black87,),
+          ),
+          label: Text(title,
+          style: TextStyle(color: Colors.black87,
+              fontSize: 17.0,
+              wordSpacing: 0.0,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.5),),
         ),
         Container(
           child: MoneyWidget(list),
