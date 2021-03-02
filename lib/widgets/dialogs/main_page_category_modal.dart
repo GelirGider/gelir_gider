@@ -43,16 +43,15 @@ class MainPageCategoryModal extends StatelessWidget {
         provider.categories[category].categoryName,
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
-      trailing: checkTotalPrice(calculatePrice(), currency,textScaleFactor),
+      trailing: checkTotalPrice(calculatePrice(), currency, textScaleFactor),
     );
   }
 
-  Widget checkTotalPrice(double price, String currency,double scaleFactor) {
-    print('  Widget checkTotalPrice(double price, String currency)$currency');
+  Widget checkTotalPrice(double price, String currency, double scaleFactor) {
     if (price < 0) {
       return Text(
         price.toStringAsFixed(1) + ' ' + currency,
-        style: TextStyle(color: Colours.red, fontSize: 15*scaleFactor),
+        style: TextStyle(color: Colours.red, fontSize: 15 * scaleFactor),
       );
     } else {
       return Text(

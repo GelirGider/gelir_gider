@@ -6,6 +6,7 @@ import 'package:gelir_gider/widgets/components/category_item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:collection/collection.dart';
 import 'package:date_utils/date_utils.dart';
+import 'categories.dart';
 
 class Expense {
   final String id;
@@ -35,153 +36,27 @@ class Expenses with ChangeNotifier {
   static const modePrefKeyCurrency = 'currency';
 
   Map<int, List<Expense>> _categoryAndItems = {};
-  var categoryList = [];
-  var corporateCategoryList = [];
-  var _categories = [];
+  var personalCategoryTitleList = [];
+  var corporateCategoryTitleList = [];
+  var _personalCategories = [];
   var _corporateCategories = [];
   int _currentCategoryId = 0;
   int _tabBarIndex = 0;
   bool _init = false;
   bool _init2 = false;
-  Map<int,List<Expense>> currentMap = {};
+  Map<int, List<Expense>> currentMap = {};
 
-  var imgList = [
-    Image.asset('assets/categories/dues.png'),
-    Image.asset('assets/categories/shopping.png'),
-    Image.asset('assets/categories/education.png'),
-    Image.asset('assets/categories/entertainment.png'),
-    Image.asset('assets/categories/hire.png'),
-    Image.asset('assets/categories/selfcare.png'),
-    Image.asset('assets/categories/bill.png'),
-    Image.asset('assets/categories/health.png'),
-    Image.asset('assets/categories/fix.png'),
-    Image.asset('assets/categories/holiday.png'),
-    Image.asset('assets/categories/food.png'),
-    Image.asset('assets/categories/other.png'),
-  ];
-
-  var imgListCorporate = [
-    Image.asset('assets/categories/rent.png'),
-    Image.asset('assets/categories/cash.png'),
-    Image.asset('assets/categories/tax (1).png'),
-    Image.asset('assets/categories/medical-insurance.png'),
-    Image.asset('assets/categories/bill.png'),
-    Image.asset('assets/categories/fix.png'),
-    Image.asset('assets/categories/food.png'),
-    Image.asset('assets/categories/luggage.png'),
-    Image.asset('assets/categories/dues.png'),
-    Image.asset('assets/categories/gasoline.png'),
-    Image.asset('assets/categories/agreement.png'),
-    Image.asset('assets/categories/other.png'),
-  ];
+  var imgList = Categories.getPersonalImageList();
+  var imgListCorporate = Categories.getCorporateImageList();
 
   void setCategories(context) {
-    corporateCategoryList = [
-      'Rent',
-      'Salary',
-      'Tax',
-      'Insurance',
-      'Bill',
-      'Equipment',
-      'Food',
-      'Travel',
-      'Dues',
-      'Gasoline',
-      'Corporate',
-      'Other'
-    ];
-    _corporateCategories = <CategoryItem>[
-      CategoryItem(
-          categoryImg: imgListCorporate[0],
-          categoryName: corporateCategoryList[0],
-          index: 0),
-      CategoryItem(
-          categoryImg: imgListCorporate[1],
-          categoryName: corporateCategoryList[1],
-          index: 1),
-      CategoryItem(
-          categoryImg: imgListCorporate[2],
-          categoryName: corporateCategoryList[2],
-          index: 2),
-      CategoryItem(
-          categoryImg: imgListCorporate[3],
-          categoryName: corporateCategoryList[3],
-          index: 3),
-      CategoryItem(
-          categoryImg: imgListCorporate[4],
-          categoryName: corporateCategoryList[4],
-          index: 4),
-      CategoryItem(
-          categoryImg: imgListCorporate[5],
-          categoryName: corporateCategoryList[5],
-          index: 5),
-      CategoryItem(
-          categoryImg: imgListCorporate[6],
-          categoryName: corporateCategoryList[6],
-          index: 6),
-      CategoryItem(
-          categoryImg: imgListCorporate[7],
-          categoryName: corporateCategoryList[7],
-          index: 7),
-      CategoryItem(
-          categoryImg: imgListCorporate[8],
-          categoryName: corporateCategoryList[8],
-          index: 8),
-      CategoryItem(
-          categoryImg: imgListCorporate[9],
-          categoryName: corporateCategoryList[9],
-          index: 9),
-      CategoryItem(
-          categoryImg: imgListCorporate[10],
-          categoryName: corporateCategoryList[10],
-          index: 10),
-      CategoryItem(
-          categoryImg: imgListCorporate[11],
-          categoryName: corporateCategoryList[11],
-          index: 11),
-    ];
+    corporateCategoryTitleList =
+        Categories.getCorporateCategoryListTitles(context);
+    _corporateCategories = Categories.getCorporateCategories(context);
 
-    categoryList = [
-      S.of(context).CategoryDues,
-      S.of(context).CategoryShopping,
-      S.of(context).CategoryEducation,
-      S.of(context).CategoryEntertainment,
-      S.of(context).CategoryRent,
-      S.of(context).CategorySelfcare,
-      S.of(context).CategoryPayment,
-      S.of(context).CategoryHealth,
-      S.of(context).CategoryRepair,
-      S.of(context).CategoryVacation,
-      S.of(context).CategoryEatDrink,
-      S.of(context).CategoryOthers,
-    ];
-
-    _categories = <CategoryItem>[
-      CategoryItem(
-          categoryImg: imgList[0], categoryName: categoryList[0], index: 0),
-      CategoryItem(
-          categoryImg: imgList[1], categoryName: categoryList[1], index: 1),
-      CategoryItem(
-          categoryImg: imgList[2], categoryName: categoryList[2], index: 2),
-      CategoryItem(
-          categoryImg: imgList[3], categoryName: categoryList[3], index: 3),
-      CategoryItem(
-          categoryImg: imgList[4], categoryName: categoryList[4], index: 4),
-      CategoryItem(
-          categoryImg: imgList[5], categoryName: categoryList[5], index: 5),
-      CategoryItem(
-          categoryImg: imgList[6], categoryName: categoryList[6], index: 6),
-      CategoryItem(
-          categoryImg: imgList[7], categoryName: categoryList[7], index: 7),
-      CategoryItem(
-          categoryImg: imgList[8], categoryName: categoryList[8], index: 8),
-      CategoryItem(
-          categoryImg: imgList[9], categoryName: categoryList[9], index: 9),
-      CategoryItem(
-          categoryImg: imgList[10], categoryName: categoryList[10], index: 10),
-      CategoryItem(
-          categoryImg: imgList[11], categoryName: categoryList[11], index: 11),
-    ];
+    personalCategoryTitleList =
+        Categories.getPersonalCategoryListTitles(context);
+    _personalCategories = Categories.getPersonalCategories(context);
   }
 
   int get currentCategoryId => _currentCategoryId;
@@ -194,7 +69,7 @@ class Expenses with ChangeNotifier {
   CategoryItem get CurrentCategory => categories[currentCategoryId];
 
   List<CategoryItem> get categories {
-    return [..._categories];
+    return [..._personalCategories];
   }
 
   List<CategoryItem> get corporateCategories {
@@ -537,19 +412,19 @@ class Expenses with ChangeNotifier {
   List<Expense> getMonthList(month) {
     var sum = _items.where((element) {
       var time = DateTime.parse(element.time);
-      return (time.year == selectedYear) && (time.month == month+1);
+      return (time.year == selectedYear) && (time.month == month + 1);
     }).toList();
     return sum;
   }
 
   List<Expense> getWeekList(String week) {
     var weekStr = week.split(' ')[0];
-    var startDay  = int.parse(weekStr.split('-')[0]);
-    var endDay  = int.parse(weekStr.split('-')[1]);
+    var startDay = int.parse(weekStr.split('-')[0]);
+    var endDay = int.parse(weekStr.split('-')[1]);
     var sum = _items.where((element) {
       var time = DateTime.parse(element.time);
       return (time.year == selectedYear) &&
-          (time.month == selectedMonth+1) &&
+          (time.month == selectedMonth + 1) &&
           (time.day >= startDay) &&
           (time.day <= endDay);
     }).toList();
@@ -558,7 +433,7 @@ class Expenses with ChangeNotifier {
 
   List<Expense> getDayList() {
     var year = selectedYear;
-    var month = selectedMonth+1;
+    var month = selectedMonth + 1;
     var day = selectedDay;
     var sum = _items.where((element) {
       var time = DateTime.parse(element.time);

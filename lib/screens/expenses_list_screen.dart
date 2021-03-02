@@ -19,11 +19,10 @@ class ExpensesListScreen extends StatefulWidget {
 class _ExpensesListScreenState extends State<ExpensesListScreen> {
   var languageIndex;
 
-  Future<String> _getPrefs() async {
+  Future<void> _getPrefs() async {
     var prefs = await SharedPreferences.getInstance();
     languageIndex = prefs.getInt('language') ?? 0;
     Provider.of<Languages>(context, listen: false).setLanguage(languageIndex);
-    return 'Başarılı';
   }
 
   @override

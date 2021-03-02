@@ -38,14 +38,11 @@ class _AddingExpenseState extends State<AddingExpense>
             builder: (context) => CategoryScreen(),
           ),
         ) ??
-        0;
-    setState(() {
-      Provider.of<Expenses>(context, listen: false).setCurrentCategory(id);
-    });
-    print('id:::::::::::::::::::::$id');
+        Provider.of<Expenses>(context, listen: false).currentCategoryId;
+    Provider.of<Expenses>(context, listen: false).setCurrentCategory(id);
   }
 
-  Future<void> _saveForm(scaffoldKey, snackBar) async {
+  Future<void> _saveForm() async {
     final isValid = _form.currentState.validate();
     if (!isValid) {
       return;
@@ -54,7 +51,6 @@ class _AddingExpenseState extends State<AddingExpense>
     setState(() {
       _isLoading = true;
     });
-    print('isExpense :::::::::::::::::$isExpense');
 
     await Provider.of<Expenses>(context, listen: false).addExpense(
       Expense(
@@ -66,9 +62,6 @@ class _AddingExpenseState extends State<AddingExpense>
         description: description,
       ),
     );
-//    WidgetsBinding.instance.addPostFrameCallback(
-//      (_) => scaffoldKey.currentState.showSnackBar(snackBar),
-//    );
     await Navigator.of(context).pop();
   }
 
@@ -86,20 +79,7 @@ class _AddingExpenseState extends State<AddingExpense>
     var isDark = _theme.getTheme() == _theme.dark;
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
     category = Provider.of<Expenses>(context, listen: false).CurrentCategory;
-    final snackBar = SnackBar(
-      content: Container(
-        child: Text(
-          'İşlem eklendi',
-          style: TextStyle(
-            color: Theme.of(context).primaryTextTheme.overline.color,
-            fontSize: 18*textScaleFactor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      duration: Duration(seconds: 1),
-      backgroundColor: Colours.colorGradient2,
-    );
+
     return SafeArea(
       child: Scaffold(
         endDrawer: MainDrawer(),
@@ -134,7 +114,7 @@ class _AddingExpenseState extends State<AddingExpense>
                       child: ToggleSwitch(
                         minWidth: 120.0,
                         minHeight: 60.0,
-                        fontSize: 17.0*textScaleFactor,
+                        fontSize: 17.0 * textScaleFactor,
                         initialLabelIndex: 0,
                         cornerRadius: 60.0,
                         activeBgColor: Colours.activeBgColor,
@@ -183,7 +163,7 @@ class _AddingExpenseState extends State<AddingExpense>
                                     category.categoryName,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      fontSize: 19.0*textScaleFactor,
+                                      fontSize: 19.0 * textScaleFactor,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -247,8 +227,7 @@ class _AddingExpenseState extends State<AddingExpense>
                               height: 30.0,
                             ),
                             SaveButton(
-                              onPressed: () =>
-                                  _saveForm(widget.scaffoldKey, snackBar),
+                              onPressed: () => _saveForm(),
                             ),
                             SizedBox(
                               height: 15.0,

@@ -38,6 +38,7 @@ class ExpensesDialogWidget extends StatelessWidget {
         children: expenseList
             .map(
               (e) => Container(
+                width: MediaQuery.of(context).size.width * 0.8,
                 child: Column(
                   children: [
                     Divider(
