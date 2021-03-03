@@ -94,7 +94,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
           color: _theme.getTheme() == _theme.dark
               ? Color(0xff333333)
               : Color.fromRGBO(254, 254, 254, 100),
-          margin: EdgeInsets.fromLTRB(30.0, 70.0, 30.0, 50.0),
+          margin: EdgeInsets.symmetric(vertical:135.0, horizontal: 30.0),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
