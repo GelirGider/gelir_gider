@@ -74,8 +74,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                   bottom: TabBar(
                     controller: _controller,
                     unselectedLabelColor:
-                        isDark ? Colors.grey[600] : Colors.grey[600],
-                    labelColor: isDark ? Colors.white : Colors.black,
+                        isDark ? Colors.grey[400] : Colors.grey[600],
+                    labelColor: isDark ? Colors.pink : Colors.pink,
                     labelPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
                     labelStyle: TextStyle(
                       fontSize: 15,
