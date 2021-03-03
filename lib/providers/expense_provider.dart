@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/helpers/db_helper.dart';
 import 'package:gelir_gider/utils/time_diff.dart';
 import 'package:gelir_gider/widgets/components/category_item.dart';
@@ -246,6 +245,7 @@ class Expenses with ChangeNotifier {
     var map = groupBy(_items, (Expense e) => int.parse(e.time.split('-')[0]));
     var years = map.keys;
     currentMap = map;
+    notifyListeners();
     return years;
   }
 
@@ -255,6 +255,7 @@ class Expenses with ChangeNotifier {
         groupBy(yearOfExpenses, (Expense e) => int.parse(e.time.split('-')[1]));
     var months = map.keys;
     currentMap = map;
+    notifyListeners();
     return months;
   }
 
@@ -291,7 +292,38 @@ class Expenses with ChangeNotifier {
     var days = map.keys;
     print(days.toString());
     currentMap = map;
+    notifyListeners();
     return days;
+  }
+
+  bool checkWeekNull(int startDay, int endDay) {
+    var startDate = DateTime.parse(selectedYear.toString() +
+        '-' +
+        fixAsDate(selectedMonth + 1) +
+        '-' +
+        fixAsDate(startDay));
+    var endDate = DateTime.parse(selectedYear.toString() +
+        '-' +
+        fixAsDate(selectedMonth + 1) +
+        '-' +
+        fixAsDate(endDay));
+    var monthOfExpenses = currentMap[selectedMonth + 1];
+
+    var map = groupBy(monthOfExpenses, (Expense e) {
+          var curDate = DateTime.parse(e.time);
+          print(curDate.toString());
+          if ((curDate.isAfter(startDate) && curDate.isBefore(endDate)) ||
+              ((curDate == startDate) || (curDate == endDate))) {
+            return int.parse(e.time.split('-')[2]);
+          }
+        });
+    print(map.keys.toString()+" "+map.keys.contains(null).toString()+" "+startDay.toString());
+    map.removeWhere((key, value) => key==null);
+    if (map.isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   String fixAsDate(date) {

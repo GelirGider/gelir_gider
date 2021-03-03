@@ -51,11 +51,13 @@
   "October" :  "十月",
   "November" : "十一月",
   "December" :  "十二月",
-  "Monday" : "周一",
-  "Tuesday" : "周二",
-  "Wednesday" : "周三",
-  "Thursday" : "周四",
-  "Friday" : "星期五",
-  "Saturday" : "周六",
-  "Sunday" : "星期日"
+  "CategorySalary":"薪水",
+  "CategoryTax":"税",
+  "CategoryInsurance":"保险",
+  "CategoryBill":"账单",
+  "CategoryEquipment":"设备",
+  "CategoryFood":"食物",
+  "CategoryTravel":"旅行",
+  "CategoryGasoline":"汽油",
+  "CategoryCorporate":"公司的"
 }

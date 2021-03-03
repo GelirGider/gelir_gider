@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'month_item.dart';
-import 'package:gelir_gider/widgets/year_page/month_item.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/generated/l10n.dart';
@@ -27,27 +25,32 @@ class WeekListPage extends StatelessWidget {
       S.of(context).November,
       S.of(context).December,
     ];
-    final weekNames = <String>[
-      '1-7 ' + monthNames[curMonth],
-      '8-14 ' + monthNames[curMonth],
-      '15-21 ' + monthNames[curMonth],
-      '22-' + lastDay.toString() + ' ' + monthNames[curMonth]
+
+    var weekDays=[
+      '1-7',
+      '8-14',
+      '15-21',
+      '22-'+lastDay.toString()
     ];
 
     var weekButtons = <WeekItem>[];
-    weekNames.forEach((weekText) {
-      weekButtons.add(WeekItem(
-        title: weekText,
-      ));
+    weekDays.forEach((weekText) {
+      var startDay = int.parse(weekText.split('-')[0]);
+      var endDay = int.parse(weekText.split('-')[1]);
+      if(!expenseProvider.checkWeekNull(startDay,endDay)){
+        weekButtons.add(WeekItem(
+          title: weekText+ ' ' +monthNames[curMonth],
+        ));
+      }
     });
 
     return GridView.count(
       shrinkWrap: true,
       mainAxisSpacing: 10.0,
       crossAxisSpacing: 10.0,
-      childAspectRatio: 1.0,
+      childAspectRatio: 1.5,
       padding: EdgeInsets.all(30.0),
-      crossAxisCount: 3,
+      crossAxisCount: 2,
       children: weekButtons,
     );
   }

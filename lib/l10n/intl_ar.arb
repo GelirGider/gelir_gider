@@ -51,11 +51,13 @@
   "October" :  "اكتوبر",
   "November" : "شهر نوفمبر",
   "December" :  "ديسمبر",
-  "Monday" : "الاثنين",
-  "Tuesday" : "يوم الثلاثاء",
-  "Wednesday" : "الأربعاء",
-  "Thursday" : "يوم الخميس",
-  "Friday" : "جمعة",
-  "Saturday" : "السبت",
-  "Sunday" : "الأحد"
+  "CategorySalary" :"مرتب",
+  "CategoryTax" : "ضريبة",
+  "CategoryInsurance" :"تأمين",
+  "CategoryBill" : "فاتورة",
+  "CategoryEquipment" : "ادوات",
+  "CategoryFood" : "طعام" ,
+  "CategoryTravel" :"السفر" ,
+  "CategoryGasoline" :"الغازولين",
+  "CategoryCorporate" :"شركة كبرى"
 }

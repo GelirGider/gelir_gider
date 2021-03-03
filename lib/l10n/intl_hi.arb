@@ -51,11 +51,13 @@
   "October" :  "अक्टूबर",
   "November" : "नवंबर",
   "December" :  "दिसंबर",
-  "Monday" :"सोमवार",
-  "Tuesday" :"मंगलवार",
-  "Wednesday":"बुधवार",
-  "Thursday":"गुरूवार",
-  "Friday" :"शुक्रवार",
-  "Saturday":"शनिवार",
-  "Sunday" :"रविवार"
+  "CategorySalary":"वेतन",
+  "CategoryTax":"कर",
+  "CategoryInsurance":"बीमा",
+  "CategoryBill":"बिल",
+  "CategoryEquipment":"उपकरण",
+  "CategoryFood":"खाना",
+  "CategoryTravel":"यात्रा",
+  "CategoryGasoline":"गैसोलीन",
+  "CategoryCorporate":"कॉर्पोरेट"
 }

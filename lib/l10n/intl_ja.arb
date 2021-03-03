@@ -51,11 +51,13 @@
   "October" :  "十月",
   "November" : "十一月 ",
   "December" :  "十二月",
-  "Monday " :"月曜日",
-  "Tuesday" : "火曜日",
-  "Wednesday" : "水曜日",
-  "Thursday" : "木曜日",
-  "Friday" : "金曜日",
-  "Saturday" : "土曜日",
-  "Sunday" : "日曜日"
+  "CategorySalary":"給料",
+  "CategoryTax":"税金",
+  "CategoryInsurance":"保険",
+  "CategoryBill":"ビル",
+  "CategoryEquipment":"装置",
+  "CategoryFood":"食物",
+  "CategoryTravel":"トラベル",
+  "CategoryGasoline":"ガソリン",
+  "CategoryCorporate":"企業"
 }
