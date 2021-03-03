@@ -26,14 +26,16 @@ class DayListPage extends StatelessWidget {
 
     return dayButtons.isEmpty
         ? Container()
-        : GridView.count(
-            shrinkWrap: true,
-            mainAxisSpacing: 10.0,
-            crossAxisSpacing: 10.0,
-            padding: EdgeInsets.all(30.0),
-            childAspectRatio: 2.75,
-            crossAxisCount: 1,
-            children: dayButtons,
+        : Flexible(
+            child: GridView.count(
+              shrinkWrap: true,
+              mainAxisSpacing: 10.0,
+              crossAxisSpacing: 10.0,
+              padding: EdgeInsets.all(30.0),
+              childAspectRatio: 2.75,
+              crossAxisCount: 1,
+              children: dayButtons,
+            ),
           );
   }
 }

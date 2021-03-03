@@ -26,32 +26,29 @@ class WeekListPage extends StatelessWidget {
       S.of(context).December,
     ];
 
-    var weekDays=[
-      '1-7',
-      '8-14',
-      '15-21',
-      '22-'+lastDay.toString()
-    ];
+    var weekDays = ['1-7', '8-14', '15-21', '22-' + lastDay.toString()];
 
     var weekButtons = <WeekItem>[];
     weekDays.forEach((weekText) {
       var startDay = int.parse(weekText.split('-')[0]);
       var endDay = int.parse(weekText.split('-')[1]);
-      if(!expenseProvider.checkWeekNull(startDay,endDay)){
+      if (!expenseProvider.checkWeekNull(startDay, endDay)) {
         weekButtons.add(WeekItem(
-          title: weekText+ ' ' +monthNames[curMonth],
+          title: weekText + ' ' + monthNames[curMonth],
         ));
       }
     });
 
-    return GridView.count(
-      shrinkWrap: true,
-      mainAxisSpacing: 10.0,
-      crossAxisSpacing: 10.0,
-      childAspectRatio: 1.5,
-      padding: EdgeInsets.all(30.0),
-      crossAxisCount: 2,
-      children: weekButtons,
+    return Flexible(
+      child: GridView.count(
+        shrinkWrap: true,
+        mainAxisSpacing: 10.0,
+        crossAxisSpacing: 10.0,
+        childAspectRatio: 1.5,
+        padding: EdgeInsets.all(30.0),
+        crossAxisCount: 2,
+        children: weekButtons,
+      ),
     );
   }
 }

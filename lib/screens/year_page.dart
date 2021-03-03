@@ -28,38 +28,36 @@ class _YearPageState extends State<YearPage> {
   }
 
   Widget _buildBody(title, Map<int, List<Expense>> list, onPressed, page) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          FlatButton.icon(
-            onPressed: onPressed,
-            icon: SizedBox(
-              width: 18.0,
-              child: Icon(
-                Icons.arrow_left_outlined,
-                size: 35.0,
-                color: Colors.black87,
-              ),
-            ),
-            label: Text(
-              title,
-              style: TextStyle(
-                color: Colors.black87,
-                fontSize: 17.0,
-                wordSpacing: 0.0,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0.5,
-              ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        FlatButton.icon(
+          onPressed: onPressed,
+          icon: SizedBox(
+            width: 18.0,
+            child: Icon(
+              Icons.arrow_left_outlined,
+              size: 35.0,
+              color: Colors.black87,
             ),
           ),
-          Container(
-            child: MoneyWidget(list),
+          label: Text(
+            title,
+            style: TextStyle(
+              color: Colors.black87,
+              fontSize: 17.0,
+              wordSpacing: 0.0,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.5,
+            ),
           ),
-          page,
-        ],
-      ),
+        ),
+        Container(
+          child: MoneyWidget(list),
+        ),
+        page,
+      ],
     );
   }
 
@@ -74,22 +72,21 @@ class _YearPageState extends State<YearPage> {
             return _buildBody('Back', list, null, YearListPage());
             break;
           case 1:
-            var list = provider.getCurrentYears();
-            return _buildBody('Back', provider.currentYear, () async {
+            return _buildBody('Back', provider.currentYear, () {
               provider.setSelectedPage(0);
-              await provider.getCurrentYears();
+              return provider.getCurrentYears();
             }, MonthListPage());
             break;
           case 2:
             return _buildBody('Back', provider.currentMonth, () {
               provider.setSelectedPage(1);
-              provider.getCurrentMonths();
+              return provider.getCurrentMonths();
             }, WeekListPage());
             break;
           case 3:
             return _buildBody('Back', provider.currentWeek, () {
               provider.setSelectedPage(2);
-              provider.getCurrentDays(
+              return provider.getCurrentDays(
                   int.parse(provider.selectedWeek.split('-')[0]),
                   int.parse(provider.selectedWeek.split('-')[1]));
             }, DayListPage());

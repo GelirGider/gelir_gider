@@ -15,14 +15,16 @@ class YearListPage extends StatelessWidget {
         year: element,
       ));
     });
-    return GridView.count(
-      shrinkWrap: true,
-      mainAxisSpacing: 20.0,
-      crossAxisSpacing: 20.0,
-      childAspectRatio: 1.0,
-      padding: EdgeInsets.all(30.0),
-      crossAxisCount: 3,
-      children: yearButtons,
+    return Flexible(
+      child: GridView.count(
+        shrinkWrap: true,
+        mainAxisSpacing: 20.0,
+        crossAxisSpacing: 20.0,
+        childAspectRatio: 1.0,
+        padding: EdgeInsets.all(30.0),
+        crossAxisCount: 3,
+        children: yearButtons,
+      ),
     );
   }
 }
