@@ -1,13 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:gelir_gider/screens/year_page.dart';
 import 'package:gelir_gider/widgets.dart';
 import 'package:gelir_gider/providers/providers.dart';
-
-import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
-
 import 'package:gelir_gider/themes/colours.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +76,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                     unselectedLabelColor:
                         isDark ? Colors.grey[600] : Colors.grey[600],
                     labelColor: isDark ? Colors.white : Colors.black,
-                    labelPadding: EdgeInsets.fromLTRB(0, 10, 0, 8),
+                    labelPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
                     labelStyle: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
