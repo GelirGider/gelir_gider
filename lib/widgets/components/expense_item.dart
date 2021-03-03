@@ -24,14 +24,16 @@ class _ExpenseItemState extends State<ExpenseItem> {
       leading: FittedBox(
         fit: BoxFit.cover,
         child: CircleAvatar(
-          child: provider.imgList[widget.expense.category],
+          child: provider.isPersonal
+              ? provider.imgList[widget.expense.category]
+              : provider.imgListCorporate[widget.expense.category],
           backgroundColor: Colours.white,
           radius: 25,
         ),
       ),
       title: Text(
-          DateFormat.yMMMd().format(DateTime.parse(widget.expense.time)),
-        style: TextStyle(fontSize: 12*textScaleFactor),
+        DateFormat.yMMMd().format(DateTime.parse(widget.expense.time)),
+        style: TextStyle(fontSize: 12 * textScaleFactor),
       ),
       subtitle: Text(
         widget.expense.description,
@@ -40,11 +42,13 @@ class _ExpenseItemState extends State<ExpenseItem> {
       trailing: widget.expense.isExpense == 'expense'
           ? Text(
               widget.expense.price.toString() + ' ' + widget.currency,
-              style: TextStyle(color: Colours.red, fontSize: 15*textScaleFactor),
+              style:
+                  TextStyle(color: Colours.red, fontSize: 15 * textScaleFactor),
             )
           : Text(
               '+ ' + widget.expense.price.toString() + ' ' + widget.currency,
-              style: TextStyle(color: Colours.green, fontSize: 15*textScaleFactor),
+              style: TextStyle(
+                  color: Colours.green, fontSize: 15 * textScaleFactor),
             ),
     );
   }
