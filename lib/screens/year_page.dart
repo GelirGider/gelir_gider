@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
+import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/widgets/components/divider.dart';
 import 'package:gelir_gider/widgets/dialogs/main_page_category_modal.dart';
 import 'package:gelir_gider/widgets/year_page/month_list_page.dart';
@@ -28,6 +29,9 @@ class _YearPageState extends State<YearPage> {
   }
 
   Widget _buildBody(title, Map<int, List<Expense>> list, onPressed, page) {
+    final _theme = Provider.of<ThemeProvider>(context, listen: false);
+    final size = MediaQuery.of(context).size;
+    var isDark = _theme.getTheme() == _theme.dark;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,13 +43,13 @@ class _YearPageState extends State<YearPage> {
             child: Icon(
               Icons.arrow_left_outlined,
               size: 35.0,
-              color: Colors.black87,
+              color: isDark ? Colors.white : Colors.black87,
             ),
           ),
           label: Text(
             title,
             style: TextStyle(
-              color: Colors.black87,
+              color: isDark ? Colors.white : Colors.black87,
               fontSize: 17.0,
               wordSpacing: 0.0,
               fontWeight: FontWeight.w600,
@@ -86,9 +90,12 @@ class _YearPageState extends State<YearPage> {
           case 3:
             return _buildBody('Back', provider.currentWeek, () {
               provider.setSelectedPage(2);
-              return provider.getCurrentDays(
-                  int.parse(provider.selectedWeek.split('-')[0]),
-                  int.parse(provider.selectedWeek.split('-')[1]));
+              if (int.tryParse(provider.selectedWeek.split('-')[0]) != null ||
+                  int.tryParse(provider.selectedWeek.split('-')[1]) != null) {
+                return provider.getCurrentDays(
+                    int.parse(provider.selectedWeek.split('-')[0]),
+                    int.parse(provider.selectedWeek.split('-')[1]));
+              }
             }, DayListPage());
             break;
           case 4:
