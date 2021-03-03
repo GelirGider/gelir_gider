@@ -60,7 +60,7 @@ class MainPageCategoryModal extends StatelessWidget {
     } else {
       return Text(
         '+ ' + price.toStringAsFixed(1) + ' ' + currency,
-        style: TextStyle(color: Colours.green, fontSize: 15),
+        style: TextStyle(color: Colours.green, fontSize: 15 * scaleFactor),
       );
     }
   }

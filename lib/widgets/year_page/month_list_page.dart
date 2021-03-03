@@ -32,6 +32,7 @@ class _MonthListPageState extends State<MonthListPage> {
     ];
 
     var monthButtons = <MonthListItem>[];
+
     monthList.forEach((index) {
       monthButtons.add(MonthListItem(
         title: monthNames[index - 1],
@@ -39,14 +40,16 @@ class _MonthListPageState extends State<MonthListPage> {
       ));
     });
 
-    return GridView.count(
-      shrinkWrap: true,
-      mainAxisSpacing: 10.0,
-      crossAxisSpacing: 10.0,
-      childAspectRatio: 1.0,
-      padding: EdgeInsets.all(30.0),
-      crossAxisCount: 3,
-      children: monthButtons,
+    return Flexible(
+      child: GridView.count(
+        shrinkWrap: true,
+        mainAxisSpacing: 10.0,
+        crossAxisSpacing: 10.0,
+        childAspectRatio: 1.0,
+        padding: EdgeInsets.all(30.0),
+        crossAxisCount: 3,
+        children: monthButtons,
+      ),
     );
   }
 }
