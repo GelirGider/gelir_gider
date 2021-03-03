@@ -43,7 +43,11 @@ class Expenses with ChangeNotifier {
   int _tabBarIndex = 0;
   bool _init = false;
   bool _init2 = false;
-  Map<int, List<Expense>> currentMap = {};
+
+  Map<int, List<Expense>> currentDay = {};
+  Map<int, List<Expense>> currentWeek = {};
+  Map<int, List<Expense>> currentMonth = {};
+  Map<int, List<Expense>> currentYear = {};
 
   var imgList = Categories.getPersonalImageList();
   var imgListCorporate = Categories.getCorporateImageList();
@@ -244,18 +248,16 @@ class Expenses with ChangeNotifier {
   Iterable<int> getCurrentYears() {
     var map = groupBy(_items, (Expense e) => int.parse(e.time.split('-')[0]));
     var years = map.keys;
-    currentMap = map;
-    notifyListeners();
+    currentYear = map;
     return years;
   }
 
   Iterable<int> getCurrentMonths() {
-    var yearOfExpenses = currentMap[selectedYear];
+    var yearOfExpenses = currentYear[selectedYear];
     var map =
         groupBy(yearOfExpenses, (Expense e) => int.parse(e.time.split('-')[1]));
     var months = map.keys;
-    currentMap = map;
-    notifyListeners();
+    currentMonth = map;
     return months;
   }
 
@@ -277,7 +279,7 @@ class Expenses with ChangeNotifier {
         fixAsDate(selectedMonth + 1) +
         '-' +
         fixAsDate(endDay));
-    var monthOfExpenses = currentMap[selectedMonth + 1];
+    var monthOfExpenses = currentMonth[selectedMonth + 1];
 
     var map = groupBy(monthOfExpenses, (Expense e) {
           var curDate = DateTime.parse(e.time);
@@ -291,8 +293,7 @@ class Expenses with ChangeNotifier {
 
     var days = map.keys;
     print(days.toString());
-    currentMap = map;
-    notifyListeners();
+    currentWeek = map;
     return days;
   }
 
@@ -307,18 +308,22 @@ class Expenses with ChangeNotifier {
         fixAsDate(selectedMonth + 1) +
         '-' +
         fixAsDate(endDay));
-    var monthOfExpenses = currentMap[selectedMonth + 1];
+    var monthOfExpenses = currentMonth[selectedMonth + 1];
 
     var map = groupBy(monthOfExpenses, (Expense e) {
-          var curDate = DateTime.parse(e.time);
-          print(curDate.toString());
-          if ((curDate.isAfter(startDate) && curDate.isBefore(endDate)) ||
-              ((curDate == startDate) || (curDate == endDate))) {
-            return int.parse(e.time.split('-')[2]);
-          }
-        });
-    print(map.keys.toString()+" "+map.keys.contains(null).toString()+" "+startDay.toString());
-    map.removeWhere((key, value) => key==null);
+      var curDate = DateTime.parse(e.time);
+      print(curDate.toString());
+      if ((curDate.isAfter(startDate) && curDate.isBefore(endDate)) ||
+          ((curDate == startDate) || (curDate == endDate))) {
+        return int.parse(e.time.split('-')[2]);
+      }
+    });
+    print(map.keys.toString() +
+        " " +
+        map.keys.contains(null).toString() +
+        " " +
+        startDay.toString());
+    map.removeWhere((key, value) => key == null);
     if (map.isEmpty) {
       return true;
     } else {

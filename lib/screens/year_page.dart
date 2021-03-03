@@ -28,30 +28,38 @@ class _YearPageState extends State<YearPage> {
   }
 
   Widget _buildBody(title, Map<int, List<Expense>> list, onPressed, page) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        FlatButton.icon(
-          onPressed: onPressed,
-          icon: SizedBox(
-            width: 18.0,
-            child: Icon(Icons.arrow_left_outlined,
-            size: 35.0,
-            color: Colors.black87,),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          FlatButton.icon(
+            onPressed: onPressed,
+            icon: SizedBox(
+              width: 18.0,
+              child: Icon(
+                Icons.arrow_left_outlined,
+                size: 35.0,
+                color: Colors.black87,
+              ),
+            ),
+            label: Text(
+              title,
+              style: TextStyle(
+                color: Colors.black87,
+                fontSize: 17.0,
+                wordSpacing: 0.0,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.5,
+              ),
+            ),
           ),
-          label: Text(title,
-          style: TextStyle(color: Colors.black87,
-              fontSize: 17.0,
-              wordSpacing: 0.0,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 0.5),),
-        ),
-        Container(
-          child: MoneyWidget(list),
-        ),
-        page,
-      ],
+          Container(
+            child: MoneyWidget(list),
+          ),
+          page,
+        ],
+      ),
     );
   }
 
@@ -66,46 +74,57 @@ class _YearPageState extends State<YearPage> {
             return _buildBody('Back', list, null, YearListPage());
             break;
           case 1:
-            return _buildBody('Back', provider.currentMap,
-                () => provider.setSelectedPage(0), MonthListPage());
+            var list = provider.getCurrentYears();
+            return _buildBody('Back', provider.currentYear, () async {
+              provider.setSelectedPage(0);
+              await provider.getCurrentYears();
+            }, MonthListPage());
             break;
           case 2:
-            return _buildBody('Back', provider.currentMap,
-                () => provider.setSelectedPage(1), WeekListPage());
+            return _buildBody('Back', provider.currentMonth, () {
+              provider.setSelectedPage(1);
+              provider.getCurrentMonths();
+            }, WeekListPage());
             break;
           case 3:
-            return _buildBody('Back', provider.currentMap,
-                () => provider.setSelectedPage(2), DayListPage());
+            return _buildBody('Back', provider.currentWeek, () {
+              provider.setSelectedPage(2);
+              provider.getCurrentDays(
+                  int.parse(provider.selectedWeek.split('-')[0]),
+                  int.parse(provider.selectedWeek.split('-')[1]));
+            }, DayListPage());
             break;
           case 4:
-            var res = provider.currentMap[provider.selectedDay];
+            var res = provider.currentWeek[provider.selectedDay];
             var myList = provider.groupExpensesByCategories(res);
             return Container(
               padding: EdgeInsets.all(20),
               child: Column(
                 children: [
                   MoneyWidget(myList),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: myList.keys.length,
-                    itemBuilder: (context, index) {
-                      provider.getSymbol();
-                      var category = myList.keys.toList()[index];
-                      var list = myList.values.toList()[index];
-                      var currency = provider.symbol;
+                  Flexible(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: myList.keys.length,
+                      itemBuilder: (context, index) {
+                        provider.getSymbol();
+                        var category = myList.keys.toList()[index];
+                        var list = myList.values.toList()[index];
+                        var currency = provider.symbol;
 
-                      return Column(
-                        children: [
-                          MainPageCategoryModal(
-                            category: category,
-                            list: list,
-                            currency: currency,
-                          ),
-                          OurDivider(),
-                        ],
-                      );
-                    },
-                  ),
+                        return Column(
+                          children: [
+                            MainPageCategoryModal(
+                              category: category,
+                              list: list,
+                              currency: currency,
+                            ),
+                            OurDivider(),
+                          ],
+                        );
+                      },
+                    ),
+                  )
                 ],
               ),
             );
