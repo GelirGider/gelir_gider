@@ -119,6 +119,16 @@ class Expenses with ChangeNotifier {
     return groups;
   }
 
+//  List<Expense> getListFromMap(Map<int, List<Expense>> map) {
+//    var sum;
+//    var valuesList = map.values;
+//    valuesList.forEach((element) {
+//      sum = sum + element;
+//    });
+//    notifyListeners();
+//    return sum;
+//  }
+
   void setTabBarIndex(int index) {
     setDates();
     _tabBarIndex = index;
@@ -401,44 +411,44 @@ class Expenses with ChangeNotifier {
     return income / (expense + income);
   }
 
-  List<Expense> getYearList(year) {
-    var sum = _items.where((element) {
-      var time = DateTime.parse(element.time);
-      return (time.year == year);
-    }).toList();
-    return sum;
-  }
-
-  List<Expense> getMonthList(month) {
-    var sum = _items.where((element) {
-      var time = DateTime.parse(element.time);
-      return (time.year == selectedYear) && (time.month == month + 1);
-    }).toList();
-    return sum;
-  }
-
-  List<Expense> getWeekList(String week) {
-    var weekStr = week.split(' ')[0];
-    var startDay = int.parse(weekStr.split('-')[0]);
-    var endDay = int.parse(weekStr.split('-')[1]);
-    var sum = _items.where((element) {
-      var time = DateTime.parse(element.time);
-      return (time.year == selectedYear) &&
-          (time.month == selectedMonth + 1) &&
-          (time.day >= startDay) &&
-          (time.day <= endDay);
-    }).toList();
-    return sum;
-  }
-
-  List<Expense> getDayList() {
-    var year = selectedYear;
-    var month = selectedMonth + 1;
-    var day = selectedDay;
-    var sum = _items.where((element) {
-      var time = DateTime.parse(element.time);
-      return (time.year == year) && (time.month == month) && (time.day == day);
-    }).toList();
-    return sum;
-  }
+//  List<Expense> getYearList(year) {
+//    var sum = _items.where((element) {
+//      var time = DateTime.parse(element.time);
+//      return (time.year == year);
+//    }).toList();
+//    return sum;
+//  }
+//
+//  List<Expense> getMonthList(month) {
+//    var sum = _items.where((element) {
+//      var time = DateTime.parse(element.time);
+//      return (time.year == selectedYear) && (time.month == month + 1);
+//    }).toList();
+//    return sum;
+//  }
+//
+//  List<Expense> getWeekList(String week) {
+//    var weekStr = week.split(' ')[0];
+//    var startDay = int.parse(weekStr.split('-')[0]);
+//    var endDay = int.parse(weekStr.split('-')[1]);
+//    var sum = _items.where((element) {
+//      var time = DateTime.parse(element.time);
+//      return (time.year == selectedYear) &&
+//          (time.month == selectedMonth + 1) &&
+//          (time.day >= startDay) &&
+//          (time.day <= endDay);
+//    }).toList();
+//    return sum;
+//  }
+//
+//  List<Expense> getDayList() {
+//    var year = selectedYear;
+//    var month = selectedMonth + 1;
+//    var day = selectedDay;
+//    var sum = _items.where((element) {
+//      var time = DateTime.parse(element.time);
+//      return (time.year == year) && (time.month == month) && (time.day == day);
+//    }).toList();
+//    return sum;
+//  }
 }

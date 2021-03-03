@@ -7,6 +7,9 @@ import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class AccountChanger extends StatelessWidget {
+  final controller;
+
+  const AccountChanger(this.controller);
   @override
   Widget build(BuildContext context) {
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
@@ -66,6 +69,7 @@ class AccountChanger extends StatelessWidget {
                               onPressed: () async {
                                 await provider.setPersonal();
                                 provider.setTabBarIndex(0);
+                                controller.index = 0;
                                 await Navigator.of(context).pop();
                               },
                               child: Text(
@@ -97,6 +101,7 @@ class AccountChanger extends StatelessWidget {
                               onPressed: () async {
                                 await provider.setCorporate();
                                 provider.setTabBarIndex(0);
+                                controller.index = 0;
                                 await Navigator.of(context).pop();
                               },
                               child: Text(

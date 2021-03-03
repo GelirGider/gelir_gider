@@ -16,7 +16,10 @@ class ExpensesListScreen extends StatefulWidget {
   _ExpensesListScreenState createState() => _ExpensesListScreenState();
 }
 
-class _ExpensesListScreenState extends State<ExpensesListScreen> {
+class _ExpensesListScreenState extends State<ExpensesListScreen>
+    with SingleTickerProviderStateMixin {
+  TabController _controller;
+
   var languageIndex;
 
   Future<void> _getPrefs() async {
@@ -27,12 +30,16 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
 
   @override
   void initState() {
+    super.initState();
     _getPrefs().then((value) => {});
     Future.delayed(Duration.zero).then((_) {
       Provider.of<Expenses>(context, listen: false).setCategories(context);
-      return Provider.of<Expenses>(context, listen: false).setTabBarIndex(0);
+      _controller = TabController(length: 4, vsync: this);
+      _controller.addListener(() {
+        Provider.of<Expenses>(context, listen: false)
+            .setTabBarIndex(_controller.index);
+      });
     });
-    super.initState();
   }
 
   @override
@@ -56,7 +63,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                   shape: Border(
                       bottom: BorderSide(
                           width: 3.0, color: Colours.getGradientNew(isDark))),
-                  leading: AccountChanger(),
+                  leading: AccountChanger(_controller),
                   centerTitle: true,
                   actions: [DrawerButton(scaffoldKey: scaffoldKey)],
                   title: Icon(
@@ -67,9 +74,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
                     colors: Colours.getGradientNew2(isDark),
                   ),
                   bottom: TabBar(
-                    onTap: (index) {
-                      value.setTabBarIndex(index);
-                    },
+                    controller: _controller,
                     unselectedLabelColor: Colors.grey,
                     labelColor: Colours.getGradientNew(isDark),
                     labelPadding: EdgeInsets.fromLTRB(0, 10, 0, 8),
