@@ -6,7 +6,7 @@ import 'package:gelir_gider/themes/colours.dart';
 import 'package:provider/provider.dart';
 
 class MoneyWidget extends StatelessWidget {
-  final Map<int, List<Expense>> list;
+  final List<Expense> list;
   MoneyWidget(this.list);
 
   @override

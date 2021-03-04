@@ -44,10 +44,10 @@ class Expenses with ChangeNotifier {
   bool _init = false;
   bool _init2 = false;
 
-  Map<int, List<Expense>> currentDay = {};
-  Map<int, List<Expense>> currentWeek = {};
-  Map<int, List<Expense>> currentMonth = {};
-  Map<int, List<Expense>> currentYear = {};
+  Map<int, List<Expense>> _currentDay = {};
+  Map<String, List<Expense>> _currentWeek = {};
+  Map<int, List<Expense>> _currentMonth = {};
+  Map<int, List<Expense>> _currentYear = {};
 
   var imgList = Categories.getPersonalImageList();
   var imgListCorporate = Categories.getCorporateImageList();
@@ -121,16 +121,6 @@ class Expenses with ChangeNotifier {
     final groups = groupBy(expenses, (Expense e) => e.category);
     return groups;
   }
-
-//  List<Expense> getListFromMap(Map<int, List<Expense>> map) {
-//    var sum;
-//    var valuesList = map.values;
-//    valuesList.forEach((element) {
-//      sum = sum + element;
-//    });
-//    notifyListeners();
-//    return sum;
-//  }
 
   void setTabBarIndex(int index) {
     setDates();
@@ -240,9 +230,30 @@ class Expenses with ChangeNotifier {
     notifyListeners();
   }
 
-  void setSelectedPage(int num) {
-    selectedPage = num;
+  void setSelectedPage(int num) async{
+    selectedPage = await num;
     notifyListeners();
+  }
+
+
+  Map<int, List<Expense>> get currentDay => _currentDay;
+  set currentDay(Map<int, List<Expense>> value) {
+    _currentDay = value;
+  }
+
+  Map<String, List<Expense>> get currentWeek => _currentWeek;
+  set currentWeek(Map<String, List<Expense>> value) {
+    _currentWeek = value;
+  }
+
+  Map<int, List<Expense>> get currentMonth => _currentMonth;
+  set currentMonth(Map<int, List<Expense>> value) {
+    _currentMonth = value;
+  }
+
+  Map<int, List<Expense>> get currentYear => _currentYear;
+  set currentYear(Map<int, List<Expense>> value) {
+    _currentYear = value;
   }
 
   Iterable<int> getCurrentYears() {
@@ -254,8 +265,7 @@ class Expenses with ChangeNotifier {
 
   Iterable<int> getCurrentMonths() {
     var yearOfExpenses = currentYear[selectedYear];
-    var map =
-        groupBy(yearOfExpenses, (Expense e) => int.parse(e.time.split('-')[1]));
+    var map = groupBy(yearOfExpenses, (Expense e) => int.parse(e.time.split('-')[1]));
     var months = map.keys;
     currentMonth = map;
     return months;
@@ -293,7 +303,7 @@ class Expenses with ChangeNotifier {
 
     var days = map.keys;
     print(days.toString());
-    currentWeek = map;
+    _currentDay = map;
     return days;
   }
 
@@ -312,17 +322,11 @@ class Expenses with ChangeNotifier {
 
     var map = groupBy(monthOfExpenses, (Expense e) {
       var curDate = DateTime.parse(e.time);
-      print(curDate.toString());
       if ((curDate.isAfter(startDate) && curDate.isBefore(endDate)) ||
           ((curDate == startDate) || (curDate == endDate))) {
         return int.parse(e.time.split('-')[2]);
       }
     });
-    print(map.keys.toString() +
-        " " +
-        map.keys.contains(null).toString() +
-        " " +
-        startDay.toString());
     map.removeWhere((key, value) => key == null);
     if (map.isEmpty) {
       return true;
@@ -420,25 +424,19 @@ class Expenses with ChangeNotifier {
 
   double calculateTotalExpense(list) {
     var sum = 0.0;
-    list.values.forEach((element) {
-      element
-          .where((expense) => expense.isExpense == 'expense')
+    list.where((expense) => expense.isExpense == 'expense')
           .forEach((element) {
         sum += element.price;
       });
-    });
     return sum;
   }
 
   double calculateTotalIncome(list) {
     var sum = 0.0;
-    list.values.forEach((element) {
-      element
-          .where((expense) => expense.isExpense == 'income')
+    list.where((expense) => expense.isExpense == 'income')
           .forEach((element) {
         sum += element.price;
       });
-    });
     return sum;
   }
 
@@ -448,44 +446,5 @@ class Expenses with ChangeNotifier {
     return income / (expense + income);
   }
 
-//  List<Expense> getYearList(year) {
-//    var sum = _items.where((element) {
-//      var time = DateTime.parse(element.time);
-//      return (time.year == year);
-//    }).toList();
-//    return sum;
-//  }
-//
-//  List<Expense> getMonthList(month) {
-//    var sum = _items.where((element) {
-//      var time = DateTime.parse(element.time);
-//      return (time.year == selectedYear) && (time.month == month + 1);
-//    }).toList();
-//    return sum;
-//  }
-//
-//  List<Expense> getWeekList(String week) {
-//    var weekStr = week.split(' ')[0];
-//    var startDay = int.parse(weekStr.split('-')[0]);
-//    var endDay = int.parse(weekStr.split('-')[1]);
-//    var sum = _items.where((element) {
-//      var time = DateTime.parse(element.time);
-//      return (time.year == selectedYear) &&
-//          (time.month == selectedMonth + 1) &&
-//          (time.day >= startDay) &&
-//          (time.day <= endDay);
-//    }).toList();
-//    return sum;
-//  }
-//
-//  List<Expense> getDayList() {
-//    var year = selectedYear;
-//    var month = selectedMonth + 1;
-//    var day = selectedDay;
-//    var sum = _items.where((element) {
-//      var time = DateTime.parse(element.time);
-//      return (time.year == year) && (time.month == month) && (time.day == day);
-//    }).toList();
-//    return sum;
-//  }
+
 }

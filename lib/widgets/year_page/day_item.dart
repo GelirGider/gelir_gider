@@ -12,6 +12,7 @@ class DayListItem extends StatelessWidget {
     final expenseProvider = Provider.of<Expenses>(context, listen: false);
     return FlatButton(
       onPressed: () {
+        print(title.split(' ')[0]);
         expenseProvider.setSelectedDay(int.parse(title.split(' ')[0]));
         expenseProvider.setSelectedPage(4);
       },
