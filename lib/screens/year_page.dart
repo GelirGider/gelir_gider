@@ -92,19 +92,18 @@ class _YearPageState extends State<YearPage> {
               child: Column(
                 children: [
                   MoneyWidget(myList),
+                  OurDivider(),
                   Flexible(
-                    child: ListView.builder(
+                    child: GridView.builder(
                       shrinkWrap: true,
                       itemCount: list.length,
                       itemBuilder: (context, index) {
                         provider.getSymbol();
                         var years = list.elementAt(index);
                         return Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            OurDivider(),
                             Container(
-                              padding:EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
+                              padding:EdgeInsets.symmetric(),
                               child: YearListItem(
                                 year: years,
                               ),
@@ -112,7 +111,7 @@ class _YearPageState extends State<YearPage> {
 
                           ],
                         );
-                      },
+                      }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3),
                     ),
                   )
                 ],
@@ -127,8 +126,9 @@ class _YearPageState extends State<YearPage> {
               child: Column(
                 children: [
                   MoneyWidget(myList),
+                  OurDivider(),
                   Flexible(
-                    child: ListView.builder(
+                    child: GridView.builder(
                       shrinkWrap: true,
                       itemCount: list.length,
                       itemBuilder: (context, index) {
@@ -136,7 +136,6 @@ class _YearPageState extends State<YearPage> {
                         var months = list.elementAt(index);
                         return Column(
                           children: [
-                            OurDivider(),
                             Container(
                               padding:EdgeInsets.symmetric(),
                               child: MonthListItem(
@@ -147,7 +146,7 @@ class _YearPageState extends State<YearPage> {
 
                           ],
                         );
-                      },
+                      }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3),
                     ),
                   )
                 ],
@@ -173,26 +172,26 @@ class _YearPageState extends State<YearPage> {
               child: Column(
                 children: [
                   MoneyWidget(myList),
+                  OurDivider(),
                   Flexible(
-                    child: ListView.builder(
+                    child: GridView.builder(
                       shrinkWrap: true,
                       itemCount: weekButtons.length,
                       itemBuilder: (context, index) {
                         var weekButton = weekButtons[index];
                         return Column(
                           children: [
-                            OurDivider(),
                             Container(
                               padding: EdgeInsets.symmetric(),
                               child: Column(
                                 children: [
                                   weekButton,
                                 ],
-                              ),
+                              )
                             ),
                           ],
                         );
-                      },
+                      }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3),
                     ),
                   )
                 ],
@@ -224,27 +223,25 @@ class _YearPageState extends State<YearPage> {
               child: Column(
                 children: [
                   MoneyWidget(myList),
+                  OurDivider(),
                   Flexible(
-                    child: ListView.builder(
-                      shrinkWrap: true,
+                    child: GridView.builder(
                       itemCount: dayButtons.length,
                       itemBuilder: (context, index) {
                         var dayItem = dayButtons[index];
                         return Column(
                           children: [
-                            OurDivider(),
                             Container(
                               padding: EdgeInsets.symmetric(),
                               child: Column(
                                 children: [
                                   dayItem,
-
                                 ],
                               ),
                             ),
                           ],
                         );
-                      },
+                      }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3),
                     ),
                   )
                 ],
@@ -261,7 +258,6 @@ class _YearPageState extends State<YearPage> {
                   MoneyWidget(res),
                   Flexible(
                     child: ListView.builder(
-
                       shrinkWrap: true,
                       itemCount: myList.keys.length,
                       itemBuilder: (context, index) {
@@ -269,7 +265,6 @@ class _YearPageState extends State<YearPage> {
                         var category = myList.keys.toList()[index];
                         var list = myList.values.toList()[index];
                         var currency = provider.symbol;
-
                         return Column(
                           children: [
                             OurDivider(),
