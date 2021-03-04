@@ -34,7 +34,7 @@ class CategoryScreen extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            margin: const EdgeInsets.fromLTRB(40, 70, 40, 95),
+            margin: const EdgeInsets.symmetric(vertical: 125.0,horizontal: 20.0),
             borderOnForeground: true,
             semanticContainer: true,
             child: Consumer<Expenses>(

@@ -34,13 +34,17 @@ class MainPageCategoryModal extends StatelessWidget {
       leading: FittedBox(
         fit: BoxFit.cover,
         child: CircleAvatar(
-          child: provider.imgList[category],
+          child: provider.isPersonal
+              ? provider.imgList[category]
+              : provider.imgListCorporate[category],
           backgroundColor: Colours.white,
           radius: 25,
         ),
       ),
       title: Text(
-        provider.categories[category].categoryName,
+        provider.isPersonal
+            ? provider.categories[category].categoryName
+            : provider.corporateCategories[category].categoryName,
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       trailing: checkTotalPrice(calculatePrice(), currency, textScaleFactor),
@@ -56,7 +60,7 @@ class MainPageCategoryModal extends StatelessWidget {
     } else {
       return Text(
         '+ ' + price.toStringAsFixed(1) + ' ' + currency,
-        style: TextStyle(color: Colours.green, fontSize: 15),
+        style: TextStyle(color: Colours.green, fontSize: 15 * scaleFactor),
       );
     }
   }

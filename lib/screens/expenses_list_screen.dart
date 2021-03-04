@@ -1,11 +1,9 @@
 import 'dart:ui';
+import 'package:flutter/material.dart';
 import 'package:gelir_gider/screens/year_page.dart';
 import 'package:gelir_gider/widgets.dart';
 import 'package:gelir_gider/providers/providers.dart';
-
-import 'package:flutter/material.dart';
 import 'package:gelir_gider/generated/l10n.dart';
-
 import 'package:gelir_gider/themes/colours.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
@@ -75,13 +73,15 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                   ),
                   bottom: TabBar(
                     controller: _controller,
-                    unselectedLabelColor: Colors.grey,
-                    labelColor: Colours.getGradientNew(isDark),
-                    labelPadding: EdgeInsets.fromLTRB(0, 10, 0, 8),
+                    unselectedLabelColor:
+                        isDark ? Colors.grey[400] : Colors.grey[600],
+                    labelColor: isDark ? Colors.pink : Colors.pink,
+                    labelPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
                     labelStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).buttonColor),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
                     tabs: <Widget>[
                       Tab(text: S.of(context).TabBarDay),
                       Tab(text: S.of(context).TabBarWeek),

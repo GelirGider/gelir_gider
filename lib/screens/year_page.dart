@@ -41,13 +41,13 @@ class _YearPageState extends State<YearPage> {
               child: Icon(
                 Icons.arrow_left_outlined,
                 size: 35.0,
-                color: Colors.black87,
+                color:  Theme.of(context).buttonColor,
               ),
             ),
             label: Text(
               title,
               style: TextStyle(
-                color: Colors.black87,
+                color:  Theme.of(context).buttonColor,
                 fontSize: 17.0,
                 wordSpacing: 0.0,
                 fontWeight: FontWeight.w600,

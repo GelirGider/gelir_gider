@@ -62,7 +62,7 @@ class Colours {
 
   static Color getGradientNew(bool isDark) {
     if (isDark) {
-      return black;
+      return pink;
     } else {
       return pink;
     }
