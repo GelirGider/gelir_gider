@@ -6,6 +6,9 @@ import 'package:gelir_gider/themes/colours.dart';
 import 'package:provider/provider.dart';
 
 class MoneyWidget extends StatelessWidget {
+  final Map<int, List<Expense>> list;
+  MoneyWidget(this.list);
+
   @override
   Widget build(BuildContext context) {
     final textScaleFactor = MediaQuery.of(context).textScaleFactor;
@@ -28,7 +31,7 @@ class MoneyWidget extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      provider.calculateTotalIncome().toStringAsFixed(1),
+                      provider.calculateTotalIncome(list).toStringAsFixed(1),
                       style: TextStyle(
                           fontSize: 16 * textScaleFactor,
                           color: Colours.green,
@@ -45,9 +48,9 @@ class MoneyWidget extends StatelessWidget {
                 animationDuration: 750,
                 reverse: true,
                 lineWidth: 20.0,
-                percent: provider.getPercentage(),
+                percent: provider.getPercentage(list),
                 center: Text(
-                  provider.calculateTotalMoney().toStringAsFixed(1),
+                  provider.calculateTotalMoney(list).toStringAsFixed(1),
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0 * textScaleFactor),
@@ -69,7 +72,7 @@ class MoneyWidget extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      provider.calculateTotalExpense().toStringAsFixed(1),
+                      provider.calculateTotalExpense(list).toStringAsFixed(1),
                       style: TextStyle(
                           fontSize: 16 * textScaleFactor,
                           color: Colours.red,

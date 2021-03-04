@@ -14,9 +14,9 @@ class DayListPage extends StatelessWidget {
     var monthName = daysAndMonth.split(' ')[1];
     var dayButtons = <DayListItem>[];
 
-    var curDays = expenseProvider.currentItems;
+    var curDays = expenseProvider.getCurrentDays(startDay, endDay);
 
-    curDays.keys.forEach((element) {
+    curDays.forEach((element) {
       if (element != null) {
         dayButtons.add(DayListItem(
           title: element.toString() + ' ' + monthName,

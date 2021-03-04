@@ -14,7 +14,8 @@ class YearListItem extends StatelessWidget {
       builder: (context, provider, child) {
         return FlatButton(
           onPressed: () {
-            provider.setYearPageLists(1);
+            provider.setSelectedYear(year);
+            provider.setSelectedPage(1);
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),

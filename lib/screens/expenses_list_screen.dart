@@ -122,7 +122,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                               : Column(
                                   children: [
                                     SizedBox(height: size.height * 0.02),
-                                    MoneyWidget(),
+                                    MoneyWidget(provider.currentItems),
                                     OurDivider(),
                                     Flexible(
                                       flex: 10,
