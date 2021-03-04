@@ -388,6 +388,9 @@ class Expenses with ChangeNotifier {
   Future<void> delete(String id) async {
     //var isPersonal = true;
     _items.removeWhere((element) => element.id == id);
+    _currentItems.values.forEach((element) {
+      element.removeWhere((element) => element.id == id);
+    });
     notifyListeners();
     return await DBHelper.delete(
         isPersonal ? 'user_expenses' : 'corporation_expenses', id);
