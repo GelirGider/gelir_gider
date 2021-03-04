@@ -81,6 +81,8 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       drawer: MainDrawer(),
       body: Container(
@@ -94,7 +96,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
           color: _theme.getTheme() == _theme.dark
               ? Color(0xff333333)
               : Color.fromRGBO(254, 254, 254, 100),
-          margin: EdgeInsets.symmetric(vertical:130.0, horizontal: 30.0),
+          margin: EdgeInsets.symmetric(vertical:size.height*0.1, horizontal: size.width*0.1),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

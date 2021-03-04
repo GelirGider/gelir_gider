@@ -118,7 +118,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                               : Column(
                                   children: [
                                     SizedBox(height: size.height * 0.02),
-                                    MoneyWidget(provider.expense),
+                                    MoneyWidget(returnCurrentList(provider)),
                                     OurDivider(),
                                     Flexible(
                                       flex: 10,
@@ -160,5 +160,12 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
         ),
       ),
     );
+  }
+  List<Expense> returnCurrentList(Expenses provider){
+    var list = <Expense>[];
+    provider.currentItems.values.forEach((element) {
+      list = list + element;
+    });
+    return list;
   }
 }
