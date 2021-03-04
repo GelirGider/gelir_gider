@@ -10,7 +10,7 @@ class YearListPage extends StatelessWidget {
     var yearList = expenseProvider.getCurrentYears();
 
     var yearButtons = <YearListItem>[];
-    yearList.forEach((element) {
+    yearList.keys.forEach((element) {
       yearButtons.add(YearListItem(
         year: element,
       ));

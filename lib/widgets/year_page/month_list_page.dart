@@ -33,7 +33,7 @@ class _MonthListPageState extends State<MonthListPage> {
 
     var monthButtons = <MonthListItem>[];
 
-    monthList.forEach((index) {
+    monthList.keys.forEach((index) {
       monthButtons.add(MonthListItem(
         title: monthNames[index - 1],
         index: (index - 1),

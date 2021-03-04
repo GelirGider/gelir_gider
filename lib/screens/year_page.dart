@@ -23,12 +23,13 @@ class _YearPageState extends State<YearPage> {
   void didChangeDependencies() {
     if (init) {
       Provider.of<Expenses>(context, listen: false).setSelectedPage(0);
+      Provider.of<Expenses>(context, listen: false).setYearPageLists(0);
       init = false;
     }
     super.didChangeDependencies();
   }
 
-  Widget _buildBody(title, Map<int, List<Expense>> list, onPressed, page) {
+  Widget _buildBody(title, onPressed, page) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     final size = MediaQuery.of(context).size;
     var isDark = _theme.getTheme() == _theme.dark;
@@ -58,7 +59,7 @@ class _YearPageState extends State<YearPage> {
           ),
         ),
         Container(
-          child: MoneyWidget(list),
+          child: MoneyWidget(),
         ),
         page,
       ],
@@ -72,48 +73,38 @@ class _YearPageState extends State<YearPage> {
       builder: (context, provider, child) {
         switch (provider.selectedPage) {
           case 0:
-            var list = provider.groupExpensesByCategories(provider.expense);
-            return _buildBody('Back', list, null, YearListPage());
+            return _buildBody('Back', null, YearListPage());
             break;
           case 1:
-            return _buildBody('Back', provider.currentYear, () {
-              provider.setSelectedPage(0);
-              return provider.getCurrentYears();
+            return _buildBody('Back', () async {
+              await provider.setYearPageLists(0);
             }, MonthListPage());
             break;
           case 2:
-            return _buildBody('Back', provider.currentMonth, () {
-              provider.setSelectedPage(1);
-              return provider.getCurrentMonths();
+            return _buildBody('Back', () async {
+              await provider.setYearPageLists(1);
             }, WeekListPage());
             break;
           case 3:
-            return _buildBody('Back', provider.currentWeek, () {
-              provider.setSelectedPage(2);
-              if (int.tryParse(provider.selectedWeek.split('-')[0]) != null ||
-                  int.tryParse(provider.selectedWeek.split('-')[1]) != null) {
-                return provider.getCurrentDays(
-                    int.parse(provider.selectedWeek.split('-')[0]),
-                    int.parse(provider.selectedWeek.split('-')[1]));
-              }
+            return _buildBody('Back', () {
+              provider.setYearPageLists(2);
             }, DayListPage());
             break;
           case 4:
-            var res = provider.currentWeek[provider.selectedDay];
-            var myList = provider.groupExpensesByCategories(res);
             return Container(
               padding: EdgeInsets.all(20),
               child: Column(
                 children: [
-                  MoneyWidget(myList),
+                  MoneyWidget(),
                   Flexible(
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount: myList.keys.length,
+                      itemCount: provider.currentItems.length,
                       itemBuilder: (context, index) {
                         provider.getSymbol();
-                        var category = myList.keys.toList()[index];
-                        var list = myList.values.toList()[index];
+                        var category =
+                            provider.currentItems.keys.toList()[index];
+                        var list = provider.currentItems.values.toList()[index];
                         var currency = provider.symbol;
 
                         return Column(

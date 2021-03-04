@@ -14,7 +14,7 @@ class MonthListItem extends StatelessWidget {
     return FlatButton(
       onPressed: () {
         expenseProvider.setSelectedMonth(index);
-        expenseProvider.setSelectedPage(2);
+        expenseProvider.setYearPageLists(2);
       },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),

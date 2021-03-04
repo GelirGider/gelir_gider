@@ -44,10 +44,10 @@ class Expenses with ChangeNotifier {
   bool _init = false;
   bool _init2 = false;
 
-  Map<int, List<Expense>> currentDay = {};
-  Map<int, List<Expense>> currentWeek = {};
-  Map<int, List<Expense>> currentMonth = {};
-  Map<int, List<Expense>> currentYear = {};
+//  Map<int, List<Expense>> currentDay = {};
+//  Map<int, List<Expense>> currentWeek = {};
+//  Map<int, List<Expense>> currentMonth = {};
+//  Map<int, List<Expense>> currentYear = {};
 
   var imgList = Categories.getPersonalImageList();
   var imgListCorporate = Categories.getCorporateImageList();
@@ -87,8 +87,9 @@ class Expenses with ChangeNotifier {
     _categoryAndItems = value;
   }
 
-  int get TabBarIndex => _tabBarIndex;
+//---------------------------------------------------
 
+  int get TabBarIndex => _tabBarIndex;
   Map<int, List<Expense>> _currentItems = {};
   Map<int, List<Expense>> get currentItems {
     return {..._currentItems};
@@ -136,8 +137,30 @@ class Expenses with ChangeNotifier {
     if (_tabBarIndex == 2) {
       _currentItems = _months;
     }
-    if (_tabBarIndex == 3) {
-      _currentItems = _years;
+    notifyListeners();
+  }
+
+  void setYearPageLists(index) async {
+    setSelectedPage(index);
+    switch (index) {
+      case 0:
+        _currentItems = await groupExpensesByCategories(expense);
+        break;
+      case 1:
+        _currentItems = await getCurrentYears();
+        break;
+      case 2:
+        _currentItems = await getCurrentMonths();
+        break;
+      case 3:
+        var days = selectedWeek.split(' ')[0];
+        _currentItems = await getCurrentDays(
+            int.parse(days.split('-')[0]), int.parse(days.split('-')[1]));
+        break;
+      case 4:
+        var res = currentItems[selectedDay];
+        _currentItems = await groupExpensesByCategories(res);
+        break;
     }
     notifyListeners();
   }
@@ -237,19 +260,19 @@ class Expenses with ChangeNotifier {
     notifyListeners();
   }
 
-  Iterable<int> getCurrentYears() {
+  Map<int, List<Expense>> getCurrentYears() {
     var map = groupBy(_items, (Expense e) => int.parse(e.time.split('-')[0]));
-    var years = map.keys;
-    currentYear = map;
+    var years = map;
+    _currentItems = map;
     return years;
   }
 
-  Iterable<int> getCurrentMonths() {
-    var yearOfExpenses = currentYear[selectedYear];
+  Map<int, List<Expense>> getCurrentMonths() {
+    var yearOfExpenses = _currentItems[selectedYear];
     var map =
         groupBy(yearOfExpenses, (Expense e) => int.parse(e.time.split('-')[1]));
-    var months = map.keys;
-    currentMonth = map;
+    var months = map;
+    _currentItems = map;
     return months;
   }
 
@@ -260,7 +283,7 @@ class Expenses with ChangeNotifier {
     return lastDay.day;
   }
 
-  Iterable<int> getCurrentDays(int startDay, int endDay) {
+  Map<int, List<Expense>> getCurrentDays(int startDay, int endDay) {
     var startDate = DateTime.parse(selectedYear.toString() +
         '-' +
         fixAsDate(selectedMonth + 1) +
@@ -271,7 +294,7 @@ class Expenses with ChangeNotifier {
         fixAsDate(selectedMonth + 1) +
         '-' +
         fixAsDate(endDay));
-    var monthOfExpenses = currentMonth[selectedMonth + 1];
+    var monthOfExpenses = _currentItems[selectedMonth + 1];
 
     var map = groupBy(monthOfExpenses, (Expense e) {
           var curDate = DateTime.parse(e.time);
@@ -283,9 +306,9 @@ class Expenses with ChangeNotifier {
         }) ??
         {};
 
-    var days = map.keys;
+    var days = map;
     print(days.toString());
-    currentWeek = map;
+    _currentItems = map;
     return days;
   }
 
@@ -300,7 +323,7 @@ class Expenses with ChangeNotifier {
         fixAsDate(selectedMonth + 1) +
         '-' +
         fixAsDate(endDay));
-    var monthOfExpenses = currentMonth[selectedMonth + 1];
+    var monthOfExpenses = _currentItems[selectedMonth + 1];
 
     var map = groupBy(monthOfExpenses, (Expense e) {
       var curDate = DateTime.parse(e.time);
@@ -406,13 +429,13 @@ class Expenses with ChangeNotifier {
 
   //----------------------------------------------------------------------------
 
-  double calculateTotalMoney(list) {
-    return calculateTotalIncome(list) + calculateTotalExpense(list);
+  double calculateTotalMoney() {
+    return calculateTotalIncome() + calculateTotalExpense();
   }
 
-  double calculateTotalExpense(list) {
+  double calculateTotalExpense() {
     var sum = 0.0;
-    list.values.forEach((element) {
+    currentItems.values.forEach((element) {
       element
           .where((expense) => expense.isExpense == 'expense')
           .forEach((element) {
@@ -422,9 +445,9 @@ class Expenses with ChangeNotifier {
     return sum;
   }
 
-  double calculateTotalIncome(list) {
+  double calculateTotalIncome() {
     var sum = 0.0;
-    list.values.forEach((element) {
+    currentItems.values.forEach((element) {
       element
           .where((expense) => expense.isExpense == 'income')
           .forEach((element) {
@@ -434,9 +457,9 @@ class Expenses with ChangeNotifier {
     return sum;
   }
 
-  double getPercentage(list) {
-    var income = calculateTotalIncome(list);
-    var expense = calculateTotalExpense(list).abs();
+  double getPercentage() {
+    var income = calculateTotalIncome();
+    var expense = calculateTotalExpense().abs();
     return income / (expense + income);
   }
 }

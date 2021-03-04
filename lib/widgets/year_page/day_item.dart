@@ -13,7 +13,7 @@ class DayListItem extends StatelessWidget {
     return FlatButton(
       onPressed: () {
         expenseProvider.setSelectedDay(int.parse(title.split(' ')[0]));
-        expenseProvider.setSelectedPage(4);
+        expenseProvider.setYearPageLists(4);
       },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),

@@ -13,7 +13,7 @@ class WeekItem extends StatelessWidget {
     return FlatButton(
       onPressed: () {
         expenseProvider.setSelectedWeek(title);
-        expenseProvider.setSelectedPage(3);
+        expenseProvider.setYearPageLists(3);
       },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
