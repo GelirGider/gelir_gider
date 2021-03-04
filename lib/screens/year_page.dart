@@ -88,7 +88,7 @@ class _YearPageState extends State<YearPage> {
             var myList = provider.expense;
             var list = provider.getCurrentYears();
             return Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(15),
               child: Column(
                 children: [
                   MoneyWidget(myList),
@@ -100,11 +100,16 @@ class _YearPageState extends State<YearPage> {
                         provider.getSymbol();
                         var years = list.elementAt(index);
                         return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            YearListItem(
-                              year: years,
-                            ),
                             OurDivider(),
+                            Container(
+                              padding:EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
+                              child: YearListItem(
+                                year: years,
+                              ),
+                            ),
+
                           ],
                         );
                       },
@@ -118,7 +123,7 @@ class _YearPageState extends State<YearPage> {
             var myList = provider.currentYear[provider.selectedYear];
             final list = provider.getCurrentMonths();
             return Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(15),
               child: Column(
                 children: [
                   MoneyWidget(myList),
@@ -131,11 +136,15 @@ class _YearPageState extends State<YearPage> {
                         var months = list.elementAt(index);
                         return Column(
                           children: [
-                            MonthListItem(
-                              title: monthNames[months - 1],
-                              index: months - 1,
-                            ),
                             OurDivider(),
+                            Container(
+                              padding:EdgeInsets.symmetric(),
+                              child: MonthListItem(
+                                title: monthNames[months - 1],
+                                index: months - 1,
+                              ),
+                            ),
+
                           ],
                         );
                       },
@@ -160,7 +169,7 @@ class _YearPageState extends State<YearPage> {
               }
             });
             return Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(15),
               child: Column(
                 children: [
                   MoneyWidget(myList),
@@ -172,8 +181,15 @@ class _YearPageState extends State<YearPage> {
                         var weekButton = weekButtons[index];
                         return Column(
                           children: [
-                            weekButton,
                             OurDivider(),
+                            Container(
+                              padding: EdgeInsets.symmetric(),
+                              child: Column(
+                                children: [
+                                  weekButton,
+                                ],
+                              ),
+                            ),
                           ],
                         );
                       },
@@ -204,7 +220,7 @@ class _YearPageState extends State<YearPage> {
               }
             });
             return Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(15),
               child: Column(
                 children: [
                   MoneyWidget(myList),
@@ -216,8 +232,16 @@ class _YearPageState extends State<YearPage> {
                         var dayItem = dayButtons[index];
                         return Column(
                           children: [
-                            dayItem,
                             OurDivider(),
+                            Container(
+                              padding: EdgeInsets.symmetric(),
+                              child: Column(
+                                children: [
+                                  dayItem,
+
+                                ],
+                              ),
+                            ),
                           ],
                         );
                       },
@@ -231,12 +255,13 @@ class _YearPageState extends State<YearPage> {
             var res = provider.currentDay[provider.selectedDay];
             var myList = provider.groupExpensesByCategories(res);
             return Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(15),
               child: Column(
                 children: [
                   MoneyWidget(res),
                   Flexible(
                     child: ListView.builder(
+
                       shrinkWrap: true,
                       itemCount: myList.keys.length,
                       itemBuilder: (context, index) {
@@ -247,6 +272,7 @@ class _YearPageState extends State<YearPage> {
 
                         return Column(
                           children: [
+                            OurDivider(),
                             MainPageCategoryModal(
                               category: category,
                               list: list,
