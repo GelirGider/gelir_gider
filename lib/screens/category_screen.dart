@@ -12,6 +12,7 @@ class CategoryScreen extends StatelessWidget {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
+    final size = MediaQuery.of(context).size;
 
     return SafeArea(
       child: Scaffold(
@@ -34,7 +35,7 @@ class CategoryScreen extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            margin: const EdgeInsets.fromLTRB(40, 70, 40, 95),
+            margin: EdgeInsets.symmetric(vertical: size.height*0.08,horizontal: size.width*0.055),
             borderOnForeground: true,
             semanticContainer: true,
             child: Consumer<Expenses>(

@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
-import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/widgets/components/divider.dart';
 import 'package:gelir_gider/widgets/dialogs/main_page_category_modal.dart';
-import 'package:gelir_gider/widgets/year_page/month_list_page.dart';
-import 'package:gelir_gider/widgets/year_page/day_list_page.dart';
-import 'package:gelir_gider/widgets/year_page/week_list_page.dart';
-import 'package:gelir_gider/widgets/year_page/year_list_page.dart';
+import 'package:gelir_gider/widgets/year_page/month_item.dart';
+import 'package:gelir_gider/widgets/year_page/week_item.dart';
+import 'package:gelir_gider/widgets/year_page/day_item.dart';
+import 'package:gelir_gider/widgets/year_page/year_item.dart';
 import 'package:provider/provider.dart';
+import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/widgets/components/money_widget.dart';
 
 class YearPage extends StatefulWidget {
@@ -28,84 +28,234 @@ class _YearPageState extends State<YearPage> {
     super.didChangeDependencies();
   }
 
-  Widget _buildBody(title, Map<int, List<Expense>> list, onPressed, page) {
-    final _theme = Provider.of<ThemeProvider>(context, listen: false);
-    final size = MediaQuery.of(context).size;
-    var isDark = _theme.getTheme() == _theme.dark;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        FlatButton.icon(
-          onPressed: onPressed,
-          icon: SizedBox(
-            width: 18.0,
-            child: Icon(
-              Icons.arrow_left_outlined,
-              size: 35.0,
-              color: isDark ? Colors.white : Colors.black87,
+  /* Widget _buildBody(title, Map<int, List<Expense>> list, onPressed, page) {
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          FlatButton.icon(
+            onPressed: onPressed,
+            icon: SizedBox(
+              width: 18.0,
+              child: Icon(
+                Icons.arrow_left_outlined,
+                size: 35.0,
+                color:  Theme.of(context).buttonColor,
+              ),
+            ),
+            label: Text(
+              title,
+              style: TextStyle(
+                color:  Theme.of(context).buttonColor,
+                fontSize: 17.0,
+                wordSpacing: 0.0,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.5,
+              ),
             ),
           ),
-          label: Text(
-            title,
-            style: TextStyle(
-              color: isDark ? Colors.white : Colors.black87,
-              fontSize: 17.0,
-              wordSpacing: 0.0,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 0.5,
-            ),
+          Container(
+            child: MoneyWidget(list),
           ),
-        ),
-        Container(
-          child: MoneyWidget(list),
-        ),
-        page,
-      ],
+          page,
+        ],
+      ),
     );
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
+    final monthNames = <String>[
+      S.of(context).January,
+      S.of(context).February,
+      S.of(context).March,
+      S.of(context).April,
+      S.of(context).May,
+      S.of(context).June,
+      S.of(context).July,
+      S.of(context).August,
+      S.of(context).September,
+      S.of(context).October,
+      S.of(context).November,
+      S.of(context).December,
+    ];
     return Consumer<Expenses>(
       child: null,
       builder: (context, provider, child) {
         switch (provider.selectedPage) {
           case 0:
-            var list = provider.groupExpensesByCategories(provider.expense);
-            return _buildBody('Back', list, null, YearListPage());
-            break;
-          case 1:
-            return _buildBody('Back', provider.currentYear, () {
-              provider.setSelectedPage(0);
-              return provider.getCurrentYears();
-            }, MonthListPage());
-            break;
-          case 2:
-            return _buildBody('Back', provider.currentMonth, () {
-              provider.setSelectedPage(1);
-              return provider.getCurrentMonths();
-            }, WeekListPage());
-            break;
-          case 3:
-            return _buildBody('Back', provider.currentWeek, () {
-              provider.setSelectedPage(2);
-              if (int.tryParse(provider.selectedWeek.split('-')[0]) != null ||
-                  int.tryParse(provider.selectedWeek.split('-')[1]) != null) {
-                return provider.getCurrentDays(
-                    int.parse(provider.selectedWeek.split('-')[0]),
-                    int.parse(provider.selectedWeek.split('-')[1]));
-              }
-            }, DayListPage());
-            break;
-          case 4:
-            var res = provider.currentWeek[provider.selectedDay];
-            var myList = provider.groupExpensesByCategories(res);
+            var myList = provider.expense;
+            var list = provider.getCurrentYears();
             return Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(15),
               child: Column(
                 children: [
                   MoneyWidget(myList),
+                  OurDivider(),
+                  Flexible(
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: list.length,
+                      itemBuilder: (context, index) {
+                        provider.getSymbol();
+                        var years = list.elementAt(index);
+                        return Column(
+                          children: [
+                            Container(
+                              padding:EdgeInsets.symmetric(),
+                              child: YearListItem(
+                                year: years,
+                              ),
+                            ),
+
+                          ],
+                        );
+                      }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3),
+                    ),
+                  )
+                ],
+              ),
+            );
+            break;
+          case 1:
+            var myList = provider.currentYear[provider.selectedYear];
+            final list = provider.getCurrentMonths();
+            return Container(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  MoneyWidget(myList),
+                  OurDivider(),
+                  Flexible(
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: list.length,
+                      itemBuilder: (context, index) {
+                        provider.getSymbol();
+                        var months = list.elementAt(index);
+                        return Column(
+                          children: [
+                            Container(
+                              padding:EdgeInsets.symmetric(),
+                              child: MonthListItem(
+                                title: monthNames[months - 1],
+                                index: months - 1,
+                              ),
+                            ),
+
+                          ],
+                        );
+                      }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3),
+                    ),
+                  )
+                ],
+              ),
+            );
+            break;
+          case 2:
+            var myList = provider.currentMonth[provider.selectedMonth + 1];
+            var weekButtons = <WeekItem>[];
+            final lastDay = provider.getLastDayOfMonth();
+            var weekDays = ['1-7', '8-14', '15-21', '22-' + lastDay.toString()];
+            weekDays.forEach((weekText) {
+              var startDay = int.parse(weekText.split('-')[0]);
+              var endDay = int.parse(weekText.split('-')[1]);
+              if (!provider.checkWeekNull(startDay, endDay)) {
+                weekButtons.add(WeekItem(
+                  title: weekText + ' ' + monthNames[provider.selectedMonth],
+                ));
+              }
+            });
+            return Container(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  MoneyWidget(myList),
+                  OurDivider(),
+                  Flexible(
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: weekButtons.length,
+                      itemBuilder: (context, index) {
+                        var weekButton = weekButtons[index];
+                        return Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(),
+                              child: Column(
+                                children: [
+                                  weekButton,
+                                ],
+                              )
+                            ),
+                          ],
+                        );
+                      }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3),
+                    ),
+                  )
+                ],
+              ),
+            );
+            break;
+
+          case 3:
+            var daysAndMonth = provider.selectedWeek;
+            var days = daysAndMonth.split(' ')[0];
+            var startDay = int.parse(days.split('-')[0]);
+            var endDay = int.parse(days.split('-')[1]);
+            var monthName = daysAndMonth.split(' ')[1];
+
+            var dayButtons = <DayListItem>[];
+            var curDays = provider.getCurrentDays(startDay, endDay);
+            print(curDays.toString());
+            var myList=<Expense>[];
+            curDays.forEach((element) {
+              if (element != null) {
+                myList = myList+provider.currentDay[element];
+                dayButtons.add(DayListItem(
+                  title: element.toString() + ' ' + monthName,
+                ));
+              }
+            });
+            return Container(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  MoneyWidget(myList),
+                  OurDivider(),
+                  Flexible(
+                    child: GridView.builder(
+                      itemCount: dayButtons.length,
+                      itemBuilder: (context, index) {
+                        var dayItem = dayButtons[index];
+                        return Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(),
+                              child: Column(
+                                children: [
+                                  dayItem,
+                                ],
+                              ),
+                            ),
+                          ],
+                        );
+                      }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3),
+                    ),
+                  )
+                ],
+              ),
+            );
+            break;
+          case 4:
+            var res = provider.currentDay[provider.selectedDay];
+            var myList = provider.groupExpensesByCategories(res);
+            return Container(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  MoneyWidget(res),
                   Flexible(
                     child: ListView.builder(
                       shrinkWrap: true,
@@ -115,9 +265,9 @@ class _YearPageState extends State<YearPage> {
                         var category = myList.keys.toList()[index];
                         var list = myList.values.toList()[index];
                         var currency = provider.symbol;
-
                         return Column(
                           children: [
+                            OurDivider(),
                             MainPageCategoryModal(
                               category: category,
                               list: list,
