@@ -9,6 +9,9 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// Ana ekranın, tabbarlar arasındaki geçişlerde bulunan ekranların
+// tasarımı ve tüm arkaplanının yapıldığı kısım
+
 class ExpensesListScreen extends StatefulWidget {
   @override
   _ExpensesListScreenState createState() => _ExpensesListScreenState();
@@ -47,6 +50,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
     final size = MediaQuery.of(context).size;
     var isDark = _theme.getTheme() == _theme.dark;
 
+
     return SafeArea(
       child: DefaultTabController(
         length: 4,
@@ -54,7 +58,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
           endDrawer: MainDrawer(),
           key: scaffoldKey,
           appBar: PreferredSize(
-            preferredSize: size / 6,
+            preferredSize: size / 5.5,
             child: Consumer<Expenses>(
               builder: (context, value, child) {
                 return GradientAppBar(

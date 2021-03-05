@@ -4,6 +4,10 @@ import 'package:gelir_gider/themes/colours.dart';
 import 'package:provider/provider.dart';
 
 class DayListItem extends StatelessWidget {
+
+  // Year kısmında gün kısmına eriştiğimizde gözüken butonların tasarımı ve
+  // tıklandığında yapılacak işlemlerin bulunduğu kısım
+
   final String title;
   const DayListItem({Key key, this.title}) : super(key: key);
 

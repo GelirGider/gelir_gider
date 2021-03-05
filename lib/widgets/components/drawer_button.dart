@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class DrawerButton extends StatelessWidget {
-  final scaffoldKey;
 
+  // Programın sağ üst köşesinde bulunan ... ikonuna sahip butonumuz
+
+  final scaffoldKey;
   const DrawerButton({Key key, this.scaffoldKey}) : super(key: key);
   @override
   Widget build(BuildContext context) {

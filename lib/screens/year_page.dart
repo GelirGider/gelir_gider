@@ -11,6 +11,9 @@ import 'package:provider/provider.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/widgets/components/money_widget.dart';
 
+// TabBar da 4. kısımda bulunan Yıl ekranının tasarımı ve tüm arkaplanının
+// bulunduğu kısım
+
 class YearPage extends StatefulWidget {
   @override
   _YearPageState createState() => _YearPageState();
@@ -27,43 +30,6 @@ class _YearPageState extends State<YearPage> {
     }
     super.didChangeDependencies();
   }
-
-  /* Widget _buildBody(title, Map<int, List<Expense>> list, onPressed, page) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          FlatButton.icon(
-            onPressed: onPressed,
-            icon: SizedBox(
-              width: 18.0,
-              child: Icon(
-                Icons.arrow_left_outlined,
-                size: 35.0,
-                color:  Theme.of(context).buttonColor,
-              ),
-            ),
-            label: Text(
-              title,
-              style: TextStyle(
-                color:  Theme.of(context).buttonColor,
-                fontSize: 17.0,
-                wordSpacing: 0.0,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0.5,
-              ),
-            ),
-          ),
-          Container(
-            child: MoneyWidget(list),
-          ),
-          page,
-        ],
-      ),
-    );
-  }*/
-
   @override
   Widget build(BuildContext context) {
     final monthNames = <String>[

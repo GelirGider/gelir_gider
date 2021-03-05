@@ -7,6 +7,9 @@ import 'package:provider/provider.dart';
 import 'package:gelir_gider/themes/colours.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 
+// Drawer da bulunan Dil seçim ekranının tasarımı ve tüm arkaplanının bulunduğu
+// kısım
+
 class LanguageSelectionScreen extends StatefulWidget {
   @override
   _LanguageSelectionScreenState createState() =>

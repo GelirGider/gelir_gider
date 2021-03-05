@@ -7,6 +7,9 @@ import 'package:provider/provider.dart';
 import 'package:gelir_gider/themes/colours.dart';
 
 class CategoryScreen extends StatelessWidget {
+
+  // Kategori seçim ekranının tasarımı ve tüm arkaplanının yapıldığı kısım
+
   @override
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
@@ -17,12 +20,18 @@ class CategoryScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: GradientAppBar(
-          gradient: LinearGradient(colors: Colours.getGradientColors(isDark)),
+          iconTheme: IconThemeData(
+              color: Colours.getGradientNew(isDark) //change your color here
+          ),
+          shape: Border(
+              bottom: BorderSide(
+                  width: 3.0, color: Colours.getGradientNew(isDark))),
+          gradient: LinearGradient(colors: Colours.getGradientNew2(isDark)),
           centerTitle: true,
           title: Text(
             S.of(context).AddingScreenCategories,
             style: TextStyle(
-                color: Theme.of(context).primaryTextTheme.caption.color,
+                color: Colours.getGradientNew(isDark),
                 fontSize: 24 * textScaleFactor),
           ),
         ),

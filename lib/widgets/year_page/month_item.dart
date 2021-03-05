@@ -4,6 +4,10 @@ import 'package:gelir_gider/themes/colours.dart';
 import 'package:provider/provider.dart';
 
 class MonthListItem extends StatelessWidget {
+
+  // Yıl kısmında ay kısmına geldiğimizde gözüken butonların tasarımı ve
+  // tıklandığında yapılacak işlemlerin bulunduğu kısım
+
   final String title;
   final int index;
 

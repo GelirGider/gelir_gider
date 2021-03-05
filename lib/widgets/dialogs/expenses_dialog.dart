@@ -5,7 +5,12 @@ import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/components/expense_item.dart';
 import 'package:gelir_gider/widgets/components/dissmissible_background.dart';
+
 class ExpensesDialogWidget extends StatelessWidget {
+
+  // Ana ekranda gösterilen kategorilerden herhangi birine bastığımızda
+  // açılan ekranın tasarımı ve arkaplanının oluşturulduğu kısım
+
   final int categoryIndex;
   final List<Expense> expenseList;
   final String currency;

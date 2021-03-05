@@ -3,6 +3,9 @@ import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/widgets/components/category_item.dart';
 
 class Categories {
+
+  // Sabit olan kategorilerimize her classtan erişebilmek için yapmış olduğumuz class
+
   static List<Widget> getPersonalImageList() {
     var imgList = [
       Image.asset('assets/categories/dues.png'),

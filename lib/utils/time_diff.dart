@@ -1,6 +1,8 @@
 class TimeDiff {
-  final String time;
 
+  // Zamanlar arası farkı bulmayı sağlayan classımız
+
+  final String time;
   TimeDiff(this.time);
 
   int diff() {

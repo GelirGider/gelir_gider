@@ -6,6 +6,9 @@ import 'package:gelir_gider/widgets/dialogs/expenses_dialog.dart';
 import 'package:gelir_gider/themes/colours.dart';
 
 class MainPageCategoryModal extends StatelessWidget {
+
+  // Ana ekranda harcamaları mevcut olan kategorilerin oluşturulduğu kısım
+
   final int category;
   final List<Expense> list;
   final String currency;

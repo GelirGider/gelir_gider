@@ -3,6 +3,9 @@ import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/themes/colours.dart';
 
 class SaveButton extends StatelessWidget {
+
+  // Ekleme ekranında bulunan kaydet butonu
+
   final onPressed;
 
   const SaveButton({Key key, this.onPressed}) : super(key: key);

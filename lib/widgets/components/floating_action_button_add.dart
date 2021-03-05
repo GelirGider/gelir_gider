@@ -3,6 +3,9 @@ import 'package:gelir_gider/screens/adding_expense_screen.dart';
 import 'package:gelir_gider/widgets/buttons/add_button.dart';
 
 class FloatingActionButtonAdd extends StatelessWidget {
+
+  // Sağ altta ekleme ekranına götüren + ikonlu butonumuzun
+  // Navigation işlemi ile diğer sayfaya gitmesini sağladığımız kısım
   final context;
   final scaffoldKey;
 
