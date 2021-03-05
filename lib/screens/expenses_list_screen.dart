@@ -54,7 +54,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
           endDrawer: MainDrawer(),
           key: scaffoldKey,
           appBar: PreferredSize(
-            preferredSize: size / 6,
+            preferredSize: size / 5.6,
             child: Consumer<Expenses>(
               builder: (context, value, child) {
                 return GradientAppBar(
@@ -78,7 +78,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                     labelColor: isDark ? Colors.pink : Colors.pink,
                     labelPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
                     labelStyle: TextStyle(
-                      fontSize: 15,
+                      fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                     ),
