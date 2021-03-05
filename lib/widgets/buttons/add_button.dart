@@ -5,6 +5,9 @@ import 'package:gelir_gider/themes/colours.dart';
 
 
 class AddButton extends StatelessWidget {
+
+  // Kullanıcıyı harcama ekleme sayfasına götüren buttonumuz
+
   @override
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);

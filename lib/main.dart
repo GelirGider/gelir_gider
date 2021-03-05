@@ -10,11 +10,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gelir_gider/themes/colours.dart';
 
 void main() async {
+  // Uygulama ilk açıldığı vakit cihazda varsıyalan bir tema seçimi olup olmadığını
+  // kontrol ediyoruz
   WidgetsFlutterBinding.ensureInitialized();
   var prefs = await SharedPreferences.getInstance();
   var isDarkTheme = prefs.getBool('isLight') ?? true;
 
   runApp(
+    // Providerlarımızın programa dahil edilmesi işlemi
     MultiProvider(
       providers: [
         ChangeNotifierProvider<Expenses>(
@@ -47,12 +50,12 @@ class MyApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          color: Colours.colorGradient1,
+          color: Colours.colorGradient1, // Uygulamanın varsayılan rengi
           supportedLocales: S.delegate.supportedLocales,
-          title: 'Gelir/Gider',
-          theme: value.getTheme(),
+          title: 'Gelir/Gider', // Uygulama ismi
+          theme: value.getTheme(), // Temamız
           debugShowCheckedModeBanner: false,
-          home: ExpensesListScreen(),
+          home: ExpensesListScreen(), // Açılış ekranımız
         );
       },
     );

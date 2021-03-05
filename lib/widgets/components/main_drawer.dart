@@ -9,6 +9,10 @@ import 'package:currency_picker/currency_picker.dart';
 import 'package:gelir_gider/themes/colours.dart';
 
 class MainDrawer extends StatelessWidget {
+
+  // Sağ üst köşede bulunan ... ikonuna sahip butonumuzun tıklandığında açılması
+  // gereken kısmın tasarımı ve arkaplan işlemlerinin yazıldığı kısım
+
   @override
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);

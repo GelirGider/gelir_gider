@@ -13,6 +13,9 @@ import 'package:toggle_switch/toggle_switch.dart';
 import 'package:gelir_gider/themes/colours.dart';
 
 class AddingExpense extends StatefulWidget {
+
+  // Ekleme ekranının tasarımı ve tüm arkaplanının yapıldığı kısım
+
   final scaffoldKey;
   const AddingExpense({Key key, this.scaffoldKey}) : super(key: key);
   @override
@@ -77,31 +80,41 @@ class _AddingExpenseState extends State<AddingExpense>
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
+    final size = MediaQuery.of(context).size;
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
     category = Provider.of<Expenses>(context, listen: false).CurrentCategory;
 
     return SafeArea(
       child: Scaffold(
         endDrawer: MainDrawer(),
-        appBar: GradientAppBar(
-          gradient: LinearGradient(colors: Colours.getGradientColors(isDark)),
+        appBar:
+
+        PreferredSize(
+        preferredSize: size / 5.5,
+        child : GradientAppBar(
+          iconTheme: IconThemeData(
+              color: Colours.getGradientNew(isDark) //change your color here
+          ),
+          shape: Border(
+              bottom: BorderSide(
+                  width: 3.0, color: Colours.getGradientNew(isDark))),
+          gradient: LinearGradient(colors: Colours.getGradientNew2(isDark)),
           centerTitle: true,
           actions: [
             Builder(
               builder: (context) => IconButton(
                 icon: Icon(
                   Icons.more_horiz,
-                  size: 30.0,
+                  color: Theme.of(context).buttonColor,
                 ),
                 onPressed: () => Scaffold.of(context).openEndDrawer(),
                 tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-
                 ///it opens a drawer
               ),
             ),
           ],
-          title: Icon(Icons.attach_money),
-        ),
+          title: Icon(Icons.attach_money,color: Theme.of(context).buttonColor,),
+        )),
         body: _isLoading
             ? Center(
                 child: CircularProgressIndicator(),

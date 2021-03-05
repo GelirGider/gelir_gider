@@ -4,6 +4,10 @@ import 'package:gelir_gider/themes/colours.dart';
 import 'package:provider/provider.dart';
 
 class WeekItem extends StatelessWidget {
+
+  // Yıl kısmında hafta kısmına geldiğimizde gözüken butonların tasarımı ve
+  // tıklandığında yapılacak işlemlerin bulunduğu kısım
+
   final String title;
   final int index;
   const WeekItem({Key key, this.title, this.index}) : super(key: key);

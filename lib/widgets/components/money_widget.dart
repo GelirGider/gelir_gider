@@ -6,6 +6,13 @@ import 'package:gelir_gider/themes/colours.dart';
 import 'package:provider/provider.dart';
 
 class MoneyWidget extends StatelessWidget {
+
+  // Toplam Gelir,Gider ve Ana paranın gösterildiği orta kısmında bir CircularPercentIndicator
+  // Widgetına sahip olan bir çok yerde kullandığımız widget
+
+  // Harcamalardan oluşan listeleri Expense Provider içindeki hesaplama fonksiyonlarına
+  // göndererek Toplam Gelir,Gider ve Ana parayı hesaplayabilmekte
+
   final List<Expense> list;
   MoneyWidget(this.list);
 

@@ -7,6 +7,11 @@ import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class AccountChanger extends StatelessWidget {
+
+  // Sol üst köşede bulunan hesap değiştirme için tasarladığımız butona
+  // tıkladığımız vakit alt taraftan açılan dialog un tasarım ve arkaplanının
+  // oluşturulduğu kısım
+
   final controller;
 
   const AccountChanger(this.controller);
@@ -37,7 +42,7 @@ class AccountChanger extends StatelessWidget {
             ),
             onPressed: () {
               showGeneralDialog(
-                barrierLabel: "Label",
+                barrierLabel: 'Label',
                 barrierDismissible: true,
                 barrierColor: Colours.accChangerDialogBarrier,
                 transitionDuration: Duration(milliseconds: 700),

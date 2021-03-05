@@ -6,6 +6,10 @@ import 'package:gelir_gider/themes/colours.dart';
 import 'package:intl/intl.dart';
 
 class ExpenseItem extends StatefulWidget {
+
+  // Ana ekranda tıkladığımız her bir kategorinin içerisinde bulunan harcamaların
+  // gösterimi için yaptığımız sabit bir item design
+
   final Expense expense;
   final String currency;
   const ExpenseItem({Key key, this.expense, this.currency}) : super(key: key);

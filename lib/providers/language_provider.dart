@@ -3,6 +3,11 @@ import 'package:gelir_gider/generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Languages extends ChangeNotifier{
+
+  // Dillerin cihaz hafızasında set edilmesi için yapmış olduğumuz provider
+
+  // Dillerin verilerine erişebilmek için context değeri almamız gerektiğinden
+  // constractor kısmında context de almak da
   final BuildContext context;
   Languages(this.context);
 
@@ -18,6 +23,9 @@ class Languages extends ChangeNotifier{
     Locale('ja'),
     Locale('de'),
   ];
+
+  // Bu iki metotta seçilen dilin çağrılması ve
+  // cihaz hafızasına kaydedilmesi işlemleri yapılmakta
 
   void setLanguage(int index) {
     S.load(languageList[index]);

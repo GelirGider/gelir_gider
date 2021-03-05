@@ -5,6 +5,10 @@ import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/themes/colours.dart';
 
 class ThemeDialogWidget extends StatelessWidget {
+
+  // Sağ üst kısıma tıkladığımızda açılan drawer'da bulunan tema değiştirme butonuna
+  // bastığımızda açılan dialogun tasarımının ve arkaplanının bulunduğu kısım
+
   @override
   Widget build(BuildContext context) {
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;

@@ -4,6 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:gelir_gider/providers/providers.dart';
 
 class YearListItem extends StatelessWidget {
+
+  // Yıl kısmına ilk bastığımızda oluşan kısımda gözüken butonların tasarımı ve
+  // tıklandığında yapılacak işlemlerin bulunduğu kısım
+
   final int year;
   const YearListItem({Key key, this.year}) : super(key: key);
 

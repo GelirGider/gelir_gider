@@ -6,6 +6,9 @@ import 'package:gelir_gider/themes/colours.dart';
 
 
 class CategoryItem extends StatelessWidget {
+
+  // Ana ekranda karşımıza çıkan kategorilerin her biri için belirlediğimiz sabit dizayn
+
   final int index;
   final Image categoryImg;
   final String categoryName;
