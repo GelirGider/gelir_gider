@@ -69,7 +69,9 @@ class Expenses with ChangeNotifier {
     notifyListeners();
   }
 
-  CategoryItem get CurrentCategory => categories[currentCategoryId];
+  CategoryItem get CurrentCategory => isPersonal
+      ? categories[currentCategoryId]
+      : corporateCategories[currentCategoryId];
 
   List<CategoryItem> get categories {
     return [..._personalCategories];
@@ -230,11 +232,10 @@ class Expenses with ChangeNotifier {
     notifyListeners();
   }
 
-  void setSelectedPage(int num) async{
+  void setSelectedPage(int num) async {
     selectedPage = await num;
     notifyListeners();
   }
-
 
   Map<int, List<Expense>> get currentDay => _currentDay;
   set currentDay(Map<int, List<Expense>> value) {
@@ -265,7 +266,8 @@ class Expenses with ChangeNotifier {
 
   Iterable<int> getCurrentMonths() {
     var yearOfExpenses = currentYear[selectedYear];
-    var map = groupBy(yearOfExpenses, (Expense e) => int.parse(e.time.split('-')[1]));
+    var map =
+        groupBy(yearOfExpenses, (Expense e) => int.parse(e.time.split('-')[1]));
     var months = map.keys;
     currentMonth = map;
     return months;
@@ -427,19 +429,17 @@ class Expenses with ChangeNotifier {
 
   double calculateTotalExpense(list) {
     var sum = 0.0;
-    list.where((expense) => expense.isExpense == 'expense')
-          .forEach((element) {
-        sum += element.price;
-      });
+    list.where((expense) => expense.isExpense == 'expense').forEach((element) {
+      sum += element.price;
+    });
     return sum;
   }
 
   double calculateTotalIncome(list) {
     var sum = 0.0;
-    list.where((expense) => expense.isExpense == 'income')
-          .forEach((element) {
-        sum += element.price;
-      });
+    list.where((expense) => expense.isExpense == 'income').forEach((element) {
+      sum += element.price;
+    });
     return sum;
   }
 
@@ -448,6 +448,4 @@ class Expenses with ChangeNotifier {
     var expense = calculateTotalExpense(list).abs();
     return income / (expense + income);
   }
-
-
 }
