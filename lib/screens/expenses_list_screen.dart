@@ -8,6 +8,7 @@ import 'package:gelir_gider/themes/colours.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:gelir_gider/helpers/notification_helper.dart';
 
 // Ana ekranın, tabbarlar arasındaki geçişlerde bulunan ekranların
 // tasarımı ve tüm arkaplanının yapıldığı kısım
@@ -32,6 +33,10 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
   @override
   void initState() {
     super.initState();
+    notificationPlugin
+        .setListenerForLowerVersions(onNotificationInLowerVersions);
+    notificationPlugin.setOnNotificationClick(onNotificationClick);
+    notificationPlugin.showDailyAtTime();
     _getPrefs().then((value) => {});
     Future.delayed(Duration.zero).then((_) {
       Provider.of<Expenses>(context, listen: false).setCategories(context);
@@ -165,11 +170,22 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
       ),
     );
   }
+
   List<Expense> returnCurrentList(Expenses provider){
     var list = <Expense>[];
     provider.currentItems.values.forEach((element) {
       list = list + element;
     });
     return list;
+  }
+
+  void onNotificationInLowerVersions(ReceivedNotification receivedNotification) {
+    print('Notification Received ${receivedNotification.id}');
+  }
+
+  void onNotificationClick(String payload) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return ExpensesListScreen();
+    }));
   }
 }

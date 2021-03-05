@@ -20,7 +20,7 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'tr';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function> {
+  static _notInlinedMessages(_) => <String, Function> {
     "AddingScreenCategories" : MessageLookupByLibrary.simpleMessage("Kategoriler"),
     "AddingScreenDate" : MessageLookupByLibrary.simpleMessage("Tarih"),
     "AddingScreenDescription" : MessageLookupByLibrary.simpleMessage("Açıklama"),
