@@ -7,6 +7,7 @@ import 'package:gelir_gider/screens/language_selection_screen.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:currency_picker/currency_picker.dart';
 import 'package:gelir_gider/themes/colours.dart';
+import 'package:gelir_gider/widgets/dialogs/add_notification.dart';
 
 class MainDrawer extends StatelessWidget {
 
@@ -102,6 +103,26 @@ class MainDrawer extends StatelessWidget {
             ),
             leading: Icon(
               Icons.euro,
+              size: 40,
+              color: Theme.of(context).buttonColor,
+            ),
+            trailing: Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.fromLTRB(10, 18, 10, 18),
+            onTap: () {
+              return Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (ctx) => AddNotification(),
+                ),
+              );
+            },
+            title: Text(
+             "Add Notification",
+              style: TextStyle(fontSize: 18 * textScaleFactor),
+            ),
+            leading: Icon(
+              Icons.notifications_active_outlined,
               size: 40,
               color: Theme.of(context).buttonColor,
             ),
