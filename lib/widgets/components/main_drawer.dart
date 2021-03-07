@@ -7,13 +7,13 @@ import 'package:gelir_gider/screens/language_selection_screen.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:currency_picker/currency_picker.dart';
 import 'package:gelir_gider/themes/colours.dart';
-import 'package:gelir_gider/widgets/dialogs/add_notification.dart';
+
 
 class MainDrawer extends StatelessWidget {
 
   // Sağ üst köşede bulunan ... ikonuna sahip butonumuzun tıklandığında açılması
   // gereken kısmın tasarımı ve arkaplan işlemlerinin yazıldığı kısım
-
+bool addNotification=true;
   @override
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
@@ -111,11 +111,7 @@ class MainDrawer extends StatelessWidget {
           ListTile(
             contentPadding: EdgeInsets.fromLTRB(10, 18, 10, 18),
             onTap: () {
-              return Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (ctx) => AddNotification(),
-                ),
-              );
+
             },
             title: Text(
              "Add Notification",
@@ -126,10 +122,17 @@ class MainDrawer extends StatelessWidget {
               size: 40,
               color: Theme.of(context).buttonColor,
             ),
-            trailing: Icon(Icons.arrow_forward_ios),
+            trailing:Switch(
+              onChanged: (value) {
+                addNotification = value;
+              },
+              value: addNotification,
+              activeColor:Colors.blue,
+            ) ,
           ),
         ],
       ),
+
     );
   }
 }
