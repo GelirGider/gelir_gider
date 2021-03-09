@@ -6,11 +6,6 @@ class Languages extends ChangeNotifier{
 
   // Dillerin cihaz hafızasında set edilmesi için yapmış olduğumuz provider
 
-  // Dillerin verilerine erişebilmek için context değeri almamız gerektiğinden
-  // constractor kısmında context de almak da
-  final BuildContext context;
-  Languages(this.context);
-
   var languageList = [
     Locale('tr'),
     Locale('en'),

@@ -58,5 +58,8 @@
   "CategoryEquipment":"Equipo",
   "CategoryTravel":"Viajar",
   "CategoryGasoline":"Gasolina",
-  "CategoryCorporate": "Corporativo"
+  "CategoryCorporate": "Corporativo",
+  "OK" : "OK",
+  "Cancel" : "Cancelar",
+  "Notifications" : "Notificación"
 }

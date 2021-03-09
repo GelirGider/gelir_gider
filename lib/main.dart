@@ -30,7 +30,7 @@ void main() async {
           },
         ),
         ChangeNotifierProvider(
-          create: (context) => Languages(context),
+          create: (context) => Languages(),
         ),
       ],
       child: MyApp(),

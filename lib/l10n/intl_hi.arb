@@ -59,5 +59,8 @@
   "CategoryFood":"खाना",
   "CategoryTravel":"यात्रा",
   "CategoryGasoline":"गैसोलीन",
-  "CategoryCorporate":"कॉर्पोरेट"
+  "CategoryCorporate":"कॉर्पोरेट",
+  "OK" : "ठीक है",
+  "Cancel" : "रद्द करना",
+  "Notifications" : "सूचनाएं"
 }

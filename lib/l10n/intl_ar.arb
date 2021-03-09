@@ -59,5 +59,8 @@
   "CategoryFood" : "طعام" ,
   "CategoryTravel" :"السفر" ,
   "CategoryGasoline" :"الغازولين",
-  "CategoryCorporate" :"شركة كبرى"
+  "CategoryCorporate" :"شركة كبرى",
+  "OK" : "موافق",
+  "Cancel" : "إلغاء",
+  "Notifications" : "الإخطارات"
 }

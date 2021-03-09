@@ -7,20 +7,67 @@ import 'package:gelir_gider/screens/language_selection_screen.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:currency_picker/currency_picker.dart';
 import 'package:gelir_gider/themes/colours.dart';
+import 'package:day_night_time_picker/day_night_time_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:gelir_gider/helpers/notification_helper.dart';
+import 'package:gelir_gider/screens/expenses_list_screen.dart';
 
+// Sağ üst köşede bulunan ... ikonuna sahip butonumuzun tıklandığında açılması
+// gereken kısmın tasarımı ve arkaplan işlemlerinin yazıldığı kısım
 
-class MainDrawer extends StatelessWidget {
+class MainDrawer extends StatefulWidget {
+  @override
+  _MainDrawerState createState() => _MainDrawerState();
+}
 
-  // Sağ üst köşede bulunan ... ikonuna sahip butonumuzun tıklandığında açılması
-  // gereken kısmın tasarımı ve arkaplan işlemlerinin yazıldığı kısım
-bool addNotification=true;
+class _MainDrawerState extends State<MainDrawer>{
+  var notificationEnabled=false;
+  var hour=21;
+  var minute=0;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadValues();
+    checkNotifications();
+  }
+  void checkNotifications() async{
+    if(notificationEnabled){
+      print('enabled');
+      notificationHelper.setListenerForLowerVersions(onNotificationInLowerVersions);
+      notificationHelper.setOnNotificationClick(onNotificationClick);
+      await notificationHelper.showDailyAtTime(hour,minute);
+    }
+    else{
+      print('disabled');
+      await notificationHelper.cancelAllNotification();
+    }
+  }
+  void _loadValues() async {
+    var prefs = await SharedPreferences.getInstance();
+    setState(() {
+       notificationEnabled= (prefs.getBool('notification')) ?? false;
+       hour= (prefs.getInt('hour')) ?? 21;
+       minute= (prefs.getInt('minute')) ?? 0;
+    });
+    await checkNotifications();
+  }
+  void _saveValues() async {
+    var prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.setBool('notification',notificationEnabled);
+      prefs.setInt('hour',hour);
+      prefs.setInt('minute',minute);
+    });
+    await checkNotifications();
+  }
+
   @override
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
     var provider = Provider.of<Expenses>(context, listen: false);
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
-
     void showThemePicker() {
       showDialog<void>(
         context: context,
@@ -111,10 +158,24 @@ bool addNotification=true;
           ListTile(
             contentPadding: EdgeInsets.fromLTRB(10, 18, 10, 18),
             onTap: () {
-
+              Navigator.of(context).push(
+                showPicker(
+                  context: context,
+                  value: TimeOfDay(hour:hour,minute:minute),
+                  onChange: (value) {
+                      hour=value.hour;
+                      minute=value.minute;
+                      notificationEnabled=true;
+                      _saveValues();
+                  },
+                  cancelText: S.of(context).Cancel,
+                  okText: S.of(context).OK,
+                  is24HrFormat: true
+                ),
+              );
             },
             title: Text(
-             "Add Notification",
+             S.of(context).Notifications,
               style: TextStyle(fontSize: 18 * textScaleFactor),
             ),
             leading: Icon(
@@ -124,15 +185,25 @@ bool addNotification=true;
             ),
             trailing:Switch(
               onChanged: (value) {
-                addNotification = value;
+                notificationEnabled = value;
+                _saveValues();
               },
-              value: addNotification,
-              activeColor:Colors.blue,
+              value: notificationEnabled,
+              activeColor:Colours.colorGradient2,
             ) ,
           ),
         ],
       ),
 
     );
+  }
+  void onNotificationInLowerVersions(ReceivedNotification receivedNotification) {
+    print('Notification Received ${receivedNotification.id}');
+  }
+
+  void onNotificationClick(String payload) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return ExpensesListScreen();
+    }));
   }
 }

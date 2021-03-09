@@ -58,5 +58,8 @@
   "CategoryEquipment" :"Equipment",
   "CategoryTravel" :"Travel",
   "CategoryGasoline" :"Gasoline",
-  "CategoryCorporate" :"Corporate"
+  "CategoryCorporate" :"Corporate",
+  "OK" : "OK",
+  "Cancel" : "Cancel",
+  "Notifications" : "Notifications"
 }

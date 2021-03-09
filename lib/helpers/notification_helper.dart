@@ -4,22 +4,22 @@ import 'dart:io' show Platform;
 import 'package:rxdart/subjects.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
-
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 
 class NotificationHelper {
-  //
+
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   final BehaviorSubject<ReceivedNotification>
   didReceivedLocalNotificationSubject =
   BehaviorSubject<ReceivedNotification>();
   var initializationSettings;
+  tz.Location currentTimeZone;
 
   NotificationHelper._() {
     init();
   }
 
-  void init() async {
-    tz.initializeTimeZones();
+  void init() async{
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     if (Platform.isIOS) {
       _requestIOSPermission();
@@ -67,7 +67,14 @@ class NotificationHelper {
           onNotificationClick(payload);
         });
   }
-  Future<void> showDailyAtTime() async {
+
+  Future<void> showDailyAtTime(int hour,int minute) async {
+    print('Time : '+hour.toString()+':'+ minute.toString());
+    tz.initializeTimeZones();
+    await FlutterNativeTimezone.getLocalTimezone().then((value) {
+      currentTimeZone=tz.getLocation(value);
+      tz.setLocalLocation(currentTimeZone);
+    });
     var androidChannelSpecifics = AndroidNotificationDetails(
       'CHANNEL_ID 4',
       'CHANNEL_NAME 4',
@@ -75,16 +82,13 @@ class NotificationHelper {
       importance: Importance.max,
       priority: Priority.high,
     );
-    var dateTime = DateTime(DateTime.now().year, DateTime.now().month,
-        DateTime.now().day, 21, 00, 00);
     var iosChannelSpecifics = IOSNotificationDetails();
-    var platformChannelSpecifics =
-    NotificationDetails(android: androidChannelSpecifics,iOS: iosChannelSpecifics);
+    var platformChannelSpecifics = NotificationDetails(android: androidChannelSpecifics,iOS: iosChannelSpecifics);
     await flutterLocalNotificationsPlugin.zonedSchedule(
       0,
       'Gelir-Gider',
       'Gelir ve Giderlerinizi girmek için harika bir zaman !',
-      tz.TZDateTime.from(dateTime, tz.local),
+      getScheduledDate(hour,minute),
       platformChannelSpecifics,
       payload: 'Test Payload',
       androidAllowWhileIdle: true,
@@ -92,11 +96,15 @@ class NotificationHelper {
       UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
-  
 
-  Future<int> getPendingNotificationCount() async {
-    var p = await flutterLocalNotificationsPlugin.pendingNotificationRequests();
-    return p.length;
+  tz.TZDateTime getScheduledDate(hour,minute) {
+    print('Current Location : '+ tz.local.toString());
+    var now = tz.TZDateTime.now(tz.local);
+    var scheduledDate = tz.TZDateTime(tz.local, now.year, now.month, now.day,hour,minute,0);
+    if (scheduledDate.isBefore(now)) {
+      scheduledDate = scheduledDate.add(const Duration(days: 1));
+    }
+    return scheduledDate;
   }
 
   Future<void> cancelNotification() async {
@@ -108,7 +116,7 @@ class NotificationHelper {
   }
 }
 
-NotificationHelper notificationPlugin = NotificationHelper._();
+NotificationHelper notificationHelper = NotificationHelper._();
 
 class ReceivedNotification {
   final int id;

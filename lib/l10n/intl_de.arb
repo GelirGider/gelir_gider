@@ -59,5 +59,8 @@
   "CategoryFood" : "Essen",
   "CategoryTravel" :"Reise",
   "CategoryGasoline" :"Benzin",
-  "CategoryCorporate" : "Corporate"
+  "CategoryCorporate" : "Corporate",
+  "OK" : "OK",
+  "Cancel" : "Abbrechen",
+  "Notifications" : "Benachrichtigung"
 }

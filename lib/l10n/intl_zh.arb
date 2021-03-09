@@ -59,5 +59,8 @@
   "CategoryFood":"食物",
   "CategoryTravel":"旅行",
   "CategoryGasoline":"汽油",
-  "CategoryCorporate":"公司的"
+  "CategoryCorporate":"公司的",
+  "OK" : "好的",
+  "Cancel" : "取消",
+  "Notifications" : "通知"
 }

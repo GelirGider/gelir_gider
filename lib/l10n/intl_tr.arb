@@ -65,5 +65,8 @@
   "CategoryEquipment" :"Ekipman",
   "CategoryTravel" :"Seyahat",
   "CategoryGasoline" :"Yakıt",
-  "CategoryCorporate" :"Anlaşma"
+  "CategoryCorporate" :"Anlaşma",
+  "OK" : "Kaydet",
+  "Cancel" : "İptal",
+  "Notifications" : "Bildirimler"
 }

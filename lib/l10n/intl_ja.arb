@@ -59,5 +59,8 @@
   "CategoryFood":"食物",
   "CategoryTravel":"トラベル",
   "CategoryGasoline":"ガソリン",
-  "CategoryCorporate":"企業"
+  "CategoryCorporate":"企業",
+  "OK" : "OK",
+  "Cancel" : "キャンセル",
+  "Notifications" : "お知らせ"
 }

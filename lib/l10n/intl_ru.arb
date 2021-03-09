@@ -59,6 +59,9 @@
   "CategoryFood":"Еда",
   "CategoryTravel":"Путешествовать",
   "CategoryGasoline":"Бензин",
-  "CategoryCorporate":"Корпоративный"
+  "CategoryCorporate":"Корпоративный",
+  "OK" : "OK",
+  "Cancel" : "Отмена",
+  "Notifications" : "Уведомления"
 }
 

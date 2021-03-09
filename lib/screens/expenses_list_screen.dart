@@ -8,7 +8,6 @@ import 'package:gelir_gider/themes/colours.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:gelir_gider/helpers/notification_helper.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -17,11 +16,11 @@ class ExpensesListScreen extends StatefulWidget {
 
 class _ExpensesListScreenState extends State<ExpensesListScreen>
     with SingleTickerProviderStateMixin {
-  TabController _controller;
 
+  TabController _controller;
   var languageIndex;
 
-  Future<void> _getPrefs() async {
+  void _getPrefs() async {
     var prefs = await SharedPreferences.getInstance();
     languageIndex = prefs.getInt('language') ?? 0;
     Provider.of<Languages>(context, listen: false).setLanguage(languageIndex);
@@ -30,11 +29,6 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
   @override
   void initState() {
     super.initState();
-    notificationPlugin
-        .setListenerForLowerVersions(onNotificationInLowerVersions);
-    notificationPlugin.setOnNotificationClick(onNotificationClick);
-    notificationPlugin.showDailyAtTime();
-    _getPrefs().then((value) => {});
     Future.delayed(Duration.zero).then((_) {
       Provider.of<Expenses>(context, listen: false).setCategories(context);
       _controller = TabController(length: 4, vsync: this);
@@ -43,6 +37,13 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
             .setTabBarIndex(_controller.index);
       });
     });
+  }
+
+
+  @override
+  void didChangeDependencies() {
+      _getPrefs();
+      super.didChangeDependencies();
   }
 
   @override
@@ -107,12 +108,6 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                     child: CircularProgressIndicator(),
                   )
                 : Consumer<Expenses>(
-                    child: Center(
-                      child: Text(
-                        S.of(context).ExpenseListNoneExpense,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
                     builder: (context, provider, child) {
                       return provider.TabBarIndex == 3
                           ? Container(
@@ -155,6 +150,12 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                                   ],
                                 );
                     },
+                    child: Center(
+                      child: Text(
+                        S.of(context).ExpenseListNoneExpense,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -173,15 +174,5 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
       list = list + element;
     });
     return list;
-  }
-
-  void onNotificationInLowerVersions(ReceivedNotification receivedNotification) {
-    print('Notification Received ${receivedNotification.id}');
-  }
-
-  void onNotificationClick(String payload) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return ExpensesListScreen();
-    }));
   }
 }
