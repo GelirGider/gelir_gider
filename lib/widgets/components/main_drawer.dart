@@ -91,7 +91,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AccountChanger(_controller),
-                  Text("Change Account",style: TextStyle(color:Theme.of(context).buttonColor),),
+                  Text("Change Account",style: TextStyle(color:Colors.white),),
                 ],
               ),
             ),

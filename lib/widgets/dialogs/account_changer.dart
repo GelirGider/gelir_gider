@@ -26,7 +26,7 @@ class AccountChanger extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(10.0),
           child: FloatingActionButton(
-            backgroundColor:  Theme.of(context).buttonColor,
+            backgroundColor:  Colors.white,
             child: CircleAvatar(
               minRadius: 1.0,
               backgroundColor: Colors.transparent,
@@ -53,7 +53,7 @@ class AccountChanger extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: Container(
                       margin: EdgeInsets.symmetric(
-                        horizontal: 10.0
+                        horizontal: 20.0
                       ),
                       decoration: BoxDecoration(
                         color: _theme.getTheme() == _theme.dark
