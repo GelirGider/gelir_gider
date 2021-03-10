@@ -90,7 +90,7 @@ class _AddingExpenseState extends State<AddingExpense>
         appBar:
 
         PreferredSize(
-        preferredSize: size / 5.5,
+        preferredSize: size / 6.5,
         child : GradientAppBar(
           iconTheme: IconThemeData(
               color: Colours.getGradientNew(isDark) //change your color here
@@ -163,13 +163,14 @@ class _AddingExpenseState extends State<AddingExpense>
                               child: Container(
                                 margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                                 decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20.0),
                                   border: Border.all(
                                       width: 1,
                                       color: Colours.getBlackOrWhite(isDark)),
                                 ),
-                                width: 500.0,
+                                width: 250.0*MediaQuery.of(context).textScaleFactor,
                                 alignment: Alignment.center,
-                                padding: EdgeInsets.fromLTRB(50, 10, 30, 10),
+                                padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10.0),
                                 child: ListTile(
                                   leading: category.categoryImg,
                                   title: Text(
