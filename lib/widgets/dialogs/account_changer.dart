@@ -24,14 +24,14 @@ class AccountChanger extends StatelessWidget {
       child: null,
       builder: (context, provider, child) {
         return Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(10.0),
           child: FloatingActionButton(
             backgroundColor:  Theme.of(context).buttonColor,
             child: CircleAvatar(
               minRadius: 1.0,
               backgroundColor: Colors.transparent,
               child: Container(
-                padding: EdgeInsets.all(15.0),
+                padding: EdgeInsets.all(8.0),
                 child: Image.asset(
                   provider.isPersonal
                       ? 'assets/account_selector/man.png'

@@ -87,7 +87,13 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
                   LinearGradient(colors: Colours.getGradientColors(isDark)),
             ),
             child: DrawerHeader(
-              child: AccountChanger(_controller),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AccountChanger(_controller),
+                  Text("Change Account",style: TextStyle(color:Theme.of(context).buttonColor),),
+                ],
+              ),
             ),
           ),
           ListTile(
@@ -98,7 +104,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
             },
             title: Text(
               S.of(context).DrawerThemeText,
-              style: TextStyle(fontSize: 16 * textScaleFactor),
+              style: TextStyle(fontSize: 15 * textScaleFactor),
             ),
             leading: Icon(
               Icons.color_lens,
@@ -118,7 +124,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
             },
             title: Text(
               S.of(context).DrawerLanguageText,
-              style: TextStyle(fontSize: 16 * textScaleFactor),
+              style: TextStyle(fontSize: 15 * textScaleFactor),
             ),
             leading: Icon(
               Icons.language,
@@ -144,7 +150,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
             },
             title: Text(
               S.of(context).DrawerSelectCurrency,
-              style: TextStyle(fontSize: 16 * textScaleFactor),
+              style: TextStyle(fontSize: 15 * textScaleFactor),
             ),
             leading: Icon(
               Icons.euro,
@@ -174,7 +180,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
             },
             title: Text(
              S.of(context).Notifications,
-              style: TextStyle(fontSize: 16 * textScaleFactor),
+              style: TextStyle(fontSize: 15 * textScaleFactor),
             ),
             leading: Icon(
               Icons.notifications_active_outlined,
