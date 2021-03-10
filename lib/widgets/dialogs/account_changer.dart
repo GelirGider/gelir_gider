@@ -51,8 +51,8 @@ class AccountChanger extends StatelessWidget {
                   return Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      margin: EdgeInsets.only(
-                        bottom: 0,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 10.0
                       ),
                       decoration: BoxDecoration(
                         color: _theme.getTheme() == _theme.dark
@@ -62,7 +62,7 @@ class AccountChanger extends StatelessWidget {
                             topLeft: Radius.circular(20.0),
                             topRight: Radius.circular(20.0)),
                       ),
-                      height: MediaQuery.of(context).size.height * 0.4,
+                      height: MediaQuery.of(context).size.height * 0.3,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
