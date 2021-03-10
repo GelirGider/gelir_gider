@@ -24,14 +24,14 @@ class AccountChanger extends StatelessWidget {
       child: null,
       builder: (context, provider, child) {
         return Padding(
-          padding: const EdgeInsets.only(left: 8.0),
+          padding: const EdgeInsets.all(20.0),
           child: FloatingActionButton(
             backgroundColor:  Theme.of(context).buttonColor,
             child: CircleAvatar(
-              minRadius: 2.0,
+              minRadius: 1.0,
               backgroundColor: Colors.transparent,
               child: Container(
-                padding: EdgeInsets.all(9.0),
+                padding: EdgeInsets.all(15.0),
                 child: Image.asset(
                   provider.isPersonal
                       ? 'assets/account_selector/man.png'
@@ -71,9 +71,6 @@ class AccountChanger extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height * 0.1,
-                              ),
                               FlatButton(
                                 onPressed: () async {
                                   await provider.setPersonal();
@@ -101,7 +98,7 @@ class AccountChanger extends StatelessWidget {
                               ),
                             ],
                           ),
-                          OurDivider(),
+                          Divider(),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,

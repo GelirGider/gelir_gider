@@ -67,13 +67,12 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                   shape: Border(
                       bottom: BorderSide(
                           width: 3.0, color: Colours.getGradientNew(isDark))),
-                  leading: AccountChanger(_controller),
-                  centerTitle: true,
-                  actions: [DrawerButton(scaffoldKey: scaffoldKey)],
-                  title: Icon(
+                  leading: Icon(
                     Icons.attach_money,
                     color: Theme.of(context).buttonColor,
                   ),
+                  centerTitle: true,
+                  actions: [DrawerButton(scaffoldKey: scaffoldKey)],
                   gradient: LinearGradient(
                     colors: Colours.getGradientNew2(isDark),
                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
+import 'package:gelir_gider/widgets/dialogs/account_changer.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/widgets/dialogs/theme_dialog_widget.dart';
 import 'package:gelir_gider/screens/language_selection_screen.dart';
@@ -20,10 +21,11 @@ class MainDrawer extends StatefulWidget {
   _MainDrawerState createState() => _MainDrawerState();
 }
 
-class _MainDrawerState extends State<MainDrawer>{
+class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMixin{
   var notificationEnabled=false;
   var hour=21;
   var minute=0;
+  TabController _controller;
 
   @override
   void initState() {
@@ -85,10 +87,7 @@ class _MainDrawerState extends State<MainDrawer>{
                   LinearGradient(colors: Colours.getGradientColors(isDark)),
             ),
             child: DrawerHeader(
-              child: Icon(
-                Icons.attach_money,
-                size: textScaleFactor*30,
-              ),
+              child: AccountChanger(_controller),
             ),
           ),
           ListTile(
