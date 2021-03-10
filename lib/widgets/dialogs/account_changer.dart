@@ -4,6 +4,7 @@ import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/themes/colours.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
+import 'package:gelir_gider/widgets/components/divider.dart';
 import 'package:provider/provider.dart';
 
 class AccountChanger extends StatelessWidget {
@@ -84,23 +85,23 @@ class AccountChanger extends StatelessWidget {
                                   S.of(context).AppBarIndividual,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 25.0 * textScaleFactor,
-                                    letterSpacing: 0.7,
+                                    fontSize: 20.0 * textScaleFactor,
+                                    letterSpacing: 0.8,
                                     color: Theme.of(context).buttonColor,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.12,
+                                width: MediaQuery.of(context).size.width * 0.10,
                               ),
                               Icon(
                                 Icons.person,
                                 color: Theme.of(context).buttonColor,
-                                size: 25.0,
+                                size: 20.0*textScaleFactor,
                               ),
                             ],
                           ),
-                          Divider(),
+                          OurDivider(),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -115,20 +116,20 @@ class AccountChanger extends StatelessWidget {
                                 child: Text(
                                   S.of(context).AppBarCorporate,
                                   style: TextStyle(
-                                    fontSize: 25.0 * textScaleFactor,
+                                    fontSize: 20.0 * textScaleFactor,
                                     fontWeight: FontWeight.bold,
-                                    letterSpacing: 0.7,
+                                    letterSpacing: 0.8,
                                     color: Theme.of(context).buttonColor,
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.12,
+                                width: MediaQuery.of(context).size.width * 0.10,
                               ),
                               Icon(
                                 Icons.work,
                                 color: Theme.of(context).buttonColor,
-                                size: 25.0,
+                                size: 20.0*textScaleFactor,
                               ),
                             ],
                           ),
