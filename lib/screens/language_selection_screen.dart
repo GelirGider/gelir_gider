@@ -99,7 +99,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
           color: _theme.getTheme() == _theme.dark
               ? Color(0xff333333)
               : Color.fromRGBO(254, 254, 254, 100),
-          margin: EdgeInsets.symmetric(vertical:size.height*0.18, horizontal: size.width*0.1),
+          margin: EdgeInsets.symmetric(vertical:size.height*0.12, horizontal: size.width*0.1),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -117,7 +117,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                     mainAxisSpacing: 0.0,
                     crossAxisSpacing: 0.0,
                     childAspectRatio: 16/9,
-                    padding: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(0.010*size.height),
                     crossAxisCount: 2,
                     children: List.generate(
                       icons.length,
@@ -138,7 +138,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 25.0,
+                  height: 0.025*size.height,
                 ),
               ],
             ),

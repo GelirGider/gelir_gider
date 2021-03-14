@@ -32,6 +32,8 @@ class _YearPageState extends State<YearPage> {
   }
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     final monthNames = <String>[
       S.of(context).January,
       S.of(context).February,
@@ -54,7 +56,7 @@ class _YearPageState extends State<YearPage> {
             var myList = provider.expense;
             var list = provider.getCurrentYears();
             return Container(
-              padding: EdgeInsets.all(15),
+              padding: EdgeInsets.all(0.015*size.height),
               child: Column(
                 children: [
                   MoneyWidget(myList),
@@ -88,7 +90,7 @@ class _YearPageState extends State<YearPage> {
             var myList = provider.currentYear[provider.selectedYear];
             final list = provider.getCurrentMonths();
             return Container(
-              padding: EdgeInsets.all(15),
+              padding: EdgeInsets.all(0.015*size.height),
               child: Column(
                 children: [
                   MoneyWidget(myList),
@@ -134,7 +136,7 @@ class _YearPageState extends State<YearPage> {
               }
             });
             return Container(
-              padding: EdgeInsets.all(15),
+              padding: EdgeInsets.all(0.015*size.height),
               child: Column(
                 children: [
                   MoneyWidget(myList),
@@ -185,7 +187,7 @@ class _YearPageState extends State<YearPage> {
               }
             });
             return Container(
-              padding: EdgeInsets.all(15),
+              padding: EdgeInsets.all(0.015*size.height),
               child: Column(
                 children: [
                   MoneyWidget(myList),
@@ -218,7 +220,7 @@ class _YearPageState extends State<YearPage> {
             var res = provider.currentDay[provider.selectedDay];
             var myList = provider.groupExpensesByCategories(res);
             return Container(
-              padding: EdgeInsets.all(15),
+              padding: EdgeInsets.all(0.015*size.height),
               child: Column(
                 children: [
                   MoneyWidget(res),
