@@ -10,6 +10,8 @@ import 'package:gelir_gider/widgets/year_page/year_item.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/widgets/components/money_widget.dart';
+import 'package:gelir_gider/themes/colours.dart';
+import 'package:gelir_gider/providers/providers.dart';
 
 // TabBar da 4. kısımda bulunan Yıl ekranının tasarımı ve tüm arkaplanının
 // bulunduğu kısım
@@ -19,7 +21,8 @@ class YearPage extends StatefulWidget {
   _YearPageState createState() => _YearPageState();
 }
 
-class _YearPageState extends State<YearPage> {
+class _YearPageState extends State<YearPage>
+    with SingleTickerProviderStateMixin{
   bool init = true;
 
   @override
@@ -32,6 +35,8 @@ class _YearPageState extends State<YearPage> {
   }
   @override
   Widget build(BuildContext context) {
+    final _theme = Provider.of<ThemeProvider>(context, listen: false);
+    var isDark = _theme.getTheme() == _theme.dark;
     final size = MediaQuery.of(context).size;
 
     final monthNames = <String>[
@@ -60,7 +65,8 @@ class _YearPageState extends State<YearPage> {
               child: Column(
                 children: [
                   MoneyWidget(myList),
-                  OurDivider(),
+                  SizedBox(height: size.height * 0.01),
+                  Divider(thickness: 1.7*MediaQuery.of(context).textScaleFactor,color:Colours.getBlackOrWhite(isDark)),
                   Flexible(
                     child: GridView.builder(
                       shrinkWrap: true,
@@ -76,7 +82,6 @@ class _YearPageState extends State<YearPage> {
                                 year: years,
                               ),
                             ),
-
                           ],
                         );
                       }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3),
@@ -94,7 +99,8 @@ class _YearPageState extends State<YearPage> {
               child: Column(
                 children: [
                   MoneyWidget(myList),
-                  OurDivider(),
+                  SizedBox(height: size.height * 0.01),
+                  Divider(thickness: 1.7*MediaQuery.of(context).textScaleFactor,color:Colours.getBlackOrWhite(isDark)),
                   Flexible(
                     child: GridView.builder(
                       shrinkWrap: true,
@@ -140,7 +146,8 @@ class _YearPageState extends State<YearPage> {
               child: Column(
                 children: [
                   MoneyWidget(myList),
-                  OurDivider(),
+                  SizedBox(height: size.height * 0.01),
+                  Divider(thickness: 1.7*MediaQuery.of(context).textScaleFactor,color:Colours.getBlackOrWhite(isDark)),
                   Flexible(
                     child: GridView.builder(
                       shrinkWrap: true,
@@ -191,7 +198,8 @@ class _YearPageState extends State<YearPage> {
               child: Column(
                 children: [
                   MoneyWidget(myList),
-                  OurDivider(),
+                  SizedBox(height: size.height * 0.01),
+                  Divider(thickness: 1.7*MediaQuery.of(context).textScaleFactor,color:Colours.getBlackOrWhite(isDark)),
                   Flexible(
                     child: GridView.builder(
                       itemCount: dayButtons.length,
@@ -224,6 +232,9 @@ class _YearPageState extends State<YearPage> {
               child: Column(
                 children: [
                   MoneyWidget(res),
+                  SizedBox(height: size.height * 0.01),
+                  Divider(thickness: 1.7*MediaQuery.of(context).textScaleFactor,color:Colours.getBlackOrWhite(isDark)),
+
                   Flexible(
                     child: ListView.builder(
                       shrinkWrap: true,

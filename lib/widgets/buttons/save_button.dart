@@ -17,15 +17,15 @@ class SaveButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.7,
       child: FlatButton(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20*textScaleFactor),
         ),
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: EdgeInsets.symmetric(vertical: 16*textScaleFactor),
         color: Colours.pink,
         child: Text(
           S.of(context).AddingScreenSave,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            letterSpacing: 0.6,
+            letterSpacing: 0.6*textScaleFactor,
             fontSize: 22.0*textScaleFactor,
             color: Colours.white,
           ),
