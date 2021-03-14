@@ -115,7 +115,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                               ? child
                               : Column(
                                   children: [
-                                    SizedBox(height: size.height * 0.02),
+                                    SizedBox(height: size.height * 0.015),
                                     MoneyWidget(returnCurrentList(provider)),
                                     SizedBox(height: size.height * 0.01),
                                     Divider(thickness: 1.7*MediaQuery.of(context).textScaleFactor,color:Colours.getBlackOrWhite(isDark)),
