@@ -18,7 +18,7 @@ class AddButton extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.1,
       child: Icon(
         Icons.add,
-        size: MediaQuery.of(context).size.height * 0.06,
+        size: MediaQuery.of(context).size.height * 0.08,
       ),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
