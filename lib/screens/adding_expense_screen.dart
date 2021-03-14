@@ -87,9 +87,7 @@ class _AddingExpenseState extends State<AddingExpense>
     return SafeArea(
       child: Scaffold(
         endDrawer: MainDrawer(),
-        appBar:
-
-        PreferredSize(
+        appBar: PreferredSize(
         preferredSize: size / 6.5,
         child : GradientAppBar(
           iconTheme: IconThemeData(
@@ -97,7 +95,7 @@ class _AddingExpenseState extends State<AddingExpense>
           ),
           shape: Border(
               bottom: BorderSide(
-                  width: 3.0, color: Colours.getGradientNew(isDark))),
+                  width: 3.0*textScaleFactor, color: Colours.getGradientNew(isDark))),
           gradient: LinearGradient(colors: Colours.getGradientNew2(isDark)),
           centerTitle: true,
           actions: [
@@ -123,13 +121,13 @@ class _AddingExpenseState extends State<AddingExpense>
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 20.0),
+                      padding: EdgeInsets.only(top: size.height*0.025),
                       child: ToggleSwitch(
-                        minWidth: 120.0,
-                        minHeight: 60.0,
+                        minWidth: textScaleFactor*120.0,
+                        minHeight: textScaleFactor*60.0,
                         fontSize: 17.0 * textScaleFactor,
                         initialLabelIndex: 0,
-                        cornerRadius: 60.0,
+                        cornerRadius: 60.0*textScaleFactor,
                         activeBgColor: Colours.activeBgColor,
                         activeFgColor: Colours.white,
                         inactiveBgColor: Colours.inactiveBgColor,
@@ -151,7 +149,7 @@ class _AddingExpenseState extends State<AddingExpense>
                     ),
                     Padding(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                          EdgeInsets.symmetric(horizontal: size.width*0.016, vertical: size.height*0),
                       child: Form(
                         key: _form,
                         child: Column(
@@ -161,16 +159,16 @@ class _AddingExpenseState extends State<AddingExpense>
                                 moveToSecondPage();
                               },
                               child: Container(
-                                margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                                margin: EdgeInsets.symmetric(horizontal: size.width*0.016, vertical:size.height*0.025),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20.0),
                                   border: Border.all(
-                                      width: 1,
+                                      width:textScaleFactor*1,
                                       color: Colours.getBlackOrWhite(isDark)),
                                 ),
-                                width: 250.0*MediaQuery.of(context).textScaleFactor,
+                                width: 250.0*textScaleFactor,
                                 alignment: Alignment.center,
-                                padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 10.0),
+                                padding: EdgeInsets.symmetric(horizontal:size.width*0.010, vertical: size.height*0.010),
                                 child: ListTile(
                                   leading: category.categoryImg,
                                   title: Text(
@@ -194,7 +192,7 @@ class _AddingExpenseState extends State<AddingExpense>
                               },
                             ),
                             Divider(
-                              height: 30,
+                              height: 30*textScaleFactor,
                             ),
                             TextFormField(
                               keyboardType: TextInputType.number,
@@ -216,7 +214,7 @@ class _AddingExpenseState extends State<AddingExpense>
                               },
                             ),
                             Divider(
-                              height: 30,
+                              height: size.height*0.030,
                             ),
                             Center(
                               child: DateTimePicker(
@@ -238,13 +236,13 @@ class _AddingExpenseState extends State<AddingExpense>
                             ),
                             Divider(),
                             SizedBox(
-                              height: 30.0,
+                              height: size.height*0.030,
                             ),
                             SaveButton(
                               onPressed: () => _saveForm(),
                             ),
                             SizedBox(
-                              height: 15.0,
+                              height: size.height*0.015,
                             )
                           ],
                         ),
