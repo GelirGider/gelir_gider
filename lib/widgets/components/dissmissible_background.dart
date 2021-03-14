@@ -7,6 +7,7 @@ class DismissibleBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
       color: Colours.red,
       child: Row(
@@ -17,7 +18,7 @@ class DismissibleBackground extends StatelessWidget {
               Icons.delete,
             ),
             padding: EdgeInsets.symmetric(
-              horizontal: 30,
+              horizontal: size.width*0.030,
             ),
           ),
         ],

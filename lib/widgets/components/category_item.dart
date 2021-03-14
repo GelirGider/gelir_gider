@@ -21,15 +21,16 @@ class CategoryItem extends StatelessWidget {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
+    final size = MediaQuery.of(context).size;
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
-      padding: const EdgeInsets.all(30),
+      margin: EdgeInsets.symmetric(horizontal: size.width*0.010, vertical: size.height*0.025),
+      padding: EdgeInsets.all(textScaleFactor*30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50),
         color: Colours.getCategoryItemBg(isDark),
         border: Border.all(
-          width: 5,
+          width: 5*textScaleFactor,
           color: Colours.getCategoryItemBorder(isDark),
         ),
       ),

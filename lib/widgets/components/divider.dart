@@ -9,10 +9,11 @@ class OurDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
     return Divider(
-      height: 25,
+      height: size.height*0.025,
       color: Colours.getBlackOrWhite(isDark),
     );
   }
