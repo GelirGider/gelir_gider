@@ -67,6 +67,7 @@ class _YearPageState extends State<YearPage>
                   MoneyWidget(myList),
                   SizedBox(height: size.height * 0.01),
                   Divider(thickness: 1.7*MediaQuery.of(context).textScaleFactor,color:Colours.getBlackOrWhite(isDark)),
+                  SizedBox(height: size.height * 0.01),
                   Flexible(
                     child: GridView.builder(
                       shrinkWrap: true,
@@ -101,6 +102,7 @@ class _YearPageState extends State<YearPage>
                   MoneyWidget(myList),
                   SizedBox(height: size.height * 0.01),
                   Divider(thickness: 1.7*MediaQuery.of(context).textScaleFactor,color:Colours.getBlackOrWhite(isDark)),
+                  SizedBox(height: size.height * 0.01),
                   Flexible(
                     child: GridView.builder(
                       shrinkWrap: true,
@@ -148,6 +150,7 @@ class _YearPageState extends State<YearPage>
                   MoneyWidget(myList),
                   SizedBox(height: size.height * 0.01),
                   Divider(thickness: 1.7*MediaQuery.of(context).textScaleFactor,color:Colours.getBlackOrWhite(isDark)),
+                  SizedBox(height: size.height * 0.01),
                   Flexible(
                     child: GridView.builder(
                       shrinkWrap: true,
@@ -200,6 +203,7 @@ class _YearPageState extends State<YearPage>
                   MoneyWidget(myList),
                   SizedBox(height: size.height * 0.01),
                   Divider(thickness: 1.7*MediaQuery.of(context).textScaleFactor,color:Colours.getBlackOrWhite(isDark)),
+                  SizedBox(height: size.height * 0.01),
                   Flexible(
                     child: GridView.builder(
                       itemCount: dayButtons.length,
@@ -234,7 +238,7 @@ class _YearPageState extends State<YearPage>
                   MoneyWidget(res),
                   SizedBox(height: size.height * 0.01),
                   Divider(thickness: 1.7*MediaQuery.of(context).textScaleFactor,color:Colours.getBlackOrWhite(isDark)),
-
+                  SizedBox(height: size.height * 0.01),
                   Flexible(
                     child: ListView.builder(
                       shrinkWrap: true,
@@ -246,7 +250,6 @@ class _YearPageState extends State<YearPage>
                         var currency = provider.symbol;
                         return Column(
                           children: [
-                            OurDivider(),
                             MainPageCategoryModal(
                               category: category,
                               list: list,
