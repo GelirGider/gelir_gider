@@ -39,7 +39,6 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
     });
   }
 
-
   @override
   void didChangeDependencies() {
       _getPrefs();
@@ -52,6 +51,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     final size = MediaQuery.of(context).size;
     var isDark = _theme.getTheme() == _theme.dark;
+    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
 
     return SafeArea(
       child: DefaultTabController(
@@ -66,12 +66,11 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                 return GradientAppBar(
                   shape: Border(
                       bottom: BorderSide(
-                          width: 3.0, color: Colours.getGradientNew(isDark))),
+                          width: 3.0*textScaleFactor, color: Colours.getGradientNew(isDark))),
                   leading: Icon(
                     Icons.attach_money,
                     color: Theme.of(context).buttonColor,
                   ),
-                  centerTitle: true,
                   actions: [DrawerButton(scaffoldKey: scaffoldKey)],
                   gradient: LinearGradient(
                     colors: Colours.getGradientNew2(isDark),
@@ -81,9 +80,9 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                     unselectedLabelColor:
                         isDark ? Colors.grey[400] : Colors.grey[600],
                     labelColor: isDark ? Colors.pink : Colors.pink,
-                    labelPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
+                    labelPadding: EdgeInsets.symmetric(vertical: size.height*0.01, horizontal: size.height*0.04),
                     labelStyle: TextStyle(
-                      fontSize: 15,
+                      fontSize: 15*MediaQuery.of(context).textScaleFactor,
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                     ),
@@ -118,7 +117,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                                   children: [
                                     SizedBox(height: size.height * 0.02),
                                     MoneyWidget(returnCurrentList(provider)),
-                                    OurDivider(),
+                                    SizedBox(height: size.height * 0.01),
+                                    Divider(thickness: 1.7*MediaQuery.of(context).textScaleFactor,color:Colours.getBlackOrWhite(isDark)),
                                     Flexible(
                                       flex: 10,
                                       child: ListView.builder(
