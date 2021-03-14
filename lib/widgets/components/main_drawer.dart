@@ -70,6 +70,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
     var isDark = _theme.getTheme() == _theme.dark;
     var provider = Provider.of<Expenses>(context, listen: false);
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
+    final size = MediaQuery.of(context).size;
     void showThemePicker() {
       showDialog<void>(
         context: context,
@@ -97,7 +98,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
             ),
           ),
           ListTile(
-            contentPadding: EdgeInsets.symmetric(vertical: 15.0,horizontal: 15.0),
+            contentPadding: EdgeInsets.symmetric(vertical:size.height*0.015,horizontal: size.width*0.03),
             onTap: () {
               Navigator.pop(context);
               showThemePicker();
@@ -114,7 +115,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
             trailing: Icon(Icons.arrow_forward_ios),
           ),
           ListTile(
-            contentPadding: EdgeInsets.symmetric(vertical: 15.0,horizontal: 15.0),
+            contentPadding: EdgeInsets.symmetric(vertical:size.height*0.015,horizontal: size.width*0.03),
             onTap: () {
               return Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
@@ -134,7 +135,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
             trailing: Icon(Icons.arrow_forward_ios),
           ),
           ListTile(
-            contentPadding: EdgeInsets.symmetric(vertical: 15.0,horizontal: 15.0),
+            contentPadding: EdgeInsets.symmetric(vertical:size.height*0.015,horizontal: size.width*0.03),
             onTap: () async {
               return await showCurrencyPicker(
                 context: context,
@@ -160,7 +161,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
             trailing: Icon(Icons.arrow_forward_ios),
           ),
           ListTile(
-            contentPadding: EdgeInsets.symmetric(vertical: 15.0,horizontal: 15.0),
+            contentPadding: EdgeInsets.symmetric(vertical:size.height*0.015,horizontal: size.width*0.03),
             onTap: () {
               Navigator.of(context).push(
                 showPicker(
