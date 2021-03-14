@@ -250,6 +250,7 @@ class _YearPageState extends State<YearPage>
                         var currency = provider.symbol;
                         return Column(
                           children: [
+                            OurDivider(),
                             MainPageCategoryModal(
                               category: category,
                               list: list,
