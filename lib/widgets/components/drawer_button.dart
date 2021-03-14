@@ -8,10 +8,11 @@ class DrawerButton extends StatelessWidget {
   const DrawerButton({Key key, this.scaffoldKey}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return IconButton(
       icon: Icon(
         Icons.more_horiz,
-        size: 30.0,
+        size: size.height*0.05,
         color: Theme.of(context).buttonColor,
       ),
       onPressed: () => scaffoldKey.currentState.openEndDrawer(),
