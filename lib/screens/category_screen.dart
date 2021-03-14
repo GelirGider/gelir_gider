@@ -25,7 +25,7 @@ class CategoryScreen extends StatelessWidget {
           ),
           shape: Border(
               bottom: BorderSide(
-                  width: 3.0, color: Colours.getGradientNew(isDark))),
+                  width: textScaleFactor*3.0, color: Colours.getGradientNew(isDark))),
           gradient: LinearGradient(colors: Colours.getGradientNew2(isDark)),
           centerTitle: true,
           title: Text(
@@ -44,7 +44,7 @@ class CategoryScreen extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            margin: EdgeInsets.symmetric(vertical: size.height*0.08,horizontal: size.width*0.055),
+            margin: EdgeInsets.symmetric(vertical: size.height*0.08,horizontal: size.width*0.045),
             borderOnForeground: true,
             semanticContainer: true,
             child: Consumer<Expenses>(
@@ -54,7 +54,7 @@ class CategoryScreen extends StatelessWidget {
                     : provider.corporateCategories;
                 print('length::::::::::::${categories.length}');
                 return GridView.count(
-                  padding: const EdgeInsets.all(15),
+                  padding: EdgeInsets.all(15*textScaleFactor),
                   crossAxisCount: 3,
                   children: categories.map(
                     (element) {
