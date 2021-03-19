@@ -62,5 +62,6 @@
   "CategoryCorporate":"公司的",
   "OK" : "好的",
   "Cancel" : "取消",
-  "Notifications" : "通知"
+  "Notifications" : "通知",
+  "ChangeAccount" : "变更账户"
 }

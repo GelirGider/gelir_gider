@@ -55,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "CategoryTax" : MessageLookupByLibrary.simpleMessage("税金"),
     "CategoryTravel" : MessageLookupByLibrary.simpleMessage("トラベル"),
     "CategoryVacation" : MessageLookupByLibrary.simpleMessage("休暇"),
+    "ChangeAccount" : MessageLookupByLibrary.simpleMessage("アカウントの変更"),
     "December" : MessageLookupByLibrary.simpleMessage("十二月"),
     "DialogExpenseIncome" : MessageLookupByLibrary.simpleMessage("収入と費用"),
     "DrawerLanguageText" : MessageLookupByLibrary.simpleMessage("言語"),

@@ -55,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "CategoryTax" : MessageLookupByLibrary.simpleMessage("Vergi"),
     "CategoryTravel" : MessageLookupByLibrary.simpleMessage("Seyahat"),
     "CategoryVacation" : MessageLookupByLibrary.simpleMessage("Tatil"),
+    "ChangeAccount" : MessageLookupByLibrary.simpleMessage("Hesabı Değiştir"),
     "December" : MessageLookupByLibrary.simpleMessage("Aralık"),
     "DialogExpenseIncome" : MessageLookupByLibrary.simpleMessage("Gelir ve Giderler"),
     "DrawerLanguageText" : MessageLookupByLibrary.simpleMessage("Dil"),

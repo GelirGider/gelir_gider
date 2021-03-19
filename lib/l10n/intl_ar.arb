@@ -62,5 +62,6 @@
   "CategoryCorporate" :"شركة كبرى",
   "OK" : "موافق",
   "Cancel" : "إلغاء",
-  "Notifications" : "الإخطارات"
+  "Notifications" : "الإخطارات",
+  "ChangeAccount" : "تغير الحساب"
 }

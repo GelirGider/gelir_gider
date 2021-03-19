@@ -68,5 +68,6 @@
   "CategoryCorporate" :"Anlaşma",
   "OK" : "Kaydet",
   "Cancel" : "İptal",
-  "Notifications" : "Bildirimler"
+  "Notifications" : "Bildirimler",
+  "ChangeAccount" : "Hesabı Değiştir"
 }

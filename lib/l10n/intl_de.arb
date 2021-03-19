@@ -62,5 +62,6 @@
   "CategoryCorporate" : "Corporate",
   "OK" : "OK",
   "Cancel" : "Abbrechen",
-  "Notifications" : "Benachrichtigung"
+  "Notifications" : "Benachrichtigung",
+  "ChangeAccount" : "Account wechseln"
 }

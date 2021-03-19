@@ -654,6 +654,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Change Account`
+  String get ChangeAccount {
+    return Intl.message(
+      'Change Account',
+      name: 'ChangeAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
