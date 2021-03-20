@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:collection/collection.dart';
 import 'package:date_utils/date_utils.dart';
 import 'categories.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 //EXPENSE CLASS-----------------------------------------------------------------
 class Expense {
@@ -29,7 +30,6 @@ class Expense {
 
 ///////////////////////////EXPENSE PROVIDER/////////////////////////////////////
 class Expenses with ChangeNotifier {
-
   // Cihaz hafızasından veri alırken kullandığımız sabit isimler
   static const modePrefKeyIsIndividual = 'isIndividual';
   static const modePrefKeyCurrency = 'currency';
@@ -130,6 +130,7 @@ class Expenses with ChangeNotifier {
     final groups = groupBy(expenses, (Expense e) => e.category);
     return groups;
   }
+
   // Gün,Hafta ve Ay tabbar sekmelerine göre uygun listelerin kategorilere göre
   // gruplandırılarak oluşturulması
   void setDates() {
@@ -303,6 +304,7 @@ class Expenses with ChangeNotifier {
     _currentDay = map;
     return days;
   }
+
   // Harcama bulunmayan haftaların bulunması
   bool checkWeekNull(int startDay, int endDay) {
     var startDate = DateTime.parse(selectedYear.toString() +
@@ -332,6 +334,7 @@ class Expenses with ChangeNotifier {
       return false;
     }
   }
+
   //DateTime ın 10 dan küçük olan değerleri 0 olarak tutması nedeniyle böyle bir
   //fonksiyon oluşturduk
   String fixAsDate(date) {
@@ -354,6 +357,7 @@ class Expenses with ChangeNotifier {
     notifyListeners();
     print('setCurrency::::::::::::$currencySymbol');
   }
+
   // Mevcut para biriminin cihaz hafızasından alınması
   Future<void> getSymbol() async {
     var prefs = await SharedPreferences.getInstance();
@@ -371,14 +375,14 @@ class Expenses with ChangeNotifier {
     _items = dataList
         .map(
           (item) => Expense(
-        id: item['id'],
-        category: item['category'],
-        isExpense: item['isExpense'],
-        time: item['time'],
-        price: item['price'],
-        description: item['description'],
-      ),
-    )
+            id: item['id'],
+            category: item['category'],
+            isExpense: item['isExpense'],
+            time: item['time'],
+            price: item['price'],
+            description: item['description'],
+          ),
+        )
         .toList();
     if (!_init2) {
       setTabBarIndex(0);
@@ -386,6 +390,7 @@ class Expenses with ChangeNotifier {
     }
     notifyListeners();
   }
+
   // Kullanıcın eklediği gelir ve giderlerin veritabanına aktarılması
   Future<void> addExpense(Expense newExpense) async {
     _items.add(newExpense);
@@ -403,6 +408,7 @@ class Expenses with ChangeNotifier {
       },
     );
   }
+
   // Kullanıcın sildiği gelir ve giderlerin id'sine göre veritabanından silinmesi
   Future<void> delete(String id) async {
     //var isPersonal = true;
@@ -421,6 +427,7 @@ class Expenses with ChangeNotifier {
   double calculateTotalMoney(list) {
     return calculateTotalIncome(list) + calculateTotalExpense(list);
   }
+
   // Toplam giderin hesaplanması
   double calculateTotalExpense(list) {
     var sum = 0.0;
@@ -429,6 +436,7 @@ class Expenses with ChangeNotifier {
     });
     return sum;
   }
+
   // Toplam gelirin hesaplanması
   double calculateTotalIncome(list) {
     var sum = 0.0;
@@ -437,6 +445,7 @@ class Expenses with ChangeNotifier {
     });
     return sum;
   }
+
   // Gelir ve giderin yüzdesinin oluşturulması
   double getPercentage(list) {
     var income = calculateTotalIncome(list);

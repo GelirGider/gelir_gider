@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gelir_gider/providers/ad_state.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
@@ -8,11 +9,13 @@ import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gelir_gider/themes/colours.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() async {
   // Uygulama ilk açıldığı vakit cihazda varsıyalan bir tema seçimi olup olmadığını
   // kontrol ediyoruz
   WidgetsFlutterBinding.ensureInitialized();
+  final init = MobileAds.instance.initialize();
   var prefs = await SharedPreferences.getInstance();
   var isDarkTheme = prefs.getBool('isLight') ?? true;
 
@@ -31,6 +34,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => Languages(),
+        ),
+        ChangeNotifierProvider<AdState>(
+          create: (context) => AdState(init),
         ),
       ],
       child: MyApp(),
