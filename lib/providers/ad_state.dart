@@ -4,7 +4,6 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdState {
   Future<InitializationStatus> init;
-
   AdState(this.init);
 
   String get adUnitId => Platform.isAndroid

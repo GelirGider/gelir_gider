@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/providers/ad_state.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/components/main_drawer.dart';
 import 'package:gelir_gider/widgets/buttons/save_button.dart';
@@ -18,7 +19,9 @@ class AddingExpense extends StatefulWidget {
   // Ekleme ekranının tasarımı ve tüm arkaplanının yapıldığı kısım
 
   final scaffoldKey;
+
   const AddingExpense({Key key, this.scaffoldKey}) : super(key: key);
+
   @override
   _AddingExpenseState createState() => _AddingExpenseState();
 }
@@ -48,6 +51,7 @@ class _AddingExpenseState extends State<AddingExpense>
   }
 
   Future<void> _saveForm() async {
+    InterstitialAd myInterstitial;
     final isValid = _form.currentState.validate();
     if (!isValid) {
       return;
@@ -56,6 +60,16 @@ class _AddingExpenseState extends State<AddingExpense>
     setState(() {
       _isLoading = true;
     });
+
+    final adState = Provider.of<AdState>(context);
+    await adState.init.then(
+      (value) => myInterstitial = InterstitialAd(
+        adUnitId: Provider.of<AdState>(context).adUnitId,
+        request: AdRequest(),
+        listener: adState.listener,
+      ),
+    )
+      ..load();
 
     await Provider.of<Expenses>(context, listen: false).addExpense(
       Expense(

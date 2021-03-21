@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gelir_gider/providers/ad_state.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
