@@ -8,11 +8,16 @@ import 'package:gelir_gider/screens/expenses_list_screen.dart';
 import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gelir_gider/themes/colours.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:gelir_gider/providers/ad_state.dart';
 
 void main() async {
   // Uygulama ilk açıldığı vakit cihazda varsıyalan bir tema seçimi olup olmadığını
   // kontrol ediyoruz
+
   WidgetsFlutterBinding.ensureInitialized();
+  final initFuture = MobileAds.instance.initialize();
+  final adState = AdState(initFuture);
   var prefs = await SharedPreferences.getInstance();
   var isDarkTheme = prefs.getBool('isLight') ?? true;
 
@@ -31,6 +36,10 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => Languages(),
+        ),
+        Provider.value(
+          value: adState,
+          builder: (context,child) => MyApp(),
         ),
       ],
       child: MyApp(),
