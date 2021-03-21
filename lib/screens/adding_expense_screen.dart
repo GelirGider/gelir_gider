@@ -13,7 +13,7 @@ import 'package:gelir_gider/screens/category_screen.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:gelir_gider/themes/colours.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:gelir_gider/providers/ad_state.dart';
 
 class AddingExpense extends StatefulWidget {
   // Ekleme ekranının tasarımı ve tüm arkaplanının yapıldığı kısım
@@ -28,6 +28,7 @@ class AddingExpense extends StatefulWidget {
 
 class _AddingExpenseState extends State<AddingExpense>
     with TickerProviderStateMixin {
+  InterstitialAd myInterstitial;
   static final _form = GlobalKey<FormState>();
   var _isLoading = false;
   String description = '';
@@ -80,16 +81,26 @@ class _AddingExpenseState extends State<AddingExpense>
         description: description,
       ),
     );
+    await Navigator.of(context).pop();
     await myInterstitial.show();
-    Navigator.of(context).pop();
   }
 
   @override
   void didChangeDependencies() {
+    super.didChangeDependencies();
     setState(() {
       category = Provider.of<Expenses>(context, listen: false).CurrentCategory;
     });
-    super.didChangeDependencies();
+    final adState = Provider.of<AdState>(context);
+    adState.init.then((value) {
+      setState(() {
+        myInterstitial = InterstitialAd(
+          adUnitId: adState.adUnitId,
+          request: AdRequest(),
+          listener: adState.addListener,
+        )..load();
+      });
+    });
   }
 
   @override
@@ -266,7 +277,9 @@ class _AddingExpenseState extends State<AddingExpense>
                               height: size.height * 0.030,
                             ),
                             SaveButton(
-                              onPressed: () => _saveForm(),
+                              onPressed: () {
+                                return _saveForm();
+                              },
                             ),
                             SizedBox(
                               height: size.height * 0.015,

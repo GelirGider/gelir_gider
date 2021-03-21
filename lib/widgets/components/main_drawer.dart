@@ -52,7 +52,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
        hour= (prefs.getInt('hour')) ?? 21;
        minute= (prefs.getInt('minute')) ?? 0;
     });
-    await checkNotifications();
+    checkNotifications();
   }
   void _saveValues() async {
     var prefs = await SharedPreferences.getInstance();
@@ -61,7 +61,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
       prefs.setInt('hour',hour);
       prefs.setInt('minute',minute);
     });
-    await checkNotifications();
+    checkNotifications();
   }
 
   @override
@@ -137,7 +137,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
           ListTile(
             contentPadding: EdgeInsets.symmetric(vertical:size.height*0.015,horizontal: size.width*0.03),
             onTap: () async {
-              return await showCurrencyPicker(
+              return showCurrencyPicker(
                 context: context,
                 showFlag: true,
                 showCurrencyName: true,
@@ -145,7 +145,7 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
                 onSelect: (Currency currency) async {
                   print('Select currency symbol: ${currency.symbol}');
                   await provider.setCurrency(currency.symbol);
-                  await Navigator.of(context).pop();
+                  Navigator.of(context).pop();
                 },
               );
             },
