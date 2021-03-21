@@ -7,7 +7,7 @@ class AdState {
   AdState(this.init);
 
   String get adUnitId => Platform.isAndroid
-      ? 'ca-app-pub-4447816982563983/8244703759'
+      ? 'ca-app-pub-3940256099942544/1033173712' // real ad id = ca-app-pub-4447816982563983/8244703759
       : 'ca-app-pub-4447816982563983/6438272843';
   AdListener get addListener => _adListener;
 

@@ -13,7 +13,6 @@ import 'package:gelir_gider/screens/category_screen.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:gelir_gider/themes/colours.dart';
-import 'package:gelir_gider/providers/ad_state.dart';
 
 class AddingExpense extends StatefulWidget {
   // Ekleme ekranının tasarımı ve tüm arkaplanının yapıldığı kısım
@@ -51,7 +50,6 @@ class _AddingExpenseState extends State<AddingExpense>
   }
 
   Future<void> _saveForm() async {
-    InterstitialAd myInterstitial;
     final isValid = _form.currentState.validate();
     if (!isValid) {
       return;
@@ -60,16 +58,6 @@ class _AddingExpenseState extends State<AddingExpense>
     setState(() {
       _isLoading = true;
     });
-
-    final adState = Provider.of<AdState>(context);
-    await adState.init.then(
-      (value) => myInterstitial = InterstitialAd(
-        adUnitId: Provider.of<AdState>(context).adUnitId,
-        request: AdRequest(),
-        listener: adState.listener,
-      ),
-    )
-      ..load();
 
     await Provider.of<Expenses>(context, listen: false).addExpense(
       Expense(
@@ -81,7 +69,7 @@ class _AddingExpenseState extends State<AddingExpense>
         description: description,
       ),
     );
-    await Navigator.of(context).pop();
+    Navigator.of(context).pop();
     await myInterstitial.show();
   }
 
@@ -278,6 +266,7 @@ class _AddingExpenseState extends State<AddingExpense>
                             ),
                             SaveButton(
                               onPressed: () {
+
                                 return _saveForm();
                               },
                             ),
