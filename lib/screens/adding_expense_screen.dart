@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/providers/ad_state.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/components/main_drawer.dart';
 import 'package:gelir_gider/widgets/buttons/save_button.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:provider/provider.dart';
@@ -11,13 +13,15 @@ import 'package:gelir_gider/screens/category_screen.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:gelir_gider/themes/colours.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AddingExpense extends StatefulWidget {
-
   // Ekleme ekranının tasarımı ve tüm arkaplanının yapıldığı kısım
 
   final scaffoldKey;
+
   const AddingExpense({Key key, this.scaffoldKey}) : super(key: key);
+
   @override
   _AddingExpenseState createState() => _AddingExpenseState();
 }
@@ -46,6 +50,7 @@ class _AddingExpenseState extends State<AddingExpense>
   }
 
   Future<void> _saveForm() async {
+    InterstitialAd myInterstitial;
     final isValid = _form.currentState.validate();
     if (!isValid) {
       return;
@@ -54,6 +59,16 @@ class _AddingExpenseState extends State<AddingExpense>
     setState(() {
       _isLoading = true;
     });
+
+    final adState = Provider.of<AdState>(context);
+    await adState.init.then(
+      (value) => myInterstitial = InterstitialAd(
+        adUnitId: Provider.of<AdState>(context).adUnitId,
+        request: AdRequest(),
+        listener: adState.listener,
+      ),
+    )
+      ..load();
 
     await Provider.of<Expenses>(context, listen: false).addExpense(
       Expense(
@@ -65,7 +80,8 @@ class _AddingExpenseState extends State<AddingExpense>
         description: description,
       ),
     );
-    await Navigator.of(context).pop();
+    await myInterstitial.show();
+    Navigator.of(context).pop();
   }
 
   @override
@@ -88,31 +104,37 @@ class _AddingExpenseState extends State<AddingExpense>
       child: Scaffold(
         endDrawer: MainDrawer(),
         appBar: PreferredSize(
-        preferredSize: size / 6.5,
-        child : GradientAppBar(
-          iconTheme: IconThemeData(
-              color: Colours.getGradientNew(isDark) //change your color here
-          ),
-          shape: Border(
-              bottom: BorderSide(
-                  width: 3.0*textScaleFactor, color: Colours.getGradientNew(isDark))),
-          gradient: LinearGradient(colors: Colours.getGradientNew2(isDark)),
-          centerTitle: true,
-          actions: [
-            Builder(
-              builder: (context) => IconButton(
-                icon: Icon(
-                  Icons.more_horiz,
-                  color: Theme.of(context).buttonColor,
+            preferredSize: size / 6.5,
+            child: GradientAppBar(
+              iconTheme: IconThemeData(
+                  color: Colours.getGradientNew(isDark) //change your color here
+                  ),
+              shape: Border(
+                  bottom: BorderSide(
+                      width: 3.0 * textScaleFactor,
+                      color: Colours.getGradientNew(isDark))),
+              gradient: LinearGradient(colors: Colours.getGradientNew2(isDark)),
+              centerTitle: true,
+              actions: [
+                Builder(
+                  builder: (context) => IconButton(
+                    icon: Icon(
+                      Icons.more_horiz,
+                      color: Theme.of(context).buttonColor,
+                    ),
+                    onPressed: () => Scaffold.of(context).openEndDrawer(),
+                    tooltip:
+                        MaterialLocalizations.of(context).openAppDrawerTooltip,
+
+                    ///it opens a drawer
+                  ),
                 ),
-                onPressed: () => Scaffold.of(context).openEndDrawer(),
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-                ///it opens a drawer
+              ],
+              title: Icon(
+                Icons.attach_money,
+                color: Theme.of(context).buttonColor,
               ),
-            ),
-          ],
-          title: Icon(Icons.attach_money,color: Theme.of(context).buttonColor,),
-        )),
+            )),
         body: _isLoading
             ? Center(
                 child: CircularProgressIndicator(),
@@ -121,13 +143,13 @@ class _AddingExpenseState extends State<AddingExpense>
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: size.height*0.025),
+                      padding: EdgeInsets.only(top: size.height * 0.025),
                       child: ToggleSwitch(
-                        minWidth: textScaleFactor*120.0,
-                        minHeight: textScaleFactor*60.0,
+                        minWidth: textScaleFactor * 120.0,
+                        minHeight: textScaleFactor * 60.0,
                         fontSize: 17.0 * textScaleFactor,
                         initialLabelIndex: 0,
-                        cornerRadius: 60.0*textScaleFactor,
+                        cornerRadius: 60.0 * textScaleFactor,
                         activeBgColor: Colours.activeBgColor,
                         activeFgColor: Colours.white,
                         inactiveBgColor: Colours.inactiveBgColor,
@@ -148,8 +170,9 @@ class _AddingExpenseState extends State<AddingExpense>
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: size.width*0.016, vertical: size.height*0),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: size.width * 0.016,
+                          vertical: size.height * 0),
                       child: Form(
                         key: _form,
                         child: Column(
@@ -159,16 +182,20 @@ class _AddingExpenseState extends State<AddingExpense>
                                 moveToSecondPage();
                               },
                               child: Container(
-                                margin: EdgeInsets.symmetric(horizontal: size.width*0.016, vertical:size.height*0.025),
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.016,
+                                    vertical: size.height * 0.025),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20.0),
                                   border: Border.all(
-                                      width:textScaleFactor*1,
+                                      width: textScaleFactor * 1,
                                       color: Colours.getBlackOrWhite(isDark)),
                                 ),
-                                width: 250.0*textScaleFactor,
+                                width: 250.0 * textScaleFactor,
                                 alignment: Alignment.center,
-                                padding: EdgeInsets.symmetric(horizontal:size.width*0.010, vertical: size.height*0.010),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.010,
+                                    vertical: size.height * 0.010),
                                 child: ListTile(
                                   leading: category.categoryImg,
                                   title: Text(
@@ -192,7 +219,7 @@ class _AddingExpenseState extends State<AddingExpense>
                               },
                             ),
                             Divider(
-                              height: 30*textScaleFactor,
+                              height: 30 * textScaleFactor,
                             ),
                             TextFormField(
                               keyboardType: TextInputType.number,
@@ -214,7 +241,7 @@ class _AddingExpenseState extends State<AddingExpense>
                               },
                             ),
                             Divider(
-                              height: size.height*0.030,
+                              height: size.height * 0.030,
                             ),
                             Center(
                               child: DateTimePicker(
@@ -236,13 +263,13 @@ class _AddingExpenseState extends State<AddingExpense>
                             ),
                             Divider(),
                             SizedBox(
-                              height: size.height*0.030,
+                              height: size.height * 0.030,
                             ),
                             SaveButton(
                               onPressed: () => _saveForm(),
                             ),
                             SizedBox(
-                              height: size.height*0.015,
+                              height: size.height * 0.015,
                             )
                           ],
                         ),
