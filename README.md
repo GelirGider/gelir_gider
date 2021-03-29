@@ -2,20 +2,13 @@
 
 Personal Finances App
 
-https://user-images.githubusercontent.com/45846424/112834810-203dfd80-90a1-11eb-954b-56e5d5985357.png
+![Screenshot from 2021-03-29 14-59-29](https://user-images.githubusercontent.com/45846424/112835205-aa866180-90a1-11eb-8e0c-7ffb62fe4f49.png)
+![Screenshot from 2021-03-29 14-58-59](https://user-images.githubusercontent.com/45846424/112835211-ab1ef800-90a1-11eb-8a8f-523f64f8765f.png)
+![Screenshot from 2021-03-29 14-59-13](https://user-images.githubusercontent.com/45846424/112835214-abb78e80-90a1-11eb-8154-eb8ebfdae771.png)
+![Screenshot from 2021-03-29 14-59-48](https://user-images.githubusercontent.com/45846424/112835218-ac502500-90a1-11eb-95ba-affa015e15c9.png)
+![Screenshot from 2021-03-29 15-00-09](https://user-images.githubusercontent.com/45846424/112835222-ace8bb80-90a1-11eb-92f3-c8b279568fc0.png)
+![Screenshot from 2021-03-29 15-00-31](https://user-images.githubusercontent.com/45846424/112835225-ad815200-90a1-11eb-970f-8b0839f31757.png)
+![Screenshot from 2021-03-29 15-00-44](https://user-images.githubusercontent.com/45846424/112835230-ae19e880-90a1-11eb-9719-7b1a79306782.png)
+![Screenshot from 2021-03-29 15-00-59](https://user-images.githubusercontent.com/45846424/112835234-ae19e880-90a1-11eb-973b-62cf2e34ccfe.png)
+![Screenshot from 2021-03-29 15-01-58](https://user-images.githubusercontent.com/45846424/112835237-aeb27f00-90a1-11eb-8ba2-203fda1e5789.png)
 
-https://user-images.githubusercontent.com/45846424/112834817-20d69400-90a1-11eb-84e8-033e365aef96.png
-
-https://user-images.githubusercontent.com/45846424/112834821-2207c100-90a1-11eb-86de-cfe1678bef78.png
-
-https://user-images.githubusercontent.com/45846424/112834823-22a05780-90a1-11eb-9e75-3276872a5f24.png
-
-https://user-images.githubusercontent.com/45846424/112834824-2338ee00-90a1-11eb-9131-fae5465121d1.png
-
-https://user-images.githubusercontent.com/45846424/112834825-23d18480-90a1-11eb-8f7a-204b1c1f7bfd.png
-
-https://user-images.githubusercontent.com/45846424/112834828-23d18480-90a1-11eb-8785-5e0729995672.png
-
-https://user-images.githubusercontent.com/45846424/112834832-246a1b00-90a1-11eb-8ab6-072a4b79e9f1.png
-
-https://user-images.githubusercontent.com/45846424/112834819-216f2a80-90a1-11eb-8585-2c6dca1c0db5.png
