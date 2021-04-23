@@ -63,5 +63,7 @@
   "OK" : "ठीक है",
   "Cancel" : "रद्द करना",
   "Notifications" : "सूचनाएं",
-  "ChangeAccount" : "खाता परिवर्तन करें"
+  "ChangeAccount" : "खाता परिवर्तन करें",
+  "AddPrice" :  "एक मूल्य दर्ज करें",
+  "EnterNumber" : "एक संख्या लिखें"
 }

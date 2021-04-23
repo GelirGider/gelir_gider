@@ -6,14 +6,21 @@ import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/themes/colours.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // Drawer da bulunan Dil seçim ekranının tasarımı ve tüm arkaplanının bulunduğu
 // kısım
 
 class LanguageSelectionScreen extends StatefulWidget {
+
   @override
   _LanguageSelectionScreenState createState() =>
       _LanguageSelectionScreenState();
+}
+
+Future<void> disableFirstTime() async{
+  var prefs = await SharedPreferences.getInstance();
+  await prefs.setBool('isFirstTime',false);
 }
 
 List icons = [
@@ -124,6 +131,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                       (index) {
                         return FlatButton(
                           onPressed: () {
+                            disableFirstTime();
                             Provider.of<Languages>(context, listen: false)
                                 .setLanguage(index);
                             Navigator.of(context)

@@ -69,5 +69,7 @@
   "OK" : "Kaydet",
   "Cancel" : "İptal",
   "Notifications" : "Bildirimler",
-  "ChangeAccount" : "Hesabı Değiştir"
+  "ChangeAccount" : "Hesabı Değiştir",
+  "AddPrice" : "Bir fiyat ekleyin",
+  "EnterNumber" : "Bir sayı yazın"
 }

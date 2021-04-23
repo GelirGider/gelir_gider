@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "AddPrice" : MessageLookupByLibrary.simpleMessage("एक मूल्य दर्ज करें"),
     "AddingScreenCategories" : MessageLookupByLibrary.simpleMessage("श्रेणियाँ"),
     "AddingScreenDate" : MessageLookupByLibrary.simpleMessage("तारीख"),
     "AddingScreenDescription" : MessageLookupByLibrary.simpleMessage("विवरण"),
@@ -61,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "DrawerLanguageText" : MessageLookupByLibrary.simpleMessage("भाषा: हिन्दी"),
     "DrawerSelectCurrency" : MessageLookupByLibrary.simpleMessage("मुद्रा"),
     "DrawerThemeText" : MessageLookupByLibrary.simpleMessage("थीम"),
+    "EnterNumber" : MessageLookupByLibrary.simpleMessage("एक संख्या लिखें"),
     "ExpenseListNoneExpense" : MessageLookupByLibrary.simpleMessage("आपने अभी तक खर्च नहीं जोड़ा है \n चलिए शुरू करते हैं!"),
     "February" : MessageLookupByLibrary.simpleMessage("फरवरी"),
     "January" : MessageLookupByLibrary.simpleMessage("जनवरी"),

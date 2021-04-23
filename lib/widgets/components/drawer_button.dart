@@ -10,10 +10,13 @@ class DrawerButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return IconButton(
-      icon: Icon(
-        Icons.more_horiz,
-        size: size.height*0.05,
-        color: Theme.of(context).buttonColor,
+      padding: EdgeInsets.symmetric(horizontal: 15,vertical: 0),
+      icon: Container(
+        child: Icon(
+          Icons.more_horiz,
+          size: size.width*0.075,
+          color: Theme.of(context).buttonColor,
+        ),
       ),
       onPressed: () => scaffoldKey.currentState.openEndDrawer(),
     );

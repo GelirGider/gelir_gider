@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/ad_state.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:gelir_gider/widgets/components/main_drawer.dart';
+import 'package:gelir_gider/widgets/components/drawer_button.dart';
 import 'package:gelir_gider/widgets/buttons/save_button.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:jiffy/jiffy.dart';
@@ -62,7 +63,7 @@ class _AddingExpenseState extends State<AddingExpense>
     await Provider.of<Expenses>(context, listen: false).addExpense(
       Expense(
         id: UniqueKey().toString(),
-        category: id ?? 0,
+        category: id ?? Provider.of<Expenses>(context, listen: false).currentCategoryId,
         isExpense: isExpense ? 'expense' : 'income',
         time: time,
         price: isExpense ? (price * (-1)) : price,
@@ -77,7 +78,7 @@ class _AddingExpenseState extends State<AddingExpense>
   void didChangeDependencies() {
     super.didChangeDependencies();
     setState(() {
-      category = Provider.of<Expenses>(context, listen: false).CurrentCategory;
+      category = Provider.of<Expenses>(context, listen: false).currentCategory;
     });
     final adState = Provider.of<AdState>(context);
     adState.init.then((value) {
@@ -93,14 +94,16 @@ class _AddingExpenseState extends State<AddingExpense>
 
   @override
   Widget build(BuildContext context) {
+    final scaffoldKey = GlobalKey<ScaffoldState>();
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
     final size = MediaQuery.of(context).size;
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
-    category = Provider.of<Expenses>(context, listen: false).CurrentCategory;
+    category = Provider.of<Expenses>(context, listen: false).currentCategory;
 
     return SafeArea(
       child: Scaffold(
+        key: scaffoldKey,
         endDrawer: MainDrawer(),
         appBar: PreferredSize(
             preferredSize: size / 6.5,
@@ -116,17 +119,7 @@ class _AddingExpenseState extends State<AddingExpense>
               centerTitle: true,
               actions: [
                 Builder(
-                  builder: (context) => IconButton(
-                    icon: Icon(
-                      Icons.more_horiz,
-                      color: Theme.of(context).buttonColor,
-                    ),
-                    onPressed: () => Scaffold.of(context).openEndDrawer(),
-                    tooltip:
-                        MaterialLocalizations.of(context).openAppDrawerTooltip,
-
-                    ///it opens a drawer
-                  ),
+                  builder: (context) => DrawerButton(scaffoldKey: scaffoldKey)
                 ),
               ],
               title: Icon(
@@ -144,26 +137,28 @@ class _AddingExpenseState extends State<AddingExpense>
                     Padding(
                       padding: EdgeInsets.only(top: size.height * 0.025),
                       child: ToggleSwitch(
-                        minWidth: textScaleFactor * 120.0,
+                        minWidth: textScaleFactor * 100.0,
                         minHeight: textScaleFactor * 60.0,
                         fontSize: 17.0 * textScaleFactor,
                         initialLabelIndex: 0,
                         cornerRadius: 60.0 * textScaleFactor,
-                        activeBgColor: Colours.activeBgColor,
-                        activeFgColor: Colours.white,
-                        inactiveBgColor: Colours.inactiveBgColor,
-                        inactiveFgColor: Colours.black,
+                        activeBgColor: isExpense ? Colours.inactiveBgColor : Colours.green,
+                        activeFgColor: isExpense ? Colours.black : Colours.white,
+                        inactiveBgColor: isExpense ? Colours.red: Colours.inactiveBgColor ,
+                        inactiveFgColor: isExpense ? Colours.white : Colours.black,
                         labels: [
                           S.of(context).AddingScreenIncome,
                           S.of(context).AddingScreenExpense,
                         ],
                         onToggle: (index) {
-                          if (index == 0) {
-                            isExpense = false;
-                          }
-                          if (index == 1) {
-                            isExpense = true;
-                          }
+                          setState(() {
+                            if (index == 0) {
+                              isExpense = false;
+                            }
+                            if (index == 1) {
+                              isExpense = true;
+                            }
+                          });
                           print('switched to: $index');
                         },
                       ),
@@ -217,8 +212,8 @@ class _AddingExpenseState extends State<AddingExpense>
                                 description = newValue;
                               },
                             ),
-                            Divider(
-                              height: 30 * textScaleFactor,
+                            SizedBox(
+                              height: size.height * 0.030,
                             ),
                             TextFormField(
                               keyboardType: TextInputType.number,
@@ -228,10 +223,10 @@ class _AddingExpenseState extends State<AddingExpense>
                               textInputAction: TextInputAction.done,
                               validator: (value) {
                                 if (value.isEmpty) {
-                                  return 'Bir fiyat ekleyin';
+                                  return S.of(context).AddPrice;
                                 }
                                 if (double.tryParse(value) == null) {
-                                  return 'Bir sayı yazın';
+                                  return S.of(context).EnterNumber;
                                 }
                                 return null;
                               },
@@ -239,7 +234,7 @@ class _AddingExpenseState extends State<AddingExpense>
                                 price = double.parse(newValue);
                               },
                             ),
-                            Divider(
+                            SizedBox(
                               height: size.height * 0.030,
                             ),
                             Center(
@@ -260,19 +255,14 @@ class _AddingExpenseState extends State<AddingExpense>
                                 },
                               ),
                             ),
-                            Divider(),
                             SizedBox(
                               height: size.height * 0.030,
                             ),
                             SaveButton(
                               onPressed: () {
-
                                 return _saveForm();
                               },
                             ),
-                            SizedBox(
-                              height: size.height * 0.015,
-                            )
                           ],
                         ),
                       ),

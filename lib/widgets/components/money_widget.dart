@@ -5,17 +5,18 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:gelir_gider/themes/colours.dart';
 import 'package:provider/provider.dart';
 
-class MoneyWidget extends StatelessWidget {
-
+class MoneyWidget extends StatefulWidget {
+  final List<Expense> list;
+  MoneyWidget(this.list);
+  @override
+  _MoneyWidget createState() => _MoneyWidget();
+}
   // Toplam Gelir,Gider ve Ana paranın gösterildiği orta kısmında bir CircularPercentIndicator
   // Widgetına sahip olan bir çok yerde kullandığımız widget
 
   // Harcamalardan oluşan listeleri Expense Provider içindeki hesaplama fonksiyonlarına
   // göndererek Toplam Gelir,Gider ve Ana parayı hesaplayabilmekte
-
-  final List<Expense> list;
-  MoneyWidget(this.list);
-
+class _MoneyWidget extends State<MoneyWidget>{
   @override
   Widget build(BuildContext context) {
     final textScaleFactor = MediaQuery.of(context).textScaleFactor;
@@ -38,7 +39,7 @@ class MoneyWidget extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      provider.calculateTotalIncome(list).toStringAsFixed(1),
+                      provider.calculateTotalIncome(widget.list).toStringAsFixed(1),
                       style: TextStyle(
                           fontSize: 16 * textScaleFactor,
                           color: Colours.green,
@@ -55,9 +56,9 @@ class MoneyWidget extends StatelessWidget {
                 animationDuration: 750,
                 reverse: true,
                 lineWidth: 20.0,
-                percent: provider.getPercentage(list),
+                percent: provider.getPercentage(widget.list),
                 center: Text(
-                  provider.calculateTotalMoney(list).toStringAsFixed(1),
+                  provider.calculateTotalMoney(widget.list).toStringAsFixed(1),
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0 * textScaleFactor),
@@ -79,7 +80,7 @@ class MoneyWidget extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      provider.calculateTotalExpense(list).toStringAsFixed(1),
+                      provider.calculateTotalExpense(widget.list).toStringAsFixed(1),
                       style: TextStyle(
                           fontSize: 16 * textScaleFactor,
                           color: Colours.red,

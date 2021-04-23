@@ -10,6 +10,9 @@ import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gelir_gider/themes/colours.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:gelir_gider/screens/language_selection_screen.dart';
+
+var isFirstTime;
 
 void main() async {
   // Uygulama ilk açıldığı vakit cihazda varsıyalan bir tema seçimi olup olmadığını
@@ -20,6 +23,7 @@ void main() async {
   final adState = AdState(initFuture);
   var prefs = await SharedPreferences.getInstance();
   var isDarkTheme = prefs.getBool('isLight') ?? true;
+  isFirstTime = prefs.getBool('isFirstTime') ?? true;
 
   runApp(
     // Providerlarımızın programa dahil edilmesi işlemi
@@ -64,7 +68,7 @@ class MyApp extends StatelessWidget {
           title: 'Gelir/Gider', // Uygulama ismi
           theme: value.getTheme(), // Temamız
           debugShowCheckedModeBanner: false,
-          home: ExpensesListScreen(), // Açılış ekranımız
+          home: isFirstTime ? LanguageSelectionScreen()  : ExpensesListScreen(), // Açılış ekranımız
         );
       },
     );

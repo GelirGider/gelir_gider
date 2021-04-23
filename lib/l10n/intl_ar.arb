@@ -63,5 +63,7 @@
   "OK" : "موافق",
   "Cancel" : "إلغاء",
   "Notifications" : "الإخطارات",
-  "ChangeAccount" : "تغير الحساب"
+  "ChangeAccount" : "تغير الحساب",
+  "AddPrice" :  "أدخل سعرًا",
+  "EnterNumber" : "اكتب رقم"
 }

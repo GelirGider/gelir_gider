@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:collection/collection.dart';
 import 'package:date_utils/date_utils.dart';
 import 'categories.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 //EXPENSE CLASS-----------------------------------------------------------------
 class Expense {
@@ -68,7 +67,7 @@ class Expenses with ChangeNotifier {
   }
 
   int get currentCategoryId => _currentCategoryId;
-  CategoryItem get CurrentCategory => isPersonal
+  CategoryItem get currentCategory => isPersonal
       ? categories[currentCategoryId]
       : corporateCategories[currentCategoryId];
 

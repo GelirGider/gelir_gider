@@ -74,8 +74,7 @@ class AccountChanger extends StatelessWidget {
                                 onPressed: () async {
                                   await provider.setPersonal();
                                   provider.setTabBarIndex(0);
-                                  controller.index = 0;
-                                  await Navigator.of(context).pop();
+                                  Navigator.of(context).pop();
                                 },
                                 child: Text(
                                   S.of(context).AppBarIndividual,
@@ -106,8 +105,7 @@ class AccountChanger extends StatelessWidget {
                                 onPressed: () async {
                                   await provider.setCorporate();
                                   provider.setTabBarIndex(0);
-                                  controller.index = 0;
-                                  await Navigator.of(context).pop();
+                                  Navigator.of(context).pop();
                                 },
                                 child: Text(
                                   S.of(context).AppBarCorporate,

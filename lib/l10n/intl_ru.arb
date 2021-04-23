@@ -63,6 +63,8 @@
   "OK" : "OK",
   "Cancel" : "Отмена",
   "Notifications" : "Уведомления",
-  "ChangeAccount" : "Сменить Аккаунт"
+  "ChangeAccount" : "Сменить Аккаунт",
+  "AddPrice" :  "Введите цену",
+  "EnterNumber" : "Напишите число"
 }
 

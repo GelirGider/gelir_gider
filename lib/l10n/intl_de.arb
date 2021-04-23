@@ -63,5 +63,7 @@
   "OK" : "OK",
   "Cancel" : "Abbrechen",
   "Notifications" : "Benachrichtigung",
-  "ChangeAccount" : "Account wechseln"
+  "ChangeAccount" : "Account wechseln",
+  "AddPrice" :  "Geben Sie einen Preis ein",
+  "EnterNumber" : "Schreibe eine Nummer"
 }

@@ -23,6 +23,7 @@ class YearPage extends StatefulWidget {
 
 class _YearPageState extends State<YearPage>
     with SingleTickerProviderStateMixin{
+
   bool init = true;
 
   @override
@@ -33,6 +34,7 @@ class _YearPageState extends State<YearPage>
     }
     super.didChangeDependencies();
   }
+
   @override
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);

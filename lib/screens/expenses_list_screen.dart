@@ -69,6 +69,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                           width: 3.0*textScaleFactor, color: Colours.getGradientNew(isDark))),
                   leading: Icon(
                     Icons.attach_money,
+                    size: size.height*0.035,
                     color: Theme.of(context).buttonColor,
                   ),
                   actions: [DrawerButton(scaffoldKey: scaffoldKey)],
@@ -80,7 +81,6 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                     unselectedLabelColor:
                         isDark ? Colors.grey[400] : Colors.grey[600],
                     labelColor: isDark ? Colors.pink : Colors.pink,
-                    labelPadding: EdgeInsets.symmetric(vertical: size.height*0.01, horizontal: size.height*0.04),
                     labelStyle: TextStyle(
                       fontSize: 15*MediaQuery.of(context).textScaleFactor,
                       fontWeight: FontWeight.w500,

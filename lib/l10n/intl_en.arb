@@ -62,5 +62,7 @@
   "OK" : "OK",
   "Cancel" : "Cancel",
   "Notifications" : "Notifications",
-  "ChangeAccount" : "Change Account"
+  "ChangeAccount" : "Change Account",
+  "AddPrice" : "Enter a price",
+  "EnterNumber" : "Write a number"
 }

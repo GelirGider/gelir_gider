@@ -63,5 +63,7 @@
   "OK" : "好的",
   "Cancel" : "取消",
   "Notifications" : "通知",
-  "ChangeAccount" : "变更账户"
+  "ChangeAccount" : "变更账户",
+  "AddPrice" :  "输入价格",
+  "EnterNumber" : "写号码"
 }

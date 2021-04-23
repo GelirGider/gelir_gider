@@ -664,6 +664,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter a price`
+  String get AddPrice {
+    return Intl.message(
+      'Enter a price',
+      name: 'AddPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write a number`
+  String get EnterNumber {
+    return Intl.message(
+      'Write a number',
+      name: 'EnterNumber',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
