@@ -23,8 +23,8 @@ class _MainPageCategoryModal extends State<MainPageCategoryModal>{
     Widget build(BuildContext context) {
       var textScaleFactor = MediaQuery.of(context).textScaleFactor;
       var provider = Provider.of<Expenses>(context, listen: false);
-      Future<void> showExpensesDialog() {
-        showDialog<void>(
+      showExpensesDialog() {
+        showDialog(
           context: context,
           builder: (BuildContext context) {
             return ExpensesDialogWidget(

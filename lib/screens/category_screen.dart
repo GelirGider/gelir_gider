@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:gelir_gider/themes/colours.dart';
 
 class CategoryScreen extends StatelessWidget {
-
+  final ScrollController _controllerOne = ScrollController();
   // Kategori seçim ekranının tasarımı ve tüm arkaplanının yapıldığı kısım
 
   @override
@@ -22,10 +22,11 @@ class CategoryScreen extends StatelessWidget {
         appBar: GradientAppBar(
           iconTheme: IconThemeData(
               color: Colours.getGradientNew(isDark) //change your color here
-          ),
+              ),
           shape: Border(
               bottom: BorderSide(
-                  width: textScaleFactor*3.0, color: Colours.getGradientNew(isDark))),
+                  width: textScaleFactor * 3.0,
+                  color: Colours.getGradientNew(isDark))),
           gradient: LinearGradient(colors: Colours.getGradientNew2(isDark)),
           centerTitle: true,
           title: Text(
@@ -36,6 +37,7 @@ class CategoryScreen extends StatelessWidget {
           ),
         ),
         body: Container(
+          height: size.height,
           color: Colors.blueGrey,
           child: Card(
             color: _theme.getTheme() == _theme.dark
@@ -44,7 +46,8 @@ class CategoryScreen extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            margin: EdgeInsets.symmetric(vertical: size.height*0.08,horizontal: size.width*0.045),
+            margin: EdgeInsets.symmetric(
+                vertical: size.height * 0.0075, horizontal: size.width * 0.05),
             borderOnForeground: true,
             semanticContainer: true,
             child: Consumer<Expenses>(
@@ -53,25 +56,32 @@ class CategoryScreen extends StatelessWidget {
                     ? provider.categories
                     : provider.corporateCategories;
                 print('length::::::::::::${categories.length}');
-                return GridView.count(
-                  padding: EdgeInsets.all(15*textScaleFactor),
-                  crossAxisCount: 3,
-                  children: categories.map(
-                    (element) {
-                      return FittedBox(
-                        child: FlatButton(
-                          onPressed: () {
-                            print('index::::::::${element.categoryName}');
-                            provider.setCurrentCategory(element.index);
-                            print(
-                                'currentCategoryId::::::::${provider.currentCategoryId}');
-                            return Navigator.pop(context, element.index);
-                          },
-                          child: element,
-                        ),
-                      );
-                    },
-                  ).toList(),
+                return Container(
+                  child: Scrollbar(
+                    thickness: 5,
+                    radius: Radius.circular(15),
+                    isAlwaysShown: true,
+                    controller: _controllerOne,
+                    child: GridView.count(
+                      controller: _controllerOne,
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      shrinkWrap: true,
+                      crossAxisCount: 3,
+                      children: categories.map(
+                        (element) {
+                          return FittedBox(
+                            child: FlatButton(
+                              onPressed: () {
+                                provider.setCurrentCategory(element.index);
+                                return Navigator.pop(context, element.index);
+                              },
+                              child: element,
+                            ),
+                          );
+                        },
+                      ).toList(),
+                    ),
+                  ),
                 );
               },
             ),

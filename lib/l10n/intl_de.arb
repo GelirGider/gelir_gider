@@ -31,6 +31,10 @@
   "CategoryRepair" : "Reparatur",
   "CategoryVacation" : "Urlaub",
   "CategoryEatDrink" : "Essen und Trinken",
+  "CategoryInvestment": "Investition",
+  "CategoryCompetition": "Wettbewerb",
+  "CategorySales": "Vertrieb",
+  "CategoryCrypto": "Crypto Mining",
   "CategoryOthers" : "Andere",
   "AppBarIndividual" : "Individuell",
   "AppBarCorporate" : "Corporate",
@@ -65,5 +69,7 @@
   "Notifications" : "Benachrichtigung",
   "ChangeAccount" : "Account wechseln",
   "AddPrice" :  "Geben Sie einen Preis ein",
-  "EnterNumber" : "Schreibe eine Nummer"
+  "EnterNumber" : "Schreibe eine Nummer",
+  "SelectCategory" : "Kategorie wählen",
+  "CategoryWarning" : "Bitte wählen sie eine Kategorie"
 }

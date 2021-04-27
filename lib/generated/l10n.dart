@@ -345,6 +345,46 @@ class S {
     );
   }
 
+  /// `Investment`
+  String get CategoryInvestment {
+    return Intl.message(
+      'Investment',
+      name: 'CategoryInvestment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Competition`
+  String get CategoryCompetition {
+    return Intl.message(
+      'Competition',
+      name: 'CategoryCompetition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sales`
+  String get CategorySales {
+    return Intl.message(
+      'Sales',
+      name: 'CategorySales',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Crypto Mining`
+  String get CategoryCrypto {
+    return Intl.message(
+      'Crypto Mining',
+      name: 'CategoryCrypto',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Others`
   String get CategoryOthers {
     return Intl.message(
@@ -680,6 +720,26 @@ class S {
     return Intl.message(
       'Write a number',
       name: 'EnterNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Category`
+  String get SelectCategory {
+    return Intl.message(
+      'Select Category',
+      name: 'SelectCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a category`
+  String get CategoryWarning {
+    return Intl.message(
+      'Please select a category',
+      name: 'CategoryWarning',
       desc: '',
       args: [],
     );

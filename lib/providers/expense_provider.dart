@@ -54,11 +54,11 @@ class Expenses with ChangeNotifier {
   void setCategories(context) {
     corporateCategoryTitleList =
         Categories.getCorporateCategoryListTitles(context);
-    _corporateCategories = Categories.getCorporateCategories(context);
+    _corporateCategories = Categories.getCategories(context,false);
 
     personalCategoryTitleList =
         Categories.getPersonalCategoryListTitles(context);
-    _personalCategories = Categories.getPersonalCategories(context);
+    _personalCategories = Categories.getCategories(context,true);
   }
 
   void setCurrentCategory(int id) {
@@ -413,6 +413,9 @@ class Expenses with ChangeNotifier {
     //var isPersonal = true;
     _items.removeWhere((element) => element.id == id);
     _currentItems.values.forEach((element) {
+      element.removeWhere((element) => element.id == id);
+    });
+    _currentDay.values.forEach((element) {
       element.removeWhere((element) => element.id == id);
     });
     notifyListeners();

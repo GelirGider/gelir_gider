@@ -36,18 +36,16 @@ class _AddingExpenseState extends State<AddingExpense>
   String time = '';
   bool isExpense = false;
   var category;
-  var id;
+  var id = -1;
 
   void moveToSecondPage() async {
     id = await Navigator.push(
-          context,
-          MaterialPageRoute(
-            fullscreenDialog: true,
-            builder: (context) => CategoryScreen(),
-          ),
-        ) ??
-        Provider.of<Expenses>(context, listen: false).currentCategoryId;
-    Provider.of<Expenses>(context, listen: false).setCurrentCategory(id);
+      context,
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => CategoryScreen(),
+      ),
+    ) ?? -1;
   }
 
   Future<void> _saveForm() async {
@@ -63,7 +61,7 @@ class _AddingExpenseState extends State<AddingExpense>
     await Provider.of<Expenses>(context, listen: false).addExpense(
       Expense(
         id: UniqueKey().toString(),
-        category: id ?? Provider.of<Expenses>(context, listen: false).currentCategoryId,
+        category: id,
         isExpense: isExpense ? 'expense' : 'income',
         time: time,
         price: isExpense ? (price * (-1)) : price,
@@ -119,8 +117,8 @@ class _AddingExpenseState extends State<AddingExpense>
               centerTitle: true,
               actions: [
                 Builder(
-                  builder: (context) => DrawerButton(scaffoldKey: scaffoldKey)
-                ),
+                    builder: (context) =>
+                        DrawerButton(scaffoldKey: scaffoldKey)),
               ],
               title: Icon(
                 Icons.attach_money,
@@ -137,15 +135,19 @@ class _AddingExpenseState extends State<AddingExpense>
                     Padding(
                       padding: EdgeInsets.only(top: size.height * 0.025),
                       child: ToggleSwitch(
-                        minWidth: textScaleFactor * 100.0,
-                        minHeight: textScaleFactor * 60.0,
-                        fontSize: 17.0 * textScaleFactor,
+                        minWidth: textScaleFactor * 70.0,
+                        minHeight: textScaleFactor * 40.0,
+                        fontSize: 12.0 * textScaleFactor,
                         initialLabelIndex: 0,
                         cornerRadius: 60.0 * textScaleFactor,
-                        activeBgColor: isExpense ? Colours.inactiveBgColor : Colours.green,
-                        activeFgColor: isExpense ? Colours.black : Colours.white,
-                        inactiveBgColor: isExpense ? Colours.red: Colours.inactiveBgColor ,
-                        inactiveFgColor: isExpense ? Colours.white : Colours.black,
+                        activeBgColor:
+                            isExpense ? Colours.inactiveBgColor : Colours.green,
+                        activeFgColor:
+                            isExpense ? Colours.black : Colours.white,
+                        inactiveBgColor:
+                            isExpense ? Colours.red : Colours.inactiveBgColor,
+                        inactiveFgColor:
+                            isExpense ? Colours.white : Colours.black,
                         labels: [
                           S.of(context).AddingScreenIncome,
                           S.of(context).AddingScreenExpense,
@@ -190,17 +192,28 @@ class _AddingExpenseState extends State<AddingExpense>
                                 padding: EdgeInsets.symmetric(
                                     horizontal: size.width * 0.010,
                                     vertical: size.height * 0.010),
-                                child: ListTile(
-                                  leading: category.categoryImg,
-                                  title: Text(
-                                    category.categoryName,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 19.0 * textScaleFactor,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
+                                child: id == -1
+                                    ? ListTile(
+                                        title: Text(
+                                          S.of(context).SelectCategory,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: 19.0 * textScaleFactor,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      )
+                                    : ListTile(
+                                        leading: category.categoryImg,
+                                        title: Text(
+                                          category.categoryName,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: 19.0 * textScaleFactor,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
                               ),
                             ),
                             TextFormField(
@@ -242,7 +255,7 @@ class _AddingExpenseState extends State<AddingExpense>
                                 textAlign: TextAlign.center,
                                 initialValue: DateTime.now().toString(),
                                 firstDate: DateTime(2000),
-                                lastDate: DateTime(2100),
+                                lastDate: DateTime.now(),
                                 dateLabelText: S.of(context).AddingScreenDate,
                                 onChanged: (val) => time = val,
                                 validator: (val) {
@@ -260,7 +273,15 @@ class _AddingExpenseState extends State<AddingExpense>
                             ),
                             SaveButton(
                               onPressed: () {
-                                return _saveForm();
+                                if (id == -1) {
+                                  scaffoldKey.currentState
+                                      .showSnackBar(new SnackBar(
+                                    content:
+                                        new Text(S.of(context).CategoryWarning),
+                                  ));
+                                } else {
+                                  return _saveForm();
+                                }
                               },
                             ),
                           ],

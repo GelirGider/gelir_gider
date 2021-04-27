@@ -31,6 +31,10 @@
   "CategoryRepair" : "بصلح",
   "CategoryVacation" : "اجازة",
   "CategoryEatDrink" : "الاكل والشرب",
+  "CategoryInvestment": "استثمار",
+  "CategoryCompetition": "مسابقة",
+  "CategorySales": "مبيعات",
+  "CategoryCrypto": "تعدين العملات المشفرة",
   "CategoryOthers" : "آحرون",
   "AppBarIndividual" :"فرد",
   "AppBarCorporate" : "شركة كبرى",
@@ -65,5 +69,7 @@
   "Notifications" : "الإخطارات",
   "ChangeAccount" : "تغير الحساب",
   "AddPrice" :  "أدخل سعرًا",
-  "EnterNumber" : "اكتب رقم"
+  "EnterNumber" : "اكتب رقم",
+  "SelectCategory" : "اختر الفئة",
+  "CategoryWarning" :"الرجاء تحديد الفئة"
 }

@@ -31,7 +31,11 @@
   "CategoryRepair" :"修復",
   "CategoryVacation" :"休暇",
   "CategoryEatDrink" :"食物",
+  "CategoryInvestment" : "投資",
   "CategoryOthers" :"その他",
+  "CategoryCompetition" : "コンペ",
+  "CategorySales" : "販売",
+  "CategoryCrypto" : "クリプトマイニング",
   "AppBarIndividual" :"個人",
   "AppBarCorporate" : "企業",
   "LanguageScreenContinue" :"継続する",
@@ -65,5 +69,7 @@
   "Notifications" : "お知らせ",
   "ChangeAccount" : "アカウントの変更",
   "AddPrice" :  "価格を入力してください",
-  "EnterNumber" :"数字を書く"
+  "EnterNumber" :"数字を書く",
+  "SelectCategory" : "カテゴリを選んでください",
+  "CategoryWarning" :"カテゴリを選択してください"
 }

@@ -24,7 +24,7 @@ class CategoryItem extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: size.width*0.010, vertical: size.height*0.025),
+      margin: EdgeInsets.symmetric(horizontal: size.width*0.005, vertical: size.height*0.025),
       padding: EdgeInsets.all(textScaleFactor*30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50),

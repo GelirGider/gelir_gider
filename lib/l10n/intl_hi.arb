@@ -31,6 +31,10 @@
   "CategoryRepair" :"मरम्मत",
   "CategoryVacation" :"अवकाश",
   "CategoryEatDrink" :"खाना",
+  "CategoryInvestment" : "निवेश",
+  "CategoryCompetition" : "प्रतियोगिता",
+  "CategorySales" : "बिक्री",
+  "CategoryCrypto" : "क्रिप्टो खनन ",
   "CategoryOthers" :"अन्य",
   "AppBarIndividual" :"व्यक्ति",
   "AppBarCorporate" :"कॉर्पोरेट",
@@ -65,5 +69,7 @@
   "Notifications" : "सूचनाएं",
   "ChangeAccount" : "खाता परिवर्तन करें",
   "AddPrice" :  "एक मूल्य दर्ज करें",
-  "EnterNumber" : "एक संख्या लिखें"
+  "EnterNumber" : "एक संख्या लिखें",
+  "SelectCategory" : "श्रेणी चुनना",
+  "CategoryWarning" : "कृपया एक कैटेगरी चयनित करें"
 }

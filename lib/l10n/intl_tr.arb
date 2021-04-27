@@ -31,6 +31,10 @@
   "CategoryRepair" : "Tamir",
   "CategoryVacation" : "Tatil",
   "CategoryEatDrink" : "Yemek",
+  "CategoryInvestment" : "Yatırım",
+  "CategoryCompetition" : "Yarışma",
+  "CategorySales" : "Satış",
+  "CategoryCrypto" : "Mining",
   "CategoryOthers" : "Diğer",
   "AppBarIndividual" : "Bireysel",
   "AppBarCorporate" : "Kurumsal",
@@ -71,5 +75,6 @@
   "Notifications" : "Bildirimler",
   "ChangeAccount" : "Hesabı Değiştir",
   "AddPrice" : "Bir fiyat ekleyin",
-  "EnterNumber" : "Bir sayı yazın"
+  "SelectCategory" : "Kategori Seçiniz",
+  "CategoryWarning" : "Lütfen bir kategori seçiniz"
 }

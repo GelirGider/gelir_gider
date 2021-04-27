@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gelir_gider/themes/colours.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final ThemeData darkTheme = ThemeData(
@@ -27,7 +28,7 @@ final ThemeData darkTheme = ThemeData(
   bottomAppBarColor: Color(0xff424242),
   cardColor: Color(0xff424242),
   dividerColor: Color(0x1fffffff),
-  highlightColor: Color(0x40cccccc),
+  highlightColor: Colours.pink,
   splashColor: Color(0x40cccccc),
   selectedRowColor: Color(0xfff5f5f5),
   unselectedWidgetColor: Color(0xb3ffffff),
@@ -198,7 +199,7 @@ final ThemeData darkTheme = ThemeData(
     ),
     focusedBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.purple,
+        color: Colors.white,
         width: 1,
         style: BorderStyle.solid,
       ),

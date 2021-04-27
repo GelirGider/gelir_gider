@@ -12,10 +12,10 @@ class ExpensesDialogWidget extends StatelessWidget {
   // açılan ekranın tasarımı ve arkaplanının oluşturulduğu kısım
 
   final int categoryIndex;
-  final List<Expense> expenseList;
+  List<Expense> expenseList;
   final String currency;
 
-  const ExpensesDialogWidget(
+  ExpensesDialogWidget(
       {Key key, this.categoryIndex, this.expenseList, this.currency})
       : super(key: key);
 

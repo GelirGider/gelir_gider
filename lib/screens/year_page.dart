@@ -28,6 +28,7 @@ class _YearPageState extends State<YearPage>
 
   @override
   void didChangeDependencies() {
+    print("didChangeDependencies");
     if (init) {
       Provider.of<Expenses>(context, listen: false).setSelectedPage(0);
       init = false;
@@ -63,7 +64,7 @@ class _YearPageState extends State<YearPage>
             var myList = provider.expense;
             var list = provider.getCurrentYears();
             return Container(
-              padding: EdgeInsets.all(0.015*size.height),
+              padding: EdgeInsets.fromLTRB(0,0.015*size.height,0,0),
               child: Column(
                 children: [
                   MoneyWidget(myList),
@@ -98,7 +99,7 @@ class _YearPageState extends State<YearPage>
             var myList = provider.currentYear[provider.selectedYear];
             final list = provider.getCurrentMonths();
             return Container(
-              padding: EdgeInsets.all(0.015*size.height),
+              padding: EdgeInsets.fromLTRB(0,0.015*size.height,0,0),
               child: Column(
                 children: [
                   MoneyWidget(myList),
@@ -146,7 +147,7 @@ class _YearPageState extends State<YearPage>
               }
             });
             return Container(
-              padding: EdgeInsets.all(0.015*size.height),
+              padding: EdgeInsets.fromLTRB(0,0.015*size.height,0,0),
               child: Column(
                 children: [
                   MoneyWidget(myList),
@@ -199,7 +200,7 @@ class _YearPageState extends State<YearPage>
               }
             });
             return Container(
-              padding: EdgeInsets.all(0.015*size.height),
+              padding: EdgeInsets.fromLTRB(0,0.015*size.height,0,0),
               child: Column(
                 children: [
                   MoneyWidget(myList),
@@ -233,8 +234,11 @@ class _YearPageState extends State<YearPage>
           case 4:
             var res = provider.currentDay[provider.selectedDay];
             var myList = provider.groupExpensesByCategories(res);
-            return Container(
-              padding: EdgeInsets.all(0.015*size.height),
+            return FutureBuilder(
+                future: Provider.of<Expenses>(context, listen: false)
+                    .fetchAndSetExpenses(),
+                builder: (ctx, snapshot) => Container(
+              padding: EdgeInsets.fromLTRB(0,0.015*size.height,0,0),
               child: Column(
                 children: [
                   MoneyWidget(res),
@@ -243,7 +247,6 @@ class _YearPageState extends State<YearPage>
                   SizedBox(height: size.height * 0.01),
                   Flexible(
                     child: ListView.builder(
-                      shrinkWrap: true,
                       itemCount: myList.keys.length,
                       itemBuilder: (context, index) {
                         provider.getSymbol();
@@ -252,7 +255,6 @@ class _YearPageState extends State<YearPage>
                         var currency = provider.symbol;
                         return Column(
                           children: [
-                            OurDivider(),
                             MainPageCategoryModal(
                               category: category,
                               list: list,
@@ -266,6 +268,7 @@ class _YearPageState extends State<YearPage>
                   )
                 ],
               ),
+            ),
             );
             break;
           default:

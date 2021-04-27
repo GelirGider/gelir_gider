@@ -31,6 +31,10 @@
   "CategoryRepair" : "修理",
   "CategoryVacation" : "假期",
   "CategoryEatDrink" : "大吃大喝",
+  "CategoryInvestment" : "投资",
+  "CategoryCompetition" : "竞争",
+  "CategorySales" : "销售",
+  "CategoryCrypto" : "加密挖矿",
   "CategoryOthers" : "其他",
   "AppBarIndividual" :"个人",
   "AppBarCorporate" :"公司的",
@@ -65,5 +69,7 @@
   "Notifications" : "通知",
   "ChangeAccount" : "变更账户",
   "AddPrice" :  "输入价格",
-  "EnterNumber" : "写号码"
+  "EnterNumber" : "写号码",
+  "SelectCategory" : "选择类别",
+  "CategoryWarning" : "请选择一个类别"
 }
