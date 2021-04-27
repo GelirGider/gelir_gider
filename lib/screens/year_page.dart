@@ -28,7 +28,6 @@ class _YearPageState extends State<YearPage>
 
   @override
   void didChangeDependencies() {
-    print("didChangeDependencies");
     if (init) {
       Provider.of<Expenses>(context, listen: false).setSelectedPage(0);
       init = false;

@@ -293,7 +293,7 @@ class Expenses with ChangeNotifier {
           print(curDate.toString());
           if ((curDate.isAfter(startDate) && curDate.isBefore(endDate)) ||
               ((curDate == startDate) || (curDate == endDate))) {
-            return int.parse(e.time.split('-')[2]);
+            return int.parse(e.time.split(" ")[0].split('-')[2]);
           }
         }) ??
         {};
@@ -322,7 +322,7 @@ class Expenses with ChangeNotifier {
       var curDate = DateTime.parse(e.time);
       if ((curDate.isAfter(startDate) && curDate.isBefore(endDate)) ||
           ((curDate == startDate) || (curDate == endDate))) {
-        return int.parse(e.time.split('-')[2]);
+        return int.parse(e.time.split(" ")[0].split('-')[2]);
       }
     });
     map.removeWhere((key, value) => key == null);

@@ -5,7 +5,6 @@ import 'package:gelir_gider/widgets/components/main_drawer.dart';
 import 'package:gelir_gider/widgets/components/drawer_button.dart';
 import 'package:gelir_gider/widgets/buttons/save_button.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:jiffy/jiffy.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
@@ -263,7 +262,6 @@ class _AddingExpenseState extends State<AddingExpense>
                                   return null;
                                 },
                                 onSaved: (val) {
-                                  val = Jiffy(val).format('yyyy-MM-dd');
                                   time = val;
                                 },
                               ),
