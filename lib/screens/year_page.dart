@@ -24,14 +24,8 @@ class YearPage extends StatefulWidget {
 class _YearPageState extends State<YearPage>
     with SingleTickerProviderStateMixin{
 
-  bool init = true;
-
   @override
   void didChangeDependencies() {
-    if (init) {
-      Provider.of<Expenses>(context, listen: false).setSelectedPage(0);
-      init = false;
-    }
     super.didChangeDependencies();
   }
 
@@ -72,6 +66,7 @@ class _YearPageState extends State<YearPage>
                   SizedBox(height: size.height * 0.01),
                   Flexible(
                     child: GridView.builder(
+                      scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       itemCount: list.length,
                       itemBuilder: (context, index) {
@@ -107,6 +102,7 @@ class _YearPageState extends State<YearPage>
                   SizedBox(height: size.height * 0.01),
                   Flexible(
                     child: GridView.builder(
+                      scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       itemCount: list.length,
                       itemBuilder: (context, index) {
@@ -155,6 +151,7 @@ class _YearPageState extends State<YearPage>
                   SizedBox(height: size.height * 0.01),
                   Flexible(
                     child: GridView.builder(
+                      scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       itemCount: weekButtons.length,
                       itemBuilder: (context, index) {
@@ -182,7 +179,7 @@ class _YearPageState extends State<YearPage>
           case 3:
             var daysAndMonth = provider.selectedWeek;
             var days = daysAndMonth.split(' ')[0];
-            var startDay = int.parse(days.split('-')[0]);
+            var  startDay = int.parse(days.split('-')[0]);
             var endDay = int.parse(days.split('-')[1]);
             var monthName = daysAndMonth.split(' ')[1];
 
@@ -208,6 +205,8 @@ class _YearPageState extends State<YearPage>
                   SizedBox(height: size.height * 0.01),
                   Flexible(
                     child: GridView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
                       itemCount: dayButtons.length,
                       itemBuilder: (context, index) {
                         var dayItem = dayButtons[index];
@@ -246,6 +245,8 @@ class _YearPageState extends State<YearPage>
                   SizedBox(height: size.height * 0.01),
                   Flexible(
                     child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
                       itemCount: myList.keys.length,
                       itemBuilder: (context, index) {
                         provider.getSymbol();

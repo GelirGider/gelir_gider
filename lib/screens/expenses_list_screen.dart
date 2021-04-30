@@ -16,7 +16,6 @@ class ExpensesListScreen extends StatefulWidget {
 
 class _ExpensesListScreenState extends State<ExpensesListScreen>
     with SingleTickerProviderStateMixin {
-
   TabController _controller;
   var languageIndex;
 
@@ -41,8 +40,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
 
   @override
   void didChangeDependencies() {
-      _getPrefs();
-      super.didChangeDependencies();
+    _getPrefs();
+    super.didChangeDependencies();
   }
 
   @override
@@ -62,16 +61,42 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
           appBar: PreferredSize(
             preferredSize: size / 6,
             child: Consumer<Expenses>(
-              builder: (context, value, child) {
+              builder: (context, provider, child) {
                 return GradientAppBar(
+                  leading: provider.TabBarIndex == 3 && provider.selectedPage != 0
+                      ? GestureDetector(
+                    onTap: () => provider.previousPage(),
+                    child: Container(
+                      margin : EdgeInsets.fromLTRB(10, 2, 0, 2),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex:2,
+                            child: Icon(Icons.arrow_back_ios,
+                                size: size.width*0.05,
+                                color: Colours.getBlackOrWhite(isDark)),
+                          ),
+                          Expanded(
+                            flex:3,
+                            child: Text("Geri",
+                                style: TextStyle(
+                                    color: Colours.getBlackOrWhite(isDark))),
+                          ),
+                        ]
+                      ),
+                    ),
+                  )
+                      : Container(),
                   shape: Border(
                       bottom: BorderSide(
-                          width: 3.0*textScaleFactor, color: Colours.getGradientNew(isDark))),
-                  leading: Icon(
+                          width: 3.0 * textScaleFactor,
+                          color: Colours.getGradientNew(isDark))),
+                  title: Icon(
                     Icons.attach_money,
-                    size: size.height*0.035,
+                    size: size.height * 0.035,
                     color: Theme.of(context).buttonColor,
                   ),
+                  centerTitle: true,
                   actions: [DrawerButton(scaffoldKey: scaffoldKey)],
                   gradient: LinearGradient(
                     colors: Colours.getGradientNew2(isDark),
@@ -82,7 +107,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                         isDark ? Colors.grey[400] : Colors.grey[600],
                     labelColor: isDark ? Colors.pink : Colors.pink,
                     labelStyle: TextStyle(
-                      fontSize: 15*MediaQuery.of(context).textScaleFactor,
+                      fontSize: 15 * MediaQuery.of(context).textScaleFactor,
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                     ),
@@ -118,7 +143,11 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                                     SizedBox(height: size.height * 0.015),
                                     MoneyWidget(returnCurrentList(provider)),
                                     SizedBox(height: size.height * 0.01),
-                                    Divider(thickness: 1.7*MediaQuery.of(context).textScaleFactor,color:Colours.getBlackOrWhite(isDark)),
+                                    Divider(
+                                        thickness: 1.7 *
+                                            MediaQuery.of(context)
+                                                .textScaleFactor,
+                                        color: Colours.getBlackOrWhite(isDark)),
                                     Flexible(
                                       flex: 10,
                                       child: ListView.builder(
@@ -167,7 +196,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
     );
   }
 
-  List<Expense> returnCurrentList(Expenses provider){
+  List<Expense> returnCurrentList(Expenses provider) {
     var list = <Expense>[];
     provider.currentItems.values.forEach((element) {
       list = list + element;

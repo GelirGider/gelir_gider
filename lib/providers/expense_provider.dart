@@ -220,9 +220,16 @@ class Expenses with ChangeNotifier {
     notifyListeners();
   }
 
-  void setSelectedPage(int num) async {
-    selectedPage = await num;
+  void setSelectedPage(int num) {
+    selectedPage = num;
     notifyListeners();
+  }
+
+  void previousPage() {
+    if(selectedPage != 0){
+      selectedPage--;
+      notifyListeners();
+    }
   }
   //////////////////////////////////////////////////////////////////////////////
 
