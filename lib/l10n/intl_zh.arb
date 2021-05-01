@@ -71,5 +71,8 @@
   "AddPrice" :  "输入价格",
   "EnterNumber" : "写号码",
   "SelectCategory" : "选择类别",
-  "CategoryWarning" : "请选择一个类别"
+  "CategoryWarning" : "请选择一个类别",
+  "DeleteTutorial" : "删除是通过将类别中的收入或支出拖到左侧来进行的，如上面的动画所示。",
+  "Understood" : "明白了",
+  "DeleteTitle" : "“删除过程”"
 }

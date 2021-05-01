@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "CategoryWarning" : MessageLookupByLibrary.simpleMessage("الرجاء تحديد الفئة"),
     "ChangeAccount" : MessageLookupByLibrary.simpleMessage("تغير الحساب"),
     "December" : MessageLookupByLibrary.simpleMessage("ديسمبر"),
+    "DeleteTitle" : MessageLookupByLibrary.simpleMessage("عملية الحذف"),
+    "DeleteTutorial" : MessageLookupByLibrary.simpleMessage("يحدث الحذف عن طريق سحب الدخل أو المصروفات في فئات إلى اليسار ، كما هو موضح في الرسم المتحرك أعلاه."),
     "DialogExpenseIncome" : MessageLookupByLibrary.simpleMessage("الإيرادات والمصروفات"),
     "DrawerLanguageText" : MessageLookupByLibrary.simpleMessage("لغة"),
     "DrawerSelectCurrency" : MessageLookupByLibrary.simpleMessage("عملة"),
@@ -91,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "TabBarYear" : MessageLookupByLibrary.simpleMessage("سنة"),
     "ThemeSelectionOption1" : MessageLookupByLibrary.simpleMessage("مظهر خفيف"),
     "ThemeSelectionOption2" : MessageLookupByLibrary.simpleMessage("مظهر داكن"),
-    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("اختر نمطا")
+    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("اختر نمطا"),
+    "Understood" : MessageLookupByLibrary.simpleMessage("مفهوم")
   };
 }

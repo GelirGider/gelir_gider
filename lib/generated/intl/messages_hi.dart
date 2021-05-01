@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "CategoryWarning" : MessageLookupByLibrary.simpleMessage("कृपया एक कैटेगरी चयनित करें"),
     "ChangeAccount" : MessageLookupByLibrary.simpleMessage("खाता परिवर्तन करें"),
     "December" : MessageLookupByLibrary.simpleMessage("दिसंबर"),
+    "DeleteTitle" : MessageLookupByLibrary.simpleMessage("विलोपन प्रक्रिया"),
+    "DeleteTutorial" : MessageLookupByLibrary.simpleMessage("हटाए गए श्रेणियों में आय या खर्चों को खींचकर हटा दिया जाता है, जैसा कि ऊपर दिए गए एनीमेशन में देखा गया है।"),
     "DialogExpenseIncome" : MessageLookupByLibrary.simpleMessage("आय और व्यय "),
     "DrawerLanguageText" : MessageLookupByLibrary.simpleMessage("भाषा: हिन्दी"),
     "DrawerSelectCurrency" : MessageLookupByLibrary.simpleMessage("मुद्रा"),
@@ -91,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "TabBarYear" : MessageLookupByLibrary.simpleMessage("साल"),
     "ThemeSelectionOption1" : MessageLookupByLibrary.simpleMessage("लाइट थीम"),
     "ThemeSelectionOption2" : MessageLookupByLibrary.simpleMessage("डार्क थीम"),
-    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("चुनिंदा विषय")
+    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("चुनिंदा विषय"),
+    "Understood" : MessageLookupByLibrary.simpleMessage("समझ में आ")
   };
 }

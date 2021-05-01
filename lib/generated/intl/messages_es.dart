@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "CategoryWarning" : MessageLookupByLibrary.simpleMessage("Porfavor seleccione una categoría"),
     "ChangeAccount" : MessageLookupByLibrary.simpleMessage("Cambiar cuenta"),
     "December" : MessageLookupByLibrary.simpleMessage("Diciembre"),
+    "DeleteTitle" : MessageLookupByLibrary.simpleMessage("Proceso de eliminación"),
+    "DeleteTutorial" : MessageLookupByLibrary.simpleMessage("La eliminación se produce al arrastrar ingresos o gastos en categorías a la izquierda, como se ve en la animación anterior"),
     "DialogExpenseIncome" : MessageLookupByLibrary.simpleMessage("Ingresos y Gastos"),
     "DrawerLanguageText" : MessageLookupByLibrary.simpleMessage("Idiomas"),
     "DrawerSelectCurrency" : MessageLookupByLibrary.simpleMessage("Divisa"),
@@ -91,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "TabBarYear" : MessageLookupByLibrary.simpleMessage("Año"),
     "ThemeSelectionOption1" : MessageLookupByLibrary.simpleMessage("Tema de Luz"),
     "ThemeSelectionOption2" : MessageLookupByLibrary.simpleMessage("Tema Oscuro"),
-    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("Seleccione el tema")
+    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("Seleccione el tema"),
+    "Understood" : MessageLookupByLibrary.simpleMessage("Entendido/a")
   };
 }

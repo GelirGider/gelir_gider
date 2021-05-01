@@ -75,6 +75,10 @@
   "Notifications" : "Bildirimler",
   "ChangeAccount" : "Hesabı Değiştir",
   "AddPrice" : "Bir fiyat ekleyin",
+  "EnterNumber" : "Bir sayı giriniz",
   "SelectCategory" : "Kategori Seçiniz",
-  "CategoryWarning" : "Lütfen bir kategori seçiniz"
+  "CategoryWarning" : "Lütfen bir kategori seçiniz",
+  "DeleteTutorial" : "Silme işlemi, yukarıdaki animasyonda görüldüğü gibi girilen kategorinin içindeki gelir veya giderin sola çekilmesi ile gerçekleşmektedir",
+  "Understood" : "Anlaşıldı",
+  "DeleteTitle" : "Silme İşlemi"
 }

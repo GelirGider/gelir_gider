@@ -13,6 +13,8 @@ import 'package:gelir_gider/screens/category_screen.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:gelir_gider/themes/colours.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:giffy_dialog/giffy_dialog.dart';
 
 class AddingExpense extends StatefulWidget {
   // Ekleme ekranının tasarımı ve tüm arkaplanının yapıldığı kısım
@@ -27,6 +29,7 @@ class AddingExpense extends StatefulWidget {
 
 class _AddingExpenseState extends State<AddingExpense>
     with TickerProviderStateMixin {
+  var textScaleFactor;
   InterstitialAd myInterstitial;
   static final _form = GlobalKey<FormState>();
   var _isLoading = false;
@@ -36,15 +39,32 @@ class _AddingExpenseState extends State<AddingExpense>
   bool isExpense = false;
   var category;
   var id = -1;
+  var adCount,isFirst;
+
+  void _getPrefs() async {
+    var prefs = await SharedPreferences.getInstance();
+    adCount = prefs.getInt('adCount') ?? 0;
+    isFirst = prefs.getBool('isFirst') ?? true;
+  }
+
+  void setCount(int count) async {
+    var prefs = await SharedPreferences.getInstance();
+    adCount = prefs.setInt("adCount", count);
+  }
+  void disableTutorial() async {
+    var prefs = await SharedPreferences.getInstance();
+    isFirst = prefs.setBool("isFirst", false);
+  }
 
   void moveToSecondPage() async {
     id = await Navigator.push(
-      context,
-      MaterialPageRoute(
-        fullscreenDialog: true,
-        builder: (context) => CategoryScreen(),
-      ),
-    ) ?? -1;
+          context,
+          MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (context) => CategoryScreen(),
+          ),
+        ) ??
+        -1;
   }
 
   Future<void> _saveForm() async {
@@ -56,7 +76,6 @@ class _AddingExpenseState extends State<AddingExpense>
     setState(() {
       _isLoading = true;
     });
-
     await Provider.of<Expenses>(context, listen: false).addExpense(
       Expense(
         id: UniqueKey().toString(),
@@ -68,15 +87,52 @@ class _AddingExpenseState extends State<AddingExpense>
       ),
     );
     Navigator.of(context).pop();
-    await myInterstitial.show();
+    if (adCount == 1) {
+      await myInterstitial.show();
+      setCount(0);
+    } else {
+      adCount++;
+      setCount(adCount);
+    }
+    if(isFirst){
+      showDialog(
+          context: context,
+          builder: (_) => AssetGiffyDialog(
+            key: Key("AssetDialog"),
+            image: Image.asset(
+              'assets/tutorial.gif',
+              fit: BoxFit.cover,
+            ),
+            onlyCancelButton: true,
+            title: Text(
+              S.of(context).DeleteTitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: textScaleFactor*17),
+            ),
+            entryAnimation: EntryAnimation.BOTTOM_RIGHT,
+            description: Text(
+              S.of(context).DeleteTutorial,
+              textAlign: TextAlign.center,
+              overflow:TextOverflow.visible,
+              style: TextStyle(fontSize: textScaleFactor*12),
+            ),
+            buttonCancelColor: Colours.green,
+            buttonCancelText: Text(S.of(context).Understood,style:TextStyle(color: Colours.white)),
+          ));
+      disableTutorial();
+    }
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
+    _getPrefs();
+
     setState(() {
       category = Provider.of<Expenses>(context, listen: false).currentCategory;
     });
+
     final adState = Provider.of<AdState>(context);
     adState.init.then((value) {
       setState(() {
@@ -95,7 +151,7 @@ class _AddingExpenseState extends State<AddingExpense>
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
     final size = MediaQuery.of(context).size;
-    var textScaleFactor = MediaQuery.of(context).textScaleFactor;
+    textScaleFactor = MediaQuery.of(context).textScaleFactor;
     category = Provider.of<Expenses>(context, listen: false).currentCategory;
 
     return SafeArea(

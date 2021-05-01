@@ -71,5 +71,8 @@
   "AddPrice" :  "Geben Sie einen Preis ein",
   "EnterNumber" : "Schreibe eine Nummer",
   "SelectCategory" : "Kategorie wählen",
-  "CategoryWarning" : "Bitte wählen sie eine Kategorie"
+  "CategoryWarning" : "Bitte wählen sie eine Kategorie",
+  "DeleteTutorial" : "Das Löschen erfolgt durch Ziehen von Einnahmen oder Ausgaben in Kategorien nach links, wie in der obigen Animation gezeigt.",
+  "Understood" : "Verstanden",
+  "DeleteTitle" : "Löschvorgang"
 }

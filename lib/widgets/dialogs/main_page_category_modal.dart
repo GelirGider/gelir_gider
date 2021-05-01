@@ -33,27 +33,30 @@ class _MainPageCategoryModal extends State<MainPageCategoryModal>{
         );
       }
 
-      return ListTile(
-        onTap: () {
-          return showExpensesDialog();
-        },
-        leading: FittedBox(
-          fit: BoxFit.cover,
-          child: CircleAvatar(
-            child: provider.isPersonal
-                ? provider.imgList[widget.category]
-                : provider.imgListCorporate[widget.category],
-            backgroundColor: Colours.white,
-            radius: 25,
+      return Container(
+        margin: const EdgeInsets.all(5.0),
+        child: ListTile(
+          onTap: () {
+            return showExpensesDialog();
+          },
+          leading: FittedBox(
+            fit: BoxFit.cover,
+            child: CircleAvatar(
+              child: provider.isPersonal
+                  ? provider.imgList[widget.category]
+                  : provider.imgListCorporate[widget.category],
+              backgroundColor: Colours.white,
+              radius: 25,
+            ),
           ),
+          title: Text(
+            provider.isPersonal
+                ? provider.categories[widget.category].categoryName
+                : provider.corporateCategories[widget.category].categoryName,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          trailing: checkTotalPrice(calculatePrice(), widget.currency, textScaleFactor),
         ),
-        title: Text(
-          provider.isPersonal
-              ? provider.categories[widget.category].categoryName
-              : provider.corporateCategories[widget.category].categoryName,
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        trailing: checkTotalPrice(calculatePrice(), widget.currency, textScaleFactor),
       );
     }
 

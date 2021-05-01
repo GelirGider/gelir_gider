@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "CategoryWarning" : MessageLookupByLibrary.simpleMessage("カテゴリを選択してください"),
     "ChangeAccount" : MessageLookupByLibrary.simpleMessage("アカウントの変更"),
     "December" : MessageLookupByLibrary.simpleMessage("十二月"),
+    "DeleteTitle" : MessageLookupByLibrary.simpleMessage("削除プロセス"),
+    "DeleteTutorial" : MessageLookupByLibrary.simpleMessage("上のアニメーションに見られるように、削除はカテゴリ内の収入または支出を左にドラッグすることによって発生します。"),
     "DialogExpenseIncome" : MessageLookupByLibrary.simpleMessage("収入と費用"),
     "DrawerLanguageText" : MessageLookupByLibrary.simpleMessage("言語"),
     "DrawerSelectCurrency" : MessageLookupByLibrary.simpleMessage("通貨"),
@@ -91,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "TabBarYear" : MessageLookupByLibrary.simpleMessage("年"),
     "ThemeSelectionOption1" : MessageLookupByLibrary.simpleMessage("光のテーマ"),
     "ThemeSelectionOption2" : MessageLookupByLibrary.simpleMessage("暗いテーマ"),
-    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("テーマを選択")
+    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("テーマを選択"),
+    "Understood" : MessageLookupByLibrary.simpleMessage("理解した")
   };
 }

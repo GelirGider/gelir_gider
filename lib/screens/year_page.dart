@@ -25,11 +25,6 @@ class _YearPageState extends State<YearPage>
     with SingleTickerProviderStateMixin{
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
@@ -179,7 +174,7 @@ class _YearPageState extends State<YearPage>
           case 3:
             var daysAndMonth = provider.selectedWeek;
             var days = daysAndMonth.split(' ')[0];
-            var  startDay = int.parse(days.split('-')[0]);
+            var startDay = int.parse(days.split('-')[0]);
             var endDay = int.parse(days.split('-')[1]);
             var monthName = daysAndMonth.split(' ')[1];
 
@@ -276,5 +271,13 @@ class _YearPageState extends State<YearPage>
         }
       },
     );
+  }
+
+  @override
+  void initState() {
+    Future.delayed(
+        Duration.zero,
+            () =>Provider.of<Expenses>(context, listen: false).setSelectedPage(0));
+    super.initState();
   }
 }

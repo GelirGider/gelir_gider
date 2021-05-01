@@ -63,10 +63,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "CategoryWarning" : MessageLookupByLibrary.simpleMessage("Lütfen bir kategori seçiniz"),
     "ChangeAccount" : MessageLookupByLibrary.simpleMessage("Hesabı Değiştir"),
     "December" : MessageLookupByLibrary.simpleMessage("Aralık"),
+    "DeleteTitle" : MessageLookupByLibrary.simpleMessage("Silme İşlemi"),
+    "DeleteTutorial" : MessageLookupByLibrary.simpleMessage("Silme işlemi, yukarıdaki animasyonda görüldüğü gibi girilen kategorinin içindeki gelir veya giderin sola çekilmesi ile gerçekleşmektedir"),
     "DialogExpenseIncome" : MessageLookupByLibrary.simpleMessage("Gelir ve Giderler"),
     "DrawerLanguageText" : MessageLookupByLibrary.simpleMessage("Dil"),
     "DrawerSelectCurrency" : MessageLookupByLibrary.simpleMessage("Para Birimi"),
     "DrawerThemeText" : MessageLookupByLibrary.simpleMessage("Tema"),
+    "EnterNumber" : MessageLookupByLibrary.simpleMessage("Bir sayı giriniz"),
     "ExpenseListNoneExpense" : MessageLookupByLibrary.simpleMessage("Henüz ekleme yapılmadı \n Eklemeye başlayın !"),
     "February" : MessageLookupByLibrary.simpleMessage("Şubat"),
     "January" : MessageLookupByLibrary.simpleMessage("Ocak"),
@@ -90,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "TabBarYear" : MessageLookupByLibrary.simpleMessage("Yıl"),
     "ThemeSelectionOption1" : MessageLookupByLibrary.simpleMessage("Aydınlık Tema"),
     "ThemeSelectionOption2" : MessageLookupByLibrary.simpleMessage("Karanlık Tema"),
-    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("Tema Seçiniz")
+    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("Tema Seçiniz"),
+    "Understood" : MessageLookupByLibrary.simpleMessage("Anlaşıldı")
   };
 }

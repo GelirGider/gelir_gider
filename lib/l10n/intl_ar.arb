@@ -71,5 +71,8 @@
   "AddPrice" :  "أدخل سعرًا",
   "EnterNumber" : "اكتب رقم",
   "SelectCategory" : "اختر الفئة",
-  "CategoryWarning" :"الرجاء تحديد الفئة"
+  "CategoryWarning" :"الرجاء تحديد الفئة",
+  "DeleteTutorial" : "يحدث الحذف عن طريق سحب الدخل أو المصروفات في فئات إلى اليسار ، كما هو موضح في الرسم المتحرك أعلاه.",
+  "Understood" : "مفهوم",
+  "DeleteTitle" : "عملية الحذف"
 }

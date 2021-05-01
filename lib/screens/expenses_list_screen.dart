@@ -63,7 +63,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
             child: Consumer<Expenses>(
               builder: (context, provider, child) {
                 return GradientAppBar(
-                  leading: provider.TabBarIndex == 3 && provider.selectedPage != 0
+                  leading: provider.tabBarIndex == 3 && provider.selectedPage != 0
                       ? GestureDetector(
                     onTap: () => provider.previousPage(),
                     child: Container(
@@ -132,7 +132,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                   )
                 : Consumer<Expenses>(
                     builder: (context, provider, child) {
-                      return provider.TabBarIndex == 3
+                      return provider.tabBarIndex == 3
                           ? Container(
                               child: YearPage(),
                             )

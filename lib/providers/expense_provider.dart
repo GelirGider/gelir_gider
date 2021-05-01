@@ -104,7 +104,7 @@ class Expenses with ChangeNotifier {
     return {..._months};
   }
 
-  int get TabBarIndex => _tabBarIndex;
+  int get tabBarIndex => _tabBarIndex;
 
   //Tab Bar aksiyonlarına göre listenin değişimi
   void setTabBarIndex(int index) {
@@ -367,7 +367,7 @@ class Expenses with ChangeNotifier {
   // Mevcut para biriminin cihaz hafızasından alınması
   Future<void> getSymbol() async {
     var prefs = await SharedPreferences.getInstance();
-    symbol = await prefs.getString(modePrefKeyCurrency) ?? '₺';
+    symbol = prefs.getString(modePrefKeyCurrency) ?? '₺';
     notifyListeners();
   }
   //----------------------------------------------------------------------------
@@ -424,7 +424,13 @@ class Expenses with ChangeNotifier {
     });
     _currentDay.values.forEach((element) {
       element.removeWhere((element) => element.id == id);
+      if(selectedPage == 4 && element.isEmpty){
+        setSelectedPage(0);
+        notifyListeners();
+      }
     });
+    print(_currentDay.toString());
+
     notifyListeners();
     return await DBHelper.delete(
         isPersonal ? 'user_expenses' : 'corporation_expenses', id);

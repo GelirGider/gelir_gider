@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "CategoryWarning" : MessageLookupByLibrary.simpleMessage("请选择一个类别"),
     "ChangeAccount" : MessageLookupByLibrary.simpleMessage("变更账户"),
     "December" : MessageLookupByLibrary.simpleMessage("十二月"),
+    "DeleteTitle" : MessageLookupByLibrary.simpleMessage("“删除过程”"),
+    "DeleteTutorial" : MessageLookupByLibrary.simpleMessage("删除是通过将类别中的收入或支出拖到左侧来进行的，如上面的动画所示。"),
     "DialogExpenseIncome" : MessageLookupByLibrary.simpleMessage("收入与支出"),
     "DrawerLanguageText" : MessageLookupByLibrary.simpleMessage("语言"),
     "DrawerSelectCurrency" : MessageLookupByLibrary.simpleMessage("货币"),
@@ -91,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "TabBarYear" : MessageLookupByLibrary.simpleMessage("年"),
     "ThemeSelectionOption1" : MessageLookupByLibrary.simpleMessage("浅色主题"),
     "ThemeSelectionOption2" : MessageLookupByLibrary.simpleMessage("黑暗主题"),
-    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("选择主题")
+    "ThemeSelectionQuestion" : MessageLookupByLibrary.simpleMessage("选择主题"),
+    "Understood" : MessageLookupByLibrary.simpleMessage("明白了")
   };
 }

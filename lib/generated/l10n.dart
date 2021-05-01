@@ -744,6 +744,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Deletion occurs by dragging income or expenses in categories to the left, as seen in the animation above.`
+  String get DeleteTutorial {
+    return Intl.message(
+      'Deletion occurs by dragging income or expenses in categories to the left, as seen in the animation above.',
+      name: 'DeleteTutorial',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Understood`
+  String get Understood {
+    return Intl.message(
+      'Understood',
+      name: 'Understood',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deletion Process`
+  String get DeleteTitle {
+    return Intl.message(
+      'Deletion Process',
+      name: 'DeleteTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

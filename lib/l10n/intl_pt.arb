@@ -71,6 +71,9 @@
   "AddPrice" :  "Insira um preço",
   "EnterNumber" : "Escreva um número",
   "SelectCategory" : "Selecione a Categoria",
-  "CategoryWarning" :"Por favor, selecione uma categoria"
+  "CategoryWarning" :"Por favor, selecione uma categoria",
+  "DeleteTutorial" : "A exclusão ocorre arrastando receitas ou despesas nas categorias à esquerda, conforme visto na animação acima.",
+  "Understood" : "Entendido",
+  "DeleteTitle" : "Processo de exclusão"
 }
 
