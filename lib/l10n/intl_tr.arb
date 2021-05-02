@@ -12,15 +12,15 @@
   "ThemeSelectionOption2" : "Karanlık Tema",
   "AddingScreenCategories": "Kategoriler",
   "AddingScreenDescription": "Açıklama",
-  "AddingScreenPrice": "Fiyatı",
+  "AddingScreenPrice": "Tutarı",
   "AddingScreenDate": "Tarih",
   "AddingScreenIncome": "Gelir",
   "AddingScreenExpense": "Gider",
   "AddingScreenSave": "Kaydet",
   "ExpenseListNoneExpense" : "Henüz ekleme yapılmadı \n Eklemeye başlayın !",
   "DrawerThemeText": "Tema",
-  "DrawerLanguageText" : "Dil",
-  "CategoryPayment" : "Ödeme",
+  "DrawerLanguageText" : "Diller / Languages",
+  "CategoryPayment" : "Fatura",
   "CategoryDues" : "Aidat",
   "CategoryShopping" : "Alışveriş",
   "CategoryEducation" : "Eğitim",
@@ -80,5 +80,6 @@
   "CategoryWarning" : "Lütfen bir kategori seçiniz",
   "DeleteTutorial" : "Silme işlemi, yukarıdaki animasyonda görüldüğü gibi girilen kategorinin içindeki gelir veya giderin sola çekilmesi ile gerçekleşmektedir",
   "Understood" : "Anlaşıldı",
-  "DeleteTitle" : "Silme İşlemi"
+  "DeleteTitle" : "Silme İşlemi",
+  "Back" : "Geri"
 }

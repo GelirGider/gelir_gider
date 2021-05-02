@@ -8,6 +8,7 @@ import 'package:gelir_gider/themes/colours.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:currency_picker/currency_picker.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   @override
@@ -18,23 +19,45 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
     with SingleTickerProviderStateMixin {
   TabController _controller;
   var languageIndex;
+  var currencySelected;
+  var isFirstTime;
 
   void _getPrefs() async {
     var prefs = await SharedPreferences.getInstance();
     languageIndex = prefs.getInt('language') ?? 0;
     Provider.of<Languages>(context, listen: false).setLanguage(languageIndex);
+    isFirstTime = prefs.getBool('isFirstTime') ?? true;
+  }
+
+  Future<void> disableFirstTime() async{
+    var prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isFirstTime',false);
   }
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
     Future.delayed(Duration.zero).then((_) {
+      _getPrefs();
       Provider.of<Expenses>(context, listen: false).setCategories(context);
       _controller = TabController(length: 4, vsync: this);
       _controller.addListener(() {
         Provider.of<Expenses>(context, listen: false)
             .setTabBarIndex(_controller.index);
       });
+      if(isFirstTime) {
+        disableFirstTime();
+        showCurrencyPicker(
+          context: context,
+          showFlag: true,
+          showCurrencyName: true,
+          showCurrencyCode: true,
+          onSelect: (Currency currency) async {
+            print('Select currency symbol: ${currency.symbol}');
+            await Provider.of<Expenses>(context,listen: false).setCurrency(currency.symbol);
+          },
+        );
+      }
     });
   }
 

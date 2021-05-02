@@ -249,6 +249,7 @@ class _AddingExpenseState extends State<AddingExpense>
                                     vertical: size.height * 0.010),
                                 child: id == -1
                                     ? ListTile(
+                                        leading: Image.asset('assets/categories/categories.png'),
                                         title: Text(
                                           S.of(context).SelectCategory,
                                           textAlign: TextAlign.center,

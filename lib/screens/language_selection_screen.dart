@@ -6,7 +6,6 @@ import 'package:gelir_gider/providers/language_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/themes/colours.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // Drawer da bulunan Dil seçim ekranının tasarımı ve tüm arkaplanının bulunduğu
 // kısım
@@ -18,77 +17,37 @@ class LanguageSelectionScreen extends StatefulWidget {
       _LanguageSelectionScreenState();
 }
 
-Future<void> disableFirstTime() async{
-  var prefs = await SharedPreferences.getInstance();
-  await prefs.setBool('isFirstTime',false);
-}
-
-List icons = [
-  ClipRRect(
-    child: Image.asset(
-      'assets/flags/turkey.png',
-      fit: BoxFit.cover,
-    ),
-  ),
-  ClipRRect(
-    child: Image.asset(
-      'assets/flags/uk.png',
-      fit: BoxFit.cover,
-    ),
-  ),
-  ClipRRect(
-    child: Image.asset(
-      'assets/flags/china.png',
-      fit: BoxFit.cover,
-    ),
-  ),
-  ClipRRect(
-    child: Image.asset(
-      'assets/flags/spain.png',
-      fit: BoxFit.cover,
-    ),
-  ),
-  ClipRRect(
-    child: Image.asset(
-      'assets/flags/india.png',
-      fit: BoxFit.cover,
-    ),
-  ),
-  ClipRRect(
-    child: Image.asset(
-      'assets/flags/arabia.png',
-      fit: BoxFit.cover,
-    ),
-  ),
-  ClipRRect(
-    child: Image.asset(
-      'assets/flags/portugal.png',
-      fit: BoxFit.cover,
-    ),
-  ),
-  ClipRRect(
-    child: Image.asset(
-      'assets/flags/russia.png',
-      fit: BoxFit.cover,
-    ),
-  ),
-  ClipRRect(
-    child: Image.asset(
-      'assets/flags/japan.png',
-      fit: BoxFit.cover,
-    ),
-  ),
-  ClipRRect(
-    child: Image.asset(
-      'assets/flags/germany.png',
-      fit: BoxFit.cover,
-    ),
-  )
-];
-
 class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
+
+  List<String> assets = [
+    'assets/flags/turkey.png',
+    'assets/flags/uk.png',
+    'assets/flags/china.png',
+    'assets/flags/spain.png',
+    'assets/flags/india.png',
+    'assets/flags/arabia.png',
+    'assets/flags/portugal.png',
+    'assets/flags/russia.png',
+    'assets/flags/japan.png',
+    'assets/flags/germany.png',
+  ];
+  List<ClipRRect> icons = [];
+
+  @override
+  void initState() {
+    super.initState();
+    assets.forEach((asset) => icons.add(
+      ClipRRect(
+        child: Image.asset(
+          asset,
+          fit: BoxFit.cover,
+        ),
+      ),));
+  }
+
   @override
   Widget build(BuildContext context) {
+
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
     final size = MediaQuery.of(context).size;
@@ -131,7 +90,6 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                       (index) {
                         return FlatButton(
                           onPressed: () {
-                            disableFirstTime();
                             Provider.of<Languages>(context, listen: false)
                                 .setLanguage(index);
                             Navigator.of(context)

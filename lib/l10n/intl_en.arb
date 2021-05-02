@@ -73,5 +73,6 @@
   "CategoryWarning" : "Please select a category",
   "DeleteTutorial" : "Deletion occurs by dragging income or expenses in categories to the left, as seen in the animation above.",
   "Understood" : "Understood",
-  "DeleteTitle" : "Deletion Process"
+  "DeleteTitle" : "Deletion Process",
+  "Back" : "Back"
 }
