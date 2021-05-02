@@ -49,8 +49,9 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
     final scaffoldKey = GlobalKey<ScaffoldState>();
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     final size = MediaQuery.of(context).size;
-    var isDark = _theme.getTheme() == _theme.dark;
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
+    var isDark = _theme.getTheme() == _theme.dark;
+
 
     return SafeArea(
       child: DefaultTabController(
@@ -136,7 +137,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                           ? Container(
                               child: YearPage(),
                             )
-                          : provider.currentItems.isEmpty
+                          : checkItemsAllEmpty(provider.currentItems.values)
                               ? child
                               : Column(
                                   children: [
@@ -203,4 +204,15 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
     });
     return list;
   }
+}
+
+bool checkItemsAllEmpty(Iterable<List<Expense>> values) {
+  var isEmpty=true;
+  values.forEach((element) {
+    if(element.isNotEmpty) {
+    isEmpty=false;
+    return isEmpty;
+  }
+  });
+  return isEmpty;
 }

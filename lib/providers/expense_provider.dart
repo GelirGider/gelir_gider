@@ -417,11 +417,24 @@ class Expenses with ChangeNotifier {
 
   // Kullanıcın sildiği gelir ve giderlerin id'sine göre veritabanından silinmesi
   Future<void> delete(String id) async {
-    //var isPersonal = true;
+    //Tüm listeden sil
     _items.removeWhere((element) => element.id == id);
+
+    //Kategorideki gelir gideri sil
     _currentItems.values.forEach((element) {
       element.removeWhere((element) => element.id == id);
     });
+
+    //Kategori boş ise sil
+    var deletedKey=-1;
+    _currentItems.forEach((key, value) {
+      if (value.isEmpty) {
+        deletedKey=key;
+      }
+    });
+    if(deletedKey!=-1) _currentItems.remove(deletedKey);
+
+    //Yıl sayfasındaki listesinden sil
     _currentDay.values.forEach((element) {
       element.removeWhere((element) => element.id == id);
       if(selectedPage == 4 && element.isEmpty){
@@ -429,9 +442,9 @@ class Expenses with ChangeNotifier {
         notifyListeners();
       }
     });
-    print(_currentDay.toString());
 
     notifyListeners();
+
     return await DBHelper.delete(
         isPersonal ? 'user_expenses' : 'corporation_expenses', id);
   }

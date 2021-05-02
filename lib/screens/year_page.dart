@@ -21,8 +21,7 @@ class YearPage extends StatefulWidget {
   _YearPageState createState() => _YearPageState();
 }
 
-class _YearPageState extends State<YearPage>
-    with SingleTickerProviderStateMixin{
+class _YearPageState extends State<YearPage> {
 
   @override
   Widget build(BuildContext context) {
