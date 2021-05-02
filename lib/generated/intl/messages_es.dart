@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "AppBarIndividual" : MessageLookupByLibrary.simpleMessage("Individual"),
     "April" : MessageLookupByLibrary.simpleMessage("Abril"),
     "August" : MessageLookupByLibrary.simpleMessage("Agosto"),
+    "Back" : MessageLookupByLibrary.simpleMessage("Atrás"),
     "Cancel" : MessageLookupByLibrary.simpleMessage("Cancelar"),
     "CategoryBill" : MessageLookupByLibrary.simpleMessage("Cuenta"),
     "CategoryCompetition" : MessageLookupByLibrary.simpleMessage("Competición"),

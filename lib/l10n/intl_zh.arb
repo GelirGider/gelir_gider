@@ -74,5 +74,6 @@
   "CategoryWarning" : "请选择一个类别",
   "DeleteTutorial" : "删除是通过将类别中的收入或支出拖到左侧来进行的，如上面的动画所示。",
   "Understood" : "明白了",
-  "DeleteTitle" : "“删除过程”"
+  "DeleteTitle" : "删除过程",
+  "Back" : "背部"
 }

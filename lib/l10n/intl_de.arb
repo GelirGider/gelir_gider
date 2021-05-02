@@ -74,5 +74,6 @@
   "CategoryWarning" : "Bitte wählen sie eine Kategorie",
   "DeleteTutorial" : "Das Löschen erfolgt durch Ziehen von Einnahmen oder Ausgaben in Kategorien nach links, wie in der obigen Animation gezeigt.",
   "Understood" : "Verstanden",
-  "DeleteTitle" : "Löschvorgang"
+  "DeleteTitle" : "Löschvorgang",
+  "Back" : "Zurück"
 }

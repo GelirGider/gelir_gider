@@ -90,24 +90,25 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                   leading: provider.tabBarIndex == 3 && provider.selectedPage != 0
                       ? GestureDetector(
                     onTap: () => provider.previousPage(),
-                    child: Container(
-                      margin : EdgeInsets.fromLTRB(10, 2, 0, 2),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex:2,
+                    child: Flex(
+                      direction: Axis.horizontal,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 12,vertical: 0),
                             child: Icon(Icons.arrow_back_ios,
                                 size: size.width*0.05,
                                 color: Colours.getBlackOrWhite(isDark)),
                           ),
-                          Expanded(
-                            flex:3,
-                            child: Text("Geri",
-                                style: TextStyle(
-                                    color: Colours.getBlackOrWhite(isDark))),
-                          ),
-                        ]
-                      ),
+                        ),
+                        Expanded(
+                          child: Text(S.of(context).Back,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: textScaleFactor*13,
+                                  color: Colours.getBlackOrWhite(isDark))),
+                        ),
+                      ]
                     ),
                   )
                       : Container(),

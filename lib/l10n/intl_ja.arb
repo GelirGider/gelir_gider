@@ -74,5 +74,6 @@
   "CategoryWarning" :"カテゴリを選択してください",
   "DeleteTutorial" : "上のアニメーションに見られるように、削除はカテゴリ内の収入または支出を左にドラッグすることによって発生します。",
   "Understood" : "理解した",
-  "DeleteTitle" : "削除プロセス"
+  "DeleteTitle" : "削除プロセス",
+  "Back" : "バック"
 }
