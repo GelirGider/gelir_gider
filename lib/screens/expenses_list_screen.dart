@@ -5,7 +5,6 @@ import 'package:gelir_gider/widgets.dart';
 import 'package:gelir_gider/providers/providers.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/themes/colours.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:currency_picker/currency_picker.dart';
@@ -86,7 +85,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
             preferredSize: size / 6,
             child: Consumer<Expenses>(
               builder: (context, provider, child) {
-                return GradientAppBar(
+                return AppBar(
                   leading: provider.tabBarIndex == 3 && provider.selectedPage != 0
                       ? GestureDetector(
                     onTap: () => provider.previousPage(),
@@ -116,16 +115,13 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                       bottom: BorderSide(
                           width: 3.0 * textScaleFactor,
                           color: Colours.getGradientNew(isDark))),
-                  title: Icon(
-                    Icons.attach_money,
-                    size: size.height * 0.035,
-                    color: Theme.of(context).buttonColor,
+                  title: Container(
+                      child: Image.asset('assets/icon.png',fit: BoxFit.contain,height: size.height * 0.05,),
+                      padding : EdgeInsets.fromLTRB(0, 0 , 15, 0)
                   ),
                   centerTitle: true,
                   actions: [DrawerButton(scaffoldKey: scaffoldKey)],
-                  gradient: LinearGradient(
-                    colors: Colours.getGradientNew2(isDark),
-                  ),
+                  backgroundColor: Colours.getGradientNew2(isDark),
                   bottom: TabBar(
                     controller: _controller,
                     unselectedLabelColor:
@@ -213,9 +209,9 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           floatingActionButton: FloatingActionButtonAdd(
-            scaffoldKey: scaffoldKey,
-            context: context,
-          ),
+              context: context,
+              scaffoldKey: scaffoldKey,
+          )
         ),
       ),
     );

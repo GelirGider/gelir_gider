@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide DateUtils;
 import 'package:gelir_gider/helpers/db_helper.dart';
 import 'package:gelir_gider/utils/time_diff.dart';
 import 'package:gelir_gider/widgets/components/category_item.dart';
@@ -234,25 +234,19 @@ class Expenses with ChangeNotifier {
   //////////////////////////////////////////////////////////////////////////////
 
   ///////////////////////CURRENT DWMY GET&SET METHODS///////////////////////////
+
   Map<int, List<Expense>> get currentDay => _currentDay;
-  set currentDay(Map<int, List<Expense>> value) {
-    _currentDay = value;
-  }
+  set currentDay(Map<int, List<Expense>> value) => _currentDay = value;
 
   Map<String, List<Expense>> get currentWeek => _currentWeek;
-  set currentWeek(Map<String, List<Expense>> value) {
-    _currentWeek = value;
-  }
+  set currentWeek(Map<String, List<Expense>> value) => _currentWeek = value;
 
   Map<int, List<Expense>> get currentMonth => _currentMonth;
-  set currentMonth(Map<int, List<Expense>> value) {
-    _currentMonth = value;
-  }
+  set currentMonth(Map<int, List<Expense>> value) => _currentMonth = value;
 
   Map<int, List<Expense>> get currentYear => _currentYear;
-  set currentYear(Map<int, List<Expense>> value) {
-    _currentYear = value;
-  }
+  set currentYear(Map<int, List<Expense>> value) => _currentYear = value;
+
   //////////////////////////////////////////////////////////////////////////////
 
   //Harcamaların yıllara göre gruplandırılarak döndürülmesi
@@ -276,7 +270,7 @@ class Expenses with ChangeNotifier {
   //Seçilen ayın son gününün bulunması
   int getLastDayOfMonth() {
     final date = DateTime(selectedYear, (selectedMonth + 1));
-    final lastDay = Utils.lastDayOfMonth(date);
+    final lastDay = DateUtils.lastDayOfMonth(date);
     print('Last day in month : ${lastDay.day}');
     return lastDay.day;
   }

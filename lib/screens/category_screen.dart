@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gelir_gider/providers/expense_provider.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +18,7 @@ class CategoryScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        appBar: GradientAppBar(
+        appBar: AppBar(
           iconTheme: IconThemeData(
               color: Colours.getGradientNew(isDark) //change your color here
               ),
@@ -27,7 +26,7 @@ class CategoryScreen extends StatelessWidget {
               bottom: BorderSide(
                   width: textScaleFactor * 3.0,
                   color: Colours.getGradientNew(isDark))),
-          gradient: LinearGradient(colors: Colours.getGradientNew2(isDark)),
+          backgroundColor: Colours.getGradientNew2(isDark),
           centerTitle: true,
           title: Text(
             S.of(context).AddingScreenCategories,

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gelir_gider/providers/ad_state.dart';
-import 'package:gelir_gider/providers/expense_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:gelir_gider/providers/theme_provider.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:gelir_gider/screens/expenses_list_screen.dart';
-import 'package:gelir_gider/providers/language_provider.dart';
+import 'package:gelir_gider/providers/providers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gelir_gider/themes/colours.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:gelir_gider/screens/language_selection_screen.dart';
 
 var isFirstTime;
+var isLightTheme;
 
 void main() async {
   // Uygulama ilk açıldığı vakit cihazda varsıyalan bir tema seçimi olup olmadığını
@@ -22,7 +21,7 @@ void main() async {
   final initFuture = MobileAds.instance.initialize();
   final adState = AdState(initFuture);
   var prefs = await SharedPreferences.getInstance();
-  var isDarkTheme = prefs.getBool('isLight') ?? true;
+  isLightTheme = prefs.getBool('isLight') ?? true;
   isFirstTime = prefs.getBool('isFirstTime') ?? true;
 
   runApp(
@@ -35,7 +34,7 @@ void main() async {
         ChangeNotifierProvider<ThemeProvider>(
           child: MyApp(),
           create: (BuildContext context) {
-            return ThemeProvider(isDarkTheme);
+            return ThemeProvider(isLightTheme);
           },
         ),
         ChangeNotifierProvider(
@@ -66,9 +65,9 @@ class MyApp extends StatelessWidget {
           color: Colours.colorGradient1, // Uygulamanın varsayılan rengi
           supportedLocales: S.delegate.supportedLocales,
           title: 'Gelir/Gider', // Uygulama ismi
-          theme: value.getTheme(), // Temamız
+          theme: value.getTheme(),
           debugShowCheckedModeBanner: false,
-          home: isFirstTime ? LanguageSelectionScreen()  : ExpensesListScreen(), // Açılış ekranımız
+          home: isFirstTime ? LanguageSelectionScreen() : ExpensesListScreen() // Açılış ekranımız
         );
       },
     );

@@ -8,10 +8,8 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:gelir_gider/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gelir_gider/screens/category_screen.dart';
 import 'package:gelir_gider/providers/theme_provider.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 import 'package:gelir_gider/themes/colours.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
@@ -20,8 +18,8 @@ class AddingExpense extends StatefulWidget {
   // Ekleme ekranının tasarımı ve tüm arkaplanının yapıldığı kısım
 
   final scaffoldKey;
-
-  const AddingExpense({Key key, this.scaffoldKey}) : super(key: key);
+  final isExpense;
+  const AddingExpense({Key key, this.scaffoldKey, this.isExpense}) : super(key: key);
 
   @override
   _AddingExpenseState createState() => _AddingExpenseState();
@@ -36,7 +34,6 @@ class _AddingExpenseState extends State<AddingExpense>
   String description = '';
   double price = 0.0;
   String time = '';
-  bool isExpense = false;
   var category;
   var id = -1;
   var adCount,isFirst;
@@ -80,9 +77,9 @@ class _AddingExpenseState extends State<AddingExpense>
       Expense(
         id: UniqueKey().toString(),
         category: id,
-        isExpense: isExpense ? 'expense' : 'income',
+        isExpense: widget.isExpense ? 'expense' : 'income',
         time: time,
-        price: isExpense ? (price * (-1)) : price,
+        price: widget.isExpense ? (price * (-1)) : price,
         description: description,
       ),
     );
@@ -160,7 +157,7 @@ class _AddingExpenseState extends State<AddingExpense>
         endDrawer: MainDrawer(),
         appBar: PreferredSize(
             preferredSize: size / 6.5,
-            child: GradientAppBar(
+            child: AppBar(
               iconTheme: IconThemeData(
                   color: Colours.getGradientNew(isDark) //change your color here
                   ),
@@ -168,16 +165,16 @@ class _AddingExpenseState extends State<AddingExpense>
                   bottom: BorderSide(
                       width: 3.0 * textScaleFactor,
                       color: Colours.getGradientNew(isDark))),
-              gradient: LinearGradient(colors: Colours.getGradientNew2(isDark)),
+              backgroundColor: Colours.getGradientNew2(isDark),
               centerTitle: true,
               actions: [
                 Builder(
                     builder: (context) =>
                         DrawerButton(scaffoldKey: scaffoldKey)),
               ],
-              title: Icon(
-                Icons.attach_money,
-                color: Theme.of(context).buttonColor,
+              title: Container(
+                  child: Image.asset('assets/icon.png',fit: BoxFit.contain,height: size.height * 0.05,),
+                  padding : EdgeInsets.fromLTRB(0, 0 , 15, 0)
               ),
             )),
         body: _isLoading
@@ -187,39 +184,6 @@ class _AddingExpenseState extends State<AddingExpense>
             : SingleChildScrollView(
                 child: Column(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: size.height * 0.025),
-                      child: ToggleSwitch(
-                        minWidth: textScaleFactor * 70.0,
-                        minHeight: textScaleFactor * 40.0,
-                        fontSize: 12.0 * textScaleFactor,
-                        initialLabelIndex: 0,
-                        cornerRadius: 60.0 * textScaleFactor,
-                        activeBgColor:
-                            isExpense ? Colours.inactiveBgColor : Colours.green,
-                        activeFgColor:
-                            isExpense ? Colours.black : Colours.white,
-                        inactiveBgColor:
-                            isExpense ? Colours.red : Colours.inactiveBgColor,
-                        inactiveFgColor:
-                            isExpense ? Colours.white : Colours.black,
-                        labels: [
-                          S.of(context).AddingScreenIncome,
-                          S.of(context).AddingScreenExpense,
-                        ],
-                        onToggle: (index) {
-                          setState(() {
-                            if (index == 0) {
-                              isExpense = false;
-                            }
-                            if (index == 1) {
-                              isExpense = true;
-                            }
-                          });
-                          print('switched to: $index');
-                        },
-                      ),
-                    ),
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: size.width * 0.016,
@@ -254,7 +218,7 @@ class _AddingExpenseState extends State<AddingExpense>
                                           S.of(context).SelectCategory,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                            fontSize: 19.0 * textScaleFactor,
+                                            fontSize: 16.0 * textScaleFactor,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),

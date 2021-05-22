@@ -28,7 +28,6 @@ class _YearPageState extends State<YearPage> {
     final _theme = Provider.of<ThemeProvider>(context, listen: false);
     var isDark = _theme.getTheme() == _theme.dark;
     final size = MediaQuery.of(context).size;
-
     final monthNames = <String>[
       S.of(context).January,
       S.of(context).February,

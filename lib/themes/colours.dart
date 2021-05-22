@@ -28,11 +28,11 @@ class Colours {
     }
   }
 
-  static List<Color> getGradientNew2(bool isDark) {
+  static Color getGradientNew2(bool isDark) {
     if (isDark) {
-      return [colorGradientDark, colorGradientDark];
+      return colorGradientDark;
     } else {
-      return [white, white];
+      return white;
     }
   }
 

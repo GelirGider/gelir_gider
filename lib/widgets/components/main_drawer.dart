@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gelir_gider/providers/expense_provider.dart';
-import 'package:gelir_gider/providers/theme_provider.dart';
+import 'package:gelir_gider/providers/providers.dart';
 import 'package:gelir_gider/widgets/dialogs/account_changer.dart';
 import 'package:provider/provider.dart';
 import 'package:gelir_gider/widgets/dialogs/theme_dialog_widget.dart';
