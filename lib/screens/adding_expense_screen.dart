@@ -172,10 +172,7 @@ class _AddingExpenseState extends State<AddingExpense>
                     builder: (context) =>
                         DrawerButton(scaffoldKey: scaffoldKey)),
               ],
-              title: Container(
-                  child: Image.asset('assets/icon.png',fit: BoxFit.contain,height: size.height * 0.05,),
-                  padding : EdgeInsets.fromLTRB(0, 0 , 15, 0)
-              ),
+              title: Image.asset('assets/screen_logo.png',fit: BoxFit.contain,height: size.height * 0.05,),
             )),
         body: _isLoading
             ? Center(
@@ -293,11 +290,8 @@ class _AddingExpenseState extends State<AddingExpense>
                             SaveButton(
                               onPressed: () {
                                 if (id == -1) {
-                                  scaffoldKey.currentState
-                                      .showSnackBar(new SnackBar(
-                                    content:
-                                        new Text(S.of(context).CategoryWarning),
-                                  ));
+                                  ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+                                    content: new Text(S.of(context).CategoryWarning),));
                                 } else {
                                   return _saveForm();
                                 }

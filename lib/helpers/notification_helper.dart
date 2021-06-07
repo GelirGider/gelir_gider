@@ -29,7 +29,7 @@ class NotificationHelper {
 
   void initializePlatformSpecifics() {
     var initializationSettingsAndroid =
-    AndroidInitializationSettings('app_icon_asset');
+    AndroidInitializationSettings('@mipmap/ic_launcher');
     var initializationSettingsIOS = IOSInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,

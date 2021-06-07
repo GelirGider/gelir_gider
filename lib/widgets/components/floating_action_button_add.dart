@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gelir_gider/main.dart';
 import 'package:gelir_gider/screens/adding_expense_screen.dart';
-import 'package:gelir_gider/widgets/buttons/add_button.dart';
-import 'package:simple_speed_dial/simple_speed_dial.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:gelir_gider/themes/colours.dart';
+import 'package:gelir_gider/generated/l10n.dart';
+
 class FloatingActionButtonAdd extends StatelessWidget {
 
   // Sağ altta ekleme ekranına götüren + ikonlu butonumuzun
@@ -25,23 +25,33 @@ class FloatingActionButtonAdd extends StatelessWidget {
     }
 
     return SpeedDial(
-      child : AddButton(),
-      labelsStyle: TextStyle(color: Colours.black),
-      speedDialChildren: <SpeedDialChild>[
+      heroTag: "floatingbutton",
+      icon: Icons.add,
+      iconTheme: IconThemeData(size: 30,color: Colours.white),
+      activeIcon: Icons.close,
+      curve: Curves.bounceIn,
+      renderOverlay: false,
+      overlayColor: Colors.black,
+      overlayOpacity: 0.2,
+      buttonSize: 60.0,
+      gradientBoxShape: BoxShape.circle,
+      gradient: LinearGradient(colors: Colours.getGradientColors(false)),
+      children: [
         SpeedDialChild(
           child: Icon(Icons.add),
           foregroundColor: Colours.white,
           backgroundColor: Colours.green,
-          label: 'Gelir',
-          onPressed: () => navigationFunction(context, scaffoldKey,false),
-          closeSpeedDialOnPressed: false,
+          label: S.of(context).AddingScreenIncome,
+          labelStyle: TextStyle(color: Colours.black),
+          onTap: () => navigationFunction(context, scaffoldKey,false),
         ),
         SpeedDialChild(
           child: Icon(Icons.remove),
           foregroundColor: Colours.white,
           backgroundColor: Colours.red,
-          label: 'Gider',
-          onPressed: () => navigationFunction(context, scaffoldKey,true),
+          labelStyle: TextStyle(color: Colours.black),
+          label: S.of(context).AddingScreenExpense,
+          onTap: () => navigationFunction(context, scaffoldKey,true),
         ),
       ],
     );

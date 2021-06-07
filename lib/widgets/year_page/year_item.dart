@@ -16,16 +16,17 @@ class YearListItem extends StatelessWidget {
     return Consumer<Expenses>(
       child: null,
       builder: (context, provider, child) {
-        return FlatButton(
+        return TextButton(
           onPressed: () {
             provider.setSelectedYear(year);
             provider.setSelectedPage(1);
           },
-          shape: RoundedRectangleBorder(
+          style: TextButton.styleFrom(shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          padding: const EdgeInsets.symmetric(vertical: 30),
-          color: Colours.pink,
+            padding: EdgeInsets.symmetric(vertical: 30,horizontal: 15),
+            backgroundColor: Colours.pink,
+          ),
           child: Text(
             year.toString(),
             style: TextStyle(

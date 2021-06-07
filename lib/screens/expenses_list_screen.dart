@@ -115,10 +115,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
                       bottom: BorderSide(
                           width: 3.0 * textScaleFactor,
                           color: Colours.getGradientNew(isDark))),
-                  title: Container(
-                      child: Image.asset('assets/icon.png',fit: BoxFit.contain,height: size.height * 0.05,),
-                      padding : EdgeInsets.fromLTRB(0, 0 , 15, 0)
-                  ),
+                  title: Image.asset('assets/screen_logo.png',fit: BoxFit.contain,height: size.height * 0.05,),
                   centerTitle: true,
                   actions: [DrawerButton(scaffoldKey: scaffoldKey)],
                   backgroundColor: Colours.getGradientNew2(isDark),
@@ -211,7 +208,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
           floatingActionButton: FloatingActionButtonAdd(
               context: context,
               scaffoldKey: scaffoldKey,
-          )
+          ),
         ),
       ),
     );

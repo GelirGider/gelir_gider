@@ -86,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "November" : MessageLookupByLibrary.simpleMessage("Kasım"),
     "OK" : MessageLookupByLibrary.simpleMessage("Kaydet"),
     "October" : MessageLookupByLibrary.simpleMessage("Ekim"),
+    "RemoveAds" : MessageLookupByLibrary.simpleMessage("Reklamları Gizle"),
     "SelectCategory" : MessageLookupByLibrary.simpleMessage("Kategori Seçiniz"),
     "September" : MessageLookupByLibrary.simpleMessage("Eylül"),
     "TabBarDay" : MessageLookupByLibrary.simpleMessage("Bugün"),

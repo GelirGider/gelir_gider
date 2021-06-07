@@ -86,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "November" : MessageLookupByLibrary.simpleMessage("شهر نوفمبر"),
     "OK" : MessageLookupByLibrary.simpleMessage("موافق"),
     "October" : MessageLookupByLibrary.simpleMessage("اكتوبر"),
+    "RemoveAds" : MessageLookupByLibrary.simpleMessage("ازالة الاعلانات"),
     "SelectCategory" : MessageLookupByLibrary.simpleMessage("اختر الفئة"),
     "September" : MessageLookupByLibrary.simpleMessage("سبتمبر"),
     "TabBarDay" : MessageLookupByLibrary.simpleMessage("يوم"),

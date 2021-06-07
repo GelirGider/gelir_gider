@@ -81,5 +81,6 @@
   "DeleteTutorial" : "Silme işlemi, yukarıdaki animasyonda görüldüğü gibi girilen kategorinin içindeki gelir veya giderin sola çekilmesi ile gerçekleşmektedir",
   "Understood" : "Anlaşıldı",
   "DeleteTitle" : "Silme İşlemi",
-  "Back" : "Geri"
+  "Back" : "Geri",
+  "RemoveAds" : "Reklamları Gizle"
 }

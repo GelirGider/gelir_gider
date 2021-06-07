@@ -69,7 +69,7 @@ class CategoryScreen extends StatelessWidget {
                       children: categories.map(
                         (element) {
                           return FittedBox(
-                            child: FlatButton(
+                            child: TextButton(
                               onPressed: () {
                                 provider.setCurrentCategory(element.index);
                                 return Navigator.pop(context, element.index);

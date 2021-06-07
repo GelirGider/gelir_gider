@@ -784,6 +784,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Remove Ads`
+  String get RemoveAds {
+    return Intl.message(
+      'Remove Ads',
+      name: 'RemoveAds',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

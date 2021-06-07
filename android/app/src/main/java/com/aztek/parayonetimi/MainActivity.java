@@ -1,4 +1,4 @@
-package com.yusuferdogan.gelir_gider;
+package com.aztek.parayonetimi;
 
 import io.flutter.embedding.android.FlutterActivity;
 

@@ -88,7 +88,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                     children: List.generate(
                       icons.length,
                       (index) {
-                        return FlatButton(
+                        return TextButton(
                           onPressed: () {
                             Provider.of<Languages>(context, listen: false)
                                 .setLanguage(index);

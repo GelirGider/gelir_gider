@@ -196,6 +196,22 @@ class _MainDrawerState extends State<MainDrawer>with SingleTickerProviderStateMi
               activeColor:Colours.colorGradient2,
             ) ,
           ),
+          ListTile(
+            contentPadding: EdgeInsets.symmetric(vertical:size.height*0.015,horizontal: size.width*0.03),
+            onTap: () {
+
+            },
+            title: Text(
+              S.of(context).RemoveAds,
+              style: TextStyle(fontSize: 15 * textScaleFactor),
+            ),
+            leading: Icon(
+              Icons.remove_red_eye_rounded,
+              size: 30*textScaleFactor,
+              color: Theme.of(context).buttonColor,
+            ),
+            trailing: Icon(Icons.arrow_forward_ios),
+          ),
         ],
       ),
     );

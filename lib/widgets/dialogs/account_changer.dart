@@ -70,7 +70,7 @@ class AccountChanger extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              FlatButton(
+                              TextButton(
                                 onPressed: () async {
                                   await provider.setPersonal();
                                   provider.setTabBarIndex(0);
@@ -101,7 +101,7 @@ class AccountChanger extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              FlatButton(
+                              TextButton(
                                 onPressed: () async {
                                   await provider.setCorporate();
                                   provider.setTabBarIndex(0);

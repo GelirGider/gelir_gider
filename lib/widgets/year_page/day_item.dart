@@ -4,7 +4,6 @@ import 'package:gelir_gider/themes/colours.dart';
 import 'package:provider/provider.dart';
 
 class DayListItem extends StatelessWidget {
-
   // Year kısmında gün kısmına eriştiğimizde gözüken butonların tasarımı ve
   // tıklandığında yapılacak işlemlerin bulunduğu kısım
 
@@ -14,17 +13,19 @@ class DayListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final expenseProvider = Provider.of<Expenses>(context, listen: false);
-    return FlatButton(
+    return TextButton(
+      style: TextButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: EdgeInsets.symmetric(vertical: 30,horizontal: 15),
+        backgroundColor: Colours.pink,
+      ),
       onPressed: () {
         print(title.split(' ')[0]);
         expenseProvider.setSelectedDay(int.parse(title.split(' ')[0]));
         expenseProvider.setSelectedPage(4);
       },
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 30),
-      color: Colours.pink,
       child: Text(
         title,
         style: TextStyle(

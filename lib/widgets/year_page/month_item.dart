@@ -15,16 +15,17 @@ class MonthListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final expenseProvider = Provider.of<Expenses>(context, listen: false);
-    return FlatButton(
+    return TextButton(
+      style : TextButton.styleFrom(shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+        padding: EdgeInsets.symmetric(vertical: 30,horizontal: 15),
+        backgroundColor: Colours.pink,),
       onPressed: () {
         expenseProvider.setSelectedMonth(index);
         expenseProvider.setSelectedPage(2);
       },
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 30),
-      color: Colours.pink,
+
       child: Text(
         title,
         style: TextStyle(
