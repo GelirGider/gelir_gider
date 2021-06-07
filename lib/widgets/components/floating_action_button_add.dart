@@ -38,20 +38,20 @@ class FloatingActionButtonAdd extends StatelessWidget {
       gradient: LinearGradient(colors: Colours.getGradientColors(false)),
       children: [
         SpeedDialChild(
-          child: Icon(Icons.add),
-          foregroundColor: Colours.white,
-          backgroundColor: Colours.green,
-          label: S.of(context).AddingScreenIncome,
-          labelStyle: TextStyle(color: Colours.black),
-          onTap: () => navigationFunction(context, scaffoldKey,false),
-        ),
-        SpeedDialChild(
           child: Icon(Icons.remove),
           foregroundColor: Colours.white,
           backgroundColor: Colours.red,
           labelStyle: TextStyle(color: Colours.black),
           label: S.of(context).AddingScreenExpense,
           onTap: () => navigationFunction(context, scaffoldKey,true),
+        ),
+        SpeedDialChild(
+          child: Icon(Icons.add),
+          foregroundColor: Colours.white,
+          backgroundColor: Colours.green,
+          label: S.of(context).AddingScreenIncome,
+          labelStyle: TextStyle(color: Colours.black),
+          onTap: () => navigationFunction(context, scaffoldKey,false),
         ),
       ],
     );
