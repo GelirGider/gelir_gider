@@ -28,13 +28,13 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
     isFirstTime = prefs.getBool('isFirstTime') ?? true;
   }
 
-  Future<void> disableFirstTime() async{
+  Future<void> disableFirstTime() async {
     var prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isFirstTime',false);
+    await prefs.setBool('isFirstTime', false);
   }
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     Future.delayed(Duration.zero).then((_) {
       _getPrefs();
@@ -44,7 +44,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
         Provider.of<Expenses>(context, listen: false)
             .setTabBarIndex(_controller.index);
       });
-      if(isFirstTime) {
+      if (isFirstTime) {
         disableFirstTime();
         showCurrencyPicker(
           context: context,
@@ -53,7 +53,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
           showCurrencyCode: true,
           onSelect: (Currency currency) async {
             print('Select currency symbol: ${currency.symbol}');
-            await Provider.of<Expenses>(context,listen: false).setCurrency(currency.symbol);
+            await Provider.of<Expenses>(context, listen: false)
+                .setCurrency(currency.symbol);
           },
         );
       }
@@ -74,7 +75,6 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
     var textScaleFactor = MediaQuery.of(context).textScaleFactor;
     var isDark = _theme.getTheme() == _theme.dark;
 
-
     return SafeArea(
       child: DefaultTabController(
         length: 4,
@@ -86,36 +86,27 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
             child: Consumer<Expenses>(
               builder: (context, provider, child) {
                 return AppBar(
-                  leading: provider.tabBarIndex == 3 && provider.selectedPage != 0
-                      ? GestureDetector(
-                    onTap: () => provider.previousPage(),
-                    child: Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 12,vertical: 0),
-                            child: Icon(Icons.arrow_back_ios,
-                                size: size.width*0.05,
-                                color: Colours.getBlackOrWhite(isDark)),
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(S.of(context).Back,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: textScaleFactor*13,
-                                  color: Colours.getBlackOrWhite(isDark))),
-                        ),
-                      ]
-                    ),
-                  )
-                      : Container(),
+                  leading:
+                      provider.tabBarIndex == 3 && provider.selectedPage != 0
+                          ? Container(
+                            margin: const EdgeInsets.fromLTRB(10,0,0,0),
+                            child: GestureDetector(
+                                onTap: () => provider.previousPage(),
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                    child: Text("< " + S.of(context).Back, maxLines: 1,)),
+                              ),
+                          )
+                          : Container(),
                   shape: Border(
                       bottom: BorderSide(
                           width: 3.0 * textScaleFactor,
                           color: Colours.getGradientNew(isDark))),
-                  title: Image.asset('assets/screen_logo.png',fit: BoxFit.contain,height: size.height * 0.05,),
+                  title: Image.asset(
+                    'assets/screen_logo.png',
+                    fit: BoxFit.contain,
+                    height: size.height * 0.05,
+                  ),
                   centerTitle: true,
                   actions: [DrawerButton(scaffoldKey: scaffoldKey)],
                   backgroundColor: Colours.getGradientNew2(isDark),
@@ -206,8 +197,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           floatingActionButton: FloatingActionButtonAdd(
-              context: context,
-              scaffoldKey: scaffoldKey,
+            context: context,
+            scaffoldKey: scaffoldKey,
           ),
         ),
       ),
@@ -224,12 +215,12 @@ class _ExpensesListScreenState extends State<ExpensesListScreen>
 }
 
 bool checkItemsAllEmpty(Iterable<List<Expense>> values) {
-  var isEmpty=true;
+  var isEmpty = true;
   values.forEach((element) {
-    if(element.isNotEmpty) {
-    isEmpty=false;
-    return isEmpty;
-  }
+    if (element.isNotEmpty) {
+      isEmpty = false;
+      return isEmpty;
+    }
   });
   return isEmpty;
 }

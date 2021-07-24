@@ -6,6 +6,7 @@ import 'package:gelir_gider/widgets/components/drawer_button.dart';
 import 'package:gelir_gider/widgets/buttons/save_button.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:gelir_gider/generated/l10n.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:gelir_gider/screens/category_screen.dart';
@@ -73,6 +74,7 @@ class _AddingExpenseState extends State<AddingExpense>
     setState(() {
       _isLoading = true;
     });
+    print('Time : $time');
     await Provider.of<Expenses>(context, listen: false).addExpense(
       Expense(
         id: UniqueKey().toString(),
@@ -91,7 +93,7 @@ class _AddingExpenseState extends State<AddingExpense>
       adCount++;
       setCount(adCount);
     }
-    if(isFirst){
+    if(isFirst == null){
       showDialog(
           context: context,
           builder: (_) => AssetGiffyDialog(
@@ -123,9 +125,7 @@ class _AddingExpenseState extends State<AddingExpense>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
     _getPrefs();
-
     setState(() {
       category = Provider.of<Expenses>(context, listen: false).currentCategory;
     });
@@ -270,7 +270,7 @@ class _AddingExpenseState extends State<AddingExpense>
                             Center(
                               child: DateTimePicker(
                                 textAlign: TextAlign.center,
-                                initialValue: DateTime.now().toString(),
+                                initialValue: new DateFormat("yyyy-MM-dd").format(DateTime.now()),
                                 firstDate: DateTime(2000),
                                 lastDate: DateTime.now(),
                                 dateLabelText: S.of(context).AddingScreenDate,
